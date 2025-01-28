@@ -5,8 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Text, View, Document, Page, StyleSheet, pdf, BlobProvider } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-// 类型定义
 type FormData = {
   name: string;
   email: string;
@@ -29,11 +29,9 @@ interface ResumePDFProps {
   formData: FormData;
 }
 
-// PDF文档组件
 const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
   <Document>
     <Page size="A4" style={pdfStyles.page}>
-      {/* 头部信息 */}
       <View style={pdfStyles.headerSection}>
         <Text style={pdfStyles.name}>{formData.name}</Text>
         <View style={pdfStyles.contactInfo}>
@@ -42,7 +40,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         </View>
       </View>
 
-      {/* 个人总结 */}
       {formData.summary && (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Summary</Text>
@@ -50,7 +47,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         </View>
       )}
 
-      {/* 工作经历 */}
       {formData.experiences.some(Boolean) && (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Experience</Text>
@@ -60,7 +56,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         </View>
       )}
 
-      {/* 教育背景 */}
       {formData.education && (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Education</Text>
@@ -68,7 +63,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         </View>
       )}
 
-      {/* 项目经历 */}
       {formData.projects.some(Boolean) && (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Projects</Text>
@@ -78,7 +72,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         </View>
       )}
 
-      {/* 技能列表 */}
       {formData.skills.some(Boolean) && (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Skills</Text>
@@ -88,7 +81,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         </View>
       )}
 
-      {/* 语言能力 */}
       {formData.languages.some(Boolean) && (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Languages</Text>
@@ -98,7 +90,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         </View>
       )}
 
-      {/* 相关链接 */}
       {formData.links.some(Boolean) && (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Links</Text>
@@ -116,7 +107,6 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
   </Document>
 );
 
-// 主编辑器组件
 const ResumeEditor: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -130,8 +120,8 @@ const ResumeEditor: React.FC = () => {
     languages: [''],
     links: [''],
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 处理列表字段变更
   const handleListChange = (
     field: ListField,
     index: number,
@@ -143,7 +133,6 @@ const ResumeEditor: React.FC = () => {
     }));
   };
 
-  // 添加列表项
   const addToList = (field: ListField) => {
     setFormData(prev => ({
       ...prev,
@@ -151,7 +140,6 @@ const ResumeEditor: React.FC = () => {
     }));
   };
 
-  // 删除列表项
   const removeFromList = (field: ListField, index: number) => {
     setFormData(prev => ({
       ...prev,
@@ -159,7 +147,6 @@ const ResumeEditor: React.FC = () => {
     }));
   };
 
-  // 渲染列表输入组件
   const renderListInputs = (field: ListField, label: string) => (
     <div className="space-y-2">
       <label className="block text-sm font-medium">{label}</label>
@@ -167,7 +154,7 @@ const ResumeEditor: React.FC = () => {
         <div key={index} className="flex gap-2">
           <Input
             value={item}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+            onChange={(e) => 
               handleListChange(field, index, e.target.value)
             }
           />
@@ -192,7 +179,6 @@ const ResumeEditor: React.FC = () => {
     </div>
   );
 
-  // 下载PDF处理
   const handleDownloadPDF = async () => {
     const blob = await pdf(<ResumePDF formData={formData} />).toBlob();
     saveAs(blob, `${formData.name.trim() || 'resume'}.pdf`);
@@ -200,9 +186,7 @@ const ResumeEditor: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* 编辑区域 */}
       <div className="space-y-6">
-        {/* 个人信息 */}
         <Card>
           <CardHeader>
             <CardTitle>Personal Information</CardTitle>
@@ -211,7 +195,6 @@ const ResumeEditor: React.FC = () => {
             <div className="space-y-2">
               <label className="block text-sm font-medium">Full Name</label>
               <Input 
-                name="name" 
                 value={formData.name} 
                 onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
               />
@@ -220,7 +203,6 @@ const ResumeEditor: React.FC = () => {
               <div className="space-y-2">
                 <label className="block text-sm font-medium">Email</label>
                 <Input
-                  name="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
@@ -229,7 +211,6 @@ const ResumeEditor: React.FC = () => {
               <div className="space-y-2">
                 <label className="block text-sm font-medium">Phone</label>
                 <Input
-                  name="phone"
                   value={formData.phone}
                   onChange={(e) => setFormData(prev => ({...prev, phone: e.target.value}))}
                 />
@@ -238,7 +219,6 @@ const ResumeEditor: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* 专业信息 */}
         <Card>
           <CardHeader>
             <CardTitle>Professional Details</CardTitle>
@@ -247,7 +227,6 @@ const ResumeEditor: React.FC = () => {
             <div className="space-y-2">
               <label className="block text-sm font-medium">Summary</label>
               <Input 
-                name="summary" 
                 value={formData.summary} 
                 onChange={(e) => setFormData(prev => ({...prev, summary: e.target.value}))}
               />
@@ -257,7 +236,6 @@ const ResumeEditor: React.FC = () => {
             <div className="space-y-2">
               <label className="block text-sm font-medium">Education</label>
               <Input 
-                name="education" 
                 value={formData.education} 
                 onChange={(e) => setFormData(prev => ({...prev, education: e.target.value}))}
               />
@@ -265,7 +243,6 @@ const ResumeEditor: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* 技能和语言 */}
         <Card>
           <CardHeader>
             <CardTitle>Skills & Languages</CardTitle>
@@ -277,33 +254,116 @@ const ResumeEditor: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Button 
-          onClick={handleDownloadPDF} 
-          className="w-full" 
-          size="lg"
-          disabled={!formData.name.trim()}
-        >
-          Download PDF
-        </Button>
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <Button 
+            className="w-full" 
+            size="lg"
+            disabled={!formData.name.trim()}
+          >
+            Preview & Download PDF
+          </Button>
+          <DialogContent className="max-w-4xl h-[90vh]">
+            <div className="h-[80vh]">
+              <BlobProvider document={<ResumePDF formData={formData} />}>
+                {({ url }) => (
+                  <iframe 
+                    src={url || ''}
+                    className="w-full h-full border-none"
+                    title="pdf-preview"
+                  />
+                )}
+              </BlobProvider>
+            </div>
+            <Button onClick={handleDownloadPDF} className="mt-4">
+              Download PDF
+            </Button>
+          </DialogContent>
+        </Dialog>
       </div>
 
-      {/* 预览区域 */}
       <div className="sticky top-4 h-fit">
         <Card>
           <CardHeader>
             <CardTitle>Preview</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="p-6 bg-white shadow-none">
-              <BlobProvider document={<ResumePDF formData={formData} />}>
-                {({ url }) => (
-                  <iframe 
-                    src={url || ''}
-                    className="w-full h-[calc(100vh-100px)] border-none"
-                    title="resume-preview"
-                  />
-                )}
-              </BlobProvider>
+            <div className="p-6 bg-white space-y-4">
+              <div className="mb-6 pb-4 border-b-2 border-gray-800">
+                <h1 className="text-2xl font-bold mb-2">{formData.name}</h1>
+                <div className="flex justify-between text-sm text-gray-600">
+                  {formData.email && <span>{formData.email}</span>}
+                  {formData.phone && <span>{formData.phone}</span>}
+                </div>
+              </div>
+
+              {formData.summary && (
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Summary</h2>
+                  <p className="text-sm">{formData.summary}</p>
+                </div>
+              )}
+
+              {formData.experiences.some(Boolean) && (
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Experience</h2>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {formData.experiences.map((exp, index) => (
+                      <li key={index} className="text-sm">{exp}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {formData.education && (
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Education</h2>
+                  <p className="text-sm">{formData.education}</p>
+                </div>
+              )}
+
+              {formData.projects.some(Boolean) && (
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Projects</h2>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {formData.projects.map((proj, index) => (
+                      <li key={index} className="text-sm">{proj}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {formData.skills.some(Boolean) && (
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Skills</h2>
+                  <p className="text-sm">{formData.skills.join(' • ')}</p>
+                </div>
+              )}
+
+              {formData.languages.some(Boolean) && (
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Languages</h2>
+                  <p className="text-sm">{formData.languages.join(' • ')}</p>
+                </div>
+              )}
+
+              {formData.links.some(Boolean) && (
+                <div className="mb-4">
+                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Links</h2>
+                  <div className="space-y-1">
+                    {formData.links.map((link, index) => (
+                      <a 
+                        key={index} 
+                        href={link} 
+                        className="text-sm text-blue-600 hover:underline block"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -312,7 +372,6 @@ const ResumeEditor: React.FC = () => {
   );
 };
 
-// PDF样式定义
 const pdfStyles = StyleSheet.create({
   page: {
     padding: 40,
