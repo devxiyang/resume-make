@@ -94,8 +94,8 @@ const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
         <View style={pdfStyles.section}>
           <Text style={pdfStyles.sectionTitle}>Links</Text>
           {formData.links.map((link, index) => (
-            <Text 
-              key={index} 
+            <Text
+              key={index}
               style={{ ...pdfStyles.sectionContent, color: 'blue' }}
             >
               {link}
@@ -154,7 +154,7 @@ const ResumeEditor: React.FC = () => {
         <div key={index} className="flex gap-2">
           <Input
             value={item}
-            onChange={(e) => 
+            onChange={(e) =>
               handleListChange(field, index, e.target.value)
             }
           />
@@ -194,9 +194,9 @@ const ResumeEditor: React.FC = () => {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <label className="block text-sm font-medium">Full Name</label>
-              <Input 
-                value={formData.name} 
-                onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
+              <Input
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -205,14 +205,14 @@ const ResumeEditor: React.FC = () => {
                 <Input
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                 />
               </div>
               <div className="space-y-2">
                 <label className="block text-sm font-medium">Phone</label>
                 <Input
                   value={formData.phone}
-                  onChange={(e) => setFormData(prev => ({...prev, phone: e.target.value}))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                 />
               </div>
             </div>
@@ -226,18 +226,18 @@ const ResumeEditor: React.FC = () => {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <label className="block text-sm font-medium">Summary</label>
-              <Input 
-                value={formData.summary} 
-                onChange={(e) => setFormData(prev => ({...prev, summary: e.target.value}))}
+              <Input
+                value={formData.summary}
+                onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
               />
             </div>
             {renderListInputs('experiences', 'Experience')}
             {renderListInputs('projects', 'Project')}
             <div className="space-y-2">
               <label className="block text-sm font-medium">Education</label>
-              <Input 
-                value={formData.education} 
-                onChange={(e) => setFormData(prev => ({...prev, education: e.target.value}))}
+              <Input
+                value={formData.education}
+                onChange={(e) => setFormData(prev => ({ ...prev, education: e.target.value }))}
               />
             </div>
           </CardContent>
@@ -254,7 +254,7 @@ const ResumeEditor: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        {/* <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <Button 
             className="w-full" 
             size="lg"
@@ -267,6 +267,33 @@ const ResumeEditor: React.FC = () => {
               <BlobProvider document={<ResumePDF formData={formData} />}>
                 {({ url }) => (
                   <iframe 
+                    src={url || ''}
+                    className="w-full h-full border-none"
+                    title="pdf-preview"
+                  />
+                )}
+              </BlobProvider>
+            </div>
+            <Button onClick={handleDownloadPDF} className="mt-4">
+              Download PDF
+            </Button>
+          </DialogContent>
+        </Dialog> */}
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              className="w-full"
+              size="lg"
+              disabled={!formData.name.trim()}
+            >
+              Preview & Download PDF
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-4xl h-[90vh]">
+            <div className="h-[80vh]">
+              <BlobProvider document={<ResumePDF formData={formData} />}>
+                {({ url }) => (
+                  <iframe
                     src={url || ''}
                     className="w-full h-full border-none"
                     title="pdf-preview"
@@ -351,9 +378,9 @@ const ResumeEditor: React.FC = () => {
                   <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Links</h2>
                   <div className="space-y-1">
                     {formData.links.map((link, index) => (
-                      <a 
-                        key={index} 
-                        href={link} 
+                      <a
+                        key={index}
+                        href={link}
                         className="text-sm text-blue-600 hover:underline block"
                         target="_blank"
                         rel="noopener noreferrer"
