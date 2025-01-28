@@ -120,7 +120,6 @@ const ResumeEditor: React.FC = () => {
     languages: [''],
     links: [''],
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleListChange = (
     field: ListField,
