@@ -1,447 +1,407 @@
 'use client';
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Text, View, Document, Page, StyleSheet, pdf, BlobProvider } from '@react-pdf/renderer';
-import { saveAs } from 'file-saver';
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Plus, Trash2 } from 'lucide-react';
 
-type FormData = {
-  name: string;
-  email: string;
-  phone: string;
-  summary: string;
-  experiences: string[];
-  education: string;
-  projects: string[];
-  skills: string[];
-  languages: string[];
-  links: string[];
+type EducationEntry = {
+  school: string;
+  degree: string;
+  startDate: string;
+  endDate: string;
+  description: string;
 };
 
-type ListField = keyof Pick<
-  FormData,
-  'experiences' | 'projects' | 'skills' | 'languages' | 'links'
->;
+type WorkExperience = {
+  company: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  responsibilities: string;
+  technologies: string;
+};
 
-interface ResumePDFProps {
-  formData: FormData;
-}
+type Project = {
+  name: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  technologies: string;
+};
 
-const ResumePDF: React.FC<ResumePDFProps> = ({ formData }) => (
-  <Document>
-    <Page size="A4" style={pdfStyles.page}>
-      <View style={pdfStyles.headerSection}>
-        <Text style={pdfStyles.name}>{formData.name}</Text>
-        <View style={pdfStyles.contactInfo}>
-          {formData.email && <Text>{formData.email}</Text>}
-          {formData.phone && <Text>{formData.phone}</Text>}
-        </View>
-      </View>
+type ResumeData = {
+  personalInfo: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    linkedIn: string;
+  };
+  education: EducationEntry[];
+  workExperience: WorkExperience[];
+  projects: Project[];
+};
 
-      {formData.summary && (
-        <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>Summary</Text>
-          <Text style={pdfStyles.sectionContent}>{formData.summary}</Text>
-        </View>
-      )}
-
-      {formData.experiences.some(Boolean) && (
-        <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>Experience</Text>
-          {formData.experiences.map((exp, index) => (
-            <Text key={index} style={pdfStyles.listItem}>• {exp}</Text>
-          ))}
-        </View>
-      )}
-
-      {formData.education && (
-        <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>Education</Text>
-          <Text style={pdfStyles.sectionContent}>{formData.education}</Text>
-        </View>
-      )}
-
-      {formData.projects.some(Boolean) && (
-        <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>Projects</Text>
-          {formData.projects.map((proj, index) => (
-            <Text key={index} style={pdfStyles.listItem}>• {proj}</Text>
-          ))}
-        </View>
-      )}
-
-      {formData.skills.some(Boolean) && (
-        <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>Skills</Text>
-          <Text style={pdfStyles.sectionContent}>
-            {formData.skills.join(' • ')}
-          </Text>
-        </View>
-      )}
-
-      {formData.languages.some(Boolean) && (
-        <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>Languages</Text>
-          <Text style={pdfStyles.sectionContent}>
-            {formData.languages.join(' • ')}
-          </Text>
-        </View>
-      )}
-
-      {formData.links.some(Boolean) && (
-        <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>Links</Text>
-          {formData.links.map((link, index) => (
-            <Text
-              key={index}
-              style={{ ...pdfStyles.sectionContent, color: 'blue' }}
-            >
-              {link}
-            </Text>
-          ))}
-        </View>
-      )}
-    </Page>
-  </Document>
-);
-
-const ResumeEditor: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    summary: '',
-    experiences: [''],
-    education: '',
-    projects: [''],
-    skills: [''],
-    languages: [''],
-    links: [''],
+export default function ResumeEditor() {
+  const [resumeData, setResumeData] = useState<ResumeData>({
+    personalInfo: {
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      linkedIn: ''
+    },
+    education: [createNewEducation()],
+    workExperience: [createNewWorkExperience()],
+    projects: [createNewProject()]
   });
 
-  const handleListChange = (
-    field: ListField,
-    index: number,
+  function createNewEducation(): EducationEntry {
+    return {
+      school: '',
+      degree: '',
+      startDate: '',
+      endDate: '',
+      description: ''
+    };
+  }
+
+  function createNewWorkExperience(): WorkExperience {
+    return {
+      company: '',
+      position: '',
+      startDate: '',
+      endDate: '',
+      responsibilities: '',
+      technologies: ''
+    };
+  }
+
+  function createNewProject(): Project {
+    return {
+      name: '',
+      role: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+      technologies: ''
+    };
+  }
+
+  const updateField = <T extends EducationEntry | WorkExperience | Project>(
+    section: Extract<keyof ResumeData, 'education' | 'workExperience' | 'projects'>, 
+    index: number, 
+    field: keyof T, 
     value: string
   ) => {
-    setFormData(prev => ({
+    setResumeData(prev => ({
       ...prev,
-      [field]: prev[field].map((item, i) => i === index ? value : item)
+      [section]: (prev[section] as T[]).map((item, i) => 
+        i === index ? { ...item, [field]: value } : item
+      )
     }));
   };
 
-  const addToList = (field: ListField) => {
-    setFormData(prev => ({
+  const addEntry = (section: Extract<keyof ResumeData, 'education' | 'workExperience' | 'projects'>, createFn: () => any) => {
+    setResumeData(prev => ({
       ...prev,
-      [field]: [...prev[field], '']
+      [section]: [...prev[section], createFn()]
     }));
   };
 
-  const removeFromList = (field: ListField, index: number) => {
-    setFormData(prev => ({
+  const removeEntry = (section: Extract<keyof ResumeData, 'education' | 'workExperience' | 'projects'>, index: number) => {
+    setResumeData(prev => ({
       ...prev,
-      [field]: prev[field].filter((_, i) => i !== index)
+      [section]: prev[section].filter((_, i) => i !== index)
     }));
   };
 
-  const renderListInputs = (field: ListField, label: string) => (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium">{label}</label>
-      {formData[field].map((item, index) => (
-        <div key={index} className="flex gap-2">
-          <Input
-            value={item}
-            onChange={(e) =>
-              handleListChange(field, index, e.target.value)
-            }
-          />
-          <Button
-            type="button"
-            variant="destructive"
-            size="sm"
-            onClick={() => removeFromList(field, index)}
-          >
-            ×
-          </Button>
-        </div>
-      ))}
-      <Button
-        type="button"
-        variant="secondary"
-        onClick={() => addToList(field)}
-        className="w-full mt-2"
-      >
-        + Add {label}
-      </Button>
-    </div>
-  );
-
-  const handleDownloadPDF = async () => {
-    const blob = await pdf(<ResumePDF formData={formData} />).toBlob();
-    saveAs(blob, `${formData.name.trim() || 'resume'}.pdf`);
+  const handlePersonalInfoChange = (field: keyof ResumeData['personalInfo'], value: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      personalInfo: { ...prev.personalInfo, [field]: value }
+    }));
   };
 
   return (
-    <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <label className="block text-sm font-medium">Full Name</label>
-              <Input
-                value={formData.name}
-                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-              />
-            </div>
+    <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <h1 className="text-3xl font-bold">简历编辑器</h1>
+
+      {/* 个人信息 */}
+      <Accordion type="single" defaultValue="personal-info" collapsible>
+        <AccordionItem value="personal-info">
+          <AccordionTrigger className="text-lg font-semibold">个人信息</AccordionTrigger>
+          <AccordionContent>
             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="block text-sm font-medium">Email</label>
+              {[
+                { id: 'name', label: '姓名', type: 'text' },
+                { id: 'email', label: '邮箱', type: 'email' },
+                { id: 'phone', label: '电话', type: 'tel' },
+                { id: 'linkedIn', label: 'LinkedIn', type: 'url' }
+              ].map(({ id, label, type }) => (
+                <div key={id} className="space-y-2">
+                  <Label htmlFor={id}>{label}</Label>
+                  <Input
+                    id={id}
+                    type={type}
+                    value={resumeData.personalInfo[id as keyof typeof resumeData.personalInfo]}
+                    onChange={(e) => handlePersonalInfoChange(id as any, e.target.value)}
+                  />
+                </div>
+              ))}
+              <div className="space-y-2 col-span-2">
+                <Label htmlFor="address">地址</Label>
                 <Input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  id="address"
+                  value={resumeData.personalInfo.address}
+                  onChange={(e) => handlePersonalInfoChange('address', e.target.value)}
                 />
               </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-medium">Phone</label>
-                <Input
-                  value={formData.phone}
-                  onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                />
-              </div>
             </div>
-          </CardContent>
-        </Card>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Professional Details</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <label className="block text-sm font-medium">Summary</label>
-              <Input
-                value={formData.summary}
-                onChange={(e) => setFormData(prev => ({ ...prev, summary: e.target.value }))}
-              />
-            </div>
-            {renderListInputs('experiences', 'Experience')}
-            {renderListInputs('projects', 'Project')}
-            <div className="space-y-2">
-              <label className="block text-sm font-medium">Education</label>
-              <Input
-                value={formData.education}
-                onChange={(e) => setFormData(prev => ({ ...prev, education: e.target.value }))}
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Skills & Languages</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {renderListInputs('skills', 'Skill')}
-            {renderListInputs('languages', 'Language')}
-            {renderListInputs('links', 'Link')}
-          </CardContent>
-        </Card>
-
-        {/* <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <Button 
-            className="w-full" 
-            size="lg"
-            disabled={!formData.name.trim()}
-          >
-            Preview & Download PDF
-          </Button>
-          <DialogContent className="max-w-4xl h-[90vh]">
-            <div className="h-[80vh]">
-              <BlobProvider document={<ResumePDF formData={formData} />}>
-                {({ url }) => (
-                  <iframe 
-                    src={url || ''}
-                    className="w-full h-full border-none"
-                    title="pdf-preview"
-                  />
-                )}
-              </BlobProvider>
-            </div>
-            <Button onClick={handleDownloadPDF} className="mt-4">
-              Download PDF
-            </Button>
-          </DialogContent>
-        </Dialog> */}
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button
-              className="w-full"
-              size="lg"
-              disabled={!formData.name.trim()}
-            >
-              Preview & Download PDF
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-4xl h-[90vh]">
-            <div className="h-[80vh]">
-              <BlobProvider document={<ResumePDF formData={formData} />}>
-                {({ url }) => (
-                  <iframe
-                    src={url || ''}
-                    className="w-full h-full border-none"
-                    title="pdf-preview"
-                  />
-                )}
-              </BlobProvider>
-            </div>
-            <Button onClick={handleDownloadPDF} className="mt-4">
-              Download PDF
-            </Button>
-          </DialogContent>
-        </Dialog>
-      </div>
-
-      <div className="sticky top-4 h-fit">
-        <Card>
-          <CardHeader>
-            <CardTitle>Preview</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="p-6 bg-white space-y-4">
-              <div className="mb-6 pb-4 border-b-2 border-gray-800">
-                <h1 className="text-2xl font-bold mb-2">{formData.name}</h1>
-                <div className="flex justify-between text-sm text-gray-600">
-                  {formData.email && <span>{formData.email}</span>}
-                  {formData.phone && <span>{formData.phone}</span>}
-                </div>
-              </div>
-
-              {formData.summary && (
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Summary</h2>
-                  <p className="text-sm">{formData.summary}</p>
-                </div>
-              )}
-
-              {formData.experiences.some(Boolean) && (
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Experience</h2>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {formData.experiences.map((exp, index) => (
-                      <li key={index} className="text-sm">{exp}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {formData.education && (
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Education</h2>
-                  <p className="text-sm">{formData.education}</p>
-                </div>
-              )}
-
-              {formData.projects.some(Boolean) && (
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Projects</h2>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {formData.projects.map((proj, index) => (
-                      <li key={index} className="text-sm">{proj}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {formData.skills.some(Boolean) && (
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Skills</h2>
-                  <p className="text-sm">{formData.skills.join(' • ')}</p>
-                </div>
-              )}
-
-              {formData.languages.some(Boolean) && (
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Languages</h2>
-                  <p className="text-sm">{formData.languages.join(' • ')}</p>
-                </div>
-              )}
-
-              {formData.links.some(Boolean) && (
-                <div className="mb-4">
-                  <h2 className="text-lg font-semibold mb-2 border-b border-gray-200 pb-1">Links</h2>
-                  <div className="space-y-1">
-                    {formData.links.map((link, index) => (
-                      <a
-                        key={index}
-                        href={link}
-                        className="text-sm text-blue-600 hover:underline block"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {link}
-                      </a>
-                    ))}
+      {/* 教育经历 */}
+      <Accordion type="multiple">
+        <AccordionItem value="education">
+          <AccordionTrigger className="text-lg font-semibold">教育经历</AccordionTrigger>
+          <AccordionContent className="space-y-4">
+            {resumeData.education.map((edu, index) => (
+              <div key={index} className="border p-4 rounded-lg space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>学校名称</Label>
+                    <Input
+                      value={edu.school}
+                      onChange={(e) => updateField('education', index, 'school', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>学位</Label>
+                    <Input
+                      value={edu.degree}
+                      onChange={(e) => updateField('education', index, 'degree', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>开始日期</Label>
+                    <Input
+                      type="date"
+                      value={edu.startDate}
+                      onChange={(e) => updateField('education', index, 'startDate', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>结束日期</Label>
+                    <Input
+                      type="date"
+                      value={edu.endDate}
+                      onChange={(e) => updateField('education', index, 'endDate', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2 col-span-2">
+                    <Label>描述</Label>
+                    <Textarea
+                      value={edu.description}
+                      onChange={(e) => updateField('education', index, 'description', e.target.value)}
+                    />
                   </div>
                 </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+                <div className="flex justify-end">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeEntry('education', index)}
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    删除
+                  </Button>
+                </div>
+              </div>
+            ))}
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => addEntry('education', createNewEducation)}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              添加教育经历
+            </Button>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
+      {/* 工作经历 */}
+      <Accordion type="multiple">
+        <AccordionItem value="work-experience">
+          <AccordionTrigger className="text-lg font-semibold">工作经历</AccordionTrigger>
+          <AccordionContent className="space-y-4">
+            {resumeData.workExperience.map((work, index) => (
+              <div key={index} className="border p-4 rounded-lg space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>公司名称</Label>
+                    <Input
+                      value={work.company}
+                      onChange={(e) => updateField('workExperience', index, 'company', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>职位</Label>
+                    <Input
+                      value={work.position}
+                      onChange={(e) => updateField('workExperience', index, 'position', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>开始日期</Label>
+                    <Input
+                      type="date"
+                      value={work.startDate}
+                      onChange={(e) => updateField('workExperience', index, 'startDate', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>结束日期</Label>
+                    <Input
+                      type="date"
+                      value={work.endDate}
+                      onChange={(e) => updateField('workExperience', index, 'endDate', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2 col-span-2">
+                    <Label>工作职责</Label>
+                    <Textarea
+                      value={work.responsibilities}
+                      onChange={(e) => updateField('workExperience', index, 'responsibilities', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2 col-span-2">
+                    <Label>使用技术</Label>
+                    <Input
+                      value={work.technologies}
+                      onChange={(e) => updateField('workExperience', index, 'technologies', e.target.value)}
+                      placeholder="用逗号分隔技术栈"
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeEntry('workExperience', index)}
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    删除
+                  </Button>
+                </div>
+              </div>
+            ))}
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => addEntry('workExperience', createNewWorkExperience)}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              添加工作经历
+            </Button>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
+      {/* 项目经历 */}
+      <Accordion type="multiple">
+        <AccordionItem value="projects">
+          <AccordionTrigger className="text-lg font-semibold">项目经历</AccordionTrigger>
+          <AccordionContent className="space-y-4">
+            {resumeData.projects.map((project, index) => (
+              <div key={index} className="border p-4 rounded-lg space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>项目名称</Label>
+                    <Input
+                      value={project.name}
+                      onChange={(e) => updateField('projects', index, 'name', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>担任角色</Label>
+                    <Input
+                      value={project.role}
+                      onChange={(e) => updateField('projects', index, 'role', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>开始日期</Label>
+                    <Input
+                      type="date"
+                      value={project.startDate}
+                      onChange={(e) => updateField('projects', index, 'startDate', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>结束日期</Label>
+                    <Input
+                      type="date"
+                      value={project.endDate}
+                      onChange={(e) => updateField('projects', index, 'endDate', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2 col-span-2">
+                    <Label>项目描述</Label>
+                    <Textarea
+                      value={project.description}
+                      onChange={(e) => updateField('projects', index, 'description', e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2 col-span-2">
+                    <Label>使用技术</Label>
+                    <Input
+                      value={project.technologies}
+                      onChange={(e) => updateField('projects', index, 'technologies', e.target.value)}
+                      placeholder="用逗号分隔技术栈"
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeEntry('projects', index)}
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    删除
+                  </Button>
+                </div>
+              </div>
+            ))}
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => addEntry('projects', createNewProject)}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              添加项目经历
+            </Button>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
+      <div className="flex justify-center">
+        <Button onClick={() => console.log(resumeData)} size="lg">
+          保存简历
+        </Button>
       </div>
     </div>
   );
-};
-
-const pdfStyles = StyleSheet.create({
-  page: {
-    padding: 40,
-    fontFamily: 'Helvetica',
-    lineHeight: 1.5,
-  },
-  headerSection: {
-    marginBottom: 20,
-    borderBottomWidth: 2,
-    borderBottomColor: '#333',
-    paddingBottom: 10,
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  contactInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    fontSize: 10,
-    color: '#666',
-  },
-  section: {
-    marginBottom: 15,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    color: '#2c3e50',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    paddingBottom: 4,
-  },
-  sectionContent: {
-    fontSize: 10,
-    marginBottom: 4,
-  },
-  listItem: {
-    fontSize: 10,
-    marginLeft: 10,
-    marginBottom: 4,
-  },
-});
-
-export default ResumeEditor;
+}
