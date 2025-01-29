@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react"
-import { Link, Mail, MapPin, Phone, Plus, Trash2, X, Printer } from "lucide-react"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import type { ResumeData, Experience, Education, Skill } from "@/types/resume"
+import type { ResumeData } from "@/types/resume"
+import { Link, Mail, MapPin, Phone, Plus, Printer, Trash2, X } from "lucide-react"
+import { useState } from "react"
 
 const templates: { [key: string]: ResumeData } = {
   software_engineer: {
