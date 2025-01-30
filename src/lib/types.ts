@@ -1,19 +1,20 @@
 export interface PersonalInfo {
   name: string;
+  jobTitle: string;
   email: string;
   phone: string;
-  address: string;
+  address?: string;
   linkedin?: string;
-  github?: string;
+  professionalWebsite?: string;
+  personalWebsite?: string;
+  summary?: string;
 }
 
 export interface Education {
   id: string;
   school: string;
   degree: string;
-  field: string;
-  city: string;
-  state: string;
+  state?: string;
   startDate: string;
   endDate: string;
   description: string;
@@ -36,8 +37,8 @@ export interface Project {
   id: string;
   name: string;
   description: string;
-  bulletPoints: string[];
-  technologies: string[];
+  bulletPoints?: string[];
+  technologies?: string[];
   demoUrl?: string;
   repoUrl?: string;
 }
@@ -45,13 +46,20 @@ export interface Project {
 export interface Skill {
   id: string;
   name: string;
-  level: number;
   description?: string;
 }
 
-export type SectionType = 
+export type SectionType =
   | 'personalInfo'
-  | 'education' 
+  | 'education'
   | 'experience'
   | 'projects'
-  | 'skills'; 
+  | 'skills';
+
+export interface ResumeData {
+  personal: PersonalInfo;
+  experiences: Experience[];
+  education: Education[];
+  projects: Project[];
+  skills: Skill[];
+}

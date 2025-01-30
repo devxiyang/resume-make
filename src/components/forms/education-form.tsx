@@ -60,8 +60,6 @@ export function EducationForm({ educationId, onSave }: EducationFormProps) {
       id: educationId || "new",
       school: values.school,
       degree: values.degree,
-      field: values.field,
-      city: values.city || "",
       state: values.state || "",
       startDate: values.startDate,
       endDate: values.endDate,

@@ -1,4 +1,4 @@
-import { Experience } from "@/types/resume";
+import { Experience } from "@/lib/types";
 
 interface ResumeData {
   personal: {

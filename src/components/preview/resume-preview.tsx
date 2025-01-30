@@ -1,55 +1,4 @@
-// import type {
-//   PersonalInfo,
-//   Education,
-//   Experience,
-//   Project,
-//   Skill
-// } from '@/lib/types';
-
-interface ResumeData {
-  personal: {
-    firstName: string
-    lastName: string
-    jobTitle: string
-    email: string
-    phone: string
-    linkedin: string
-    professionalWebsite: string
-    personalWebsite: string
-    summary: string
-  }
-  experiences: Array<{
-    id: string
-    company: string
-    position: string
-    startDate: string
-    endDate: string
-    description: string
-    bulletPoints: string[]
-  }>
-  education: Array<{
-    id: string
-    school: string
-    degree: string
-    field: string
-    startDate: string
-    endDate: string
-    city: string
-    state: string
-    description: string
-  }>
-  projects: Array<{
-    id: string
-    name: string
-    description: string
-    bulletPoints: string[]
-  }>
-  skills: Array<{
-    id: string
-    group: string
-    skills: string[]
-  }>
-}
+import { ResumeData } from '@/lib/types';
 
 interface ResumePreviewProps {
   data: ResumeData
@@ -142,15 +91,10 @@ export function ResumePreview({ data, forPDF = true }: ResumePreviewProps) {
     <div style={containerStyle}>
       {/* Header */}
       <div style={styles.header}>
-        <h1 style={styles.name}>
-          {data.personal.firstName} {data.personal.lastName}
-        </h1>
-        <h2 style={styles.jobTitle}>
-          {data.personal.jobTitle}
-        </h2>
+        <h1 style={styles.name}>{data.personal.name}</h1>
         <p style={styles.contact}>
-          {data.personal.email} • {data.personal.phone} • {data.personal.professionalWebsite} •{" "}
-          {data.personal.personalWebsite} • {data.personal.linkedin}
+          {data.personal.email} • {data.personal.phone} • {data.personal.address}
+          {data.personal.linkedin && ` • ${data.personal.linkedin}`}
         </p>
       </div>
 
@@ -163,10 +107,13 @@ export function ResumePreview({ data, forPDF = true }: ResumePreviewProps) {
               <div style={styles.itemHeader}>
                 <h4 style={styles.itemTitle}>{exp.company}</h4>
                 <span style={styles.itemDate}>
-                  {exp.startDate} - {exp.endDate || "Present"}
+                  {exp.startDate} - {exp.currentlyWork ? "Present" : exp.endDate}
                 </span>
               </div>
-              <div style={styles.itemSubtitle}>{exp.position}</div>
+              <div style={styles.itemSubtitle}>
+                {exp.position}
+                {exp.city && exp.state && ` • ${exp.city}, ${exp.state}`}
+              </div>
               <p style={styles.description}>{exp.description}</p>
               {exp.bulletPoints.length > 0 && (
                 <ul style={styles.bulletList}>
@@ -188,12 +135,23 @@ export function ResumePreview({ data, forPDF = true }: ResumePreviewProps) {
             <div key={project.id} style={styles.itemContainer}>
               <h4 style={styles.itemTitle}>{project.name}</h4>
               <p style={styles.description}>{project.description}</p>
-              {project.bulletPoints.length > 0 && (
+              {project.bulletPoints && project.bulletPoints?.length > 0 && (
                 <ul style={styles.bulletList}>
                   {project.bulletPoints.map((point, index) => (
                     <li key={index}>{point}</li>
                   ))}
                 </ul>
+              )}
+              {project.technologies && (
+                <p style={styles.description}>
+                  Technologies: {project.technologies.join(", ")}
+                </p>
+              )}
+              {(project.demoUrl || project.repoUrl) && (
+                <p style={styles.description}>
+                  {project.demoUrl && `Demo: ${project.demoUrl} `}
+                  {project.repoUrl && `Repo: ${project.repoUrl}`}
+                </p>
               )}
             </div>
           ))}
@@ -208,8 +166,7 @@ export function ResumePreview({ data, forPDF = true }: ResumePreviewProps) {
             <div key={edu.id} style={styles.itemContainer}>
               <div style={styles.itemHeader}>
                 <h4 style={styles.itemTitle}>
-                  {edu.school}, {edu.city}
-                  {edu.state && `, ${edu.state}`}
+                  {edu.school}, {edu.state && `, ${edu.state}`}
                 </h4>
                 <span style={styles.itemDate}>
                   {edu.startDate} - {edu.endDate}
@@ -227,10 +184,10 @@ export function ResumePreview({ data, forPDF = true }: ResumePreviewProps) {
         <div>
           <h3 style={styles.sectionTitle}>Skills</h3>
           <div>
-            {data.skills.map((skillGroup) => (
-              <div key={skillGroup.id} style={styles.skillGroup}>
-                <span style={styles.skillGroupName}>{skillGroup.group}:</span>{" "}
-                <span style={styles.skillList}>{skillGroup.skills.join(", ")}</span>
+            {data.skills.map((skill) => (
+              <div key={skill.id} style={styles.skillGroup}>
+                <span style={styles.skillGroupName}>{skill.name}</span>
+                {skill.description && <p style={styles.description}>{skill.description}</p>}
               </div>
             ))}
           </div>

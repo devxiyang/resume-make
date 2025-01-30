@@ -1,25 +1,28 @@
 import { createContext, useContext, ReactNode, useState } from 'react';
-import { ResumeData } from '@/types/resume';
-import { initialResumeData } from "@/lib/initial-data";
+import { ResumeData } from '@/lib/types';
 
 const ResumeContext = createContext<{
   resumeData: ResumeData;
   setResumeData: (data: ResumeData) => void;
 } | null>(null);
+
 export function ResumeProvider({ children }: { children: ReactNode }) {
   const [resumeData, setResumeData] = useState<ResumeData>({
-    personalDetails: {
-      name: `${initialResumeData.personal.firstName} ${initialResumeData.personal.lastName}`,
-      role: initialResumeData.personal.jobTitle,
-      location: "",
-      url: initialResumeData.personal.professionalWebsite || initialResumeData.personal.personalWebsite,
-      email: initialResumeData.personal.email,
-      phone: initialResumeData.personal.phone
+    personal: {
+      name: '',
+      jobTitle: '',
+      email: '',
+      phone: '',
+      address: '',
+      linkedin: '',
+      professionalWebsite: '',
+      personalWebsite: '',
+      summary: ''
     },
-    about: initialResumeData.personal.summary,
-    education: initialResumeData.education,
-    experiences: initialResumeData.experiences,
-    skills: initialResumeData.skills
+    experiences: [],
+    education: [],
+    projects: [],
+    skills: []
   });
 
   return (
@@ -32,7 +35,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
 export function useResume() {
   const context = useContext(ResumeContext);
   if (!context) {
-    throw new Error('useResume必须在ResumeProvider内使用');
+    throw new Error('useResume must be used within a ResumeProvider');
   }
   return context;
-} 
+}
