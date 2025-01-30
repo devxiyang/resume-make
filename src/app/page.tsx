@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeft, Download } from "lucide-react"
 import { Education, Experience, ResumeData, Skill } from "@/lib/types"
 import { Project } from "@/lib/types"
+import { format } from "date-fns"
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills"
 type ActiveTab = "edit" | "template"
@@ -121,12 +122,56 @@ export default function Page() {
     }))
   }
 
+  const handleExperienceClick = (experienceId: string) => {
+    setSelectedExperienceId(experienceId)
+    setActiveSection("experience")
+  }
+
+  const handleAddExperience = () => {
+    const newExperience: Experience = {
+      id: `exp-${Date.now()}`,
+      company: "",
+      position: "",
+      startDate: format(new Date(), "MMM yyyy"),
+      endDate: "Present",
+      currentlyWork: true,
+      description: "",
+      bulletPoints: [],
+    }
+    
+    setResumeData(prev => ({
+      ...prev,
+      experiences: [...prev.experiences, newExperience]
+    }))
+    
+    setSelectedExperienceId(newExperience.id)
+    setActiveSection("experience")
+  }
+
+  const handleExperienceDelete = (experienceId: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      experiences: prev.experiences.filter(exp => exp.id !== experienceId)
+    }))
+    
+    if (selectedExperienceId === experienceId) {
+      const remainingExperiences = resumeData.experiences.filter(exp => exp.id !== experienceId)
+      setSelectedExperienceId(remainingExperiences[0]?.id || null)
+    }
+  }
+
   const renderForm = () => {
     switch (activeSection) {
       case "personal":
         return <PersonalInfoForm />
       case "experience":
-        return <ExperienceForm experienceId={selectedExperienceId} onSave={handleExperienceSave} />
+        return (
+          <ExperienceForm 
+            experienceId={selectedExperienceId} 
+            onSave={handleExperienceSave} 
+            initialData={resumeData.experiences.find(exp => exp.id === selectedExperienceId)} 
+          />
+        )
       case "education":
         return <EducationForm educationId={selectedExperienceId} onSave={handleEducationSave} />
       case "projects":
@@ -165,6 +210,10 @@ export default function Page() {
               activeSection={activeSection}
               onSectionChange={(section: string) => setActiveSection(section as ActiveSection)}
               onExperienceSelect={handleExperienceSelect}
+              onAddExperience={handleAddExperience}
+              onExperienceDelete={handleExperienceDelete}
+              resumeData={resumeData}
+              selectedExperienceId={selectedExperienceId}
             />
             <div className="flex divide-x divide-gray-200">
               <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>

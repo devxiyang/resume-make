@@ -15,6 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { type Experience } from '@/lib/types'
+import { useEffect } from "react"
 
 const formSchema = z.object({
   company: z.string().min(2, {
@@ -39,9 +40,10 @@ type FormValues = z.infer<typeof formSchema>
 interface ExperienceFormProps {
   experienceId: string | null;
   onSave: (experience: Experience) => void;
+  initialData?: Experience;
 }
 
-export function ExperienceForm({ experienceId, onSave }: ExperienceFormProps) {
+export function ExperienceForm({ experienceId, onSave, initialData }: ExperienceFormProps) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,13 +59,35 @@ export function ExperienceForm({ experienceId, onSave }: ExperienceFormProps) {
     },
   })
 
+  useEffect(() => {
+    if (initialData) {
+      form.reset({
+        company: initialData.company,
+        position: initialData.position,
+        startDate: initialData.startDate === "Present" 
+          ? new Date() 
+          : new Date(initialData.startDate),
+        endDate: initialData.endDate === "Present" 
+          ? undefined 
+          : new Date(initialData.endDate),
+        city: initialData.city || "",
+        state: initialData.state || "",
+        currentlyWork: initialData.currentlyWork,
+        description: initialData.description || "",
+        bulletPoints: initialData.bulletPoints || [],
+      })
+    }
+  }, [initialData, form])
+
   function onSubmit(values: FormValues) {
     const experience: Experience = {
       id: experienceId || "new",
       company: values.company,
       position: values.position,
-      startDate: format(values.startDate, "MMM yyyy"),
-      endDate: values.currentlyWork ? "Present" : format(values.endDate || new Date(), "MMM yyyy"),
+      startDate: values.startDate ? format(values.startDate, "MMM yyyy") : "Present",
+      endDate: values.currentlyWork 
+        ? "Present" 
+        : (values.endDate ? format(values.endDate, "MMM yyyy") : "Present"),
       currentlyWork: values.currentlyWork,
       city: values.city || "",
       state: values.state || "",
@@ -273,7 +297,10 @@ export function ExperienceForm({ experienceId, onSave }: ExperienceFormProps) {
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={() => field.onChange([...field.value, ""])}
+                    onClick={() => {
+                      const newBulletPoints = [...field.value, ""]
+                      field.onChange(newBulletPoints)
+                    }}
                     className="w-full mt-2"
                   >
                     <Plus className="mr-2 h-4 w-4" />

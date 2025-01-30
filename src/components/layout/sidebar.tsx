@@ -2,11 +2,28 @@
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, Plus } from "lucide-react"
+import { ChevronDown, Plus, Trash2 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import type React from "react"
 import { useState } from "react"
+import { ResumeData } from "@/lib/types"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills"
 
@@ -14,9 +31,13 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   activeSection: ActiveSection
   onSectionChange: (section: ActiveSection) => void
   onExperienceSelect: (id: string) => void
+  onAddExperience: () => void
+  onExperienceDelete: (id: string) => void
+  resumeData: ResumeData
+  selectedExperienceId: string | null
 }
 
-export function Sidebar({ className, activeSection, onSectionChange, onExperienceSelect }: SidebarProps) {
+export function Sidebar({ className, activeSection, onSectionChange, onExperienceSelect, onAddExperience, onExperienceDelete, resumeData, selectedExperienceId }: SidebarProps) {
   const [isExperienceOpen, setIsExperienceOpen] = useState(true)
   const [isEducationOpen, setIsEducationOpen] = useState(true)
   const [isProjectsOpen, setIsProjectsOpen] = useState(true)
@@ -63,23 +84,65 @@ export function Sidebar({ className, activeSection, onSectionChange, onExperienc
               </Button>
             </CollapsibleTrigger>
             <CollapsibleContent className="pl-8 mt-1 space-y-1">
-              <Button
-                variant={activeSection === "experience" ? "secondary" : "ghost"}
-                size="sm"
+              {resumeData.experiences.map((exp) => (
+                <div key={exp.id} className="flex items-center gap-1">
+                  <Button
+                    variant={activeSection === "experience" && selectedExperienceId === exp.id ? "secondary" : "ghost"}
+                    size="sm"
+                    className="flex-1 justify-start"
+                    onClick={() => onExperienceSelect(exp.id)}
+                  >
+                    <span className="text-xs">{exp.company || "New Experience"}</span>
+                  </Button>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="px-2 hover:text-red-500"
+                      >
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[200px] p-4" side="right">
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm">确认删除</h4>
+                        <p className="text-xs text-muted-foreground">
+                          确定要删除这条经历吗？
+                        </p>
+                        <div className="flex justify-end gap-2">
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="h-7 text-xs"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
+                                ?.querySelector('[data-radix-popper-close-trigger]')
+                                ?.dispatchEvent(new MouseEvent('click'));
+                            }}
+                          >
+                            取消
+                          </Button>
+                          <Button
+                            size="sm"
+                            className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
+                            onClick={() => onExperienceDelete(exp.id)}
+                          >
+                            删除
+                          </Button>
+                        </div>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
+              ))}
+              <Button 
+                variant="ghost" 
+                size="sm" 
                 className="w-full justify-start"
-                onClick={() => onExperienceSelect("1")}
+                onClick={onAddExperience}
               >
-                <span className="text-xs">Mihoyo</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full justify-start"
-                onClick={() => onExperienceSelect("2")}
-              >
-                <span className="text-xs">Haluo</span>
-              </Button>
-              <Button variant="ghost" size="sm" className="w-full justify-start">
                 <Plus className="h-3 w-3 mr-2" />
                 <span className="text-xs">Add</span>
               </Button>
