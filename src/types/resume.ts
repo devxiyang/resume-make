@@ -1,9 +1,14 @@
 export interface Experience {
     id: string
-    employer: string
+    company: string
     position: string
-    period: string
+    startDate: string
+    endDate: string
+    currentlyWork: boolean
+    city?: string
+    state?: string
     description: string
+    bulletPoints: string[]
 }
 
 export interface Education {
