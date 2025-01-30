@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import type React from "react"
 import { useState } from "react"
+import { ResumeData } from "@/lib/types"
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills"
 
@@ -14,9 +15,12 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   activeSection: ActiveSection
   onSectionChange: (section: ActiveSection) => void
   onExperienceSelect: (id: string) => void
+  onAddExperience: () => void
+  resumeData: ResumeData
+  selectedExperienceId: string | null
 }
 
-export function Sidebar({ className, activeSection, onSectionChange, onExperienceSelect }: SidebarProps) {
+export function Sidebar({ className, activeSection, onSectionChange, onExperienceSelect, onAddExperience, resumeData, selectedExperienceId }: SidebarProps) {
   const [isExperienceOpen, setIsExperienceOpen] = useState(true)
   const [isEducationOpen, setIsEducationOpen] = useState(true)
   const [isProjectsOpen, setIsProjectsOpen] = useState(true)
@@ -63,23 +67,23 @@ export function Sidebar({ className, activeSection, onSectionChange, onExperienc
               </Button>
             </CollapsibleTrigger>
             <CollapsibleContent className="pl-8 mt-1 space-y-1">
-              <Button
-                variant={activeSection === "experience" ? "secondary" : "ghost"}
-                size="sm"
+              {resumeData.experiences.map((exp) => (
+                <Button
+                  key={exp.id}
+                  variant={activeSection === "experience" && selectedExperienceId === exp.id ? "secondary" : "ghost"}
+                  size="sm"
+                  className="w-full justify-start"
+                  onClick={() => onExperienceSelect(exp.id)}
+                >
+                  <span className="text-xs">{exp.company || "New Experience"}</span>
+                </Button>
+              ))}
+              <Button 
+                variant="ghost" 
+                size="sm" 
                 className="w-full justify-start"
-                onClick={() => onExperienceSelect("1")}
+                onClick={onAddExperience}
               >
-                <span className="text-xs">Mihoyo</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full justify-start"
-                onClick={() => onExperienceSelect("2")}
-              >
-                <span className="text-xs">Haluo</span>
-              </Button>
-              <Button variant="ghost" size="sm" className="w-full justify-start">
                 <Plus className="h-3 w-3 mr-2" />
                 <span className="text-xs">Add</span>
               </Button>
