@@ -1,7 +1,27 @@
 'use client';
 
 import { ResumeData } from '@/lib/types';
-import { Document, Page, StyleSheet, Text, View, Link } from '@react-pdf/renderer';
+import { 
+  Document, 
+  Page, 
+  StyleSheet, 
+  Text, 
+  View, 
+  Link,
+  Font 
+} from '@react-pdf/renderer';
+
+// 只导入必要的字体
+Font.register({
+  family: 'Helvetica',
+  fonts: [
+    { src: 'https://fonts.gstatic.com/s/helveticaneue/v70/1Ptsg8zYS_SKggPNyC0IT0kLW-43aMEzIO6XUTLjad8.woff2' },
+    { 
+      src: 'https://fonts.gstatic.com/s/helveticaneue/v70/1Ptsg8zYS_SKggPNyC0IT0kLW-43aMEzIO6XUTLjad8.woff2',
+      fontWeight: 'bold' 
+    }
+  ]
+});
 
 // 定义颜色和尺寸常量
 const COLORS = {
