@@ -15,7 +15,7 @@ export function NavTabs({ activeTab, onTabChange }: NavTabsProps) {
           variant="ghost"
           size="sm"
           className={cn(
-            "w-full aspect-square flex flex-col items-center justify-center gap-1",
+            "w-full h-full aspect-square flex flex-col items-center justify-center gap-1",
             activeTab === "edit" && "bg-gray-100",
           )}
           onClick={() => onTabChange("edit")}
@@ -27,7 +27,7 @@ export function NavTabs({ activeTab, onTabChange }: NavTabsProps) {
           variant="ghost"
           size="sm"
           className={cn(
-            "w-full aspect-square flex flex-col items-center justify-center gap-1",
+            "w-full h-full aspect-square flex flex-col items-center justify-center gap-1",
             activeTab === "template" && "bg-gray-100",
           )}
           onClick={() => onTabChange("template")}

@@ -12,38 +12,19 @@ import { SkillsForm } from "@/components/forms/skills-form"
 import { ResumePreview } from "@/components/preview/resume-preview"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, Download } from "lucide-react"
-import { Experience } from "@/types/resume"
+import { Education, Experience, ResumeData, Skill } from "@/lib/types"
+import { Project } from "@/lib/types"
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills"
 type ActiveTab = "edit" | "template"
 
-const initialResumeData: {
+const initialResumeData: ResumeData = {
   personal: {
-    firstName: string;
-    lastName: string;
-    jobTitle: string;
-    email: string;
-    phone: string;
-    linkedin: string;
-    professionalWebsite: string;
-    personalWebsite: string;
-    summary: string;
-  };
-  experiences: Experience[];
-  education: Education[];
-  projects: Project[];
-  skills: {
-    id: string;
-    group: string;
-    skills: string[];
-  }[];
-} = {
-  personal: {
-    firstName: "Xiyang",
-    lastName: "Dev",
+    name: "Murphy Xiaoxi",
     jobTitle: "ML ENGINEERING EXPERT",
     email: "murphyxiaoxi@163.com",
     phone: "123456",
+    address: "Shanghai, China",
     linkedin: "linkedin.com/xiyang",
     professionalWebsite: "devxiyang.com",
     personalWebsite: "devxiyang.com",
@@ -76,11 +57,9 @@ const initialResumeData: {
       id: "1",
       school: "University of Shanghai for Secience and Technology",
       degree: "Master",
-      field: "CS",
+      state: "Shanghai, China",
       startDate: "Sep 2014",
       endDate: "Jun 2017",
-      city: "Shanghai",
-      state: "",
       description: "CS",
     },
   ],
@@ -89,35 +68,17 @@ const initialResumeData: {
       id: "1",
       name: "AI Platform",
       description: "build ai platform from zero to one",
-      bulletPoints: [] as Array<string | never>,
+      bulletPoints: [] as string[],
+      technologies: [] as string[],
     },
   ],
   skills: [
     {
       id: "1",
-      group: "English",
-      skills: ["Fluent"],
+      name: "English",
+      description: "English is my mother language",
     },
   ],
-}
-
-interface Education {
-  id: string;
-  school: string;
-  degree: string;
-  field: string;
-  startDate: string;
-  endDate: string;
-  city: string;
-  state: string;
-  description: string;
-}
-
-interface Project {
-  id: string;
-  name: string;
-  description: string;
-  bulletPoints: Array<string | never>;
 }
 
 export default function Page() {
@@ -125,7 +86,7 @@ export default function Page() {
   const [activeSection, setActiveSection] = useState<ActiveSection>("experience")
   const [selectedTemplate, setSelectedTemplate] = useState("sharp")
   const [selectedExperienceId, setSelectedExperienceId] = useState<string | null>("1")
-  const [resumeData, setResumeData] = useState(initialResumeData)
+  const [resumeData, setResumeData] = useState<ResumeData>(initialResumeData)
 
   const handleExperienceSelect = (id: string) => {
     setSelectedExperienceId(id)
@@ -149,7 +110,14 @@ export default function Page() {
   const handleProjectSave = (project: Project) => {
     setResumeData((prev) => ({
       ...prev,
-      projects: prev.projects.map((proj) => (proj.id === project.id ? project : proj)),
+      projects: prev.projects.map((proj: Project) => (proj.id === project.id ? project : proj)),
+    }))
+  }
+
+  const handleSkillsSave = (skills: Skill[]) => {
+    setResumeData((prev) => ({
+      ...prev,
+      skills
     }))
   }
 
@@ -164,7 +132,7 @@ export default function Page() {
       case "projects":
         return <ProjectsForm projectId={selectedExperienceId} onSave={handleProjectSave} />
       case "skills":
-        return <SkillsForm />
+        return <SkillsForm onSave={handleSkillsSave} />
       default:
         return null
     }
@@ -198,9 +166,9 @@ export default function Page() {
               onSectionChange={(section: string) => setActiveSection(section as ActiveSection)}
               onExperienceSelect={handleExperienceSelect}
             />
-            <div className="grid grid-cols-2 divide-x divide-gray-200">
-              <div className="p-8 overflow-y-auto">{renderForm()}</div>
-              <div className="p-8 bg-gray-50 overflow-y-auto">
+            <div className="flex divide-x divide-gray-200">
+              <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>
+              <div className="w-3/5 p-8 bg-gray-500 overflow-y-auto">
                 <ResumePreview data={resumeData} />
               </div>
             </div>
@@ -208,7 +176,7 @@ export default function Page() {
         ) : (
           <>
             <TemplatePicker selectedTemplate={selectedTemplate} onTemplateSelect={setSelectedTemplate} />
-            <div className="p-6 bg-gray-100 overflow-y-auto">
+            <div className="p-6 bg-gray-500 overflow-y-auto">
               <ResumePreview data={resumeData} />
             </div>
           </>
@@ -217,4 +185,3 @@ export default function Page() {
     </div>
   )
 }
-
