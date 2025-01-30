@@ -1,3 +1,5 @@
+'use client';
+
 import { JSX, useRef, useState, useEffect } from 'react';
 import { ResumeData } from '@/lib/types';
 import { PDFViewer } from '@react-pdf/renderer';
@@ -405,3 +407,5 @@ export function ResumePreview({ data}: ResumePreviewProps) {
     </PDFViewer>
   );
 }
+
+export default ResumePreview;

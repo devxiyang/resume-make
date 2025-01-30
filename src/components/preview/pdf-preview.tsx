@@ -1,5 +1,7 @@
-import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
+'use client';
+
 import { ResumeData } from '@/lib/types';
+import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 
 // 创建PDF样式表
 const styles = StyleSheet.create({
