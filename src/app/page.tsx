@@ -9,13 +9,18 @@ import { ExperienceForm } from "@/components/forms/experience-form"
 import { EducationForm } from "@/components/forms/education-form"
 import { ProjectsForm } from "@/components/forms/projects-form"
 import { SkillsForm } from "@/components/forms/skills-form"
-import { ResumePreview } from "@/components/preview/resume-preview"
+// import { ResumePreview } from "@/components/preview/resume-preview"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, Download } from "lucide-react"
 import { Education, Experience, ResumeData, Skill, CustomSection } from "@/lib/types"
 import { Project } from "@/lib/types"
 import { format } from "date-fns"
 import { CustomSectionForm } from "@/components/forms/custom-section-form"
+import dynamic from "next/dynamic"
+
+// 关键：动态导入，不在 SSR 渲染
+const ResumePreview = dynamic(() => import("@/components/preview/resume-preview"), { ssr: false });
+
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 type ActiveTab = "edit" | "template"
@@ -406,9 +411,9 @@ export default function Page() {
               selectedSkillId={selectedSkillId}
               selectedCustomSectionId={selectedCustomSectionId}
             />
-            <div className="flex divide-x divide-gray-200">
+            <div className="flex divide-x divide-gray-200 h-[calc(100vh-56px)]">
               <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>
-              <div className="w-3/5 p-8 bg-gray-500 overflow-y-auto">
+              <div className="w-3/5 bg-gray-100 overflow-hidden flex flex-col">
                 <ResumePreview data={resumeData} />
               </div>
             </div>

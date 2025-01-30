@@ -5,9 +5,43 @@
     }
 
     body {
-        margin: 1cm;
+        margin: 0;
+        background: white;
     }
 
+    .resume-preview {
+        background: white;
+    }
+
+    .resume-page {
+        page-break-after: always;
+        margin: 0 !important;
+        height: 297mm !important;
+        width: 210mm !important;
+        box-shadow: none !important;
+    }
+
+    .resume-page:last-child {
+        page-break-after: avoid;
+    }
+
+    /* 避免部分内容被分割 */
+    .section {
+        page-break-inside: avoid;
+    }
+
+    /* 确保标题不会在页面底部 */
+    h1, h2, h3, h4 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    /* 确保列表项不会被分割 */
+    li {
+        page-break-inside: avoid;
+    }
+
+    /* 隐藏非打印元素 */
     .no-print {
         display: none !important;
     }
@@ -19,12 +53,6 @@
 
     .resume-content {
         page-break-inside: avoid;
-    }
-
-    h1,
-    h2,
-    h3 {
-        page-break-after: avoid;
     }
 
     img,
