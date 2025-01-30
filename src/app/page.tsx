@@ -153,6 +153,17 @@ export default function Page() {
     }))
   }
 
+  const handleSkillsSave = (skills: {id: string, name: string, skills: string[]}[]) => {
+    setResumeData((prev) => ({
+      ...prev,
+      skills: skills.map(skill => ({
+        id: skill.id,
+        group: skill.name,
+        skills: skill.skills
+      }))
+    }))
+  }
+
   const renderForm = () => {
     switch (activeSection) {
       case "personal":
@@ -164,7 +175,7 @@ export default function Page() {
       case "projects":
         return <ProjectsForm projectId={selectedExperienceId} onSave={handleProjectSave} />
       case "skills":
-        return <SkillsForm />
+        return <SkillsForm onSave={handleSkillsSave} />
       default:
         return null
     }

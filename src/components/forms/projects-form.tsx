@@ -41,7 +41,10 @@ export function ProjectsForm({ projectId, onSave }: ProjectsFormProps) {
   function onSubmit(values: FormValues) {
     const project: Project = {
       id: projectId || "new",
-      ...values,
+      name: values.name,
+      description: values.description,
+      bulletPoints: values.bulletPoints.filter(Boolean),
+      technologies: [],
     }
     onSave(project)
   }

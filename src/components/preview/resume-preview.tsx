@@ -1,10 +1,10 @@
-import type {
-  PersonalInfo,
-  Education,
-  Experience,
-  Project,
-  Skill
-} from '@/lib/types';
+// import type {
+//   PersonalInfo,
+//   Education,
+//   Experience,
+//   Project,
+//   Skill
+// } from '@/lib/types';
 
 interface ResumeData {
   personal: {

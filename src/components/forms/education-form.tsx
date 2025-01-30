@@ -58,7 +58,14 @@ export function EducationForm({ educationId, onSave }: EducationFormProps) {
   function onSubmit(values: FormValues) {
     const education: Education = {
       id: educationId || "new",
-      ...values,
+      school: values.school,
+      degree: values.degree,
+      field: values.field,
+      city: values.city || "",
+      state: values.state || "",
+      startDate: values.startDate,
+      endDate: values.endDate,
+      description: values.description || "",
     }
     onSave(education)
   }

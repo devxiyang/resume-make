@@ -9,12 +9,14 @@ export interface PersonalInfo {
 
 export interface Education {
   id: string;
-  institution: string;
+  school: string;
   degree: string;
-  major: string;
+  field: string;
+  city: string;
+  state: string;
   startDate: string;
   endDate: string;
-  gpa?: string;
+  description: string;
 }
 
 export interface Experience {
@@ -23,13 +25,18 @@ export interface Experience {
   position: string;
   startDate: string;
   endDate: string;
-  responsibilities: string[];
+  currentlyWork: boolean;
+  city?: string;
+  state?: string;
+  description: string;
+  bulletPoints: string[];
 }
 
 export interface Project {
   id: string;
   name: string;
   description: string;
+  bulletPoints: string[];
   technologies: string[];
   demoUrl?: string;
   repoUrl?: string;

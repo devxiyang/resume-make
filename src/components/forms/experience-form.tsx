@@ -65,8 +65,8 @@ export function ExperienceForm({ experienceId, onSave }: ExperienceFormProps) {
       startDate: format(values.startDate, "MMM yyyy"),
       endDate: values.currentlyWork ? "Present" : format(values.endDate || new Date(), "MMM yyyy"),
       currentlyWork: values.currentlyWork,
-      city: values.city,
-      state: values.state,
+      city: values.city || "",
+      state: values.state || "",
       description: values.description || "",
       bulletPoints: values.bulletPoints.filter(Boolean),
     };
