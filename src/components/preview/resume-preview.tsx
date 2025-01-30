@@ -45,7 +45,6 @@ export function ResumePreview({ data }: ResumePreviewProps) {
           border: 'none',
           backgroundColor: '#f3f4f6'
         }}
-        onError={(error) => setError(error.message)}
       >
         <PDFPreview data={data} />
       </PDFViewer>
