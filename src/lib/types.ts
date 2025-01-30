@@ -76,3 +76,9 @@ export interface ResumeData {
   skills: Skill[];
   customSections: CustomSection[];
 }
+
+export interface ResumeContextType {
+  data: ResumeData;
+  previewMode: 'web' | 'pdf'; 
+  setPreviewMode: (mode: 'web' | 'pdf') => void;
+}
