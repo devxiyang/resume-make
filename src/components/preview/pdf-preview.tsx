@@ -1,7 +1,7 @@
 'use client';
 
 import { ResumeData } from '@/lib/types';
-import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
+import { Document, Page, StyleSheet, Text, View, Link } from '@react-pdf/renderer';
 
 // 定义颜色和尺寸常量
 const COLORS = {
@@ -10,18 +10,19 @@ const COLORS = {
   accent: '#2563eb',
   border: '#e5e7eb',
   background: '#ffffff',
-  muted: '#94a3b8'
+  muted: '#94a3b8',
+  light: '#f1f5f9'  // 添加浅色背景
 } as const;
 
 const SPACING = {
-  page: '30px',
-  section: '16px',
-  sectionAfterHeader: '12px',
-  item: '12px',
-  text: '4px',
-  title: '12px',
-  header: '24px',
-  nameTitle: '16px'
+  page: 30,
+  section: 16,
+  sectionAfterHeader: 12,
+  item: 12,
+  text: 4,
+  title: 12,
+  header: 24,
+  nameTitle: 16
 } as const;
 
 // 创建PDF样式表
@@ -29,51 +30,65 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
     backgroundColor: COLORS.background,
-    padding: SPACING.page,
+    padding: `${SPACING.page}px`,
     fontSize: 10,
     lineHeight: 1.6,
     color: COLORS.primary,
   },
   header: {
-    marginBottom: SPACING.sectionAfterHeader,
+    marginBottom: `${SPACING.sectionAfterHeader}px`,
     textAlign: 'center',
     fontFamily: 'Helvetica-Bold',
-    padding: `${SPACING.title} 0`,
+    padding: `${SPACING.title}px ${SPACING.page}px`,  // 增加水平内边距
+    // backgroundColor: COLORS.light,  // 添加背景色
   },
   name: {
     fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: SPACING.nameTitle,
-    color: COLORS.accent,
+    marginBottom: `${SPACING.nameTitle}px`,
+    color: COLORS.primary,  // 改用主色
     letterSpacing: 0.5,
   },
   jobTitle: {
     fontSize: 14,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
-    marginBottom: SPACING.title,
-    color: COLORS.secondary,
+    marginBottom: `${SPACING.title}px`,
+    color: COLORS.accent,  // 改用强调色
     fontWeight: 'medium',
   },
-  contact: {
+  contactContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    gap: 16,
+    marginTop: `${SPACING.text}px`,
+  },
+  contactItem: {
+    fontSize: 9,
+    color: COLORS.secondary,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dividerDot: {
     fontSize: 9,
     color: COLORS.muted,
-    marginTop: SPACING.text,
-    marginBottom: SPACING.text,
-    lineHeight: 1.4,
+    marginHorizontal: 8,
   },
   summary: {
     fontSize: 10,
-    marginTop: SPACING.item,
+    marginTop: `${SPACING.item * 1.5}px`,
     color: COLORS.secondary,
     textAlign: 'center',
     maxWidth: '85%',
     alignSelf: 'center',
     lineHeight: 1.5,
-    paddingTop: SPACING.text,
+    paddingTop: `${SPACING.text}px`,
+    fontStyle: 'italic',  // 添加斜体样式
   },
   section: {
-    marginBottom: SPACING.section,
+    marginBottom: `${SPACING.section}px`,
   },
   sectionAfterHeader: {
     marginTop: 0,
@@ -85,19 +100,19 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.accent,
     borderBottomStyle: 'solid',
     paddingBottom: 4,
-    marginBottom: SPACING.item,
+    marginBottom: `${SPACING.item}px`,
     color: COLORS.accent,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   itemContainer: {
-    marginBottom: SPACING.item,
+    marginBottom: `${SPACING.item}px`,
   },
   itemHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: SPACING.text,
+    marginBottom: `${SPACING.text}px`,
   },
   itemTitle: {
     fontSize: 11,
@@ -107,7 +122,7 @@ const styles = StyleSheet.create({
   itemSubtitle: {
     fontSize: 10,
     color: COLORS.secondary,
-    marginBottom: SPACING.text,
+    marginBottom: `${SPACING.text}px`,
   },
   itemDate: {
     fontSize: 9,
@@ -125,7 +140,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    marginBottom: SPACING.item,
+    marginBottom: `${SPACING.item}px`,
   },
   skillItem: {
     backgroundColor: '#f8fafc',
@@ -141,30 +156,60 @@ const styles = StyleSheet.create({
   divider: {
     borderBottomWidth: 0.5,
     borderBottomColor: COLORS.border,
-    marginVertical: SPACING.item,
+    marginVertical: `${SPACING.item}px`,
   },
+  watermark: {
+    position: 'absolute',
+    bottom: `${SPACING.page}px`,
+    left: 0,
+    right: 0,
+    textAlign: 'center',
+    fontSize: 8,
+    color: COLORS.muted,
+    opacity: 0.5,
+  },
+  watermarkLink: {
+    color: COLORS.accent,
+    textDecoration: 'none',
+  }
 });
+
+// 修改个人信息的渲染部分
+const PersonalInfoSection = ({ data }: { data: ResumeData['personal'] }) => {
+  const contactInfo = [
+    data.email,
+    data.phone,
+    data.address,
+    data.linkedin && `LinkedIn: ${data.linkedin}`,
+    data.professionalWebsite && `Portfolio: ${data.professionalWebsite}`
+  ].filter(Boolean);
+
+  return (
+    <View style={styles.header}>
+      <Text style={styles.name}>{data.name}</Text>
+      <Text style={styles.jobTitle}>{data.jobTitle}</Text>
+      
+      <View style={styles.contactContainer}>
+        {contactInfo.map((info, index) => (
+          <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={styles.contactItem}>{info}</Text>
+          </View>
+        ))}
+      </View>
+
+      {data.summary && (
+        <Text style={styles.summary}>
+          &ldquo;{data.summary}&rdquo;
+        </Text>
+      )}
+    </View>
+  );
+};
 
 export const PDFPreview = ({ data }: { data: ResumeData }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* 个人信息 */}
-      <View style={styles.header}>
-        <Text style={styles.name}>{data.personal.name}</Text>
-        <Text style={styles.jobTitle}>{data.personal.jobTitle}</Text>
-        <Text style={styles.contact}>
-          {[
-            data.personal.email,
-            data.personal.phone,
-            data.personal.address,
-            data.personal.linkedin && `LinkedIn: ${data.personal.linkedin}`,
-            data.personal.professionalWebsite && `Portfolio: ${data.personal.professionalWebsite}`
-          ].filter(Boolean).join(' • ')}
-        </Text>
-        {data.personal.summary && (
-          <Text style={styles.summary}>{data.personal.summary}</Text>
-        )}
-      </View>
+      <PersonalInfoSection data={data.personal} />
 
       {/* 工作经历 */}
       {data.experiences.length > 0 && (
@@ -270,6 +315,17 @@ export const PDFPreview = ({ data }: { data: ResumeData }) => (
           ))}
         </View>
       ))}
+
+      {/* 水印 */}
+      <Text style={styles.watermark}>
+        Made with{' '}
+        <Link
+          src="https://resumemaker.cc"
+          style={styles.watermarkLink}
+        >
+          resumemaker.cc
+        </Link>
+      </Text>
     </Page>
   </Document>
 ); 
