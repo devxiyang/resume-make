@@ -27,7 +27,7 @@ type ActiveTab = "edit" | "template"
 
 const initialResumeData: ResumeData = {
   personal: {
-    name: "Murphy Xiaoxi",
+    name: "Xiyang Hong",
     jobTitle: "ML ENGINEERING EXPERT",
     email: "murphyxiaoxi@163.com",
     phone: "123456",
