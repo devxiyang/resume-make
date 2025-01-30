@@ -466,7 +466,7 @@ export function Sidebar({ className, activeSection, onSectionChange, onExperienc
                           onCustomSectionSelect(section.id);
                         }}
                       >
-                        <span className="text-xs">{item.name || "New Skill"}</span>
+                        <span className="text-xs">{item.title || "New Item"}</span>
                       </Button>
                       <Popover>
                         <PopoverTrigger asChild>
