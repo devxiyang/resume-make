@@ -148,6 +148,18 @@ export default function Page() {
     setActiveSection("experience")
   }
 
+  const handleExperienceDelete = (experienceId: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      experiences: prev.experiences.filter(exp => exp.id !== experienceId)
+    }))
+    
+    if (selectedExperienceId === experienceId) {
+      const remainingExperiences = resumeData.experiences.filter(exp => exp.id !== experienceId)
+      setSelectedExperienceId(remainingExperiences[0]?.id || null)
+    }
+  }
+
   const renderForm = () => {
     switch (activeSection) {
       case "personal":
@@ -199,6 +211,7 @@ export default function Page() {
               onSectionChange={(section: string) => setActiveSection(section as ActiveSection)}
               onExperienceSelect={handleExperienceSelect}
               onAddExperience={handleAddExperience}
+              onExperienceDelete={handleExperienceDelete}
               resumeData={resumeData}
               selectedExperienceId={selectedExperienceId}
             />
