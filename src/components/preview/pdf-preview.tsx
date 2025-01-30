@@ -3,97 +3,182 @@
 import { ResumeData } from '@/lib/types';
 import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 
+// 定义颜色和尺寸常量
+const COLORS = {
+  primary: '#1a1a1a',
+  secondary: '#666666',
+  accent: '#2563eb',
+  border: '#e5e7eb',
+  background: '#ffffff',
+  muted: '#94a3b8'
+} as const;
+
+const SPACING = {
+  page: '30px',
+  section: '16px',
+  sectionAfterHeader: '12px',
+  item: '12px',
+  text: '4px',
+  title: '12px',
+  header: '24px',
+  nameTitle: '16px'
+} as const;
+
 // 创建PDF样式表
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
-    backgroundColor: '#FFFFFF',
-    padding: 30,
-    fontSize: 12,
-    lineHeight: 1.5,
+    backgroundColor: COLORS.background,
+    padding: SPACING.page,
+    fontSize: 10,
+    lineHeight: 1.6,
+    color: COLORS.primary,
   },
   header: {
+    marginBottom: SPACING.sectionAfterHeader,
     textAlign: 'center',
-    marginBottom: 24,
+    fontFamily: 'Helvetica-Bold',
+    padding: `${SPACING.title} 0`,
   },
   name: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 4,
+    marginBottom: SPACING.nameTitle,
+    color: COLORS.accent,
+    letterSpacing: 0.5,
   },
   jobTitle: {
-    fontSize: 18,
-    fontWeight: 600,
-    color: '#666666',
+    fontSize: 14,
     textTransform: 'uppercase',
-    marginBottom: 8,
+    letterSpacing: 1.2,
+    marginBottom: SPACING.title,
+    color: COLORS.secondary,
+    fontWeight: 'medium',
   },
   contact: {
-    color: '#666666',
-    marginBottom: 8,
+    fontSize: 9,
+    color: COLORS.muted,
+    marginTop: SPACING.text,
+    marginBottom: SPACING.text,
+    lineHeight: 1.4,
+  },
+  summary: {
+    fontSize: 10,
+    marginTop: SPACING.item,
+    color: COLORS.secondary,
+    textAlign: 'center',
+    maxWidth: '85%',
+    alignSelf: 'center',
+    lineHeight: 1.5,
+    paddingTop: SPACING.text,
   },
   section: {
-    marginBottom: 24,
+    marginBottom: SPACING.section,
+  },
+  sectionAfterHeader: {
+    marginTop: 0,
   },
   sectionTitle: {
-    fontSize: 16,
-    fontWeight: 600,
+    fontSize: 14,
+    fontWeight: 'bold',
     borderBottomWidth: 1,
-    borderBottomColor: '#d1d5db',
+    borderBottomColor: COLORS.accent,
+    borderBottomStyle: 'solid',
     paddingBottom: 4,
-    marginBottom: 16,
+    marginBottom: SPACING.item,
+    color: COLORS.accent,
     textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   itemContainer: {
-    marginBottom: 16,
+    marginBottom: SPACING.item,
   },
   itemHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 4,
+    alignItems: 'center',
+    marginBottom: SPACING.text,
   },
   itemTitle: {
-    fontWeight: 600,
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: COLORS.primary,
+  },
+  itemSubtitle: {
+    fontSize: 10,
+    color: COLORS.secondary,
+    marginBottom: SPACING.text,
+  },
+  itemDate: {
+    fontSize: 9,
+    color: COLORS.muted,
   },
   bulletList: {
-    marginLeft: 20,
-    marginTop: 8,
+    marginLeft: 12,
+    fontSize: 9,
+    color: COLORS.secondary,
+  },
+  bullet: {
+    marginBottom: 2,
   },
   skillGroup: {
-    marginBottom: 8,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: SPACING.item,
+  },
+  skillItem: {
+    backgroundColor: '#f8fafc',
+    padding: '4px 8px',
+    borderRadius: 4,
+    fontSize: 9,
+  },
+  link: {
+    color: COLORS.accent,
+    textDecoration: 'none',
+    fontSize: 9,
+  },
+  divider: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: COLORS.border,
+    marginVertical: SPACING.item,
   },
 });
 
 export const PDFPreview = ({ data }: { data: ResumeData }) => (
   <Document>
-    <Page size="A4" style={styles.page} wrap>
+    <Page size="A4" style={styles.page}>
       {/* 个人信息 */}
       <View style={styles.header}>
         <Text style={styles.name}>{data.personal.name}</Text>
         <Text style={styles.jobTitle}>{data.personal.jobTitle}</Text>
         <Text style={styles.contact}>
-          {[data.personal.email, data.personal.phone, data.personal.address]
-            .filter(Boolean)
-            .join(' • ')}
+          {[
+            data.personal.email,
+            data.personal.phone,
+            data.personal.address,
+            data.personal.linkedin && `LinkedIn: ${data.personal.linkedin}`,
+            data.personal.professionalWebsite && `Portfolio: ${data.personal.professionalWebsite}`
+          ].filter(Boolean).join(' • ')}
         </Text>
         {data.personal.summary && (
-          <Text style={{ marginTop: 8 }}>{data.personal.summary}</Text>
+          <Text style={styles.summary}>{data.personal.summary}</Text>
         )}
       </View>
 
       {/* 工作经历 */}
       {data.experiences.length > 0 && (
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Experience</Text>
+        <View style={[styles.section, styles.sectionAfterHeader]}>
+          <Text style={styles.sectionTitle}>Professional Experience</Text>
           {data.experiences.map((exp) => (
             <View key={exp.id} style={styles.itemContainer} wrap={false}>
               <View style={styles.itemHeader}>
                 <Text style={styles.itemTitle}>{exp.company}</Text>
-                <Text>
+                <Text style={styles.itemDate}>
                   {exp.startDate} - {exp.currentlyWork ? 'Present' : exp.endDate}
                 </Text>
               </View>
-              <Text style={{ color: '#666666' }}>
+              <Text style={styles.itemSubtitle}>
                 {exp.position}
                 {exp.city && exp.state && ` • ${exp.city}, ${exp.state}`}
               </Text>
