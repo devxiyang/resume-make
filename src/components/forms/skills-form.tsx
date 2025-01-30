@@ -4,147 +4,94 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Minus, Plus } from "lucide-react"
-import { useFieldArray, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { useEffect } from "react"
+import { type Skill } from '@/lib/types'
 
 const formSchema = z.object({
-  skillGroups: z.array(z.object({
-    id: z.string(),
-    name: z.string().min(2, {
-      message: "Group name must be at least 2 characters.",
-    }),
-    skills: z.array(z.string())
-  }))
+  name: z.string().min(2, {
+    message: "Skill name must be at least 2 characters.",
+  }),
+  description: z.string().optional(),
 })
 
 type FormValues = z.infer<typeof formSchema>
 
 interface SkillsFormProps {
-  onSave: (skillGroups: Array<{id: string, name: string, skills: string[]}>) => void
+  skillId: string | null;
+  onSave: (skill: Skill) => void;
+  initialData?: Skill;
 }
 
-export function SkillsForm({ onSave }: SkillsFormProps) {
+export function SkillsForm({ skillId, onSave, initialData }: SkillsFormProps) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      skillGroups: [
-        {
-          id: "1",
-          name: "Programming Languages",
-          skills: ["Java", "C++", "Python"]
-        }
-      ]
+      name: "",
+      description: "",
+    },
+  })
+
+  useEffect(() => {
+    if (initialData) {
+      form.reset({
+        name: initialData.name,
+        description: initialData.description || "",
+      })
     }
-  })
-
-  const { fields: skillGroups, append: appendGroup, remove: removeGroup } = useFieldArray({
-    name: "skillGroups",
-    control: form.control
-  })
-
-  const addSkillGroup = (): void => {
-    appendGroup({ id: Date.now().toString(), name: "", skills: [] })
-  }
-
-  const addSkill = (groupIndex: number): void => {
-    const currentSkills: string[] = form.getValues(`skillGroups.${groupIndex}.skills`)
-    form.setValue(`skillGroups.${groupIndex}.skills`, [...currentSkills, ""])
-  }
-
-  const removeSkill = (groupIndex: number, skillIndex: number): void => {
-    const currentSkills: string[] = form.getValues(`skillGroups.${groupIndex}.skills`)
-    form.setValue(
-      `skillGroups.${groupIndex}.skills`,
-      currentSkills.filter((_, i) => i !== skillIndex)
-    )
-  }
+  }, [initialData, form])
 
   function onSubmit(values: FormValues) {
-    onSave(values.skillGroups)
+    const skill: Skill = {
+      id: skillId || "new",
+      name: values.name,
+      description: values.description,
+    }
+    onSave(skill)
   }
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Skills</CardTitle>
+        <CardTitle>Edit Skill</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {skillGroups.map((group, groupIndex: number) => (
-              <div key={group.id} className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <FormField
-                    control={form.control}
-                    name={`skillGroups.${groupIndex}.name`}
-                    render={({ field }) => (
-                      <FormItem className="flex-1">
-                        <FormLabel>Skill Group</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., Programming Languages" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="mt-8"
-                    onClick={() => removeGroup(groupIndex)}
-                    type="button"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                </div>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Skill Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter skill name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                <div className="space-y-2 pl-4">
-                  {form.watch(`skillGroups.${groupIndex}.skills`).map((skill: string, skillIndex: number) => (
-                    <div key={skillIndex} className="flex gap-2">
-                      <FormField
-                        control={form.control}
-                        name={`skillGroups.${groupIndex}.skills.${skillIndex}`}
-                        render={({ field }) => (
-                          <FormItem className="flex-1">
-                            <FormControl>
-                              <Input placeholder="Skill" {...field} />
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-                      <Button 
-                        variant="outline" 
-                        size="icon"
-                        type="button"
-                        onClick={() => removeSkill(groupIndex, skillIndex)}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
-                  <Button 
-                    type="button"
-                    variant="outline" 
-                    className="w-full justify-start"
-                    onClick={() => addSkill(groupIndex)}
-                  >
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add Skill
-                  </Button>
-                </div>
-              </div>
-            ))}
-            <Button
-              type="button" 
-              variant="outline"
-              className="w-full justify-start"
-              onClick={addSkillGroup}
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              Add Skill Group
-            </Button>
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder="Describe your skill level or additional details" 
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <Button type="submit" className="w-full">Save Changes</Button>
           </form>
         </Form>

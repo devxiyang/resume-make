@@ -49,12 +49,24 @@ export interface Skill {
   description?: string;
 }
 
+export interface CustomSection {
+  id: string;
+  title: string;
+  items: Array<{
+    id: string;
+    title: string;
+    description: string;
+    date?: string;
+  }>;
+}
+
 export type SectionType =
   | 'personalInfo'
   | 'education'
   | 'experience'
   | 'projects'
-  | 'skills';
+  | 'skills'
+  | 'custom';
 
 export interface ResumeData {
   personal: PersonalInfo;
@@ -62,4 +74,5 @@ export interface ResumeData {
   education: Education[];
   projects: Project[];
   skills: Skill[];
+  customSections: CustomSection[];
 }
