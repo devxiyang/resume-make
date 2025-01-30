@@ -1,13 +1,13 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Plus, Minus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Minus, Plus } from "lucide-react"
+import { useFieldArray, useForm } from "react-hook-form"
+import * as z from "zod"
 
 const formSchema = z.object({
   skillGroups: z.array(z.object({
@@ -21,13 +21,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-interface SkillGroup {
-  id: string
-  name: string
-  skills: string[]
+interface SkillsFormProps {
+  onSave: (skillGroups: Array<{id: string, name: string, skills: string[]}>) => void
 }
 
-export function SkillsForm() {
+export function SkillsForm({ onSave }: SkillsFormProps) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,25 +39,30 @@ export function SkillsForm() {
     }
   })
 
-  const { fields: skillGroups, append: appendGroup, remove: removeGroup } = form.useFieldArray({
-    name: "skillGroups"
+  const { fields: skillGroups, append: appendGroup, remove: removeGroup } = useFieldArray({
+    name: "skillGroups",
+    control: form.control
   })
 
-  const addSkillGroup = () => {
+  const addSkillGroup = (): void => {
     appendGroup({ id: Date.now().toString(), name: "", skills: [] })
   }
 
-  const addSkill = (groupIndex: number) => {
-    const currentSkills = form.getValues(`skillGroups.${groupIndex}.skills`)
+  const addSkill = (groupIndex: number): void => {
+    const currentSkills: string[] = form.getValues(`skillGroups.${groupIndex}.skills`)
     form.setValue(`skillGroups.${groupIndex}.skills`, [...currentSkills, ""])
   }
 
-  const removeSkill = (groupIndex: number, skillIndex: number) => {
-    const currentSkills = form.getValues(`skillGroups.${groupIndex}.skills`)
+  const removeSkill = (groupIndex: number, skillIndex: number): void => {
+    const currentSkills: string[] = form.getValues(`skillGroups.${groupIndex}.skills`)
     form.setValue(
       `skillGroups.${groupIndex}.skills`,
       currentSkills.filter((_, i) => i !== skillIndex)
     )
+  }
+
+  function onSubmit(values: FormValues) {
+    onSave(values.skillGroups)
   }
 
   return (
@@ -69,8 +72,8 @@ export function SkillsForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form className="space-y-6">
-            {skillGroups.map((group, groupIndex) => (
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            {skillGroups.map((group, groupIndex: number) => (
               <div key={group.id} className="space-y-4">
                 <div className="flex items-center gap-2">
                   <FormField
@@ -91,13 +94,14 @@ export function SkillsForm() {
                     size="icon" 
                     className="mt-8"
                     onClick={() => removeGroup(groupIndex)}
+                    type="button"
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
                 </div>
 
                 <div className="space-y-2 pl-4">
-                  {form.watch(`skillGroups.${groupIndex}.skills`).map((skill, skillIndex) => (
+                  {form.watch(`skillGroups.${groupIndex}.skills`).map((skill: string, skillIndex: number) => (
                     <div key={skillIndex} className="flex gap-2">
                       <FormField
                         control={form.control}
@@ -113,6 +117,7 @@ export function SkillsForm() {
                       <Button 
                         variant="outline" 
                         size="icon"
+                        type="button"
                         onClick={() => removeSkill(groupIndex, skillIndex)}
                       >
                         <Minus className="h-4 w-4" />
@@ -140,6 +145,7 @@ export function SkillsForm() {
               <Plus className="mr-2 h-4 w-4" />
               Add Skill Group
             </Button>
+            <Button type="submit" className="w-full">Save Changes</Button>
           </form>
         </Form>
       </CardContent>

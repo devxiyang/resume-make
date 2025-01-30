@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { type Education } from '@/lib/types'
 
 const formSchema = z.object({
   school: z.string().min(2, {
@@ -33,18 +34,6 @@ const formSchema = z.object({
 })
 
 type FormValues = z.infer<typeof formSchema>
-
-interface Education {
-  id: string
-  school: string
-  degree: string
-  field: string
-  city: string
-  state: string
-  startDate: string
-  endDate: string
-  description: string
-}
 
 interface EducationFormProps {
   educationId: string | null

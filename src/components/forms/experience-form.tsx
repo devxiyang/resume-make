@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Experience } from "@/types/resume"
+import { type Experience } from '@/lib/types'
 
 const formSchema = z.object({
   company: z.string().min(2, {

@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { type Project } from '@/lib/types'
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -21,13 +22,6 @@ const formSchema = z.object({
 })
 
 type FormValues = z.infer<typeof formSchema>
-
-interface Project {
-  id: string
-  name: string
-  description: string
-  bulletPoints: string[]
-}
 
 interface ProjectsFormProps {
   projectId: string | null
