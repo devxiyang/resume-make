@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { NavTabs } from "@/components/layout/nav-tabs"
 import { Sidebar } from "@/components/layout/sidebar"
 import { TemplatePicker } from "@/components/templates/template-picker"
@@ -99,6 +99,19 @@ export default function Page() {
   const [selectedSkillId, setSelectedSkillId] = useState<string | null>("1")
   const [selectedCustomSectionId, setSelectedCustomSectionId] = useState<string | null>(null)
   const [resumeData, setResumeData] = useState<ResumeData>(initialResumeData)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // 检测设备类型
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleExperienceSelect = (id: string) => {
     setSelectedExperienceId(id)
@@ -361,6 +374,20 @@ export default function Page() {
       default:
         return null
     }
+  }
+
+  if (isMobile) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center p-4 text-center">
+        <h1 className="text-xl font-bold mb-4">Desktop Only</h1>
+        <p className="text-gray-600 mb-2">
+          Sorry, this resume builder is currently optimized for desktop use only.
+        </p>
+        <p className="text-gray-600">
+          Please visit us on a desktop device for the best experience.
+        </p>
+      </div>
+    )
   }
 
   return (
