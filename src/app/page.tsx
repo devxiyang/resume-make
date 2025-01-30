@@ -406,9 +406,9 @@ export default function Page() {
               selectedSkillId={selectedSkillId}
               selectedCustomSectionId={selectedCustomSectionId}
             />
-            <div className="flex divide-x divide-gray-200">
+            <div className="flex divide-x divide-gray-200 h-[calc(100vh-56px)]">
               <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>
-              <div className="w-3/5 p-8 bg-gray-500 overflow-y-auto">
+              <div className="w-3/5 bg-gray-100 overflow-hidden flex flex-col">
                 <ResumePreview data={resumeData} />
               </div>
             </div>
