@@ -1,12 +1,38 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { Bold, Italic, Underline } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Bold, Italic, Underline } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+const formSchema = z.object({
+  school: z.string().min(2, {
+    message: "School name must be at least 2 characters.",
+  }),
+  degree: z.string().min(1, {
+    message: "Please select a degree.",
+  }),
+  field: z.string().min(2, {
+    message: "Field of study must be at least 2 characters.",
+  }),
+  city: z.string().optional(),
+  state: z.string().optional(),
+  startDate: z.string().min(7, {
+    message: "Please enter a valid start date (MM/YYYY).",
+  }),
+  endDate: z.string().min(7, {
+    message: "Please enter a valid end date (MM/YYYY).",
+  }),
+  description: z.string().optional(),
+})
+
+type FormValues = z.infer<typeof formSchema>
 
 interface Education {
   id: string
@@ -25,94 +51,181 @@ interface EducationFormProps {
   onSave: (education: Education) => void
 }
 
-export function EducationForm({ }: EducationFormProps) {
-  const education = {
-    id: "1",
-    school: "University of Shanghai for Secience and Technology",
-    degree: "Master",
-    field: "CS",
-    city: "Shanghai",
-    state: "",
-    startDate: "09/2014",
-    endDate: "06/2017",
-    description: "CS",
-  }
+export function EducationForm({ educationId, onSave }: EducationFormProps) {
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      school: "University of Shanghai for Science and Technology",
+      degree: "master",
+      field: "CS",
+      city: "Shanghai",
+      state: "",
+      startDate: "09/2014",
+      endDate: "06/2017",
+      description: "CS",
+    },
+  })
 
-  // const _handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   onSave(education);
-  // }
+  function onSubmit(values: FormValues) {
+    const education: Education = {
+      id: educationId || "new",
+      ...values,
+    }
+    onSave(education)
+  }
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Edit Education</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="school">School</Label>
-          <Input id="school" placeholder="School name" defaultValue={education.school} />
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="degree">Degree</Label>
-            <Select defaultValue={education.degree}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select degree" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="associate">Associate&apos;s</SelectItem>
-                <SelectItem value="bachelor">Bachelor&apos;s</SelectItem>
-                <SelectItem value="master">Master&apos;s</SelectItem>
-                <SelectItem value="doctorate">Doctorate</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="field">Field of Study</Label>
-            <Input id="field" placeholder="Field of study" defaultValue={education.field} />
-          </div>
-        </div>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="startDate">Start Date</Label>
-            <Input id="startDate" placeholder="MM/YYYY" defaultValue={education.startDate} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="endDate">End Date</Label>
-            <Input id="endDate" placeholder="MM/YYYY" defaultValue={education.endDate} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="city">City</Label>
-            <Input id="city" placeholder="City" defaultValue={education.city} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="state">State</Label>
-            <Input id="state" placeholder="State" defaultValue={education.state} />
-          </div>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="description">Description</Label>
-          <div className="flex gap-1 mb-2">
-            <Button variant="outline" size="icon">
-              <Bold className="h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="icon">
-              <Italic className="h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="icon">
-              <Underline className="h-4 w-4" />
-            </Button>
-          </div>
-          <Textarea
-            id="description"
-            placeholder="Add additional details about your education"
-            defaultValue={education.description}
-          />
-        </div>
-        <Button type="submit">Save Changes</Button>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="school"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>School</FormLabel>
+                  <FormControl>
+                    <Input placeholder="School name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="degree"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Degree</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select degree" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="associate">Associate&apos;s</SelectItem>
+                        <SelectItem value="bachelor">Bachelor&apos;s</SelectItem>
+                        <SelectItem value="master">Master&apos;s</SelectItem>
+                        <SelectItem value="doctorate">Doctorate</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="field"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Field of Study</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Field of study" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="grid grid-cols-4 gap-4">
+              <FormField
+                control={form.control}
+                name="startDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Start Date</FormLabel>
+                    <FormControl>
+                      <Input placeholder="MM/YYYY" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="endDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>End Date</FormLabel>
+                    <FormControl>
+                      <Input placeholder="MM/YYYY" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>City</FormLabel>
+                    <FormControl>
+                      <Input placeholder="City" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="state"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>State</FormLabel>
+                    <FormControl>
+                      <Input placeholder="State" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <div className="flex gap-1 mb-2">
+                    <Button type="button" variant="outline" size="icon">
+                      <Bold className="h-4 w-4" />
+                    </Button>
+                    <Button type="button" variant="outline" size="icon">
+                      <Italic className="h-4 w-4" />
+                    </Button>
+                    <Button type="button" variant="outline" size="icon">
+                      <Underline className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Add additional details about your education"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <Button type="submit" className="w-full">Save Changes</Button>
+          </form>
+        </Form>
       </CardContent>
     </Card>
   )
 }
-

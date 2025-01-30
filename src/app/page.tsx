@@ -198,9 +198,9 @@ export default function Page() {
               onSectionChange={(section: string) => setActiveSection(section as ActiveSection)}
               onExperienceSelect={handleExperienceSelect}
             />
-            <div className="grid grid-cols-2 divide-x divide-gray-200">
-              <div className="p-8 overflow-y-auto">{renderForm()}</div>
-              <div className="p-8 bg-gray-50 overflow-y-auto">
+            <div className="flex divide-x divide-gray-200">
+              <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>
+              <div className="w-3/5 p-8 bg-gray-500 overflow-y-auto">
                 <ResumePreview data={resumeData} />
               </div>
             </div>
@@ -208,7 +208,7 @@ export default function Page() {
         ) : (
           <>
             <TemplatePicker selectedTemplate={selectedTemplate} onTemplateSelect={setSelectedTemplate} />
-            <div className="p-6 bg-gray-100 overflow-y-auto">
+            <div className="p-6 bg-gray-500 overflow-y-auto">
               <ResumePreview data={resumeData} />
             </div>
           </>

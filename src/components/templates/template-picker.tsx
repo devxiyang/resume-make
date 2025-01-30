@@ -21,7 +21,7 @@ export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplateP
     <div className="p-6">
       <h2 className="text-lg font-semibold mb-4">Resume Templates</h2>
       <ScrollArea className="h-[calc(100vh-140px)]">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {templates.map((template) => (
             <Card
               key={template.id}
