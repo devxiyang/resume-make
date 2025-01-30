@@ -12,11 +12,12 @@ import { SkillsForm } from "@/components/forms/skills-form"
 import { ResumePreview } from "@/components/preview/resume-preview"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, Download } from "lucide-react"
-import { Education, Experience, ResumeData, Skill } from "@/lib/types"
+import { Education, Experience, ResumeData, Skill, CustomSection } from "@/lib/types"
 import { Project } from "@/lib/types"
 import { format } from "date-fns"
+import { CustomSectionForm } from "@/components/forms/custom-section-form"
 
-type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills"
+type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 type ActiveTab = "edit" | "template"
 
 const initialResumeData: ResumeData = {
@@ -80,6 +81,7 @@ const initialResumeData: ResumeData = {
       description: "English is my mother language",
     },
   ],
+  customSections: [],
 }
 
 export default function Page() {
@@ -87,6 +89,10 @@ export default function Page() {
   const [activeSection, setActiveSection] = useState<ActiveSection>("experience")
   const [selectedTemplate, setSelectedTemplate] = useState("sharp")
   const [selectedExperienceId, setSelectedExperienceId] = useState<string | null>("1")
+  const [selectedEducationId, setSelectedEducationId] = useState<string | null>("1")
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>("1")
+  const [selectedSkillId, setSelectedSkillId] = useState<string | null>("1")
+  const [selectedCustomSectionId, setSelectedCustomSectionId] = useState<string | null>(null)
   const [resumeData, setResumeData] = useState<ResumeData>(initialResumeData)
 
   const handleExperienceSelect = (id: string) => {
@@ -99,6 +105,21 @@ export default function Page() {
       ...prev,
       experiences: prev.experiences.map((exp) => (exp.id === experience.id ? experience : exp)),
     }))
+  }
+
+  const handleEducationSelect = (id: string) => {
+    setSelectedEducationId(id)
+    setActiveSection("education")
+  }
+
+  const handleProjectSelect = (id: string) => {
+    setSelectedProjectId(id)
+    setActiveSection("projects")
+  }
+
+  const handleSkillSelect = (id: string) => {
+    setSelectedSkillId(id)
+    setActiveSection("skills")
   }
 
   const handleEducationSave = (education: Education) => {
@@ -115,10 +136,10 @@ export default function Page() {
     }))
   }
 
-  const handleSkillsSave = (skills: Skill[]) => {
+  const handleSkillSave = (skill: Skill) => {
     setResumeData((prev) => ({
       ...prev,
-      skills
+      skills: prev.skills.map((s) => (s.id === skill.id ? skill : s)),
     }))
   }
 
@@ -160,6 +181,138 @@ export default function Page() {
     }
   }
 
+  const handleAddEducation = () => {
+    const newEducation: Education = {
+      id: `edu-${Date.now()}`,
+      school: "",
+      degree: "",
+      state: "",
+      startDate: format(new Date(), "MMM yyyy"),
+      endDate: format(new Date(), "MMM yyyy"),
+      description: "",
+    }
+    
+    setResumeData(prev => ({
+      ...prev,
+      education: [...prev.education, newEducation]
+    }))
+    
+    setSelectedEducationId(newEducation.id)
+    setActiveSection("education")
+  }
+
+  const handleAddProject = () => {
+    const newProject: Project = {
+      id: `proj-${Date.now()}`,
+      name: "",
+      description: "",
+      bulletPoints: [],
+      technologies: [],
+    }
+    
+    setResumeData(prev => ({
+      ...prev,
+      projects: [...prev.projects, newProject]
+    }))
+    
+    setSelectedProjectId(newProject.id)
+    setActiveSection("projects")
+  }
+
+  const handleAddSkill = () => {
+    const newSkill: Skill = {
+      id: `skill-${Date.now()}`,
+      name: "",
+      description: "",
+    }
+    
+    setResumeData(prev => ({
+      ...prev,
+      skills: [...prev.skills, newSkill]
+    }))
+    
+    setSelectedSkillId(newSkill.id)
+    setActiveSection("skills")
+  }
+
+  const handleEducationDelete = (educationId: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      education: prev.education.filter(edu => edu.id !== educationId)
+    }))
+    
+    if (selectedEducationId === educationId) {
+      const remainingEducation = resumeData.education.filter(edu => edu.id !== educationId)
+      setSelectedEducationId(remainingEducation[0]?.id || null)
+    }
+  }
+
+  const handleProjectDelete = (projectId: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      projects: prev.projects.filter(proj => proj.id !== projectId)
+    }))
+    
+    if (selectedProjectId === projectId) {
+      const remainingProjects = resumeData.projects.filter(proj => proj.id !== projectId)
+      setSelectedProjectId(remainingProjects[0]?.id || null)
+    }
+  }
+
+  const handleSkillDelete = (skillId: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      skills: prev.skills.filter(skill => skill.id !== skillId)
+    }))
+    
+    if (selectedSkillId === skillId) {
+      const remainingSkills = resumeData.skills.filter(skill => skill.id !== skillId)
+      setSelectedSkillId(remainingSkills[0]?.id || null)
+    }
+  }
+
+  const handleAddCustomSection = () => {
+    const newSection: CustomSection = {
+      id: `custom-${Date.now()}`,
+      title: "New Section",
+      items: []
+    }
+    
+    setResumeData(prev => ({
+      ...prev,
+      customSections: [...(prev.customSections || []), newSection]
+    }))
+    
+    setSelectedCustomSectionId(newSection.id)
+    setActiveSection("custom")
+  }
+
+  const handleCustomSectionDelete = (sectionId: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      customSections: prev.customSections.filter(section => section.id !== sectionId)
+    }))
+    
+    if (selectedCustomSectionId === sectionId) {
+      const remainingSections = resumeData.customSections.filter(section => section.id !== sectionId)
+      setSelectedCustomSectionId(remainingSections[0]?.id || null)
+    }
+  }
+
+  const handleCustomSectionSelect = (id: string) => {
+    setSelectedCustomSectionId(id)
+    setActiveSection("custom")
+  }
+
+  const handleCustomSectionSave = (section: CustomSection) => {
+    setResumeData((prev) => ({
+      ...prev,
+      customSections: prev.customSections.map((s) => 
+        s.id === section.id ? section : s
+      ),
+    }))
+  }
+
   const renderForm = () => {
     switch (activeSection) {
       case "personal":
@@ -173,11 +326,33 @@ export default function Page() {
           />
         )
       case "education":
-        return <EducationForm educationId={selectedExperienceId} onSave={handleEducationSave} />
+        return <EducationForm educationId={selectedEducationId} onSave={handleEducationSave} />
       case "projects":
-        return <ProjectsForm projectId={selectedExperienceId} onSave={handleProjectSave} />
+        return (
+          <ProjectsForm 
+            projectId={selectedProjectId} 
+            onSave={handleProjectSave}
+            initialData={resumeData.projects.find(proj => proj.id === selectedProjectId)}
+          />
+        )
       case "skills":
-        return <SkillsForm onSave={handleSkillsSave} />
+        return (
+          <SkillsForm 
+            skillId={selectedSkillId}
+            onSave={handleSkillSave}
+            initialData={resumeData.skills.find(skill => skill.id === selectedSkillId)}
+          />
+        )
+      case "custom":
+        return (
+          <CustomSectionForm 
+            sectionId={selectedCustomSectionId}
+            onSave={handleCustomSectionSave}
+            initialData={resumeData.customSections.find(
+              section => section.id === selectedCustomSectionId
+            )}
+          />
+        )
       default:
         return null
     }
@@ -210,10 +385,26 @@ export default function Page() {
               activeSection={activeSection}
               onSectionChange={(section: string) => setActiveSection(section as ActiveSection)}
               onExperienceSelect={handleExperienceSelect}
+              onEducationSelect={handleEducationSelect}
+              onProjectSelect={handleProjectSelect}
+              onSkillSelect={handleSkillSelect}
               onAddExperience={handleAddExperience}
+              onAddEducation={handleAddEducation}
+              onAddProject={handleAddProject}
+              onAddSkill={handleAddSkill}
               onExperienceDelete={handleExperienceDelete}
+              onEducationDelete={handleEducationDelete}
+              onProjectDelete={handleProjectDelete}
+              onSkillDelete={handleSkillDelete}
+              onCustomSectionSelect={handleCustomSectionSelect}
+              onAddCustomSection={handleAddCustomSection}
+              onCustomSectionDelete={handleCustomSectionDelete}
               resumeData={resumeData}
               selectedExperienceId={selectedExperienceId}
+              selectedEducationId={selectedEducationId}
+              selectedProjectId={selectedProjectId}
+              selectedSkillId={selectedSkillId}
+              selectedCustomSectionId={selectedCustomSectionId}
             />
             <div className="flex divide-x divide-gray-200">
               <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>

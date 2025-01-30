@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { type Project } from '@/lib/types'
+import { useEffect } from "react"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -26,17 +27,28 @@ type FormValues = z.infer<typeof formSchema>
 interface ProjectsFormProps {
   projectId: string | null
   onSave: (project: Project) => void
+  initialData?: Project
 }
 
-export function ProjectsForm({ projectId, onSave }: ProjectsFormProps) {
+export function ProjectsForm({ projectId, onSave, initialData }: ProjectsFormProps) {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "AI Platform",
-      description: "build ai platform from zero to one",
+      name: "",
+      description: "",
       bulletPoints: [],
     },
   })
+
+  useEffect(() => {
+    if (initialData) {
+      form.reset({
+        name: initialData.name,
+        description: initialData.description,
+        bulletPoints: initialData.bulletPoints || [],
+      })
+    }
+  }, [initialData, form])
 
   function onSubmit(values: FormValues) {
     const project: Project = {

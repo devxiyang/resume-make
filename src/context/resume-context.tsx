@@ -22,7 +22,8 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     experiences: [],
     education: [],
     projects: [],
-    skills: []
+    skills: [],
+    customSections: []
   });
 
   return (
