@@ -11,7 +11,7 @@ import { ProjectsForm } from "@/components/forms/projects-form"
 import { SkillsForm } from "@/components/forms/skills-form"
 // import { ResumePreview } from "@/components/preview/resume-preview"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, Download } from "lucide-react"
+import { ChevronLeft, Download, Laptop, Smartphone, ArrowRight } from "lucide-react"
 import { Education, Experience, ResumeData, Skill, CustomSection } from "@/lib/types"
 import { Project } from "@/lib/types"
 import { format } from "date-fns"
@@ -378,14 +378,33 @@ export default function Page() {
 
   if (isMobile) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center p-4 text-center">
-        <h1 className="text-xl font-bold mb-4">Desktop Only</h1>
-        <p className="text-gray-600 mb-2">
-          Sorry, this resume builder is currently optimized for desktop use only.
-        </p>
-        <p className="text-gray-600">
-          Please visit us on a desktop device for the best experience.
-        </p>
+      <div className="flex min-h-screen flex-col items-center justify-center p-6 bg-gradient-to-b from-blue-50 to-white">
+        <div className="relative mb-8">
+          <Smartphone className="w-16 h-16 text-red-500 absolute -left-4 top-0 transform -rotate-12 opacity-50" />
+          <Laptop className="w-20 h-20 text-blue-600 relative z-10" />
+        </div>
+        
+        <h1 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
+          Desktop Only
+        </h1>
+        
+        <div className="max-w-sm text-center space-y-4">
+          <p className="text-gray-600">
+            For the best resume building experience, please use a desktop or laptop computer.
+          </p>
+          
+          <div className="flex items-center justify-center gap-3 text-sm text-gray-500">
+            <Smartphone className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
+            <Laptop className="w-6 h-6 text-blue-600" />
+          </div>
+          
+          <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+            <p className="text-sm text-blue-700">
+              Tip: Our resume builder requires a larger screen for precise formatting and the best editing experience.
+            </p>
+          </div>
+        </div>
       </div>
     )
   }
