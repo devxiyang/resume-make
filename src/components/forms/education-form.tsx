@@ -1,71 +1,38 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Bold, Italic, Underline } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { useResume } from "@/context/resume-context"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { type Education } from '@/lib/types'
+import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { useResumeForm, validateEducation } from "@/hooks/use-resume-form"
+import { format } from "date-fns"
 
-const formSchema = z.object({
-  school: z.string().min(2, {
-    message: "School name must be at least 2 characters.",
-  }),
-  degree: z.string().min(1, {
-    message: "Please select a degree.",
-  }),
-  field: z.string().min(2, {
-    message: "Field of study must be at least 2 characters.",
-  }),
-  city: z.string().optional(),
-  state: z.string().optional(),
-  startDate: z.string().min(7, {
-    message: "Please enter a valid start date (MM/YYYY).",
-  }),
-  endDate: z.string().min(7, {
-    message: "Please enter a valid end date (MM/YYYY).",
-  }),
-  description: z.string().optional(),
-})
+export function EducationForm() {
+  const { resumeData, selectedIds } = useResume()
+  const selectedEducation = resumeData.education.find(edu => edu.id === selectedIds.education)
 
-type FormValues = z.infer<typeof formSchema>
-
-interface EducationFormProps {
-  educationId: string | null
-  onSave: (education: Education) => void
-}
-
-export function EducationForm({ educationId, onSave }: EducationFormProps) {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      school: "University of Shanghai for Science and Technology",
-      degree: "master",
-      field: "CS",
-      city: "Shanghai",
-      state: "",
-      startDate: "09/2014",
-      endDate: "06/2017",
-      description: "CS",
+  const form = useResumeForm({
+    type: 'education',
+    initialValues: selectedEducation || {
+      id: '',
+      school: '',
+      degree: '',
+      state: '',
+      startDate: format(new Date(), "MMM yyyy"),
+      endDate: format(new Date(), "MMM yyyy"),
+      description: '',
     },
+    validate: validateEducation,
   })
 
-  function onSubmit(values: FormValues) {
-    const education: Education = {
-      id: educationId || "new",
-      school: values.school,
-      degree: values.degree,
-      state: values.state || "",
-      startDate: values.startDate,
-      endDate: values.endDate,
-      description: values.description || "",
-    }
-    onSave(education)
+  if (!selectedEducation) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500">No education selected</p>
+      </div>
+    )
   }
 
   return (
@@ -74,151 +41,80 @@ export function EducationForm({ educationId, onSave }: EducationFormProps) {
         <CardTitle>Edit Education</CardTitle>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="school"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>School</FormLabel>
-                  <FormControl>
-                    <Input placeholder="School name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+        <form onSubmit={form.handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="school">School</Label>
+            <Input
+              id="school"
+              value={form.values.school}
+              onChange={(e) => form.handleChange('school', e.target.value)}
+              onBlur={() => form.handleBlur('school')}
             />
+            {form.touched.school && form.errors.school && (
+              <p className="text-sm text-red-500">{form.errors.school}</p>
+            )}
+          </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="degree"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Degree</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select degree" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="associate">Associate&apos;s</SelectItem>
-                        <SelectItem value="bachelor">Bachelor&apos;s</SelectItem>
-                        <SelectItem value="master">Master&apos;s</SelectItem>
-                        <SelectItem value="doctorate">Doctorate</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <div>
+            <Label htmlFor="degree">Degree</Label>
+            <Input
+              id="degree"
+              value={form.values.degree}
+              onChange={(e) => form.handleChange('degree', e.target.value)}
+              onBlur={() => form.handleBlur('degree')}
+            />
+            {form.touched.degree && form.errors.degree && (
+              <p className="text-sm text-red-500">{form.errors.degree}</p>
+            )}
+          </div>
 
-              <FormField
-                control={form.control}
-                name="field"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Field of Study</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Field of study" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+          <div>
+            <Label htmlFor="state">Location</Label>
+            <Input
+              id="state"
+              value={form.values.state}
+              onChange={(e) => form.handleChange('state', e.target.value)}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="startDate">Start Date</Label>
+              <Input
+                id="startDate"
+                value={form.values.startDate}
+                onChange={(e) => form.handleChange('startDate', e.target.value)}
+                onBlur={() => form.handleBlur('startDate')}
               />
+              {form.touched.startDate && form.errors.startDate && (
+                <p className="text-sm text-red-500">{form.errors.startDate}</p>
+              )}
             </div>
 
-            <div className="grid grid-cols-4 gap-4">
-              <FormField
-                control={form.control}
-                name="startDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Start Date</FormLabel>
-                    <FormControl>
-                      <Input placeholder="MM/YYYY" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+            <div>
+              <Label htmlFor="endDate">End Date</Label>
+              <Input
+                id="endDate"
+                value={form.values.endDate}
+                onChange={(e) => form.handleChange('endDate', e.target.value)}
+                onBlur={() => form.handleBlur('endDate')}
               />
-
-              <FormField
-                control={form.control}
-                name="endDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>End Date</FormLabel>
-                    <FormControl>
-                      <Input placeholder="MM/YYYY" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="city"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>City</FormLabel>
-                    <FormControl>
-                      <Input placeholder="City" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="state"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>State</FormLabel>
-                    <FormControl>
-                      <Input placeholder="State" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <div className="flex gap-1 mb-2">
-                    <Button type="button" variant="outline" size="icon">
-                      <Bold className="h-4 w-4" />
-                    </Button>
-                    <Button type="button" variant="outline" size="icon">
-                      <Italic className="h-4 w-4" />
-                    </Button>
-                    <Button type="button" variant="outline" size="icon">
-                      <Underline className="h-4 w-4" />
-                    </Button>
-                  </div>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Add additional details about your education"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+              {form.touched.endDate && form.errors.endDate && (
+                <p className="text-sm text-red-500">{form.errors.endDate}</p>
               )}
-            />
+            </div>
+          </div>
 
-            <Button type="submit" className="w-full">Save Changes</Button>
-          </form>
-        </Form>
+          <div>
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              value={form.values.description}
+              onChange={(e) => form.handleChange('description', e.target.value)}
+              className="h-24"
+            />
+          </div>
+        </form>
       </CardContent>
     </Card>
   )

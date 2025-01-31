@@ -1,56 +1,33 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { useResume } from "@/context/resume-context"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { useEffect } from "react"
-import { type Skill } from '@/lib/types'
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { useResumeForm, validateSkill } from "@/hooks/use-resume-form"
+import { Skill } from "@/lib/types"
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Skill name must be at least 2 characters.",
-  }),
-  description: z.string().optional(),
-})
+export function SkillsForm() {
+  const { resumeData, selectedIds } = useResume()
+  const selectedSkill = resumeData.skills.find(skill => skill.id === selectedIds.skill)
 
-type FormValues = z.infer<typeof formSchema>
-
-interface SkillsFormProps {
-  skillId: string | null;
-  onSave: (skill: Skill) => void;
-  initialData?: Skill;
-}
-
-export function SkillsForm({ skillId, onSave, initialData }: SkillsFormProps) {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      description: "",
+  const form = useResumeForm<Skill>({
+    type: 'skill',
+    initialValues: selectedSkill || {
+      id: '',
+      name: '',
+      description: '',
     },
+    validate: validateSkill,
   })
 
-  useEffect(() => {
-    if (initialData) {
-      form.reset({
-        name: initialData.name,
-        description: initialData.description || "",
-      })
-    }
-  }, [initialData, form])
-
-  function onSubmit(values: FormValues) {
-    const skill: Skill = {
-      id: skillId || "new",
-      name: values.name,
-      description: values.description,
-    }
-    onSave(skill)
+  if (!selectedSkill) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500">No skill selected</p>
+      </div>
+    )
   }
 
   return (
@@ -59,42 +36,30 @@ export function SkillsForm({ skillId, onSave, initialData }: SkillsFormProps) {
         <CardTitle>Edit Skill</CardTitle>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Skill Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter skill name" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+        <form onSubmit={form.handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="name">Skill Name</Label>
+            <Input
+              id="name"
+              value={form.values.name}
+              onChange={(e) => form.handleChange('name', e.target.value)}
+              onBlur={() => form.handleBlur('name')}
             />
+            {form.touched.name && form.errors.name && (
+              <p className="text-sm text-red-500">{form.errors.name}</p>
+            )}
+          </div>
 
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea 
-                      placeholder="Describe your skill level or additional details" 
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+          <div>
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              value={form.values.description}
+              onChange={(e) => form.handleChange('description', e.target.value)}
+              className="h-24"
             />
-
-            <Button type="submit" className="w-full">Save Changes</Button>
-          </form>
-        </Form>
+          </div>
+        </form>
       </CardContent>
     </Card>
   )

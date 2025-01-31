@@ -7,50 +7,29 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Bold, Italic, Underline } from "lucide-react"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-
-const formSchema = z.object({
-  jobTitle: z.string().min(2, {
-    message: "Job title must be at least 2 characters.",
-  }),
-  firstName: z.string().min(2, {
-    message: "First name must be at least 2 characters.",
-  }),
-  lastName: z.string().min(2, {
-    message: "Last name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  phone: z.string().optional(),
-  linkedin: z.string().url().optional(),
-  professionalWebsite: z.string().url().optional(),
-  personalWebsite: z.string().url().optional(),
-  summary: z.string().optional(),
-})
-
-type FormValues = z.infer<typeof formSchema>
+import { useForm } from "@/hooks/use-form"
+import { useResume } from "@/context/resume-context"
+import { Label } from "@/components/ui/label"
 
 export function PersonalInfoForm() {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      jobTitle: "ML Engineering Expert",
-      firstName: "Xiyang",
-      lastName: "Dev",
-      email: "murphyxiaoxi@163.com",
-      phone: "123456",
-      linkedin: "linkedin.com/xiyang",
-      professionalWebsite: "devxiyang.com",
-      personalWebsite: "devxiyang.com",
-      summary: "",
+  const { resumeData, updateResumeData } = useResume()
+
+  const form = useForm({
+    initialValues: resumeData.personal,
+    onSubmit: (values) => {
+      updateResumeData({ personal: values })
+    },
+    onChange: (values) => {
+      updateResumeData({ personal: values })
+    },
+    validate: (values) => {
+      const errors: Record<string, string> = {}
+      if (!values.name) errors.name = 'Name is required'
+      if (!values.email) errors.email = 'Email is required'
+      if (!values.jobTitle) errors.jobTitle = 'Job title is required'
+      return errors
     },
   })
-
-  function onSubmit(values: FormValues) {
-    console.log(values)
-  }
 
   return (
     <Card>
@@ -58,155 +37,102 @@ export function PersonalInfoForm() {
         <CardTitle>Edit Personal Information</CardTitle>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="jobTitle"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Job Title</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your job title" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+        <form onSubmit={form.handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              value={form.values.name}
+              onChange={(e) => form.handleChange('name', e.target.value)}
+              onBlur={() => form.handleBlur('name')}
             />
+            {form.touched.name && form.errors.name && (
+              <p className="text-sm text-red-500">{form.errors.name}</p>
+            )}
+          </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="First name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Last name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email Address</FormLabel>
-                  <FormControl>
-                    <Input type="email" placeholder="Email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+          <div>
+            <Label htmlFor="jobTitle">Job Title</Label>
+            <Input
+              id="jobTitle"
+              value={form.values.jobTitle}
+              onChange={(e) => form.handleChange('jobTitle', e.target.value)}
+              onBlur={() => form.handleBlur('jobTitle')}
             />
+            {form.touched.jobTitle && form.errors.jobTitle && (
+              <p className="text-sm text-red-500">{form.errors.jobTitle}</p>
+            )}
+          </div>
 
-            <div className="grid grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Phone" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="linkedin"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>LinkedIn</FormLabel>
-                    <FormControl>
-                      <Input placeholder="LinkedIn URL" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="professionalWebsite"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Professional Website</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Website URL" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="personalWebsite"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Personal Website</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Website URL" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="summary"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Summary</FormLabel>
-                  <div className="flex gap-2 mb-2">
-                    <Button variant="outline" size="icon">
-                      <Bold className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Italic className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Underline className="h-4 w-4" />
-                    </Button>
-                  </div>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Add your summary or objective here"
-                      className="min-h-[120px]"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={form.values.email}
+              onChange={(e) => form.handleChange('email', e.target.value)}
+              onBlur={() => form.handleBlur('email')}
             />
+            {form.touched.email && form.errors.email && (
+              <p className="text-sm text-red-500">{form.errors.email}</p>
+            )}
+          </div>
 
-            <Button type="submit">Save Changes</Button>
-          </form>
-        </Form>
+          <div>
+            <Label htmlFor="phone">Phone</Label>
+            <Input
+              id="phone"
+              value={form.values.phone}
+              onChange={(e) => form.handleChange('phone', e.target.value)}
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="address">Address</Label>
+            <Input
+              id="address"
+              value={form.values.address}
+              onChange={(e) => form.handleChange('address', e.target.value)}
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="linkedin">LinkedIn</Label>
+            <Input
+              id="linkedin"
+              value={form.values.linkedin}
+              onChange={(e) => form.handleChange('linkedin', e.target.value)}
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="professionalWebsite">Professional Website</Label>
+            <Input
+              id="professionalWebsite"
+              value={form.values.professionalWebsite}
+              onChange={(e) => form.handleChange('professionalWebsite', e.target.value)}
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="personalWebsite">Personal Website</Label>
+            <Input
+              id="personalWebsite"
+              value={form.values.personalWebsite}
+              onChange={(e) => form.handleChange('personalWebsite', e.target.value)}
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="summary">Professional Summary</Label>
+            <Textarea
+              id="summary"
+              value={form.values.summary}
+              onChange={(e) => form.handleChange('summary', e.target.value)}
+              className="h-32"
+            />
+          </div>
+        </form>
       </CardContent>
     </Card>
   )

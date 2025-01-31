@@ -1,172 +1,129 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useFieldArray, useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { useResume } from "@/context/resume-context"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { type CustomSection } from '@/lib/types'
-import { useEffect } from "react"
-import { Plus, Minus } from "lucide-react"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { useResumeForm, validateCustomSection } from "@/hooks/use-resume-form"
+import { CustomSection } from "@/lib/types"
 
-const formSchema = z.object({
-  title: z.string().min(2, {
-    message: "Section title must be at least 2 characters.",
-  }),
-  items: z.array(z.object({
-    id: z.string(),
-    title: z.string().min(2, {
-      message: "Item title must be at least 2 characters.",
-    }),
-    description: z.string(),
-    date: z.string().optional(),
-  }))
-})
+export function CustomSectionForm() {
+  const { resumeData, selectedIds, addItem, deleteItem, addCustomSectionItem } = useResume()
+  const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
 
-type FormValues = z.infer<typeof formSchema>
-
-interface CustomSectionFormProps {
-  sectionId: string | null;
-  onSave: (section: CustomSection) => void;
-  initialData?: CustomSection;
-}
-
-export function CustomSectionForm({ sectionId, onSave, initialData }: CustomSectionFormProps) {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
+  const form = useResumeForm<CustomSection>({
+    type: 'customSection',
+    initialValues: selectedSection || {
+      id: '',
+      title: '',
       items: [],
     },
+    validate: validateCustomSection,
   })
 
-  const { fields, append, remove } = useFieldArray({
-    name: "items",
-    control: form.control,
-  })
-
-  useEffect(() => {
-    if (initialData) {
-      form.reset({
-        title: initialData.title,
-        items: initialData.items,
-      })
-    }
-  }, [initialData, form])
-
-  function onSubmit(values: FormValues) {
-    const section: CustomSection = {
-      id: sectionId || "new",
-      title: values.title,
-      items: values.items,
-    }
-    onSave(section)
+  const handleAddItem = () => {
+    const newItems = [...(form.values.items || []), { title: '', description: '' }]
+    form.handleChange('items', newItems)
   }
+
+  const handleRemoveItem = (index: number) => {
+    const newItems = (form.values.items || []).filter((_, i) => i !== index)
+    form.handleChange('items', newItems)
+  }
+
+  const handleItemChange = (index: number, field: 'title' | 'description', value: string) => {
+    const newItems = [...(form.values.items || [])]
+    newItems[index] = { ...newItems[index], [field]: value }
+    form.handleChange('items', newItems)
+  }
+
+  if (!selectedSection) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500 mb-4">Select a custom section to edit</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full">
+      {selectedSection.items.length === 0 ? (
+        <>
+          <p className="text-gray-500 mb-4">No items in this section</p>
+          <Button onClick={() => addCustomSectionItem(selectedSection.id)}>
+            Add Item
+          </Button>
+        </>
+      ) : (
+        <p className="text-gray-500">Select an item to edit</p>
+      )}
+    </div>
+  )
+}
+
+export function CustomSectionItemForm() {
+  const { resumeData, selectedIds, updateItem } = useResume()
+  const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
+  const selectedItem = selectedSection?.items.find(item => item.id === selectedIds.customSectionItem)
+
+  const form = useResumeForm<CustomSection>({
+    type: 'customSection',
+    initialValues: selectedSection || {
+      id: '',
+      title: '',
+      items: [],
+    },
+    validate: validateCustomSection,
+  })
+
+  if (!selectedSection || !selectedItem) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500 mb-4">No item selected</p>
+      </div>
+    )
+  }
+
+  const handleItemChange = (field: 'title' | 'description', value: string) => {
+    const updatedItems = selectedSection.items.map(item =>
+      item.id === selectedItem.id
+        ? { ...item, [field]: value }
+        : item
+    );
+
+    const updatedSection = {
+      ...selectedSection,
+      items: updatedItems
+    };
+
+    updateItem('customSection', updatedSection);
+  };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Custom Section</CardTitle>
+        <CardTitle>Edit Item</CardTitle>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Section Title</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter section title" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+        <form onSubmit={form.handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="title">Title</Label>
+            <Input
+              id="title"
+              value={selectedItem.title}
+              onChange={(e) => handleItemChange('title', e.target.value)}
             />
-
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <FormLabel>Items</FormLabel>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => append({ id: `item-${Date.now()}`, title: "", description: "", date: "" })}
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Item
-                </Button>
-              </div>
-
-              {fields.map((field, index) => (
-                <div key={field.id} className="space-y-4 p-4 border rounded-lg">
-                  <div className="flex justify-between items-start">
-                    <FormField
-                      control={form.control}
-                      name={`items.${index}.title`}
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Title</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Item title" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="mt-8 hover:text-red-500"
-                      onClick={() => remove(index)}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name={`items.${index}.date`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Date</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., 2023 or 2020-2022" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name={`items.${index}.description`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Description</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            placeholder="Describe this item" 
-                            className="min-h-[100px]"
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              ))}
-            </div>
-
-            <Button type="submit" className="w-full">Save Changes</Button>
-          </form>
-        </Form>
+          </div>
+          <div>
+            <Label htmlFor="description">Description</Label>
+            <Input
+              id="description"
+              value={selectedItem.description}
+              onChange={(e) => handleItemChange('description', e.target.value)}
+            />
+          </div>
+        </form>
       </CardContent>
     </Card>
   )
