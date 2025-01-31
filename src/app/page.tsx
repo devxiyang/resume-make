@@ -219,10 +219,10 @@ function ResumeBuilder() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <header className="relative flex items-center h-14 px-4 border-b border-gray-200">
+    <div className="min-h-screen flex flex-col bg-background">
+      <header className="relative flex items-center h-14 px-4 border-b border-border">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" className="text-gray-600">
+          <Button variant="ghost" size="sm" className="text-foreground/60">
             <ChevronLeft className="h-4 w-4 mr-1" />
             Dashboard
           </Button>
@@ -231,10 +231,12 @@ function ResumeBuilder() {
             <div className="h-2 w-2 rounded-full bg-green-500" />
           </div>
         </div>
-        <Button variant="default" size="sm" className="ml-auto bg-blue-600 hover:bg-blue-700">
-          <Download className="h-4 w-4 mr-2" />
-          Download PDF
-        </Button>
+        <div className="ml-auto flex items-center gap-2">
+          <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90">
+            <Download className="h-4 w-4 mr-2" />
+            Download PDF
+          </Button>
+        </div>
       </header>
 
       <div className="flex-1 grid grid-cols-[72px_1fr]">
