@@ -291,7 +291,7 @@ function ResumeBuilder() {
         ) : (
           <>
             <TemplatePicker selectedTemplate={selectedTemplate} onTemplateSelect={setSelectedTemplate} />
-            <div className="p-6 bg-gray-500 overflow-y-auto">
+            <div className="p-6 bg-gray-100 overflow-y-auto">
               <ResumePreview data={resumeData} />
             </div>
           </>

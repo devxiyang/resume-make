@@ -1,15 +1,9 @@
 import { Card } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from "next/image"
-
-const templates = [
-  { id: "sharp", name: "Sharp", type: "free" },
-  { id: "modern", name: "Modern", type: "free" },
-  { id: "clean", name: "Clean", type: "premium" },
-  { id: "fresh", name: "Fresh", type: "premium" },
-  { id: "pure", name: "Pure", type: "premium" },
-  { id: "boston", name: "Boston", type: "premium" },
-]
+import { templates } from "./template-config"
+import { Badge } from "@/components/ui/badge"
+import { Check } from "lucide-react"
 
 interface TemplatePickerProps {
   selectedTemplate: string
@@ -21,32 +15,54 @@ export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplateP
     <div className="p-6">
       <h2 className="text-lg font-semibold mb-4">Resume Templates</h2>
       <ScrollArea className="h-[calc(100vh-140px)]">
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-6">
           {templates.map((template) => (
             <Card
               key={template.id}
-              className={`relative cursor-pointer overflow-hidden ${
+              className={`relative cursor-pointer overflow-hidden transition-all duration-200 hover:shadow-lg ${
                 selectedTemplate === template.id ? "ring-2 ring-primary" : ""
               }`}
               onClick={() => onTemplateSelect(template.id)}
             >
-              <div className="aspect-[210/297]">
+              {/* 预览图 */}
+              <div className="aspect-[210/297] relative">
                 <Image
-                  src="/placeholder.svg?height=297&width=210"
+                  src={template.preview}
                   alt={template.name}
                   width={210}
                   height={297}
                   className="w-full h-full object-cover"
                 />
+                {selectedTemplate === template.id && (
+                  <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
+                    <div className="bg-primary text-primary-foreground rounded-full p-2">
+                      <Check className="w-6 h-6" />
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-2 bg-background/90 flex justify-between items-center">
-                <span className="text-sm font-medium">{template.name}</span>
-                {template.type === "premium" && (
-                  <span className="text-xs bg-yellow-500/20 text-yellow-700 px-2 py-0.5 rounded">Premium</span>
-                )}
-                {template.type === "free" && (
-                  <span className="text-xs bg-blue-500/20 text-blue-700 px-2 py-0.5 rounded">Free</span>
-                )}
+
+              {/* 模板信息 */}
+              <div className="p-4 bg-background/90">
+                <div className="flex items-start justify-between mb-2">
+                  <div>
+                    <h3 className="font-semibold">{template.name}</h3>
+                    <p className="text-sm text-muted-foreground">{template.description}</p>
+                  </div>
+                  <Badge variant={template.type === 'premium' ? 'default' : 'secondary'}>
+                    {template.type}
+                  </Badge>
+                </div>
+
+                {/* 特性列表 */}
+                <ul className="mt-3 space-y-1">
+                  {template.features.map((feature, index) => (
+                    <li key={index} className="text-xs text-muted-foreground flex items-center">
+                      <span className="mr-2">•</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Card>
           ))}
