@@ -1,9 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
 
-interface UseFormOptions<T> {
+export interface UseFormOptions<T> {
   initialValues: T;
-  onSubmit?: (values: T) => void;
+  onSubmit: (values: T) => void;
   onChange?: (values: T) => void;
+  onBlur?: () => void;
   validate?: (values: T) => Partial<Record<keyof T, string>>;
 }
 
@@ -11,6 +12,7 @@ export function useForm<T extends Record<string, any>>({
   initialValues,
   onSubmit,
   onChange,
+  onBlur,
   validate,
 }: UseFormOptions<T>) {
   const [values, setValues] = useState<T>(initialValues);
@@ -45,7 +47,10 @@ export function useForm<T extends Record<string, any>>({
       const validationErrors = validate(values);
       setErrors(prev => ({ ...prev, [field]: validationErrors[field] }));
     }
-  }, [values, validate]);
+    if (onBlur) {
+      onBlur();
+    }
+  }, [values, validate, onBlur]);
 
   const handleSubmit = useCallback((e?: React.FormEvent) => {
     if (e) {
@@ -61,7 +66,7 @@ export function useForm<T extends Record<string, any>>({
       }
     }
 
-    onSubmit?.(values);
+    onSubmit(values);
   }, [values, validate, onSubmit]);
 
   const reset = useCallback(() => {

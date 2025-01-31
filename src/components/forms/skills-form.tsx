@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useResumeForm, validateSkill } from "@/hooks/use-resume-form"
 import { Skill } from "@/lib/types"
+import { EditingSpinner } from "@/components/editing-spinner"
 
 export function SkillsForm() {
   const { resumeData, selectedIds } = useResume()
@@ -33,7 +34,10 @@ export function SkillsForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Skill</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Skill</CardTitle>
+          <EditingSpinner />
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">

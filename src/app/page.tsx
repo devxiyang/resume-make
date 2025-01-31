@@ -98,7 +98,20 @@ function ResumeBuilder() {
     custom: true,
   })
   const [editingSectionId, setEditingSectionId] = useState<string | null>(null)
-  const { resumeData, selectedTemplate, selectedIds, setSelectedTemplate, addItem, deleteItem, selectItem, addCustomSectionItem, selectCustomSectionItem, deleteCustomSectionItem, updateItem } = useResume()
+  const { 
+    resumeData, 
+    selectedTemplate, 
+    selectedIds, 
+    isEditing,
+    setSelectedTemplate, 
+    addItem, 
+    deleteItem, 
+    selectItem, 
+    addCustomSectionItem, 
+    selectCustomSectionItem, 
+    deleteCustomSectionItem, 
+    updateItem 
+  } = useResume()
 
   // 检测设备类型
   useEffect(() => {
@@ -166,7 +179,7 @@ function ResumeBuilder() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <header className="flex items-center h-14 px-4 border-b border-gray-200">
+      <header className="relative flex items-center h-14 px-4 border-b border-gray-200">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" className="text-gray-600">
             <ChevronLeft className="h-4 w-4 mr-1" />
@@ -266,10 +279,12 @@ function ResumeBuilder() {
               onAddCustomSectionItem={addCustomSectionItem}
               onCustomSectionItemDelete={deleteCustomSectionItem}
             />
-            <div className="flex divide-x divide-gray-200 h-[calc(100vh-56px)]">
-              <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>
-              <div className="w-3/5 bg-gray-100 overflow-hidden flex flex-col">
-                <ResumePreview data={resumeData} />
+            <div className="flex flex-col divide-y divide-gray-200 h-[calc(100vh-56px)]">
+              <div className="flex divide-x divide-gray-200 flex-1">
+                <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>
+                <div className="w-3/5 bg-gray-100 overflow-hidden flex flex-col">
+                  <ResumePreview data={resumeData} />
+                </div>
               </div>
             </div>
           </>

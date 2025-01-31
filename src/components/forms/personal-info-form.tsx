@@ -10,6 +10,7 @@ import { Bold, Italic, Underline } from "lucide-react"
 import { useForm } from "@/hooks/use-form"
 import { useResume } from "@/context/resume-context"
 import { Label } from "@/components/ui/label"
+import { EditingSpinner } from "@/components/editing-spinner"
 
 export function PersonalInfoForm() {
   const { resumeData, updateResumeData } = useResume()
@@ -34,7 +35,10 @@ export function PersonalInfoForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Personal Information</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Personal Information</CardTitle>
+          <EditingSpinner />
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">
@@ -44,7 +48,6 @@ export function PersonalInfoForm() {
               id="name"
               value={form.values.name}
               onChange={(e) => form.handleChange('name', e.target.value)}
-              onBlur={() => form.handleBlur('name')}
             />
             {form.touched.name && form.errors.name && (
               <p className="text-sm text-red-500">{form.errors.name}</p>
@@ -57,7 +60,6 @@ export function PersonalInfoForm() {
               id="jobTitle"
               value={form.values.jobTitle}
               onChange={(e) => form.handleChange('jobTitle', e.target.value)}
-              onBlur={() => form.handleBlur('jobTitle')}
             />
             {form.touched.jobTitle && form.errors.jobTitle && (
               <p className="text-sm text-red-500">{form.errors.jobTitle}</p>
@@ -71,7 +73,6 @@ export function PersonalInfoForm() {
               type="email"
               value={form.values.email}
               onChange={(e) => form.handleChange('email', e.target.value)}
-              onBlur={() => form.handleBlur('email')}
             />
             {form.touched.email && form.errors.email && (
               <p className="text-sm text-red-500">{form.errors.email}</p>

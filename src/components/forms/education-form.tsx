@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useResumeForm, validateEducation } from "@/hooks/use-resume-form"
 import { format } from "date-fns"
+import { EditingSpinner } from "@/components/editing-spinner"
 
 export function EducationForm() {
   const { resumeData, selectedIds } = useResume()
@@ -38,7 +39,10 @@ export function EducationForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Education</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Education</CardTitle>
+          <EditingSpinner />
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">
