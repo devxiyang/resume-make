@@ -9,7 +9,7 @@ import { ExperienceForm } from "@/components/forms/experience-form"
 import { EducationForm } from "@/components/forms/education-form"
 import { ProjectsForm } from "@/components/forms/projects-form"
 import { SkillsForm } from "@/components/forms/skills-form"
-import { CustomSectionForm } from "@/components/forms/custom-section-form"
+import { CustomSectionForm, CustomSectionItemForm } from "@/components/forms/custom-section-form"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, Download, Laptop, Smartphone, ArrowRight } from "lucide-react"
 import { ResumeData } from "@/lib/types"
@@ -91,7 +91,7 @@ function ResumeBuilder() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("edit")
   const [activeSection, setActiveSection] = useState<ActiveSection>("experience")
   const [isMobile, setIsMobile] = useState(false)
-  const { resumeData, selectedTemplate, selectedIds, setSelectedTemplate, addItem, deleteItem, selectItem } = useResume()
+  const { resumeData, selectedTemplate, selectedIds, setSelectedTemplate, addItem, deleteItem, selectItem, addCustomSectionItem, selectCustomSectionItem, deleteCustomSectionItem } = useResume()
 
   // 检测设备类型
   useEffect(() => {
@@ -118,7 +118,7 @@ function ResumeBuilder() {
       case "skills":
         return <SkillsForm />
       case "custom":
-        return <CustomSectionForm />
+        return selectedIds.customSectionItem ? <CustomSectionItemForm /> : <CustomSectionForm />
       default:
         return null
     }
@@ -210,6 +210,10 @@ function ResumeBuilder() {
                 selectItem('customSection', id)
                 setActiveSection('custom')
               }}
+              onCustomSectionItemSelect={(sectionId, itemId) => {
+                selectCustomSectionItem(sectionId, itemId)
+                setActiveSection('custom')
+              }}
               onAddExperience={() => {
                 addItem('experience')
                 setActiveSection('experience')
@@ -235,6 +239,8 @@ function ResumeBuilder() {
               onProjectDelete={(id) => deleteItem('project', id)}
               onSkillDelete={(id) => deleteItem('skill', id)}
               onCustomSectionDelete={(id) => deleteItem('customSection', id)}
+              onAddCustomSectionItem={addCustomSectionItem}
+              onCustomSectionItemDelete={deleteCustomSectionItem}
             />
             <div className="flex divide-x divide-gray-200 h-[calc(100vh-56px)]">
               <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>

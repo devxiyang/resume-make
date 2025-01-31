@@ -38,6 +38,7 @@ export interface SidebarProps {
   onCustomSectionSelect: (id: string) => void
   onAddCustomSection: () => void
   onCustomSectionDelete: (id: string) => void
+  onCustomSectionItemSelect: (sectionId: string, itemId: string) => void
   selectedCustomSectionId: string | null
   selectedIds: {
     experience: string | null;
@@ -45,7 +46,10 @@ export interface SidebarProps {
     project: string | null;
     skill: string | null;
     customSection: string | null;
+    customSectionItem: string | null;
   };
+  onAddCustomSectionItem: (sectionId: string) => void;
+  onCustomSectionItemDelete: (sectionId: string, itemId: string) => void;
 }
 
 export function Sidebar({
@@ -71,8 +75,11 @@ export function Sidebar({
   onCustomSectionSelect,
   onAddCustomSection,
   onCustomSectionDelete,
+  onCustomSectionItemSelect,
   selectedCustomSectionId,
   selectedIds,
+  onAddCustomSectionItem,
+  onCustomSectionItemDelete,
 }: SidebarProps) {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     experience: true,
@@ -473,7 +480,7 @@ export function Sidebar({
                   )}
                   onClick={() => toggleSection(section.id)}
                 >
-                  <span>{section.title}</span>
+                  <span>{section.title || "New Section"}</span>
                   {section.items.length > 0 && (
                     expandedSections[section.id] ? (
                       <ChevronDown className="h-4 w-4" />
@@ -492,11 +499,12 @@ export function Sidebar({
                           "flex-1 justify-start",
                           activeSection === "custom" && 
                           selectedCustomSectionId === section.id && 
+                          selectedIds.customSectionItem === item.id &&
                           "bg-blue-50 text-blue-600"
                         )}
                         onClick={() => {
                           onSectionChange("custom");
-                          onCustomSectionSelect(section.id);
+                          onCustomSectionItemSelect(section.id, item.id);
                         }}
                       >
                         <span className="text-xs">{item.title || "New Item"}</span>
@@ -515,7 +523,7 @@ export function Sidebar({
                           <div className="space-y-2">
                             <h4 className="font-medium text-sm">确认删除</h4>
                             <p className="text-xs text-muted-foreground">
-                              确定要删除这项技能吗？
+                              确定要删除这个自定义项目吗？
                             </p>
                             <div className="flex justify-end gap-2">
                               <Button 
@@ -534,7 +542,7 @@ export function Sidebar({
                               <Button
                                 size="sm"
                                 className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
-                                onClick={() => onSkillDelete(item.id)}
+                                onClick={() => onCustomSectionItemDelete(section.id, item.id)}
                               >
                                 删除
                               </Button>
@@ -548,10 +556,10 @@ export function Sidebar({
                     variant="ghost" 
                     size="sm" 
                     className="w-full justify-start"
-                    onClick={() => onAddSkill()}
+                    onClick={() => onAddCustomSectionItem(section.id)}
                   >
                     <Plus className="h-3 w-3 mr-2" />
-                    <span className="text-xs">Add</span>
+                    <span className="text-xs">Add Item</span>
                   </Button>
                 </CollapsibleContent>
               </Collapsible>
@@ -559,7 +567,7 @@ export function Sidebar({
             <Button 
               variant="ghost" 
               className="w-full justify-start text-sm mt-2"
-              onClick={onAddCustomSection}
+              onClick={() => onAddCustomSection()}
             >
               <Plus className="h-4 w-4 mr-2" />
               Add Custom Section

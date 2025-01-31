@@ -11,6 +11,7 @@ interface ResumeContextType {
     project: string | null;
     skill: string | null;
     customSection: string | null;
+    customSectionItem: string | null;
   };
   updateResumeData: (data: Partial<ResumeData> | ((prev: ResumeData) => ResumeData)) => void;
   setSelectedTemplate: (template: string) => void;
@@ -21,6 +22,9 @@ interface ResumeContextType {
     type: 'experience' | 'education' | 'project' | 'skill' | 'customSection',
     item: Experience | Education | Project | Skill | CustomSection
   ) => void;
+  addCustomSectionItem: (sectionId: string) => void;
+  deleteCustomSectionItem: (sectionId: string, itemId: string) => void;
+  selectCustomSectionItem: (sectionId: string, itemId: string) => void;
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
@@ -28,12 +32,20 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 export function ResumeProvider({ children, initialData }: { children: ReactNode; initialData: ResumeData }) {
   const [resumeData, setResumeData] = useState<ResumeData>(initialData);
   const [selectedTemplate, setSelectedTemplate] = useState("sharp");
-  const [selectedIds, setSelectedIds] = useState({
+  const [selectedIds, setSelectedIds] = useState<{
+    experience: string | null;
+    education: string | null;
+    project: string | null;
+    skill: string | null;
+    customSection: string | null;
+    customSectionItem: string | null;
+  }>({
     experience: null,
     education: null,
     project: null,
     skill: null,
     customSection: null,
+    customSectionItem: null,
   });
 
   const updateResumeData = (data: Partial<ResumeData> | ((prev: ResumeData) => ResumeData)) => {
@@ -80,7 +92,7 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
       },
       customSection: {
         id: newId,
-        title: "",
+        title: `Custom Section ${resumeData.customSections.length + 1}`,
         items: [],
       },
     }[type];
@@ -156,6 +168,62 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
     });
   };
 
+  const addCustomSectionItem = (sectionId: string) => {
+    const newItemId = `item-${Date.now()}`;
+    setResumeData(prev => {
+      const section = prev.customSections.find(s => s.id === sectionId);
+      if (!section) return prev;
+
+      const newItem = {
+        id: newItemId,
+        title: '',
+        description: ''
+      };
+
+      const updatedSection = {
+        ...section,
+        items: [...section.items, newItem]
+      };
+
+      return {
+        ...prev,
+        customSections: prev.customSections.map(s => 
+          s.id === sectionId ? updatedSection : s
+        )
+      };
+    });
+
+    // Automatically select the new item
+    setSelectedIds(prev => ({
+      ...prev,
+      customSection: sectionId,
+      customSectionItem: newItemId
+    }));
+  };
+
+  const deleteCustomSectionItem = (sectionId: string, itemId: string) => {
+    setResumeData(prev => {
+      const section = prev.customSections.find(s => s.id === sectionId);
+      if (!section) return prev;
+
+      const updatedSection = {
+        ...section,
+        items: section.items.filter(item => item.id !== itemId)
+      };
+
+      return {
+        ...prev,
+        customSections: prev.customSections.map(s => 
+          s.id === sectionId ? updatedSection : s
+        )
+      };
+    });
+  };
+
+  const selectCustomSectionItem = (sectionId: string, itemId: string) => {
+    setSelectedIds(prev => ({ ...prev, customSectionItem: itemId }));
+  };
+
   return (
     <ResumeContext.Provider
       value={{
@@ -168,6 +236,9 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         deleteItem,
         selectItem,
         updateItem,
+        addCustomSectionItem,
+        deleteCustomSectionItem,
+        selectCustomSectionItem,
       }}
     >
       {children}

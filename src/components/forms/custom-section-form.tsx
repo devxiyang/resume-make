@@ -112,4 +112,85 @@ export function CustomSectionForm() {
       </CardContent>
     </Card>
   )
+}
+
+export function CustomSectionItemForm() {
+  const { resumeData, selectedIds, addCustomSectionItem, deleteCustomSectionItem, updateItem } = useResume()
+  const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
+  const selectedItem = selectedSection?.items.find(item => item.id === selectedIds.customSectionItem)
+
+  const form = useResumeForm<CustomSection>({
+    type: 'customSection',
+    initialValues: selectedSection || {
+      id: '',
+      title: '',
+      items: [],
+    },
+    validate: validateCustomSection,
+  })
+
+  if (!selectedSection || !selectedItem) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500 mb-4">No item selected</p>
+        <Button onClick={() => selectedSection && addCustomSectionItem(selectedSection.id)}>
+          Add Item
+        </Button>
+      </div>
+    )
+  }
+
+  const handleItemChange = (field: 'title' | 'description', value: string) => {
+    const updatedItems = selectedSection.items.map(item =>
+      item.id === selectedItem.id
+        ? { ...item, [field]: value }
+        : item
+    );
+
+    const updatedSection = {
+      ...selectedSection,
+      items: updatedItems
+    };
+
+    updateItem('customSection', updatedSection);
+  };
+
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <CardTitle>Edit Item</CardTitle>
+        <div className="flex space-x-2">
+          <Button variant="outline" onClick={() => addCustomSectionItem(selectedSection.id)}>
+            Add New
+          </Button>
+          <Button 
+            variant="destructive" 
+            onClick={() => deleteCustomSectionItem(selectedSection.id, selectedItem.id)}
+          >
+            Delete
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={form.handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="title">Title</Label>
+            <Input
+              id="title"
+              value={selectedItem.title}
+              onChange={(e) => handleItemChange('title', e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="description">Description</Label>
+            <Input
+              id="description"
+              value={selectedItem.description}
+              onChange={(e) => handleItemChange('description', e.target.value)}
+            />
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  )
 } 
