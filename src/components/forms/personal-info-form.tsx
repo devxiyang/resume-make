@@ -106,15 +106,6 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="professionalWebsite">Professional Website</Label>
-            <Input
-              id="professionalWebsite"
-              value={form.values.professionalWebsite}
-              onChange={(e) => form.handleChange('professionalWebsite', e.target.value)}
-            />
-          </div>
-
-          <div>
             <Label htmlFor="personalWebsite">Personal Website</Label>
             <Input
               id="personalWebsite"

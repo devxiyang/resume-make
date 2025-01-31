@@ -26,19 +26,19 @@ import {
 // 定义颜色和尺寸常量
 const COLORS = {
   primary: '#000000',           // 最深，用于名字和标题
-  secondary: '#222222',         // 次深，用于重要内容
-  tertiary: '#444444',          // 用于普通内容
-  quaternary: '#666666',        // 用于次要内容
-  muted: '#888888',            // 最浅，用于辅助信息
-  border: '#00000010',         // 分割线颜色更浅
+  secondary: '#333333',         // 次深，用于重要内容
+  tertiary: '#555555',          // 用于普通内容
+  quaternary: '#777777',        // 用于次要内容
+  muted: '#999999',            // 最浅，用于辅助信息
+  border: '#00000015',         // 分割线颜色
   background: '#ffffff',
 } as const;
 
 const SPACING = {
-  page: 40,
-  section: 16,
-  item: 8,
-  text: 4,
+  page: 35,        // 页面边距
+  section: 12,     // 更紧凑的section间距
+  item: 4,         // 更小的item间距
+  text: 2,         // 更小的文本间距
 } as const;
 
 // 创建PDF样式表
@@ -46,76 +46,91 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
     backgroundColor: COLORS.background,
-    padding: `${SPACING.page}px`,
+    padding: SPACING.page,
     fontSize: 10,
     color: COLORS.primary,
-    lineHeight: 1.4,
+    lineHeight: 1.2,
   },
   header: {
-    marginBottom: `${SPACING.section * 2}px`,
+    marginBottom: SPACING.section,
+    alignItems: 'center',  // 居中对齐
   },
   name: {
-    fontSize: 28,
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 24,
+    marginBottom: 8,
     color: COLORS.primary,
+    textAlign: 'center',
   },
   jobTitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    marginBottom: `${SPACING.item * 1.5}px`,
-    color: COLORS.secondary,
+    marginBottom: 8,       // 增加底部间距
+    color: COLORS.primary,
+    textAlign: 'center',
   },
   contactContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    gap: 4,
+    gap: 0,  // 移除gap，因为我们会在item中控制间距
+    marginTop: 0,
   },
   contactItem: {
-    fontSize: 10,
-    color: COLORS.quaternary,
+    fontSize: 9,
+    color: COLORS.primary,
+    display: 'flex',
+    alignItems: 'center',
   },
   dividerDot: {
-    marginHorizontal: 4,
-    color: COLORS.muted,
+    color: COLORS.primary,
+    fontSize: 8,
+    alignSelf: 'center',
+    paddingHorizontal: 6,  // 点的两边使用相同的内边距
   },
   summary: {
     fontSize: 10,
-    marginTop: `${SPACING.text}px`,
+    marginTop: SPACING.section,  // 增加概述的上边距
     color: COLORS.tertiary,
+    lineHeight: 1.5,            // 增加行高
   },
   section: {
     marginBottom: `${SPACING.section}px`,
   },
   sectionTitle: {
-    fontSize: 14,
-    fontWeight: 900,
+    fontSize: 11,
+    fontWeight: 'bold',
     textTransform: 'uppercase',
-    marginBottom: `${SPACING.section}px`,  // 增加标题和内容之间的间距
-    paddingBottom: `${SPACING.text}px`,    // 减小标题和分割线之间的间距
-    borderBottom: '0.5px solid ' + COLORS.border,  // 分割线稍微粗一点但更浅
+    marginBottom: 8,
+    borderBottom: '0.5px solid ' + COLORS.border,
     color: COLORS.primary,
-    letterSpacing: 1,
+    paddingBottom: 2,
   },
   lastSection: {
     marginBottom: `${SPACING.section}px`,
     paddingBottom: `${SPACING.section}px`,
   },
   itemContainer: {
-    marginBottom: `${SPACING.section}px`,
+    marginBottom: SPACING.section,
   },
   itemHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+    marginBottom: 2,
   },
   itemTitle: {
     fontSize: 11,
     fontWeight: 'bold',
     color: COLORS.secondary,
+  },
+  itemPosition: {
+    fontSize: 10,
+    color: COLORS.quaternary,
+    marginLeft: 16,
+    marginRight: 16,
   },
   itemSubtitle: {
     fontSize: 10,
@@ -123,20 +138,65 @@ const styles = StyleSheet.create({
     color: COLORS.tertiary,
   },
   itemDate: {
-    fontSize: 10,
+    fontSize: 9,
+    color: COLORS.tertiary,
     textAlign: 'right',
-    color: COLORS.muted,
   },
   bulletList: {
-    marginLeft: 12,
-    fontSize: 10,
-    marginBottom: `${SPACING.text}px`,
+    marginLeft: 8,
+    fontSize: 9,
+    marginBottom: 1,
     color: COLORS.tertiary,
+    lineHeight: 1.3,
   },
   workDescription: {
+    fontSize: 9,
+    color: COLORS.tertiary,
+    marginTop: 2,
+    lineHeight: 1.3,
+  },
+  companyText: {
     fontSize: 10,
-    marginBottom: `${SPACING.text}px`,
-    color: COLORS.quaternary,
+    fontWeight: 'bold',
+    color: COLORS.primary,
+  },
+  dividerText: {
+    fontSize: 11,
+    color: COLORS.muted,
+    marginHorizontal: 8,
+  },
+  positionText: {
+    fontSize: 10,
+    color: COLORS.secondary,
+    marginLeft: 4,
+  },
+  // 新增样式用于项目标题和链接
+  projectHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: SPACING.text,
+  },
+  projectLink: {
+    fontSize: 10,
+    color: COLORS.tertiary,
+    textDecoration: 'underline',
+  },
+  // 优化技能部分的样式
+  skillCategory: {
+    flexDirection: 'row',
+    marginBottom: 2,
+  },
+  skillName: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: COLORS.primary,
+    marginRight: 4,
+  },
+  skillDescription: {
+    fontSize: 9,
+    color: COLORS.tertiary,
+    flex: 1,
   },
 });
 
@@ -145,8 +205,8 @@ const PersonalInfoSection = ({ data }: { data: ResumeData['personal'] }) => {
   const contactInfo = [
     data.email,
     data.phone,
-    data.professionalWebsite,
-    data.linkedin && `linkedin.com/${data.linkedin}`,
+    data.personalWebsite,
+    data.linkedin,
   ].filter(Boolean);
 
   return (
@@ -155,10 +215,12 @@ const PersonalInfoSection = ({ data }: { data: ResumeData['personal'] }) => {
       <Text style={styles.jobTitle}>{data.jobTitle}</Text>
       <View style={styles.contactContainer}>
         {contactInfo.map((info, index) => (
-          <Text key={index}>
+          <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text style={styles.contactItem}>{info}</Text>
-            {index < contactInfo.length - 1 && <Text style={styles.dividerDot}>•</Text>}
-          </Text>
+            {index < contactInfo.length - 1 && (
+              <Text style={styles.dividerDot}>•</Text>
+            )}
+          </View>
         ))}
       </View>
       {data.summary && (
@@ -178,11 +240,15 @@ export const PDFPreview = ({ data }: { data: ResumeData }) => (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Experience</Text>
           {data.experiences.map((exp) => (
-            <View key={exp.id} style={styles.itemContainer} wrap={false}>
-              <View style={styles.itemHeader}>
-                <View>
-                  <Text style={styles.itemTitle}>{exp.position} at {exp.company}</Text>
-                  <Text style={styles.workDescription}>{exp.description}</Text>
+            <View key={exp.id} style={[styles.itemContainer, { marginBottom: SPACING.section * 1.5 }]} wrap={false}>
+              <View style={[styles.itemHeader, { marginBottom: SPACING.text }]}>
+                <View style={{ flex: 1 }}>  // 添加flex: 1确保文本有足够空间
+                  <Text>
+                    <Text style={styles.companyText}>{exp.company}</Text>
+                    <Text style={styles.dividerText}>|</Text>
+                    <Text style={styles.positionText}>{exp.position}</Text>
+                  </Text>
+                  <Text style={[styles.workDescription, { marginTop: SPACING.text }]}>{exp.description}</Text>
                 </View>
                 <Text style={styles.itemDate}>
                   {exp.startDate} - {exp.currentlyWork ? 'Present' : exp.endDate}

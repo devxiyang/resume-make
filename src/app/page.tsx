@@ -31,7 +31,6 @@ const initialResumeData: ResumeData = {
     phone: "123456",
     address: "Shanghai, China",
     linkedin: "linkedin.com/xiyang",
-    professionalWebsite: "devxiyang.com",
     personalWebsite: "devxiyang.com",
     summary: "",
   },
