@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { ResumeData } from '@/lib/types';
 import { PDFViewer } from '@react-pdf/renderer';
 import { PDFPreview } from './pdf-preview';
+import { useResume } from '@/context/resume-context';
 
 interface ResumePreviewProps {
   data: ResumeData
@@ -12,6 +13,7 @@ interface ResumePreviewProps {
 export function ResumePreview({ data }: ResumePreviewProps) {
   const [mounted, setMounted] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const { previewData } = useResume()
 
   useEffect(() => {
     setMounted(true)
@@ -46,7 +48,7 @@ export function ResumePreview({ data }: ResumePreviewProps) {
           backgroundColor: '#f3f4f6'
         }}
       >
-        <PDFPreview data={data} />
+        <PDFPreview data={previewData} />
       </PDFViewer>
     </div>
   );

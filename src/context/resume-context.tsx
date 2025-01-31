@@ -1,9 +1,11 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useCallback, useEffect } from 'react';
 import { ResumeData, Experience, Education, Project, Skill, CustomSection } from '@/lib/types';
 import { format } from "date-fns";
+import { debounce } from 'lodash-es';
 
 interface ResumeContextType {
   resumeData: ResumeData;
+  previewData: ResumeData;
   selectedTemplate: string;
   selectedIds: {
     experience: string | null;
@@ -13,6 +15,7 @@ interface ResumeContextType {
     customSection: string | null;
     customSectionItem: string | null;
   };
+  isEditing: boolean;
   updateResumeData: (data: Partial<ResumeData> | ((prev: ResumeData) => ResumeData)) => void;
   setSelectedTemplate: (template: string) => void;
   addItem: (type: 'experience' | 'education' | 'project' | 'skill' | 'customSection') => void;
@@ -30,8 +33,12 @@ interface ResumeContextType {
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children, initialData }: { children: ReactNode; initialData: ResumeData }) {
+  // 实际存储的数据
   const [resumeData, setResumeData] = useState<ResumeData>(initialData);
+  // 用于预览的数据
+  const [previewData, setPreviewData] = useState<ResumeData>(initialData);
   const [selectedTemplate, setSelectedTemplate] = useState("sharp");
+  const [isEditing, setIsEditing] = useState(false);
   const [selectedIds, setSelectedIds] = useState<{
     experience: string | null;
     education: string | null;
@@ -48,15 +55,30 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
     customSectionItem: null,
   });
 
-  const updateResumeData = (data: Partial<ResumeData> | ((prev: ResumeData) => ResumeData)) => {
+  // 使用 debounce 处理预览数据的更新
+  const debouncedUpdatePreview = useCallback(
+    debounce((data: ResumeData) => {
+      setPreviewData(data);
+      setIsEditing(false);
+    }, 1000),
+    []
+  );
+
+  const updateResumeData = useCallback((data: Partial<ResumeData> | ((prev: ResumeData) => ResumeData)) => {
+    setIsEditing(true);
     if (typeof data === 'function') {
       setResumeData(data);
+      debouncedUpdatePreview(data(resumeData));
     } else {
-      setResumeData(prev => ({ ...prev, ...data }));
+      setResumeData(prev => {
+        const newData = { ...prev, ...data };
+        debouncedUpdatePreview(newData);
+        return newData;
+      });
     }
-  };
+  }, [resumeData, debouncedUpdatePreview]);
 
-  const addItem = (type: 'experience' | 'education' | 'project' | 'skill' | 'customSection') => {
+  const addItem = useCallback((type: 'experience' | 'education' | 'project' | 'skill' | 'customSection') => {
     const newId = `${type}-${Date.now()}`;
     const newItem = {
       experience: {
@@ -97,6 +119,7 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
       },
     }[type];
 
+    setIsEditing(true);
     setResumeData(prev => {
       if (type === 'experience') {
         return { ...prev, experiences: [...prev.experiences, newItem as Experience] };
@@ -111,9 +134,10 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
       }
     });
     setSelectedIds(prev => ({ ...prev, [type]: newId }));
-  };
+  }, [resumeData.customSections.length]);
 
-  const deleteItem = (type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
+  const deleteItem = useCallback((type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
+    setIsEditing(true);
     setResumeData(prev => {
       if (type === 'experience') {
         return { ...prev, experiences: prev.experiences.filter(item => item.id !== id) };
@@ -143,16 +167,17 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         };
       });
     }
-  };
+  }, [selectedIds, resumeData]);
 
-  const selectItem = (type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
+  const selectItem = useCallback((type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
     setSelectedIds(prev => ({ ...prev, [type]: id }));
-  };
+  }, []);
 
-  const updateItem = (
+  const updateItem = useCallback((
     type: 'experience' | 'education' | 'project' | 'skill' | 'customSection',
     item: Experience | Education | Project | Skill | CustomSection
   ) => {
+    setIsEditing(true);
     setResumeData(prev => {
       if (type === 'experience') {
         return { ...prev, experiences: prev.experiences.map(existing => existing.id === item.id ? item as Experience : existing) };
@@ -166,10 +191,11 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         return { ...prev, customSections: prev.customSections.map(existing => existing.id === item.id ? item as CustomSection : existing) };
       }
     });
-  };
+  }, []);
 
-  const addCustomSectionItem = (sectionId: string) => {
+  const addCustomSectionItem = useCallback((sectionId: string) => {
     const newItemId = `item-${Date.now()}`;
+    setIsEditing(true);
     setResumeData(prev => {
       const section = prev.customSections.find(s => s.id === sectionId);
       if (!section) return prev;
@@ -193,15 +219,15 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
       };
     });
 
-    // Automatically select the new item
     setSelectedIds(prev => ({
       ...prev,
       customSection: sectionId,
       customSectionItem: newItemId
     }));
-  };
+  }, []);
 
-  const deleteCustomSectionItem = (sectionId: string, itemId: string) => {
+  const deleteCustomSectionItem = useCallback((sectionId: string, itemId: string) => {
+    setIsEditing(true);
     setResumeData(prev => {
       const section = prev.customSections.find(s => s.id === sectionId);
       if (!section) return prev;
@@ -218,18 +244,20 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         )
       };
     });
-  };
+  }, []);
 
-  const selectCustomSectionItem = (sectionId: string, itemId: string) => {
+  const selectCustomSectionItem = useCallback((sectionId: string, itemId: string) => {
     setSelectedIds(prev => ({ ...prev, customSectionItem: itemId }));
-  };
+  }, []);
 
   return (
     <ResumeContext.Provider
       value={{
-        resumeData,
+        resumeData: resumeData,
+        previewData: previewData,
         selectedTemplate,
         selectedIds,
+        isEditing,
         updateResumeData,
         setSelectedTemplate,
         addItem,

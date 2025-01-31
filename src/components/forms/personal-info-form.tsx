@@ -44,7 +44,6 @@ export function PersonalInfoForm() {
               id="name"
               value={form.values.name}
               onChange={(e) => form.handleChange('name', e.target.value)}
-              onBlur={() => form.handleBlur('name')}
             />
             {form.touched.name && form.errors.name && (
               <p className="text-sm text-red-500">{form.errors.name}</p>
@@ -57,7 +56,6 @@ export function PersonalInfoForm() {
               id="jobTitle"
               value={form.values.jobTitle}
               onChange={(e) => form.handleChange('jobTitle', e.target.value)}
-              onBlur={() => form.handleBlur('jobTitle')}
             />
             {form.touched.jobTitle && form.errors.jobTitle && (
               <p className="text-sm text-red-500">{form.errors.jobTitle}</p>
@@ -71,7 +69,6 @@ export function PersonalInfoForm() {
               type="email"
               value={form.values.email}
               onChange={(e) => form.handleChange('email', e.target.value)}
-              onBlur={() => form.handleBlur('email')}
             />
             {form.touched.email && form.errors.email && (
               <p className="text-sm text-red-500">{form.errors.email}</p>

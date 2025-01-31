@@ -98,7 +98,20 @@ function ResumeBuilder() {
     custom: true,
   })
   const [editingSectionId, setEditingSectionId] = useState<string | null>(null)
-  const { resumeData, selectedTemplate, selectedIds, setSelectedTemplate, addItem, deleteItem, selectItem, addCustomSectionItem, selectCustomSectionItem, deleteCustomSectionItem, updateItem } = useResume()
+  const { 
+    resumeData, 
+    selectedTemplate, 
+    selectedIds, 
+    isEditing,
+    setSelectedTemplate, 
+    addItem, 
+    deleteItem, 
+    selectItem, 
+    addCustomSectionItem, 
+    selectCustomSectionItem, 
+    deleteCustomSectionItem, 
+    updateItem 
+  } = useResume()
 
   // 检测设备类型
   useEffect(() => {
@@ -174,7 +187,11 @@ function ResumeBuilder() {
           </Button>
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">My Resume</span>
-            <div className="h-2 w-2 rounded-full bg-green-500" />
+            {isEditing ? (
+              <div className="h-2 w-2 rounded-full bg-yellow-500" />
+            ) : (
+              <div className="h-2 w-2 rounded-full bg-green-500" />
+            )}
           </div>
         </div>
         <Button variant="default" size="sm" className="ml-auto bg-blue-600 hover:bg-blue-700">
