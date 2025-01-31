@@ -63,7 +63,7 @@ export function CustomSectionForm() {
 }
 
 export function CustomSectionItemForm() {
-  const { resumeData, selectedIds, addCustomSectionItem, deleteCustomSectionItem, updateItem } = useResume()
+  const { resumeData, selectedIds, updateItem } = useResume()
   const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
   const selectedItem = selectedSection?.items.find(item => item.id === selectedIds.customSectionItem)
 
@@ -81,9 +81,6 @@ export function CustomSectionItemForm() {
     return (
       <div className="flex flex-col items-center justify-center h-full">
         <p className="text-gray-500 mb-4">No item selected</p>
-        <Button onClick={() => selectedSection && addCustomSectionItem(selectedSection.id)}>
-          Add Item
-        </Button>
       </div>
     )
   }
@@ -105,19 +102,8 @@ export function CustomSectionItemForm() {
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader>
         <CardTitle>Edit Item</CardTitle>
-        <div className="flex space-x-2">
-          <Button variant="outline" onClick={() => addCustomSectionItem(selectedSection.id)}>
-            Add New
-          </Button>
-          <Button 
-            variant="destructive" 
-            onClick={() => deleteCustomSectionItem(selectedSection.id, selectedItem.id)}
-          >
-            Delete
-          </Button>
-        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">

@@ -92,6 +92,8 @@ export function Sidebar({
   editingSectionId,
   setEditingSectionId,
 }: SidebarProps) {
+  const [openPopoverId, setOpenPopoverId] = useState<string | null>(null);
+
   const toggleSection = (section: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
     setExpandedSections(prev => ({
@@ -115,6 +117,25 @@ export function Sidebar({
     setExpandedSections(allSections);
   };
 
+  const expandAll = () => {
+    const allSections = {
+      experience: true,
+      education: true,
+      projects: true,
+      skills: true,
+      custom: true,
+      ...resumeData.customSections?.reduce((acc, section) => ({
+        ...acc,
+        [section.id]: true
+      }), {})
+    };
+    setExpandedSections(allSections);
+  };
+
+  const isAllCollapsed = () => {
+    return Object.values(expandedSections).every(value => !value);
+  };
+
   return (
     <div className={cn("w-full h-full border-r border-gray-200 overflow-y-auto", activeSection)}>
       <div className="p-4">
@@ -123,10 +144,15 @@ export function Sidebar({
           <Button 
             variant="ghost" 
             size="sm" 
-            className="h-6 px-2 text-xs text-blue-600"
-            onClick={collapseAll}
+            className={cn(
+              "h-6 px-2 text-xs",
+              isAllCollapsed() 
+                ? "text-blue-600 hover:text-blue-700 hover:bg-blue-50" 
+                : "text-gray-600 hover:text-gray-700 hover:bg-gray-50"
+            )}
+            onClick={isAllCollapsed() ? expandAll : collapseAll}
           >
-            Collapse all
+            {isAllCollapsed() ? "Expand all" : "Collapse all"}
           </Button>
         </div>
 
@@ -160,12 +186,12 @@ export function Sidebar({
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-8 mt-1 space-y-1">
                 {resumeData.experiences.map((exp) => (
-                  <div key={exp.id} className="flex items-center gap-1">
+                  <div key={exp.id} className="flex items-center gap-1 group">
                     <Button
                       variant="ghost"
                       size="sm"
                       className={cn(
-                        "flex-1 justify-start",
+                        "flex-1 justify-start min-w-0",
                         activeSection === "experience" && selectedExperienceId === exp.id && "bg-blue-50 text-blue-600"
                       )}
                       onClick={(e) => {
@@ -173,14 +199,14 @@ export function Sidebar({
                         onExperienceSelect(exp.id);
                       }}
                     >
-                      <span className="text-xs">{exp.company || "New Experience"}</span>
+                      <span className="text-xs truncate">{exp.company || "New Experience"}</span>
                     </Button>
-                    <Popover>
+                    <Popover open={openPopoverId === exp.id} onOpenChange={(open) => setOpenPopoverId(open ? exp.id : null)}>
                       <PopoverTrigger asChild>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="px-2 hover:text-red-500"
+                          className="px-2 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <Trash2 className="h-3 w-3" />
                         </Button>
@@ -196,12 +222,7 @@ export function Sidebar({
                               variant="outline" 
                               size="sm" 
                               className="h-7 text-xs"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
-                                  ?.querySelector('[data-radix-popper-close-trigger]')
-                                  ?.dispatchEvent(new MouseEvent('click'));
-                              }}
+                              onClick={() => setOpenPopoverId(null)}
                             >
                               Cancel
                             </Button>
@@ -211,6 +232,7 @@ export function Sidebar({
                               onClick={(e) => {
                                 e.preventDefault();
                                 onExperienceDelete(exp.id);
+                                setOpenPopoverId(null);
                               }}
                             >
                               Delete
@@ -253,12 +275,12 @@ export function Sidebar({
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-8 mt-1 space-y-1">
                 {resumeData.education.map((edu) => (
-                  <div key={edu.id} className="flex items-center gap-1">
+                  <div key={edu.id} className="flex items-center gap-1 group">
                     <Button
                       variant="ghost"
                       size="sm"
                       className={cn(
-                        "flex-1 justify-start",
+                        "flex-1 justify-start min-w-0",
                         activeSection === "education" && selectedEducationId === edu.id && "bg-blue-50 text-blue-600"
                       )}
                       onClick={(e) => {
@@ -266,14 +288,14 @@ export function Sidebar({
                         onEducationSelect(edu.id);
                       }}
                     >
-                      <span className="text-xs">{edu.school || "New Education"}</span>
+                      <span className="text-xs truncate">{edu.school || "New Education"}</span>
                     </Button>
-                    <Popover>
+                    <Popover open={openPopoverId === edu.id} onOpenChange={(open) => setOpenPopoverId(open ? edu.id : null)}>
                       <PopoverTrigger asChild>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="px-2 hover:text-red-500"
+                          className="px-2 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <Trash2 className="h-3 w-3" />
                         </Button>
@@ -289,12 +311,7 @@ export function Sidebar({
                               variant="outline" 
                               size="sm" 
                               className="h-7 text-xs"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
-                                  ?.querySelector('[data-radix-popper-close-trigger]')
-                                  ?.dispatchEvent(new MouseEvent('click'));
-                              }}
+                              onClick={() => setOpenPopoverId(null)}
                             >
                               Cancel
                             </Button>
@@ -304,6 +321,7 @@ export function Sidebar({
                               onClick={(e) => {
                                 e.preventDefault();
                                 onEducationDelete(edu.id);
+                                setOpenPopoverId(null);
                               }}
                             >
                               Delete
@@ -346,12 +364,12 @@ export function Sidebar({
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-8 mt-1 space-y-1">
                 {resumeData.projects.map((project) => (
-                  <div key={project.id} className="flex items-center gap-1">
+                  <div key={project.id} className="flex items-center gap-1 group">
                     <Button
                       variant="ghost"
                       size="sm"
                       className={cn(
-                        "flex-1 justify-start",
+                        "flex-1 justify-start min-w-0",
                         activeSection === "projects" && selectedProjectId === project.id && "bg-blue-50 text-blue-600"
                       )}
                       onClick={(e) => {
@@ -359,14 +377,14 @@ export function Sidebar({
                         onProjectSelect(project.id);
                       }}
                     >
-                      <span className="text-xs">{project.name || "New Project"}</span>
+                      <span className="text-xs truncate">{project.name || "New Project"}</span>
                     </Button>
-                    <Popover>
+                    <Popover open={openPopoverId === project.id} onOpenChange={(open) => setOpenPopoverId(open ? project.id : null)}>
                       <PopoverTrigger asChild>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="px-2 hover:text-red-500"
+                          className="px-2 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <Trash2 className="h-3 w-3" />
                         </Button>
@@ -382,12 +400,7 @@ export function Sidebar({
                               variant="outline" 
                               size="sm" 
                               className="h-7 text-xs"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
-                                  ?.querySelector('[data-radix-popper-close-trigger]')
-                                  ?.dispatchEvent(new MouseEvent('click'));
-                              }}
+                              onClick={() => setOpenPopoverId(null)}
                             >
                               Cancel
                             </Button>
@@ -397,6 +410,7 @@ export function Sidebar({
                               onClick={(e) => {
                                 e.preventDefault();
                                 onProjectDelete(project.id);
+                                setOpenPopoverId(null);
                               }}
                             >
                               Delete
@@ -439,12 +453,12 @@ export function Sidebar({
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-8 mt-1 space-y-1">
                 {resumeData.skills.map((skill) => (
-                  <div key={skill.id} className="flex items-center gap-1">
+                  <div key={skill.id} className="flex items-center gap-1 group">
                     <Button
                       variant="ghost"
                       size="sm"
                       className={cn(
-                        "flex-1 justify-start",
+                        "flex-1 justify-start min-w-0",
                         activeSection === "skills" && selectedSkillId === skill.id && "bg-blue-50 text-blue-600"
                       )}
                       onClick={(e) => {
@@ -452,14 +466,14 @@ export function Sidebar({
                         onSkillSelect(skill.id);
                       }}
                     >
-                      <span className="text-xs">{skill.name || "New Skill"}</span>
+                      <span className="text-xs truncate">{skill.name || "New Skill"}</span>
                     </Button>
-                    <Popover>
+                    <Popover open={openPopoverId === skill.id} onOpenChange={(open) => setOpenPopoverId(open ? skill.id : null)}>
                       <PopoverTrigger asChild>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="px-2 hover:text-red-500"
+                          className="px-2 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <Trash2 className="h-3 w-3" />
                         </Button>
@@ -475,12 +489,7 @@ export function Sidebar({
                               variant="outline" 
                               size="sm" 
                               className="h-7 text-xs"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
-                                  ?.querySelector('[data-radix-popper-close-trigger]')
-                                  ?.dispatchEvent(new MouseEvent('click'));
-                              }}
+                              onClick={() => setOpenPopoverId(null)}
                             >
                               Cancel
                             </Button>
@@ -490,6 +499,7 @@ export function Sidebar({
                               onClick={(e) => {
                                 e.preventDefault();
                                 onSkillDelete(skill.id);
+                                setOpenPopoverId(null);
                               }}
                             >
                               Delete
@@ -556,7 +566,7 @@ export function Sidebar({
                     </span>
                   )}
                   <div className="flex items-center gap-2">
-                    <Popover>
+                    <Popover open={openPopoverId === section.id} onOpenChange={(open) => setOpenPopoverId(open ? section.id : null)}>
                       <PopoverTrigger asChild>
                         <Button
                           variant="ghost"
@@ -577,12 +587,7 @@ export function Sidebar({
                               variant="outline" 
                               size="sm" 
                               className="h-7 text-xs"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
-                                  ?.querySelector('[data-radix-popper-close-trigger]')
-                                  ?.dispatchEvent(new MouseEvent('click'));
-                              }}
+                              onClick={() => setOpenPopoverId(null)}
                             >
                               Cancel
                             </Button>
@@ -592,6 +597,7 @@ export function Sidebar({
                               onClick={(e) => {
                                 e.preventDefault();
                                 onCustomSectionDelete(section.id);
+                                setOpenPopoverId(null);
                               }}
                             >
                               Delete
@@ -614,12 +620,12 @@ export function Sidebar({
                 </div>
                 <CollapsibleContent className="pl-8 mt-1 space-y-1">
                   {section.items.map((item) => (
-                    <div key={item.id} className="flex items-center gap-1">
+                    <div key={item.id} className="flex items-center gap-1 group">
                       <Button
                         variant="ghost"
                         size="sm"
                         className={cn(
-                          "flex-1 justify-start",
+                          "flex-1 justify-start min-w-0",
                           activeSection === "custom" && 
                           selectedCustomSectionId === section.id && 
                           selectedIds.customSectionItem === item.id &&
@@ -631,14 +637,14 @@ export function Sidebar({
                           onCustomSectionItemSelect(section.id, item.id);
                         }}
                       >
-                        <span className="text-xs">{item.title || "New Item"}</span>
+                        <span className="text-xs truncate">{item.title || "New Item"}</span>
                       </Button>
-                      <Popover>
+                      <Popover open={openPopoverId === item.id} onOpenChange={(open) => setOpenPopoverId(open ? item.id : null)}>
                         <PopoverTrigger asChild>
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="px-2 hover:text-red-500"
+                            className="px-2 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
                           >
                             <Trash2 className="h-3 w-3" />
                           </Button>
@@ -654,12 +660,7 @@ export function Sidebar({
                                 variant="outline" 
                                 size="sm" 
                                 className="h-7 text-xs"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
-                                    ?.querySelector('[data-radix-popper-close-trigger]')
-                                    ?.dispatchEvent(new MouseEvent('click'));
-                                }}
+                                onClick={() => setOpenPopoverId(null)}
                               >
                                 Cancel
                               </Button>
@@ -669,6 +670,7 @@ export function Sidebar({
                                 onClick={(e) => {
                                   e.preventDefault();
                                   onCustomSectionItemDelete(section.id, item.id);
+                                  setOpenPopoverId(null);
                                 }}
                               >
                                 Delete
