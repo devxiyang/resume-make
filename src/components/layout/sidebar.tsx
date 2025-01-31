@@ -54,6 +54,8 @@ export interface SidebarProps {
   onCustomSectionTitleChange: (sectionId: string, title: string) => void;
   expandedSections: Record<string, boolean>;
   setExpandedSections: Dispatch<SetStateAction<Record<string, boolean>>>;
+  editingSectionId: string | null;
+  setEditingSectionId: (id: string | null) => void;
 }
 
 export function Sidebar({
@@ -87,9 +89,9 @@ export function Sidebar({
   onCustomSectionTitleChange,
   expandedSections,
   setExpandedSections,
+  editingSectionId,
+  setEditingSectionId,
 }: SidebarProps) {
-  const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
-
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({
       ...prev,
@@ -102,8 +104,13 @@ export function Sidebar({
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium">Content</span>
-          <Button variant="ghost" size="sm" className="h-6 px-2 text-xs text-blue-600">
-            Collapseall
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="h-6 px-2 text-xs text-blue-600"
+            onClick={() => setExpandedSections({})}
+          >
+            Collapse all
           </Button>
         </div>
 
@@ -161,9 +168,9 @@ export function Sidebar({
                       </PopoverTrigger>
                       <PopoverContent className="w-[200px] p-4" side="right">
                         <div className="space-y-2">
-                          <h4 className="font-medium text-sm">确认删除</h4>
+                          <h4 className="font-medium text-sm">Confirm Delete</h4>
                           <p className="text-xs text-muted-foreground">
-                            确定要删除这条经历吗？
+                            Are you sure you want to delete this item?
                           </p>
                           <div className="flex justify-end gap-2">
                             <Button 
@@ -177,14 +184,14 @@ export function Sidebar({
                                   ?.dispatchEvent(new MouseEvent('click'));
                               }}
                             >
-                              取消
+                              Cancel
                             </Button>
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
                               onClick={() => onExperienceDelete(exp.id)}
                             >
-                              删除
+                              Delete
                             </Button>
                           </div>
                         </div>
@@ -248,9 +255,9 @@ export function Sidebar({
                       </PopoverTrigger>
                       <PopoverContent className="w-[200px] p-4" side="right">
                         <div className="space-y-2">
-                          <h4 className="font-medium text-sm">确认删除</h4>
+                          <h4 className="font-medium text-sm">Confirm Delete</h4>
                           <p className="text-xs text-muted-foreground">
-                            确定要删除这条教育经历吗？
+                            Are you sure you want to delete this item?
                           </p>
                           <div className="flex justify-end gap-2">
                             <Button 
@@ -264,14 +271,14 @@ export function Sidebar({
                                   ?.dispatchEvent(new MouseEvent('click'));
                               }}
                             >
-                              取消
+                              Cancel
                             </Button>
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
                               onClick={() => onEducationDelete(edu.id)}
                             >
-                              删除
+                              Delete
                             </Button>
                           </div>
                         </div>
@@ -335,9 +342,9 @@ export function Sidebar({
                       </PopoverTrigger>
                       <PopoverContent className="w-[200px] p-4" side="right">
                         <div className="space-y-2">
-                          <h4 className="font-medium text-sm">确认删除</h4>
+                          <h4 className="font-medium text-sm">Confirm Delete</h4>
                           <p className="text-xs text-muted-foreground">
-                            确定要删除这个项目吗？
+                            Are you sure you want to delete this item?
                           </p>
                           <div className="flex justify-end gap-2">
                             <Button 
@@ -351,14 +358,14 @@ export function Sidebar({
                                   ?.dispatchEvent(new MouseEvent('click'));
                               }}
                             >
-                              取消
+                              Cancel
                             </Button>
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
                               onClick={() => onProjectDelete(project.id)}
                             >
-                              删除
+                              Delete
                             </Button>
                           </div>
                         </div>
@@ -422,9 +429,9 @@ export function Sidebar({
                       </PopoverTrigger>
                       <PopoverContent className="w-[200px] p-4" side="right">
                         <div className="space-y-2">
-                          <h4 className="font-medium text-sm">确认删除</h4>
+                          <h4 className="font-medium text-sm">Confirm Delete</h4>
                           <p className="text-xs text-muted-foreground">
-                            确定要删除这项技能吗？
+                            Are you sure you want to delete this item?
                           </p>
                           <div className="flex justify-end gap-2">
                             <Button 
@@ -438,14 +445,14 @@ export function Sidebar({
                                   ?.dispatchEvent(new MouseEvent('click'));
                               }}
                             >
-                              取消
+                              Cancel
                             </Button>
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
                               onClick={() => onSkillDelete(skill.id)}
                             >
-                              删除
+                              Delete
                             </Button>
                           </div>
                         </div>
@@ -520,9 +527,9 @@ export function Sidebar({
                       </PopoverTrigger>
                       <PopoverContent className="w-[200px] p-4" side="right">
                         <div className="space-y-2">
-                          <h4 className="font-medium text-sm">确认删除</h4>
+                          <h4 className="font-medium text-sm">Confirm Delete</h4>
                           <p className="text-xs text-muted-foreground">
-                            确定要删除这个自定义项目吗？
+                            Are you sure you want to delete this item?
                           </p>
                           <div className="flex justify-end gap-2">
                             <Button 
@@ -536,14 +543,14 @@ export function Sidebar({
                                   ?.dispatchEvent(new MouseEvent('click'));
                               }}
                             >
-                              取消
+                              Cancel
                             </Button>
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
                               onClick={() => onCustomSectionDelete(section.id)}
                             >
-                              删除
+                              Delete
                             </Button>
                           </div>
                         </div>
@@ -595,9 +602,9 @@ export function Sidebar({
                         </PopoverTrigger>
                         <PopoverContent className="w-[200px] p-4" side="right">
                           <div className="space-y-2">
-                            <h4 className="font-medium text-sm">确认删除</h4>
+                            <h4 className="font-medium text-sm">Confirm Delete</h4>
                             <p className="text-xs text-muted-foreground">
-                              确定要删除这个自定义项目吗？
+                              Are you sure you want to delete this item?
                             </p>
                             <div className="flex justify-end gap-2">
                               <Button 
@@ -611,14 +618,14 @@ export function Sidebar({
                                     ?.dispatchEvent(new MouseEvent('click'));
                                 }}
                               >
-                                取消
+                                Cancel
                               </Button>
                               <Button
                                 size="sm"
                                 className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
                                 onClick={() => onCustomSectionItemDelete(section.id, item.id)}
                               >
-                                删除
+                                Delete
                               </Button>
                             </div>
                           </div>

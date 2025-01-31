@@ -98,6 +98,7 @@ function ResumeBuilder() {
     skills: true,
     custom: true,
   })
+  const [editingSectionId, setEditingSectionId] = useState<string | null>(null)
   const { resumeData, selectedTemplate, selectedIds, setSelectedTemplate, addItem, deleteItem, selectItem, addCustomSectionItem, selectCustomSectionItem, deleteCustomSectionItem, updateItem } = useResume()
 
   // 检测设备类型
@@ -199,6 +200,8 @@ function ResumeBuilder() {
               selectedCustomSectionId={selectedIds.customSection}
               expandedSections={expandedSections}
               setExpandedSections={setExpandedSections}
+              editingSectionId={editingSectionId}
+              setEditingSectionId={setEditingSectionId}
               onExperienceSelect={(id) => {
                 selectItem('experience', id)
                 setActiveSection('experience')
@@ -254,6 +257,7 @@ function ResumeBuilder() {
                   ...prev,
                   [newId]: true
                 }));
+                setEditingSectionId(newId);
               }}
               onExperienceDelete={(id) => deleteItem('experience', id)}
               onEducationDelete={(id) => deleteItem('education', id)}
