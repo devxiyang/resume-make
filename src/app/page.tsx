@@ -89,7 +89,7 @@ const initialResumeData: ResumeData = {
 
 function ResumeBuilder() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("edit")
-  const [activeSection, setActiveSection] = useState<ActiveSection>("experience")
+  const [activeSection, setActiveSection] = useState<ActiveSection>("personal")
   const [isMobile, setIsMobile] = useState(false)
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     experience: true,
