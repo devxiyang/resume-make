@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useResumeForm, validateCustomSection } from "@/hooks/use-resume-form"
 import { CustomSection } from "@/lib/types"
+import { EditingSpinner } from "@/components/editing-spinner"
 
 export function CustomSectionForm() {
   const { resumeData, selectedIds, addItem, deleteItem, addCustomSectionItem } = useResume()
@@ -47,18 +48,26 @@ export function CustomSectionForm() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      {selectedSection.items.length === 0 ? (
-        <>
-          <p className="text-gray-500 mb-4">No items in this section</p>
-          <Button onClick={() => addCustomSectionItem(selectedSection.id)}>
-            Add Item
-          </Button>
-        </>
-      ) : (
-        <p className="text-gray-500">Select an item to edit</p>
-      )}
-    </div>
+    <Card>
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Custom Section</CardTitle>
+          <EditingSpinner />
+        </div>
+      </CardHeader>
+      <CardContent>
+        {selectedSection.items.length === 0 ? (
+          <>
+            <p className="text-gray-500 mb-4">No items in this section</p>
+            <Button onClick={() => addCustomSectionItem(selectedSection.id)}>
+              Add Item
+            </Button>
+          </>
+        ) : (
+          <p className="text-gray-500">Select an item to edit</p>
+        )}
+      </CardContent>
+    </Card>
   )
 }
 
@@ -103,7 +112,10 @@ export function CustomSectionItemForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Item</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Item</CardTitle>
+          <EditingSpinner />
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">

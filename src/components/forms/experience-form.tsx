@@ -9,6 +9,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useResumeForm, validateExperience } from "@/hooks/use-resume-form"
 import { Switch } from "@/components/ui/switch"
 import { format } from "date-fns"
+import { EditingSpinner } from "@/components/editing-spinner"
 
 export function ExperienceForm() {
   const { resumeData, selectedIds } = useResume()
@@ -58,7 +59,10 @@ export function ExperienceForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Experience</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Experience</CardTitle>
+          <EditingSpinner />
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">

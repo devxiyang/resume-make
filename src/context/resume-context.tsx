@@ -121,35 +121,41 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
 
     setIsEditing(true);
     setResumeData(prev => {
+      let newData;
       if (type === 'experience') {
-        return { ...prev, experiences: [...prev.experiences, newItem as Experience] };
+        newData = { ...prev, experiences: [...prev.experiences, newItem as Experience] };
       } else if (type === 'education') {
-        return { ...prev, education: [...prev.education, newItem as Education] };
+        newData = { ...prev, education: [...prev.education, newItem as Education] };
       } else if (type === 'project') {
-        return { ...prev, projects: [...prev.projects, newItem as Project] };
+        newData = { ...prev, projects: [...prev.projects, newItem as Project] };
       } else if (type === 'skill') {
-        return { ...prev, skills: [...prev.skills, newItem as Skill] };
+        newData = { ...prev, skills: [...prev.skills, newItem as Skill] };
       } else {
-        return { ...prev, customSections: [...prev.customSections, newItem as CustomSection] };
+        newData = { ...prev, customSections: [...prev.customSections, newItem as CustomSection] };
       }
+      debouncedUpdatePreview(newData);
+      return newData;
     });
     setSelectedIds(prev => ({ ...prev, [type]: newId }));
-  }, [resumeData.customSections.length]);
+  }, [resumeData.customSections.length, debouncedUpdatePreview]);
 
   const deleteItem = useCallback((type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
     setIsEditing(true);
     setResumeData(prev => {
+      let newData;
       if (type === 'experience') {
-        return { ...prev, experiences: prev.experiences.filter(item => item.id !== id) };
+        newData = { ...prev, experiences: prev.experiences.filter(item => item.id !== id) };
       } else if (type === 'education') {
-        return { ...prev, education: prev.education.filter(item => item.id !== id) };
+        newData = { ...prev, education: prev.education.filter(item => item.id !== id) };
       } else if (type === 'project') {
-        return { ...prev, projects: prev.projects.filter(item => item.id !== id) };
+        newData = { ...prev, projects: prev.projects.filter(item => item.id !== id) };
       } else if (type === 'skill') {
-        return { ...prev, skills: prev.skills.filter(item => item.id !== id) };
+        newData = { ...prev, skills: prev.skills.filter(item => item.id !== id) };
       } else {
-        return { ...prev, customSections: prev.customSections.filter(item => item.id !== id) };
+        newData = { ...prev, customSections: prev.customSections.filter(item => item.id !== id) };
       }
+      debouncedUpdatePreview(newData);
+      return newData;
     });
 
     if (selectedIds[type] === id) {
@@ -167,7 +173,7 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         };
       });
     }
-  }, [selectedIds, resumeData]);
+  }, [selectedIds, resumeData, debouncedUpdatePreview]);
 
   const selectItem = useCallback((type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
     setSelectedIds(prev => ({ ...prev, [type]: id }));
@@ -179,19 +185,22 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
   ) => {
     setIsEditing(true);
     setResumeData(prev => {
+      let newData;
       if (type === 'experience') {
-        return { ...prev, experiences: prev.experiences.map(existing => existing.id === item.id ? item as Experience : existing) };
+        newData = { ...prev, experiences: prev.experiences.map(existing => existing.id === item.id ? item as Experience : existing) };
       } else if (type === 'education') {
-        return { ...prev, education: prev.education.map(existing => existing.id === item.id ? item as Education : existing) };
+        newData = { ...prev, education: prev.education.map(existing => existing.id === item.id ? item as Education : existing) };
       } else if (type === 'project') {
-        return { ...prev, projects: prev.projects.map(existing => existing.id === item.id ? item as Project : existing) };
+        newData = { ...prev, projects: prev.projects.map(existing => existing.id === item.id ? item as Project : existing) };
       } else if (type === 'skill') {
-        return { ...prev, skills: prev.skills.map(existing => existing.id === item.id ? item as Skill : existing) };
+        newData = { ...prev, skills: prev.skills.map(existing => existing.id === item.id ? item as Skill : existing) };
       } else {
-        return { ...prev, customSections: prev.customSections.map(existing => existing.id === item.id ? item as CustomSection : existing) };
+        newData = { ...prev, customSections: prev.customSections.map(existing => existing.id === item.id ? item as CustomSection : existing) };
       }
+      debouncedUpdatePreview(newData);
+      return newData;
     });
-  }, []);
+  }, [debouncedUpdatePreview]);
 
   const addCustomSectionItem = useCallback((sectionId: string) => {
     const newItemId = `item-${Date.now()}`;
@@ -211,12 +220,14 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         items: [...section.items, newItem]
       };
 
-      return {
+      const newData = {
         ...prev,
         customSections: prev.customSections.map(s => 
           s.id === sectionId ? updatedSection : s
         )
       };
+      debouncedUpdatePreview(newData);
+      return newData;
     });
 
     setSelectedIds(prev => ({
@@ -224,7 +235,7 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
       customSection: sectionId,
       customSectionItem: newItemId
     }));
-  }, []);
+  }, [debouncedUpdatePreview]);
 
   const deleteCustomSectionItem = useCallback((sectionId: string, itemId: string) => {
     setIsEditing(true);
@@ -237,14 +248,16 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         items: section.items.filter(item => item.id !== itemId)
       };
 
-      return {
+      const newData = {
         ...prev,
         customSections: prev.customSections.map(s => 
           s.id === sectionId ? updatedSection : s
         )
       };
+      debouncedUpdatePreview(newData);
+      return newData;
     });
-  }, []);
+  }, [debouncedUpdatePreview]);
 
   const selectCustomSectionItem = useCallback((sectionId: string, itemId: string) => {
     setSelectedIds(prev => ({ ...prev, customSectionItem: itemId }));

@@ -10,6 +10,7 @@ import { Bold, Italic, Underline } from "lucide-react"
 import { useForm } from "@/hooks/use-form"
 import { useResume } from "@/context/resume-context"
 import { Label } from "@/components/ui/label"
+import { EditingSpinner } from "@/components/editing-spinner"
 
 export function PersonalInfoForm() {
   const { resumeData, updateResumeData } = useResume()
@@ -34,7 +35,10 @@ export function PersonalInfoForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Personal Information</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Personal Information</CardTitle>
+          <EditingSpinner />
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">

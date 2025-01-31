@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useResumeForm, validateProject } from "@/hooks/use-resume-form"
 import { Project } from "@/lib/types"
+import { EditingSpinner } from "@/components/editing-spinner"
 
 export function ProjectsForm() {
   const { resumeData, selectedIds } = useResume()
@@ -68,7 +69,10 @@ export function ProjectsForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Edit Project</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Edit Project</CardTitle>
+          <EditingSpinner />
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">
