@@ -1,7 +1,78 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle2, Download, FileText, Sparkles } from 'lucide-react'
 import { SiteHeader } from '@/components/layout/site-header'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://resumemaker.cc'),
+  title: {
+    default: 'Resume Maker - Create Professional Resumes Online',
+    template: '%s | Resume Maker'
+  },
+  description: 'Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize with ease, and download your resume in minutes.',
+  keywords: 'resume builder, cv maker, resume templates, professional resume, job application, career tools, resume generator',
+  authors: [{ name: 'DevXiyang', url: 'https://x.com/devxiyang' }],
+  creator: 'Xiyang Dev',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://resumemaker.cc',
+    title: 'Resume Maker - Create Professional Resumes Online',
+    description: 'Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize with ease, and download your resume in minutes.',
+    siteName: 'Resume Maker',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Resume Maker - Professional Resume Builder',
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Resume Maker - Create Professional Resumes Online',
+    description: 'Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize with ease, and download your resume in minutes.',
+    creator: '@devxiyang',
+    images: ['/twitter-image.png'],
+  },
+  alternates: {
+    canonical: 'https://resumemaker.cc',
+  },
+  verification: {
+    google: 'your-google-site-verification',
+  }
+}
+
+// Add structured data for the landing page
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Resume Maker',
+  description: 'Create professional resumes with our easy-to-use online resume builder.',
+  url: 'https://resumemaker.cc',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web Browser',
+  author: {
+    '@type': 'Person',
+    name: 'Xiyang Dev',
+    url: 'https://x.com/devxiyang'
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD'
+  },
+  featureList: [
+    'Modern resume templates',
+    'Real-time preview',
+    'Easy customization',
+    'PDF download',
+    'Professional designs',
+    'Mobile responsive'
+  ]
+}
 
 export default function LandingPage() {
   return (
@@ -133,6 +204,12 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* Add structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   )
 } 

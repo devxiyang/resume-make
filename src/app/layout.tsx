@@ -37,9 +37,16 @@ import "./globals.css"
 import "./print-styles.css"
 import type React from "react"
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Noto_Sans_SC } from 'next/font/google'
+import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
+
+const notoSansSC = Noto_Sans_SC({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-noto-sans-sc',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://resumemaker.cc'),
@@ -112,7 +119,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${notoSansSC.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -150,7 +157,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", notoSansSC.className)}>
         {children}
       </body>
     </html>

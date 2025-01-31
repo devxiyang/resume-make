@@ -1,5 +1,11 @@
 import { ResumeData } from '@/lib/types';
-import { Document, Page, StyleSheet, Text, View, Link } from '@react-pdf/renderer';
+import { Document, Page, StyleSheet, Text, View, Link, Font } from '@react-pdf/renderer';
+
+// 注册字体
+Font.register({
+  family: 'Noto Sans SC',
+  src: '/fonts/NotoSansMonoCJKhk-Regular.otf',
+});
 
 // 定义颜色常量
 const colors = {
@@ -31,6 +37,7 @@ const styles = StyleSheet.create({
     padding: spacing.page.padding,
     backgroundColor: colors.background,
     color: colors.primary,
+    fontFamily: 'Noto Sans SC',
   },
   section: {
     marginBottom: spacing.section.marginBottom,

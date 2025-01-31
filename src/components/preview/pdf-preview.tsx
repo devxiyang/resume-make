@@ -11,17 +11,11 @@ import {
   Font 
 } from '@react-pdf/renderer';
 
-// // 只导入必要的字体
-// Font.register({
-//   family: 'Helvetica',
-//   fonts: [
-//     { src: 'https://fonts.gstatic.com/s/helveticaneue/v70/1Ptsg8zYS_SKggPNyC0IT0kLW-43aMEzIO6XUTLjad8.woff2' },
-//     { 
-//       src: 'https://fonts.gstatic.com/s/helveticaneue/v70/1Ptsg8zYS_SKggPNyC0IT0kLW-43aMEzIO6XUTLjad8.woff2',
-//       fontWeight: 'bold' 
-//     }
-//   ]
-// });
+// 注册字体
+Font.register({
+  family: 'Noto Sans SC',
+  src: '/fonts/NotoSansMonoCJKhk-Regular.otf',
+});
 
 // 定义颜色和尺寸常量
 const COLORS = {
@@ -50,6 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: COLORS.primary,
     lineHeight: 1.2,
+    fontFamily: 'Noto Sans SC',
   },
   header: {
     marginBottom: SPACING.section,
