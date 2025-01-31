@@ -10,7 +10,7 @@ import { useResumeForm, validateProject } from "@/hooks/use-resume-form"
 import { Project } from "@/lib/types"
 
 export function ProjectsForm() {
-  const { resumeData, selectedIds, addItem, deleteItem } = useResume()
+  const { resumeData, selectedIds } = useResume()
   const selectedProject = resumeData.projects.find(proj => proj.id === selectedIds.project)
 
   const form = useResumeForm<Project>({
@@ -60,24 +60,15 @@ export function ProjectsForm() {
   if (!selectedProject) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500 mb-4">No project selected</p>
-        <Button onClick={() => addItem('project')}>Add Project</Button>
+        <p className="text-gray-500">No project selected</p>
       </div>
     )
   }
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader>
         <CardTitle>Edit Project</CardTitle>
-        <div className="flex space-x-2">
-          <Button variant="outline" onClick={() => addItem('project')}>
-            Add New
-          </Button>
-          <Button variant="destructive" onClick={() => deleteItem('project', selectedProject.id)}>
-            Delete
-          </Button>
-        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">

@@ -11,7 +11,7 @@ import { Switch } from "@/components/ui/switch"
 import { format } from "date-fns"
 
 export function ExperienceForm() {
-  const { resumeData, selectedIds, addItem, deleteItem } = useResume()
+  const { resumeData, selectedIds } = useResume()
   const selectedExperience = resumeData.experiences.find(exp => exp.id === selectedIds.experience)
 
   const form = useResumeForm({
@@ -48,24 +48,15 @@ export function ExperienceForm() {
   if (!selectedExperience) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500 mb-4">No experience selected</p>
-        <Button onClick={() => addItem('experience')}>Add Experience</Button>
+        <p className="text-gray-500">No experience selected</p>
       </div>
     )
   }
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader>
         <CardTitle>Edit Experience</CardTitle>
-        <div className="flex space-x-2">
-          <Button variant="outline" onClick={() => addItem('experience')}>
-            Add New
-          </Button>
-          <Button variant="destructive" onClick={() => deleteItem('experience', selectedExperience.id)}>
-            Delete
-          </Button>
-        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">

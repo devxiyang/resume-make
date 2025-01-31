@@ -10,7 +10,7 @@ import { useResumeForm, validateEducation } from "@/hooks/use-resume-form"
 import { format } from "date-fns"
 
 export function EducationForm() {
-  const { resumeData, selectedIds, addItem, deleteItem } = useResume()
+  const { resumeData, selectedIds } = useResume()
   const selectedEducation = resumeData.education.find(edu => edu.id === selectedIds.education)
 
   const form = useResumeForm({
@@ -30,24 +30,15 @@ export function EducationForm() {
   if (!selectedEducation) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500 mb-4">No education selected</p>
-        <Button onClick={() => addItem('education')}>Add Education</Button>
+        <p className="text-gray-500">No education selected</p>
       </div>
     )
   }
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader>
         <CardTitle>Edit Education</CardTitle>
-        <div className="flex space-x-2">
-          <Button variant="outline" onClick={() => addItem('education')}>
-            Add New
-          </Button>
-          <Button variant="destructive" onClick={() => deleteItem('education', selectedEducation.id)}>
-            Delete
-          </Button>
-        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">
