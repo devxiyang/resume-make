@@ -100,13 +100,13 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
               fontSize: 24,
               bold: true,
               margin: [0, 0, 0, 5],
-              font: 'NotoSansSC'  // 使用中文字体
+              font: 'NotoSansSC'  // 使用思源黑体
             },
             {
               text: personal.jobTitle,
               fontSize: 14,
               margin: [0, 0, 0, 5],
-              font: 'NotoSansSC'  // 使用中文字体
+              font: 'NotoSansSC'  // 使用思源黑体
             },
             {
               text: [
@@ -132,7 +132,7 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                 text: personal.summary,
                 fontSize: 10,
                 margin: [0, 0, 0, 15],
-                font: 'NotoSansSC'  // 使用中文字体
+                font: 'NotoSansSC'  // 使用思源黑体
               }
             ] : []),
 
@@ -151,7 +151,7 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                       text: exp.company,
                       bold: true,
                       fontSize: 11,
-                      font: 'NotoSansSC'  // 使用中文字体
+                      font: 'NotoSansSC'  // 使用思源黑体
                     },
                     {
                       text: `${exp.startDate} - ${exp.currentlyWork ? 'Present' : exp.endDate}`,
@@ -166,13 +166,13 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                   fontSize: 10,
                   italics: true,
                   margin: [0, 3, 0, 3],
-                  font: 'NotoSansSC'  // 使用中文字体
+                  font: 'NotoSansSC'  // 使用思源黑体
                 },
                 ...exp.bulletPoints.map(point => ({
                   text: `• ${point}`,
                   fontSize: 10,
                   margin: [10, 2, 0, 0],
-                  font: 'NotoSansSC'  // 使用中文字体
+                  font: 'NotoSansSC'  // 使用思源黑体
                 })),
                 { text: '', margin: [0, 5, 0, 0] }
               ]).flat()
@@ -193,7 +193,7 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                       text: edu.school,
                       bold: true,
                       fontSize: 11,
-                      font: 'NotoSansSC'  // 使用中文字体
+                      font: 'NotoSansSC'  // 使用思源黑体
                     },
                     {
                       text: `${edu.startDate} - ${edu.endDate}`,
@@ -207,13 +207,13 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                   text: edu.degree,
                   fontSize: 10,
                   margin: [0, 3, 0, 3],
-                  font: 'NotoSansSC'  // 使用中文字体
+                  font: 'NotoSansSC'  // 使用思源黑体
                 },
                 ...(edu.description ? [{
                   text: edu.description,
                   fontSize: 10,
                   margin: [0, 3, 0, 5],
-                  font: 'NotoSansSC'  // 使用中文字体
+                  font: 'NotoSansSC'  // 使用思源黑体
                 }] : [])
               ]).flat()
             ] : []),
@@ -230,7 +230,7 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                 text: skills.map(skill => skill.name).join(' • '),
                 fontSize: 10,
                 margin: [0, 0, 0, 10],
-                font: 'NotoSansSC'  // 使用中文字体
+                font: 'NotoSansSC'  // 使用思源黑体
               }
             ] : [])
           ] as Content[],
