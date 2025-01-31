@@ -36,7 +36,7 @@ const COLORS = {
 
 const SPACING = {
   page: 35,        // 页面边距
-  section: 12,     // 更紧凑的section间距
+  section: 6,     // 更紧凑的section间距
   item: 4,         // 更小的item间距
   text: 2,         // 更小的文本间距
 } as const;
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: 'bold',
     color: COLORS.primary,
+    marginBottom: 2,  // 添加底部间距
   },
   dividerText: {
     fontSize: 11,
@@ -166,9 +167,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   positionText: {
-    fontSize: 10,
+    fontSize: 9,
     color: COLORS.secondary,
-    marginLeft: 4,
+    marginBottom: 4,  // 添加底部间距
   },
   // 新增样式用于项目标题和链接
   projectHeader: {
@@ -240,15 +241,12 @@ export const PDFPreview = ({ data }: { data: ResumeData }) => (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Experience</Text>
           {data.experiences.map((exp) => (
-            <View key={exp.id} style={[styles.itemContainer, { marginBottom: SPACING.section * 1.5 }]} wrap={false}>
+            <View key={exp.id} style={[styles.itemContainer, { marginBottom: SPACING.section }]} wrap={false}>
               <View style={[styles.itemHeader, { marginBottom: SPACING.text }]}>
-                <View style={{ flex: 1 }}>  // 添加flex: 1确保文本有足够空间
-                  <Text>
-                    <Text style={styles.companyText}>{exp.company}</Text>
-                    <Text style={styles.dividerText}>|</Text>
-                    <Text style={styles.positionText}>{exp.position}</Text>
-                  </Text>
-                  <Text style={[styles.workDescription, { marginTop: SPACING.text }]}>{exp.description}</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.companyText}>{exp.company}</Text>
+                  <Text style={styles.positionText}>{exp.position}</Text>
+                  <Text style={styles.workDescription}>{exp.description}</Text>
                 </View>
                 <Text style={styles.itemDate}>
                   {exp.startDate} - {exp.currentlyWork ? 'Present' : exp.endDate}
