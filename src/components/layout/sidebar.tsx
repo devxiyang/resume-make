@@ -92,11 +92,27 @@ export function Sidebar({
   editingSectionId,
   setEditingSectionId,
 }: SidebarProps) {
-  const toggleSection = (section: string) => {
+  const toggleSection = (section: string, e?: React.MouseEvent) => {
+    e?.stopPropagation();
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
     }));
+  };
+
+  const collapseAll = () => {
+    const allSections = {
+      experience: false,
+      education: false,
+      projects: false,
+      skills: false,
+      custom: false,
+      ...resumeData.customSections?.reduce((acc, section) => ({
+        ...acc,
+        [section.id]: false
+      }), {})
+    };
+    setExpandedSections(allSections);
   };
 
   return (
@@ -108,7 +124,7 @@ export function Sidebar({
             variant="ghost" 
             size="sm" 
             className="h-6 px-2 text-xs text-blue-600"
-            onClick={() => setExpandedSections({})}
+            onClick={collapseAll}
           >
             Collapse all
           </Button>
@@ -131,7 +147,7 @@ export function Sidebar({
                 className={cn(
                   "flex w-full items-center justify-between px-4 py-2 text-sm cursor-pointer hover:bg-gray-50",
                 )}
-                onClick={() => toggleSection('experience')}
+                onClick={(e) => toggleSection('experience', e)}
               >
                 <span>Experience</span>
                 {resumeData.experiences.length > 0 && (
@@ -152,7 +168,10 @@ export function Sidebar({
                         "flex-1 justify-start",
                         activeSection === "experience" && selectedExperienceId === exp.id && "bg-blue-50 text-blue-600"
                       )}
-                      onClick={() => onExperienceSelect(exp.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onExperienceSelect(exp.id);
+                      }}
                     >
                       <span className="text-xs">{exp.company || "New Experience"}</span>
                     </Button>
@@ -189,7 +208,10 @@ export function Sidebar({
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
-                              onClick={() => onExperienceDelete(exp.id)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onExperienceDelete(exp.id);
+                              }}
                             >
                               Delete
                             </Button>
@@ -218,7 +240,7 @@ export function Sidebar({
                 className={cn(
                   "flex w-full items-center justify-between px-4 py-2 text-sm cursor-pointer hover:bg-gray-50",
                 )}
-                onClick={() => toggleSection('education')}
+                onClick={(e) => toggleSection('education', e)}
               >
                 <span>Education</span>
                 {resumeData.education.length > 0 && (
@@ -239,7 +261,10 @@ export function Sidebar({
                         "flex-1 justify-start",
                         activeSection === "education" && selectedEducationId === edu.id && "bg-blue-50 text-blue-600"
                       )}
-                      onClick={() => onEducationSelect(edu.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onEducationSelect(edu.id);
+                      }}
                     >
                       <span className="text-xs">{edu.school || "New Education"}</span>
                     </Button>
@@ -276,7 +301,10 @@ export function Sidebar({
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
-                              onClick={() => onEducationDelete(edu.id)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onEducationDelete(edu.id);
+                              }}
                             >
                               Delete
                             </Button>
@@ -305,7 +333,7 @@ export function Sidebar({
                 className={cn(
                   "flex w-full items-center justify-between px-4 py-2 text-sm cursor-pointer hover:bg-gray-50",
                 )}
-                onClick={() => toggleSection('projects')}
+                onClick={(e) => toggleSection('projects', e)}
               >
                 <span>Projects</span>
                 {resumeData.projects.length > 0 && (
@@ -326,7 +354,10 @@ export function Sidebar({
                         "flex-1 justify-start",
                         activeSection === "projects" && selectedProjectId === project.id && "bg-blue-50 text-blue-600"
                       )}
-                      onClick={() => onProjectSelect(project.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onProjectSelect(project.id);
+                      }}
                     >
                       <span className="text-xs">{project.name || "New Project"}</span>
                     </Button>
@@ -363,7 +394,10 @@ export function Sidebar({
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
-                              onClick={() => onProjectDelete(project.id)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onProjectDelete(project.id);
+                              }}
                             >
                               Delete
                             </Button>
@@ -392,7 +426,7 @@ export function Sidebar({
                 className={cn(
                   "flex w-full items-center justify-between px-4 py-2 text-sm cursor-pointer hover:bg-gray-50",
                 )}
-                onClick={() => toggleSection('skills')}
+                onClick={(e) => toggleSection('skills', e)}
               >
                 <span>Skills</span>
                 {resumeData.skills.length > 0 && (
@@ -413,7 +447,10 @@ export function Sidebar({
                         "flex-1 justify-start",
                         activeSection === "skills" && selectedSkillId === skill.id && "bg-blue-50 text-blue-600"
                       )}
-                      onClick={() => onSkillSelect(skill.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSkillSelect(skill.id);
+                      }}
                     >
                       <span className="text-xs">{skill.name || "New Skill"}</span>
                     </Button>
@@ -450,7 +487,10 @@ export function Sidebar({
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
-                              onClick={() => onSkillDelete(skill.id)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onSkillDelete(skill.id);
+                              }}
                             >
                               Delete
                             </Button>
@@ -502,7 +542,8 @@ export function Sidebar({
                         !selectedIds.customSectionItem &&
                         "text-blue-600"
                       )}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         if (activeSection === "custom" && selectedCustomSectionId === section.id) {
                           setEditingSectionId(section.id);
                         } else {
@@ -548,7 +589,10 @@ export function Sidebar({
                             <Button
                               size="sm"
                               className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
-                              onClick={() => onCustomSectionDelete(section.id)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onCustomSectionDelete(section.id);
+                              }}
                             >
                               Delete
                             </Button>
@@ -558,14 +602,12 @@ export function Sidebar({
                     </Popover>
                     <CollapsibleTrigger
                       className="cursor-pointer"
-                      onClick={() => toggleSection(section.id)}
+                      onClick={(e) => toggleSection(section.id, e)}
                     >
-                      {section.items.length > 0 && (
-                        expandedSections[section.id] ? (
-                          <ChevronDown className="h-4 w-4" />
-                        ) : (
-                          <ChevronRight className="h-4 w-4" />
-                        )
+                      {expandedSections[section.id] ? (
+                        <ChevronDown className="h-4 w-4" />
+                      ) : (
+                        <ChevronRight className="h-4 w-4" />
                       )}
                     </CollapsibleTrigger>
                   </div>
@@ -583,7 +625,8 @@ export function Sidebar({
                           selectedIds.customSectionItem === item.id &&
                           "bg-blue-50 text-blue-600"
                         )}
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           onSectionChange("custom");
                           onCustomSectionItemSelect(section.id, item.id);
                         }}
@@ -623,7 +666,10 @@ export function Sidebar({
                               <Button
                                 size="sm"
                                 className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
-                                onClick={() => onCustomSectionItemDelete(section.id, item.id)}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  onCustomSectionItemDelete(section.id, item.id);
+                                }}
                               >
                                 Delete
                               </Button>
@@ -637,7 +683,10 @@ export function Sidebar({
                     variant="ghost" 
                     size="sm" 
                     className="w-full justify-start"
-                    onClick={() => onAddCustomSectionItem(section.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onAddCustomSectionItem(section.id);
+                    }}
                   >
                     <Plus className="h-3 w-3 mr-2" />
                     <span className="text-xs">Add Item</span>
@@ -648,7 +697,10 @@ export function Sidebar({
             <Button 
               variant="ghost" 
               className="w-full justify-start text-sm mt-2"
-              onClick={() => onAddCustomSection()}
+              onClick={(e) => {
+                e.stopPropagation();
+                onAddCustomSection();
+              }}
             >
               <Plus className="h-4 w-4 mr-2" />
               Add Custom Section
