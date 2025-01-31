@@ -1,29 +1,12 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle2, Download, FileText, Sparkles } from 'lucide-react'
+import { SiteHeader } from '@/components/layout/site-header'
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container max-w-6xl mx-auto flex h-14 items-center px-4">
-          <div className="mr-4 flex">
-            <Link href="/" className="mr-6 flex items-center space-x-2">
-              <FileText className="h-6 w-6" />
-              <span className="font-bold">Resume Maker</span>
-            </Link>
-          </div>
-          <div className="flex flex-1 items-center justify-end space-x-2">
-            <Link href="/builder">
-              <Button variant="default">
-                Create Resume
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <SiteHeader />
 
       {/* Hero Section */}
       <section className="container max-w-6xl mx-auto px-4 pt-24 md:pt-32 pb-12">

@@ -78,6 +78,25 @@ export interface ResumeData {
 
 export interface ResumeContextType {
   data: ResumeData;
-  previewMode: 'web' | 'pdf'; 
+  resumeData: ResumeData;
+  selectedTemplate: string;
+  selectedIds: {
+    experience: string;
+    education: string;
+    project: string;
+    skill: string;
+    customSection: string;
+    customSectionItem: string;
+  };
+  isEditing: boolean;
+  previewMode: 'web' | 'pdf';
   setPreviewMode: (mode: 'web' | 'pdf') => void;
+  setSelectedTemplate: (template: string) => void;
+  addItem: (type: string) => void;
+  deleteItem: (type: string, id: string) => void;
+  selectItem: (type: string, id: string) => void;
+  addCustomSectionItem: (sectionId: string) => void;
+  selectCustomSectionItem: (sectionId: string, itemId: string) => void;
+  deleteCustomSectionItem: (sectionId: string, itemId: string) => void;
+  updateItem: (type: string, item: any) => void;
 }

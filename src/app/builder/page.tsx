@@ -11,11 +11,13 @@ import { ProjectsForm } from "@/components/forms/projects-form"
 import { SkillsForm } from "@/components/forms/skills-form"
 import { CustomSectionForm, CustomSectionItemForm } from "@/components/forms/custom-section-form"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, Download, Laptop, Smartphone, ArrowRight } from "lucide-react"
+import { ChevronLeft, Download, Laptop, Smartphone, ArrowRight, FileText } from "lucide-react"
 import { ResumeData } from "@/lib/types"
 import dynamic from "next/dynamic"
 import { ResumeProvider } from "@/context/resume-context"
 import { useResume } from "@/context/resume-context"
+import { SiteHeader } from "@/components/layout/site-header"
+import Link from 'next/link'
 
 // 动态导入预览组件
 const ResumePreview = dynamic(() => import("@/components/preview/resume-preview"), { ssr: false });
@@ -220,6 +222,8 @@ function ResumeBuilder() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SiteHeader />
+
       <header className="relative flex items-center h-14 px-4 border-b border-border">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" className="text-foreground/60">
@@ -353,3 +357,5 @@ export default function Page() {
     </ResumeProvider>
   )
 }
+
+
