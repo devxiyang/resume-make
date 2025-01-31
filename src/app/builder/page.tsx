@@ -236,10 +236,10 @@ function ResumeBuilder() {
           </div>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90">
+          {/* <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90">
             <Download className="h-4 w-4 mr-2" />
             Download PDF
-          </Button>
+          </Button> */}
         </div>
       </header>
 
