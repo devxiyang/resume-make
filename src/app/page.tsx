@@ -196,10 +196,10 @@ function ResumeBuilder() {
         </Button>
       </header>
 
-      <div className="flex-1 grid grid-cols-[72px_280px_1fr]">
+      <div className="flex-1 grid grid-cols-[72px_1fr]">
         <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
         {activeTab === "edit" ? (
-          <>
+          <div className="grid grid-cols-[300px_1fr]">
             <Sidebar
               activeSection={activeSection}
               onSectionChange={setActiveSection}
@@ -281,20 +281,22 @@ function ResumeBuilder() {
             />
             <div className="flex flex-col divide-y divide-gray-200 h-[calc(100vh-56px)]">
               <div className="flex divide-x divide-gray-200 flex-1">
-                <div className="w-2/5 p-8 overflow-y-auto">{renderForm()}</div>
-                <div className="w-3/5 bg-gray-100 overflow-hidden flex flex-col">
+                <div className="w-[40%] p-8 overflow-y-auto">{renderForm()}</div>
+                <div className="w-[60%] bg-gray-100 overflow-hidden">
                   <ResumePreview data={resumeData} />
                 </div>
               </div>
             </div>
-          </>
+          </div>
         ) : (
-          <>
-            <TemplatePicker selectedTemplate={selectedTemplate} onTemplateSelect={setSelectedTemplate} />
-            <div className="p-6 bg-gray-100 overflow-y-auto">
+          <div className="grid grid-cols-[600px_1fr]">
+            <div className="border-r border-gray-200 overflow-hidden">
+              <TemplatePicker selectedTemplate={selectedTemplate} onTemplateSelect={setSelectedTemplate} />
+            </div>
+            <div className="bg-gray-100">
               <ResumePreview data={resumeData} />
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
