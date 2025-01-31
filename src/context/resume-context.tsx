@@ -29,10 +29,10 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
   const [resumeData, setResumeData] = useState<ResumeData>(initialData);
   const [selectedTemplate, setSelectedTemplate] = useState("sharp");
   const [selectedIds, setSelectedIds] = useState({
-    experience: initialData.experiences[0]?.id || null,
-    education: initialData.education[0]?.id || null,
-    project: initialData.projects[0]?.id || null,
-    skill: initialData.skills[0]?.id || null,
+    experience: null,
+    education: null,
+    project: null,
+    skill: null,
     customSection: null,
   });
 
@@ -124,9 +124,10 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
           : type === 'skill' ? resumeData.skills
           : resumeData.customSections;
         
+        const filteredItems = remainingItems.filter(item => item.id !== id);
         return {
           ...prev,
-          [type]: remainingItems.filter(item => item.id !== id)[0]?.id || null,
+          [type]: filteredItems.length > 0 ? filteredItems[0].id : null,
         };
       });
     }

@@ -19,13 +19,22 @@ export function useResumeForm<T extends Experience | Education | Project | Skill
   const { updateItem } = useResume();
 
   const handleSubmit = useCallback((values: T) => {
-    updateItem(type, values);
+    if (values.id) {
+      updateItem(type, values);
+    }
   }, [type, updateItem]);
 
   const form = useForm({
     initialValues,
     onSubmit: handleSubmit,
     validate,
+    onChange: (values: T) => {
+      // Only update if we have an id (meaning it's an existing item)
+      if (values.id) {
+        updateItem(type, values);
+      }
+    },
+    debounceMs: 300,
   });
 
   return form;

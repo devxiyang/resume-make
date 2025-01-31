@@ -19,6 +19,9 @@ export function PersonalInfoForm() {
     onSubmit: (values) => {
       updateResumeData({ personal: values })
     },
+    onChange: (values) => {
+      updateResumeData({ personal: values })
+    },
     validate: (values) => {
       const errors: Record<string, string> = {}
       if (!values.name) errors.name = 'Name is required'
