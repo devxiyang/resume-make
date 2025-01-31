@@ -11,13 +11,13 @@ import { ResumeData } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { ChevronDown, ChevronRight, Plus, Trash2 } from "lucide-react"
 import type React from "react"
-import { useState } from "react"
+import { useState, Dispatch, SetStateAction } from "react"
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  activeSection: ActiveSection
-  onSectionChange: (section: ActiveSection) => void
+export interface SidebarProps {
+  activeSection: ActiveSection;
+  onSectionChange: (section: ActiveSection) => void;
   onExperienceSelect: (id: string) => void
   onAddExperience: () => void
   onExperienceDelete: (id: string) => void
@@ -39,14 +39,47 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   onAddCustomSection: () => void
   onCustomSectionDelete: (id: string) => void
   selectedCustomSectionId: string | null
+  selectedIds: {
+    experience: string | null;
+    education: string | null;
+    project: string | null;
+    skill: string | null;
+    customSection: string | null;
+  };
 }
 
-export function Sidebar({ className, activeSection, onSectionChange, onExperienceSelect, onAddExperience, onExperienceDelete, resumeData, selectedExperienceId, onEducationSelect, onProjectSelect, onSkillSelect, onAddEducation, onAddProject, onAddSkill, onEducationDelete, onProjectDelete, onSkillDelete, selectedEducationId, selectedProjectId, selectedSkillId, onCustomSectionSelect, onAddCustomSection, onCustomSectionDelete, selectedCustomSectionId }: SidebarProps) {
+export function Sidebar({
+  activeSection,
+  onSectionChange,
+  onExperienceSelect,
+  onAddExperience,
+  onExperienceDelete,
+  resumeData,
+  selectedExperienceId,
+  onEducationSelect,
+  onProjectSelect,
+  onSkillSelect,
+  onAddEducation,
+  onAddProject,
+  onAddSkill,
+  onEducationDelete,
+  onProjectDelete,
+  onSkillDelete,
+  selectedEducationId,
+  selectedProjectId,
+  selectedSkillId,
+  onCustomSectionSelect,
+  onAddCustomSection,
+  onCustomSectionDelete,
+  selectedCustomSectionId,
+  selectedIds,
+}: SidebarProps) {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     experience: true,
     education: true,
     projects: true,
     skills: true,
+    custom: true,
   });
 
   const toggleSection = (section: string) => {
@@ -57,7 +90,7 @@ export function Sidebar({ className, activeSection, onSectionChange, onExperienc
   };
 
   return (
-    <div className={cn("w-full h-full border-r border-gray-200 overflow-y-auto", className)}>
+    <div className={cn("w-full h-full border-r border-gray-200 overflow-y-auto", activeSection)}>
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium">Content</span>

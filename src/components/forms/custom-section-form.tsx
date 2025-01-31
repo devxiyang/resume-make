@@ -1,172 +1,114 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useFieldArray, useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { useResume } from "@/context/resume-context"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { type CustomSection } from '@/lib/types'
-import { useEffect } from "react"
-import { Plus, Minus } from "lucide-react"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { useResumeForm, validateCustomSection } from "@/hooks/use-resume-form"
+import { CustomSection } from "@/lib/types"
 
-const formSchema = z.object({
-  title: z.string().min(2, {
-    message: "Section title must be at least 2 characters.",
-  }),
-  items: z.array(z.object({
-    id: z.string(),
-    title: z.string().min(2, {
-      message: "Item title must be at least 2 characters.",
-    }),
-    description: z.string(),
-    date: z.string().optional(),
-  }))
-})
+export function CustomSectionForm() {
+  const { resumeData, selectedIds, addItem, deleteItem } = useResume()
+  const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
 
-type FormValues = z.infer<typeof formSchema>
-
-interface CustomSectionFormProps {
-  sectionId: string | null;
-  onSave: (section: CustomSection) => void;
-  initialData?: CustomSection;
-}
-
-export function CustomSectionForm({ sectionId, onSave, initialData }: CustomSectionFormProps) {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
+  const form = useResumeForm<CustomSection>({
+    type: 'customSection',
+    initialValues: selectedSection || {
+      id: '',
+      title: '',
       items: [],
     },
+    validate: validateCustomSection,
   })
 
-  const { fields, append, remove } = useFieldArray({
-    name: "items",
-    control: form.control,
-  })
+  const handleAddItem = () => {
+    const newItems = [...(form.values.items || []), { title: '', description: '' }]
+    form.handleChange('items', newItems)
+  }
 
-  useEffect(() => {
-    if (initialData) {
-      form.reset({
-        title: initialData.title,
-        items: initialData.items,
-      })
-    }
-  }, [initialData, form])
+  const handleRemoveItem = (index: number) => {
+    const newItems = (form.values.items || []).filter((_, i) => i !== index)
+    form.handleChange('items', newItems)
+  }
 
-  function onSubmit(values: FormValues) {
-    const section: CustomSection = {
-      id: sectionId || "new",
-      title: values.title,
-      items: values.items,
-    }
-    onSave(section)
+  const handleItemChange = (index: number, field: 'title' | 'description', value: string) => {
+    const newItems = [...(form.values.items || [])]
+    newItems[index] = { ...newItems[index], [field]: value }
+    form.handleChange('items', newItems)
+  }
+
+  if (!selectedSection) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full">
+        <p className="text-gray-500 mb-4">No custom section selected</p>
+        <Button onClick={() => addItem('customSection')}>Add Custom Section</Button>
+      </div>
+    )
   }
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Edit Custom Section</CardTitle>
+        <div className="flex space-x-2">
+          <Button variant="outline" onClick={() => addItem('customSection')}>
+            Add New
+          </Button>
+          <Button variant="destructive" onClick={() => deleteItem('customSection', selectedSection.id)}>
+            Delete
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Section Title</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter section title" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+        <form onSubmit={form.handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="title">Section Title</Label>
+            <Input
+              id="title"
+              value={form.values.title}
+              onChange={(e) => form.handleChange('title', e.target.value)}
+              onBlur={() => form.handleBlur('title')}
             />
+            {form.touched.title && form.errors.title && (
+              <p className="text-sm text-red-500">{form.errors.title}</p>
+            )}
+          </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <FormLabel>Items</FormLabel>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => append({ id: `item-${Date.now()}`, title: "", description: "", date: "" })}
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Item
-                </Button>
-              </div>
-
-              {fields.map((field, index) => (
-                <div key={field.id} className="space-y-4 p-4 border rounded-lg">
-                  <div className="flex justify-between items-start">
-                    <FormField
-                      control={form.control}
-                      name={`items.${index}.title`}
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
-                          <FormLabel>Title</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Item title" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="mt-8 hover:text-red-500"
-                      onClick={() => remove(index)}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  <FormField
-                    control={form.control}
-                    name={`items.${index}.date`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Date</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., 2023 or 2020-2022" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name={`items.${index}.description`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Description</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            placeholder="Describe this item" 
-                            className="min-h-[100px]"
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              ))}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <Label>Items</Label>
+              <Button type="button" variant="outline" onClick={handleAddItem}>
+                Add Item
+              </Button>
             </div>
-
-            <Button type="submit" className="w-full">Save Changes</Button>
-          </form>
-        </Form>
+            {(form.values.items || []).map((item, index) => (
+              <div key={index} className="space-y-2 mb-4">
+                <div className="flex justify-between items-center">
+                  <Label>Item {index + 1}</Label>
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => handleRemoveItem(index)}
+                  >
+                    Remove
+                  </Button>
+                </div>
+                <Input
+                  value={item.title}
+                  onChange={(e) => handleItemChange(index, 'title', e.target.value)}
+                  placeholder="Item title"
+                />
+                <Input
+                  value={item.description}
+                  onChange={(e) => handleItemChange(index, 'description', e.target.value)}
+                  placeholder="Item description"
+                />
+              </div>
+            ))}
+          </div>
+        </form>
       </CardContent>
     </Card>
   )
