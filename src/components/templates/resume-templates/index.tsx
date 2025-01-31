@@ -1,6 +1,10 @@
 import { ResumeData } from '@/lib/types';
 import { SharpTemplate } from './sharp';
 import { ModernTemplate } from './modern';
+import { CleanTemplate } from './clean';
+import { FreshTemplate } from './fresh';
+import { PureTemplate } from './pure';
+import { BostonTemplate } from './boston';
 
 interface TemplateProps {
   data: ResumeData;
@@ -17,17 +21,13 @@ export function ResumeTemplate({ data, template }: TemplateProps) {
     case 'modern':
       return <ModernTemplate data={data} />;
     case 'clean':
-      // 临时使用 Modern 模板
-      return <ModernTemplate data={data} />;
+      return <CleanTemplate data={data} />;
     case 'fresh':
-      // 临时使用 Modern 模板
-      return <ModernTemplate data={data} />;
+      return <FreshTemplate data={data} />;
     case 'pure':
-      // 临时使用 Modern 模板
-      return <ModernTemplate data={data} />;
+      return <PureTemplate data={data} />;
     case 'boston':
-      // 临时使用 Modern 模板
-      return <ModernTemplate data={data} />;
+      return <BostonTemplate data={data} />;
     default:
       // 默认使用 Modern 模板
       return <ModernTemplate data={data} />;
