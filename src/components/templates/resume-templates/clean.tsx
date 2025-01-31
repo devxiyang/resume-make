@@ -1,13 +1,10 @@
 import { ResumeData } from '@/lib/types';
 import { Document, Page, StyleSheet, Text, View, Link, Font } from '@react-pdf/renderer';
 
-// 注册字体
+// 注册中文字体
 Font.register({
   family: 'CustomFont',
-  fonts: [
-    { src: '/fonts/NotoSansMonoCJKhk-Regular.otf' }, // 用于中文
-    { src: 'Helvetica' } // 用于英文
-  ]
+  src: '/fonts/NotoSansMonoCJKhk-Regular.otf'
 });
 
 // 定义颜色常量
@@ -40,7 +37,7 @@ const styles = StyleSheet.create({
     padding: spacing.page.padding,
     backgroundColor: colors.background,
     color: colors.primary,
-    fontFamily: 'CustomFont',
+    fontFamily: 'Times-Roman',
   },
   section: {
     marginBottom: spacing.section.marginBottom,
@@ -50,6 +47,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   name: {
+    fontFamily: 'Times-Bold',
     fontSize: 28,
     color: colors.primary,
     marginBottom: 8,

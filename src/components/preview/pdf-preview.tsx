@@ -11,13 +11,10 @@ import {
   Font 
 } from '@react-pdf/renderer';
 
-// 注册字体
+// 注册中文字体
 Font.register({
   family: 'CustomFont',
-  fonts: [
-    { src: '/fonts/NotoSansMonoCJKhk-Regular.otf' }, // 用于中文
-    { src: 'Helvetica' } // 用于英文
-  ]
+  src: '/fonts/NotoSansMonoCJKhk-Regular.otf'
 });
 
 // 定义颜色和尺寸常量
@@ -47,13 +44,14 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: COLORS.primary,
     lineHeight: 1.2,
-    fontFamily: 'CustomFont',
+    fontFamily: 'Times-Roman', // 使用内置字体
   },
   header: {
     marginBottom: SPACING.section,
     alignItems: 'center',  // 居中对齐
   },
   name: {
+    fontFamily: 'Times-Bold',
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 8,
