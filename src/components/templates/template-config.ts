@@ -1,6 +1,4 @@
 import { ResumeData } from '@/lib/types';
-import { ModernTemplate } from './resume-templates/modern';
-import { SharpTemplate } from './resume-templates/sharp';
 
 export interface Template {
   id: string;
@@ -9,24 +7,9 @@ export interface Template {
   description: string;
   preview: string;
   features: string[];
-  component: React.ComponentType<{ data: ResumeData }>;
 }
 
 export const templates: Template[] = [
-  {
-    id: 'sharp',
-    name: 'Sharp',
-    type: 'free',
-    description: 'A clean and professional template with a sharp design.',
-    preview: '/templates/sharp.jpg',
-    features: [
-      'Clean layout',
-      'Professional design',
-      'Easy to read',
-      'Perfect for traditional industries',
-    ],
-    component: SharpTemplate,
-  },
   {
     id: 'modern',
     name: 'Modern',
@@ -39,7 +22,6 @@ export const templates: Template[] = [
       'Visual hierarchy',
       'Perfect for creative industries',
     ],
-    component: ModernTemplate,
   },
   {
     id: 'clean',
@@ -53,48 +35,5 @@ export const templates: Template[] = [
       'Clean typography',
       'Perfect for academics',
     ],
-    component: ModernTemplate,
-  },
-  {
-    id: 'fresh',
-    name: 'Fresh',
-    type: 'premium',
-    description: 'A vibrant template with a fresh perspective.',
-    preview: '/templates/fresh.jpg',
-    features: [
-      'Vibrant design',
-      'Creative layout',
-      'Modern typography',
-      'Perfect for startups',
-    ],
-    component: ModernTemplate,
-  },
-  {
-    id: 'pure',
-    name: 'Pure',
-    type: 'premium',
-    description: 'A pure and elegant template design.',
-    preview: '/templates/pure.jpg',
-    features: [
-      'Elegant design',
-      'Balanced layout',
-      'Professional look',
-      'Perfect for executives',
-    ],
-    component: ModernTemplate,
-  },
-  {
-    id: 'boston',
-    name: 'Boston',
-    type: 'premium',
-    description: 'A sophisticated template with a classic touch.',
-    preview: '/templates/boston.jpg',
-    features: [
-      'Classic design',
-      'Sophisticated layout',
-      'Traditional elements',
-      'Perfect for finance',
-    ],
-    component: ModernTemplate,
-  },
+  }
 ]; 
