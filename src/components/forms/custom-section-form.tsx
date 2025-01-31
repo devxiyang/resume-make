@@ -9,7 +9,7 @@ import { useResumeForm, validateCustomSection } from "@/hooks/use-resume-form"
 import { CustomSection } from "@/lib/types"
 
 export function CustomSectionForm() {
-  const { resumeData, selectedIds, addItem, deleteItem } = useResume()
+  const { resumeData, selectedIds, addItem, deleteItem, addCustomSectionItem } = useResume()
   const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
 
   const form = useResumeForm<CustomSection>({
@@ -41,76 +41,24 @@ export function CustomSectionForm() {
   if (!selectedSection) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500 mb-4">No custom section selected</p>
-        <Button onClick={() => addItem('customSection')}>Add Custom Section</Button>
+        <p className="text-gray-500 mb-4">Select a custom section to edit</p>
       </div>
     )
   }
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Edit Custom Section</CardTitle>
-        <div className="flex space-x-2">
-          <Button variant="outline" onClick={() => addItem('customSection')}>
-            Add New
+    <div className="flex flex-col items-center justify-center h-full">
+      {selectedSection.items.length === 0 ? (
+        <>
+          <p className="text-gray-500 mb-4">No items in this section</p>
+          <Button onClick={() => addCustomSectionItem(selectedSection.id)}>
+            Add Item
           </Button>
-          <Button variant="destructive" onClick={() => deleteItem('customSection', selectedSection.id)}>
-            Delete
-          </Button>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={form.handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="title">Section Title</Label>
-            <Input
-              id="title"
-              value={form.values.title}
-              onChange={(e) => form.handleChange('title', e.target.value)}
-              onBlur={() => form.handleBlur('title')}
-            />
-            {form.touched.title && form.errors.title && (
-              <p className="text-sm text-red-500">{form.errors.title}</p>
-            )}
-          </div>
-
-          <div>
-            <div className="flex justify-between items-center mb-2">
-              <Label>Items</Label>
-              <Button type="button" variant="outline" onClick={handleAddItem}>
-                Add Item
-              </Button>
-            </div>
-            {(form.values.items || []).map((item, index) => (
-              <div key={index} className="space-y-2 mb-4">
-                <div className="flex justify-between items-center">
-                  <Label>Item {index + 1}</Label>
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => handleRemoveItem(index)}
-                  >
-                    Remove
-                  </Button>
-                </div>
-                <Input
-                  value={item.title}
-                  onChange={(e) => handleItemChange(index, 'title', e.target.value)}
-                  placeholder="Item title"
-                />
-                <Input
-                  value={item.description}
-                  onChange={(e) => handleItemChange(index, 'description', e.target.value)}
-                  placeholder="Item description"
-                />
-              </div>
-            ))}
-          </div>
-        </form>
-      </CardContent>
-    </Card>
+        </>
+      ) : (
+        <p className="text-gray-500">Select an item to edit</p>
+      )}
+    </div>
   )
 }
 

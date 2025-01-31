@@ -91,7 +91,14 @@ function ResumeBuilder() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("edit")
   const [activeSection, setActiveSection] = useState<ActiveSection>("experience")
   const [isMobile, setIsMobile] = useState(false)
-  const { resumeData, selectedTemplate, selectedIds, setSelectedTemplate, addItem, deleteItem, selectItem, addCustomSectionItem, selectCustomSectionItem, deleteCustomSectionItem } = useResume()
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    experience: true,
+    education: true,
+    projects: true,
+    skills: true,
+    custom: true,
+  })
+  const { resumeData, selectedTemplate, selectedIds, setSelectedTemplate, addItem, deleteItem, selectItem, addCustomSectionItem, selectCustomSectionItem, deleteCustomSectionItem, updateItem } = useResume()
 
   // 检测设备类型
   useEffect(() => {
@@ -190,6 +197,8 @@ function ResumeBuilder() {
               selectedProjectId={selectedIds.project}
               selectedSkillId={selectedIds.skill}
               selectedCustomSectionId={selectedIds.customSection}
+              expandedSections={expandedSections}
+              setExpandedSections={setExpandedSections}
               onExperienceSelect={(id) => {
                 selectItem('experience', id)
                 setActiveSection('experience')
@@ -209,6 +218,12 @@ function ResumeBuilder() {
               onCustomSectionSelect={(id) => {
                 selectItem('customSection', id)
                 setActiveSection('custom')
+              }}
+              onCustomSectionTitleChange={(sectionId, title) => {
+                const section = resumeData.customSections.find(s => s.id === sectionId);
+                if (!section) return;
+                const updatedSection = { ...section, title };
+                updateItem('customSection', updatedSection);
               }}
               onCustomSectionItemSelect={(sectionId, itemId) => {
                 selectCustomSectionItem(sectionId, itemId)
@@ -231,8 +246,14 @@ function ResumeBuilder() {
                 setActiveSection('skills')
               }}
               onAddCustomSection={() => {
-                addItem('customSection')
-                setActiveSection('custom')
+                const newId = `customSection-${Date.now()}`;
+                addItem('customSection');
+                selectItem('customSection', newId);
+                setActiveSection('custom');
+                setExpandedSections(prev => ({
+                  ...prev,
+                  [newId]: true
+                }));
               }}
               onExperienceDelete={(id) => deleteItem('experience', id)}
               onEducationDelete={(id) => deleteItem('education', id)}

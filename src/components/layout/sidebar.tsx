@@ -7,9 +7,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Input } from "@/components/ui/input"
 import { ResumeData } from "@/lib/types"
 import { cn } from "@/lib/utils"
-import { ChevronDown, ChevronRight, Plus, Trash2 } from "lucide-react"
+import { ChevronDown, ChevronRight, Plus, Trash2, MoreHorizontal } from "lucide-react"
 import type React from "react"
 import { useState, Dispatch, SetStateAction } from "react"
 
@@ -50,6 +51,9 @@ export interface SidebarProps {
   };
   onAddCustomSectionItem: (sectionId: string) => void;
   onCustomSectionItemDelete: (sectionId: string, itemId: string) => void;
+  onCustomSectionTitleChange: (sectionId: string, title: string) => void;
+  expandedSections: Record<string, boolean>;
+  setExpandedSections: Dispatch<SetStateAction<Record<string, boolean>>>;
 }
 
 export function Sidebar({
@@ -80,14 +84,11 @@ export function Sidebar({
   selectedIds,
   onAddCustomSectionItem,
   onCustomSectionItemDelete,
+  onCustomSectionTitleChange,
+  expandedSections,
+  setExpandedSections,
 }: SidebarProps) {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-    experience: true,
-    education: true,
-    projects: true,
-    skills: true,
-    custom: true,
-  });
+  const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({
@@ -474,21 +475,94 @@ export function Sidebar({
                 key={section.id}
                 open={expandedSections[section.id]}
               >
-                <CollapsibleTrigger
-                  className={cn(
-                    "flex w-full items-center justify-between px-4 py-2 text-sm cursor-pointer hover:bg-gray-50",
+                <div className="flex items-center justify-between px-4 py-2 text-sm hover:bg-gray-50">
+                  {editingSectionId === section.id ? (
+                    <Input
+                      className="h-6 text-sm"
+                      value={section.title}
+                      onChange={(e) => onCustomSectionTitleChange(section.id, e.target.value)}
+                      onBlur={() => setEditingSectionId(null)}
+                      onClick={(e) => e.stopPropagation()}
+                      autoFocus
+                      placeholder="Section Title"
+                    />
+                  ) : (
+                    <span 
+                      className={cn(
+                        "flex-1 cursor-pointer",
+                        activeSection === "custom" && 
+                        selectedCustomSectionId === section.id && 
+                        !selectedIds.customSectionItem &&
+                        "text-blue-600"
+                      )}
+                      onClick={() => {
+                        if (activeSection === "custom" && selectedCustomSectionId === section.id) {
+                          setEditingSectionId(section.id);
+                        } else {
+                          onSectionChange("custom");
+                          onCustomSectionSelect(section.id);
+                        }
+                      }}
+                    >
+                      {section.title || "New Section"}
+                    </span>
                   )}
-                  onClick={() => toggleSection(section.id)}
-                >
-                  <span>{section.title || "New Section"}</span>
-                  {section.items.length > 0 && (
-                    expandedSections[section.id] ? (
-                      <ChevronDown className="h-4 w-4" />
-                    ) : (
-                      <ChevronRight className="h-4 w-4" />
-                    )
-                  )}
-                </CollapsibleTrigger>
+                  <div className="flex items-center gap-2">
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0 hover:bg-gray-100"
+                        >
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[200px] p-4" side="right">
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-sm">确认删除</h4>
+                          <p className="text-xs text-muted-foreground">
+                            确定要删除这个自定义项目吗？
+                          </p>
+                          <div className="flex justify-end gap-2">
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="h-7 text-xs"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                (e.currentTarget.closest('[data-radix-popper-content-wrapper]') as HTMLElement)
+                                  ?.querySelector('[data-radix-popper-close-trigger]')
+                                  ?.dispatchEvent(new MouseEvent('click'));
+                              }}
+                            >
+                              取消
+                            </Button>
+                            <Button
+                              size="sm"
+                              className="h-7 bg-red-600 hover:bg-red-700 text-white text-xs"
+                              onClick={() => onCustomSectionDelete(section.id)}
+                            >
+                              删除
+                            </Button>
+                          </div>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                    <CollapsibleTrigger
+                      className="cursor-pointer"
+                      onClick={() => toggleSection(section.id)}
+                    >
+                      {section.items.length > 0 && (
+                        expandedSections[section.id] ? (
+                          <ChevronDown className="h-4 w-4" />
+                        ) : (
+                          <ChevronRight className="h-4 w-4" />
+                        )
+                      )}
+                    </CollapsibleTrigger>
+                  </div>
+                </div>
                 <CollapsibleContent className="pl-8 mt-1 space-y-1">
                   {section.items.map((item) => (
                     <div key={item.id} className="flex items-center gap-1">
