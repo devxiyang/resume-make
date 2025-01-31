@@ -34,7 +34,6 @@ export function useResumeForm<T extends Experience | Education | Project | Skill
         updateItem(type, values);
       }
     },
-    debounceMs: 300,
   });
 
   return form;

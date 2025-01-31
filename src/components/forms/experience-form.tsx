@@ -29,6 +29,8 @@ export function ExperienceForm() {
     validate: validateExperience,
   })
 
+  console.log('Form values:', form.values)
+
   const handleAddBulletPoint = () => {
     const newBulletPoints = [...form.values.bulletPoints, '']
     form.handleChange('bulletPoints', newBulletPoints)
@@ -101,25 +103,30 @@ export function ExperienceForm() {
             </div>
 
             <div>
-              <Label htmlFor="endDate">End Date</Label>
-              <div className="flex items-center space-x-2 mb-2">
-                <Switch
-                  checked={form.values.currentlyWork}
-                  onCheckedChange={(checked) => {
-                    form.handleChange('currentlyWork', checked)
-                    if (checked) {
-                      form.handleChange('endDate', 'Present')
-                    }
-                  }}
-                />
-                <Label>I currently work here</Label>
+              <div className="flex items-center justify-between mb-2">
+                <Label htmlFor="endDate">End Date</Label>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="currentlyWork"
+                    checked={form.values.currentlyWork}
+                    onCheckedChange={(checked) => form.handleChange('currentlyWork', checked)}
+                  />
+                  <Label htmlFor="currentlyWork" className="text-sm text-muted-foreground">
+                    I currently work here
+                  </Label>
+                </div>
               </div>
               <Input
                 id="endDate"
-                value={form.values.endDate}
-                onChange={(e) => form.handleChange('endDate', e.target.value)}
+                value={form.values.currentlyWork ? 'Present' : form.values.endDate}
+                onChange={(e) => {
+                  if (!form.values.currentlyWork) {
+                    form.handleChange('endDate', e.target.value)
+                  }
+                }}
                 onBlur={() => form.handleBlur('endDate')}
                 disabled={form.values.currentlyWork}
+                className={form.values.currentlyWork ? "bg-muted" : ""}
               />
               {form.touched.endDate && form.errors.endDate && (
                 <p className="text-sm text-red-500">{form.errors.endDate}</p>

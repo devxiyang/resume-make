@@ -1,11 +1,10 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 interface UseFormOptions<T> {
   initialValues: T;
   onSubmit?: (values: T) => void;
   onChange?: (values: T) => void;
   validate?: (values: T) => Partial<Record<keyof T, string>>;
-  debounceMs?: number;
 }
 
 export function useForm<T extends Record<string, any>>({
@@ -13,12 +12,10 @@ export function useForm<T extends Record<string, any>>({
   onSubmit,
   onChange,
   validate,
-  debounceMs = 300,
 }: UseFormOptions<T>) {
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
   const [touched, setTouched] = useState<Partial<Record<keyof T, boolean>>>({});
-  const timeoutRef = useRef<NodeJS.Timeout>();
 
   // Update values when initialValues change
   useEffect(() => {
@@ -26,15 +23,6 @@ export function useForm<T extends Record<string, any>>({
     setErrors({});
     setTouched({});
   }, [initialValues]);
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
 
   const handleChange = useCallback((field: keyof T, value: any) => {
     const newValues = { ...values, [field]: value };
@@ -45,16 +33,11 @@ export function useForm<T extends Record<string, any>>({
       setErrors(prev => ({ ...prev, [field]: validationErrors[field] }));
     }
 
-    // Debounce the onChange callback
+    // 直接调用 onChange 回调
     if (onChange) {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      timeoutRef.current = setTimeout(() => {
-        onChange(newValues);
-      }, debounceMs);
+      onChange(newValues);
     }
-  }, [values, validate, onChange, debounceMs]);
+  }, [values, validate, onChange]);
 
   const handleBlur = useCallback((field: keyof T) => {
     setTouched(prev => ({ ...prev, [field]: true }));
