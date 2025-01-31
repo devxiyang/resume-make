@@ -4,6 +4,32 @@ import { useEffect, useState } from 'react'
 import { ResumeData } from '@/lib/types'
 import { TDocumentDefinitions, Content } from 'pdfmake/interfaces'
 
+// 辅助函数：将ArrayBuffer转换为Base64字符串
+function arrayBufferToBase64(buffer: ArrayBuffer): string {
+  const binary = new Uint8Array(buffer).reduce(
+    (data, byte) => data + String.fromCharCode(byte),
+    ''
+  );
+  return btoa(binary);
+}
+
+// 导入字体
+const pdfFonts = {
+  Roboto: {
+    normal: '/fonts/Roboto-Regular.ttf',
+    bold: '/fonts/Roboto-Medium.ttf',
+    italics: '/fonts/Roboto-Italic.ttf',
+    bolditalics: '/fonts/Roboto-MediumItalic.ttf'
+  },
+  // 添加思源黑体 (Noto Sans SC)
+  NotoSansSC: {
+    normal: '/fonts/NotoSansSC-Regular.ttf',
+    bold: '/fonts/NotoSansSC-Bold.ttf',
+    italics: '/fonts/NotoSansSC-Regular.ttf',
+    bolditalics: '/fonts/NotoSansSC-Bold.ttf'
+  }
+};
+
 interface PDFPreviewProps {
   resumeData: ResumeData
   scale?: number
@@ -26,10 +52,43 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
 
     const generatePDF = async () => {
       try {
-        // 动态导入pdfmake和字体
+        // 动态导入pdfmake
         const pdfMake = await import('pdfmake/build/pdfmake')
-        await import('pdfmake/build/vfs_fonts')
+
+        // 加载字体
+        const loadFonts = async () => {
+          const fonts: { [key: string]: string } = {};
+          for (const [fontFamily, styles] of Object.entries(pdfFonts)) {
+            for (const [style, url] of Object.entries(styles)) {
+              const response = await fetch(url);
+              const buffer = await response.arrayBuffer();
+              const key = style === 'normal' ? fontFamily : `${fontFamily}-${style}`;
+              fonts[key] = arrayBufferToBase64(buffer);
+            }
+          }
+          return fonts;
+        };
+
+        // 等待字体加载完成
+        const fonts = await loadFonts();
         
+        // 设置字体
+        pdfMake.default.vfs = fonts;
+        pdfMake.default.fonts = {
+          Roboto: {
+            normal: 'Roboto',
+            bold: 'Roboto-bold',
+            italics: 'Roboto-italics',
+            bolditalics: 'Roboto-bolditalics'
+          },
+          NotoSansSC: {
+            normal: 'NotoSansSC',
+            bold: 'NotoSansSC-bold',
+            italics: 'NotoSansSC-italics',
+            bolditalics: 'NotoSansSC-bolditalics'
+          }
+        };
+
         const { personal, experiences, education, skills } = resumeData
 
         // 创建文档定义
@@ -40,12 +99,14 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
               text: personal.name,
               fontSize: 24,
               bold: true,
-              margin: [0, 0, 0, 5]
+              margin: [0, 0, 0, 5],
+              font: 'NotoSansSC'  // 使用中文字体
             },
             {
               text: personal.jobTitle,
               fontSize: 14,
-              margin: [0, 0, 0, 5]
+              margin: [0, 0, 0, 5],
+              font: 'NotoSansSC'  // 使用中文字体
             },
             {
               text: [
@@ -70,7 +131,8 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
               {
                 text: personal.summary,
                 fontSize: 10,
-                margin: [0, 0, 0, 15]
+                margin: [0, 0, 0, 15],
+                font: 'NotoSansSC'  // 使用中文字体
               }
             ] : []),
 
@@ -88,7 +150,8 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                     {
                       text: exp.company,
                       bold: true,
-                      fontSize: 11
+                      fontSize: 11,
+                      font: 'NotoSansSC'  // 使用中文字体
                     },
                     {
                       text: `${exp.startDate} - ${exp.currentlyWork ? 'Present' : exp.endDate}`,
@@ -102,12 +165,14 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                   text: exp.position,
                   fontSize: 10,
                   italics: true,
-                  margin: [0, 3, 0, 3]
+                  margin: [0, 3, 0, 3],
+                  font: 'NotoSansSC'  // 使用中文字体
                 },
                 ...exp.bulletPoints.map(point => ({
                   text: `• ${point}`,
                   fontSize: 10,
-                  margin: [10, 2, 0, 0]
+                  margin: [10, 2, 0, 0],
+                  font: 'NotoSansSC'  // 使用中文字体
                 })),
                 { text: '', margin: [0, 5, 0, 0] }
               ]).flat()
@@ -127,7 +192,8 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                     {
                       text: edu.school,
                       bold: true,
-                      fontSize: 11
+                      fontSize: 11,
+                      font: 'NotoSansSC'  // 使用中文字体
                     },
                     {
                       text: `${edu.startDate} - ${edu.endDate}`,
@@ -140,12 +206,14 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
                 {
                   text: edu.degree,
                   fontSize: 10,
-                  margin: [0, 3, 0, 3]
+                  margin: [0, 3, 0, 3],
+                  font: 'NotoSansSC'  // 使用中文字体
                 },
                 ...(edu.description ? [{
                   text: edu.description,
                   fontSize: 10,
-                  margin: [0, 3, 0, 5]
+                  margin: [0, 3, 0, 5],
+                  font: 'NotoSansSC'  // 使用中文字体
                 }] : [])
               ]).flat()
             ] : []),
@@ -161,12 +229,13 @@ const PDFPreview = ({ resumeData, scale = 1 }: PDFPreviewProps) => {
               {
                 text: skills.map(skill => skill.name).join(' • '),
                 fontSize: 10,
-                margin: [0, 0, 0, 10]
+                margin: [0, 0, 0, 10],
+                font: 'NotoSansSC'  // 使用中文字体
               }
             ] : [])
           ] as Content[],
           defaultStyle: {
-            font: 'Roboto'
+            font: 'Roboto'  // 使用Roboto作为默认字体，对于中文内容单独指定NotoSansSC
           },
           pageMargins: [40, 40, 40, 40]
         }
