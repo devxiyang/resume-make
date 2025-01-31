@@ -1,57 +1,29 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { ResumeData } from '@/lib/types';
-import { PDFViewer } from '@react-pdf/renderer';
-import { useResume } from '@/context/resume-context';
-import { ResumeTemplate } from '../templates/resume-templates';
+import PDFPreview from './pdf-preview'
+import { ResumeData } from '@/lib/types'
 
 interface ResumePreviewProps {
   data: ResumeData
 }
 
-export function ResumePreview({ data }: ResumePreviewProps) {
-  const [mounted, setMounted] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const { previewData, selectedTemplate } = useResume()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
+const ResumePreview = ({ data }: ResumePreviewProps) => {
+  if (!data) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gray-50">
-        <div className="animate-pulse">Loading preview...</div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <p className="text-red-500 mb-2">Error loading preview</p>
-          <p className="text-sm text-gray-600">{error}</p>
-        </div>
+      <div className="w-full h-full flex items-center justify-center">
+        <p className="text-gray-500">No resume data available</p>
       </div>
     )
   }
 
   return (
-    <div className="w-full h-full">
-      <PDFViewer
-        style={{
-          width: '100%',
-          height: '100%',
-          border: 'none',
-          backgroundColor: '#f3f4f6'
-        }}
-      >
-        <ResumeTemplate data={previewData} template={selectedTemplate} />
-      </PDFViewer>
+    <div className="w-full h-full overflow-auto">
+      <PDFPreview 
+        resumeData={data}
+        scale={1.5}
+      />
     </div>
-  );
+  )
 }
 
-export default ResumePreview;
+export default ResumePreview
