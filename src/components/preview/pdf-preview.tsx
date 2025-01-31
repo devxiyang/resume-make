@@ -13,8 +13,11 @@ import {
 
 // 注册字体
 Font.register({
-  family: 'Noto Sans SC',
-  src: '/fonts/NotoSansMonoCJKhk-Regular.otf',
+  family: 'CustomFont',
+  fonts: [
+    { src: '/fonts/NotoSansMonoCJKhk-Regular.otf' }, // 用于中文
+    { src: 'Helvetica' } // 用于英文
+  ]
 });
 
 // 定义颜色和尺寸常量
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: COLORS.primary,
     lineHeight: 1.2,
-    fontFamily: 'Noto Sans SC',
+    fontFamily: 'CustomFont',
   },
   header: {
     marginBottom: SPACING.section,
