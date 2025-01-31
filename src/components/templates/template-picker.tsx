@@ -38,17 +38,20 @@ export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplateP
                 </div>
 
                 {template.preview && (
-                  <div className="mt-3 w-24 mx-auto relative rounded-md overflow-hidden">
-                    <div className="aspect-[210/297]">
-                      <Image
-                        src={template.preview}
-                        alt={template.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
+                  <div className="mt-3 relative">
+                    <Image
+                      src={template.preview}
+                      alt={template.name}
+                      width={210}
+                      height={297}
+                      className="w-full rounded-md"
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        img.style.display = 'none';
+                      }}
+                    />
                     {selectedTemplate === template.id && (
-                      <div className="absolute inset-0 bg-primary/10 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-primary/10 flex items-center justify-center rounded-md">
                         <div className="bg-primary text-primary-foreground rounded-full p-1.5">
                           <Check className="w-4 h-4" />
                         </div>
