@@ -46,10 +46,12 @@ export default function LandingPage() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="h-12 px-8">
-              View Templates
-              <Sparkles className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href="/templates">
+              <Button size="lg" variant="outline" className="h-12 px-8">
+                View Templates
+                <Sparkles className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

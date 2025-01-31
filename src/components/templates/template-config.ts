@@ -18,7 +18,7 @@ export const templates: Template[] = [
     name: 'Sharp',
     type: 'free',
     description: 'A clean and professional template with a sharp design.',
-    preview: '/templates/sharp.png',
+    preview: '/templates/sharp.jpg',
     features: [
       'Clean layout',
       'Professional design',
@@ -32,7 +32,7 @@ export const templates: Template[] = [
     name: 'Modern',
     type: 'free',
     description: 'A contemporary template with a modern and fresh look.',
-    preview: '/templates/modern.png',
+    preview: '/templates/modern.jpg',
     features: [
       'Modern design',
       'Accent colors',
@@ -46,7 +46,7 @@ export const templates: Template[] = [
     name: 'Clean',
     type: 'premium',
     description: 'A minimalist template that focuses on content.',
-    preview: '/templates/clean.png',
+    preview: '/templates/clean.jpg',
     features: [
       'Minimalist design',
       'Content focused',
@@ -60,7 +60,7 @@ export const templates: Template[] = [
     name: 'Fresh',
     type: 'premium',
     description: 'A vibrant template with a fresh perspective.',
-    preview: '/templates/fresh.png',
+    preview: '/templates/fresh.jpg',
     features: [
       'Vibrant design',
       'Creative layout',
@@ -74,7 +74,7 @@ export const templates: Template[] = [
     name: 'Pure',
     type: 'premium',
     description: 'A pure and elegant template design.',
-    preview: '/templates/pure.png',
+    preview: '/templates/pure.jpg',
     features: [
       'Elegant design',
       'Balanced layout',
@@ -88,7 +88,7 @@ export const templates: Template[] = [
     name: 'Boston',
     type: 'premium',
     description: 'A sophisticated template with a classic touch.',
-    preview: '/templates/boston.png',
+    preview: '/templates/boston.jpg',
     features: [
       'Classic design',
       'Sophisticated layout',
