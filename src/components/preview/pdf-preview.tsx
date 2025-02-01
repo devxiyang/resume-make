@@ -14,6 +14,72 @@ import pdfMake from 'pdfmake/build/pdfmake'
 //   return btoa(binary);
 // }
 
+// 检测文本是否包含中文字符
+function containsChinese(text: string): boolean {
+  return /[\u4E00-\u9FFF]/.test(text)
+}
+
+// 检测简历数据中是否包含中文
+function resumeContainsChinese(data: ResumeData): boolean {
+  const { personal, experiences, education, projects, skills, customSections } = data
+  
+  // 检查个人信息
+  if (containsChinese(personal.name) || 
+      containsChinese(personal.jobTitle) || 
+      containsChinese(personal.summary || '')) {
+    return true
+  }
+
+  // 检查工作经验
+  if (experiences?.some(exp => 
+    containsChinese(exp.company) || 
+    containsChinese(exp.position) || 
+    containsChinese(exp.description) ||
+    exp.bulletPoints.some(point => containsChinese(point))
+  )) {
+    return true
+  }
+
+  // 检查教育经历
+  if (education?.some(edu => 
+    containsChinese(edu.school) || 
+    containsChinese(edu.degree) || 
+    containsChinese(edu.description)
+  )) {
+    return true
+  }
+
+  // 检查项目经历
+  if (projects?.some(proj => 
+    containsChinese(proj.name) || 
+    containsChinese(proj.description) ||
+    (proj.bulletPoints || []).some(point => containsChinese(point))
+  )) {
+    return true
+  }
+
+  // 检查技能
+  if (skills?.some(skill => 
+    containsChinese(skill.name) || 
+    containsChinese(skill.description || '')
+  )) {
+    return true
+  }
+
+  // 检查自定义部分
+  if (customSections?.some(section => 
+    containsChinese(section.title) || 
+    section.items.some(item => 
+      containsChinese(item.title) || 
+      containsChinese(item.description)
+    )
+  )) {
+    return true
+  }
+
+  return false
+}
+
 interface PDFPreviewProps {
   resumeData: ResumeData
   templateName?: string
@@ -35,13 +101,13 @@ const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPrevie
       URL.revokeObjectURL(pdfUrl)
     }
 
-    // 配置中文字体
+    // 配置字体
     pdfMake.fonts = {
       SourceHanSans: {
-        normal: '/fonts/SourceHanSansCN-Regular.ttf',
-        bold: '/fonts/SourceHanSansCN-Bold.ttf',
-        italics: '/fonts/SourceHanSansCN-Regular.ttf',
-        bolditalics: '/fonts/SourceHanSansCN-Bold.ttf'
+        normal: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
+        bold: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf',
+        italics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
+        bolditalics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf'
       }
     }
 
@@ -50,12 +116,6 @@ const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPrevie
         // 获取模板并生成文档定义
         const template = getPDFTemplate(templateName)
         const docDefinition = template(resumeData)
-
-        // 设置默认字体
-        docDefinition.defaultStyle = {
-          ...docDefinition.defaultStyle,
-          font: 'SourceHanSans'
-        }
 
         // 生成PDF
         const pdfDocGenerator = pdfMake.createPdf(docDefinition)

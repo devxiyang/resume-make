@@ -248,7 +248,9 @@ export class PDFTemplate {
         ...this.generateSkillsSection()
       ],
       defaultStyle: {
-        font: 'Roboto'
+        fontSize: this.fontSize.normal,
+        font: 'SourceHanSans',
+        lineHeight: 1.4
       },
       pageMargins: [40, 40, 40, 40]
     }
