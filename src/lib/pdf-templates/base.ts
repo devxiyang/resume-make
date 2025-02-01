@@ -29,6 +29,12 @@ export interface Components {
   divider: () => ContentStack
   skillBadge: (text: string) => ContentText
   timelineItem: (title: string, subtitle: string, date: string, description?: string) => Content[]
+  twoColumnLayout: (leftContent: Content[], rightContent: Content[], options?: { columnGap?: number }) => ContentColumns
+  titleDateRow: (title: string, date?: string) => ContentColumns
+  titleDescriptionItem: (title: string, description?: string, options?: { 
+    date?: string, 
+    margin?: [number, number, number, number]
+  }) => Content[]
 }
 
 export class PDFTemplate {
@@ -50,9 +56,9 @@ export class PDFTemplate {
   }
 
   protected spacing: Spacing = {
-    section: 15,
-    item: 10,
-    text: 5
+    section: 10,
+    item: 8,
+    text: 4
   }
 
   protected components: Components = {
@@ -63,9 +69,10 @@ export class PDFTemplate {
           fontSize: this.fontSize.heading,
           bold: true,
           color: this.theme.primary,
-          margin: [0, this.spacing.section, 0, this.spacing.item],
+          margin: [0, this.spacing.section, 0, 2],
           ...options
-        }
+        },
+        this.components.divider()
       ]
     }),
 
@@ -85,7 +92,7 @@ export class PDFTemplate {
           ]
         }
       ],
-      margin: [0, this.spacing.item, 0, this.spacing.item]
+      margin: [0, 0, 0, this.spacing.item]
     }),
 
     skillBadge: (text: string): ContentText => ({
@@ -133,6 +140,57 @@ export class PDFTemplate {
       }
 
       return items
+    },
+
+    twoColumnLayout: (leftContent: Content[], rightContent: Content[], options = { columnGap: 20 }): ContentColumns => ({
+      columns: [
+        {
+          width: '*',
+          stack: leftContent
+        },
+        {
+          width: 'auto',
+          stack: rightContent
+        }
+      ],
+      columnGap: options.columnGap
+    }),
+
+    titleDateRow: (title: string, date?: string): ContentColumns => ({
+      columns: [
+        {
+          width: '*',
+          text: title,
+          fontSize: this.fontSize.normal,
+          bold: true,
+          color: this.theme.primary
+        } as ContentText,
+        date ? {
+          width: 'auto',
+          text: date,
+          fontSize: this.fontSize.small,
+          color: this.theme.secondary,
+          alignment: 'right'
+        } as ContentText : []
+      ],
+      columnGap: 10
+    }),
+
+    titleDescriptionItem: (title: string, description?: string, options = {}): Content[] => {
+      const items: Content[] = [
+        this.components.titleDateRow(title, options.date)
+      ]
+
+      if (description) {
+        items.push({
+          text: description,
+          fontSize: this.fontSize.normal,
+          color: this.theme.text,
+          margin: options.margin || [0, this.spacing.text, 0, this.spacing.item]
+        } as ContentText)
+      }
+
+      return items
     }
   }
 
@@ -163,21 +221,6 @@ export class PDFTemplate {
           personal.personalWebsite
         ].filter(Boolean).join(' • '),
         fontSize: this.fontSize.small,
-        color: this.theme.text,
-        margin: [0, 0, 0, this.spacing.section]
-      } as ContentText
-    ]
-  }
-
-  protected generateSummarySection(): Content[] {
-    const { personal } = this.data
-    if (!personal.summary) return []
-
-    return [
-      this.components.header('Summary'),
-      {
-        text: personal.summary,
-        fontSize: this.fontSize.normal,
         color: this.theme.text,
         margin: [0, 0, 0, this.spacing.section]
       } as ContentText
@@ -266,7 +309,6 @@ export class PDFTemplate {
     return {
       content: [
         ...this.generatePersonalSection(),
-        ...this.generateSummarySection(),
         ...this.generateExperienceSection(),
         ...this.generateEducationSection(),
         ...this.generateSkillsSection(),
