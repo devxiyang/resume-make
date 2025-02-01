@@ -26,7 +26,7 @@ export const templates: Template[] = [
   {
     id: 'professional',
     name: 'Professional',
-    type: 'premium',
+    type: 'free',
     description: 'A polished template that exudes professionalism and competence.',
     preview: '/templates/clean.jpg',
     features: [
@@ -39,7 +39,7 @@ export const templates: Template[] = [
   {
     id: 'fresh',
     name: 'Fresh',
-    type: 'premium',
+    type: 'free',
     description: 'A vibrant and energetic template that stands out.',
     preview: '/templates/fresh.jpg',
     features: [
@@ -52,7 +52,7 @@ export const templates: Template[] = [
   {
     id: 'clean',
     name: 'Clean',
-    type: 'premium',
+    type: 'free',
     description: 'A minimalist template that focuses on content.',
     preview: '/templates/clean.jpg',
     features: [
