@@ -76,18 +76,27 @@ const ResumePreview = ({ resumeData, templateName = 'clean', scale = 1, onPDFGen
   }
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full bg-white overflow-hidden">
       {error && (
-        <div className="text-red-500 mb-4">
+        <div className="text-red-500 p-4">
           Error: {error}
         </div>
       )}
       {pdfUrl && (
-        <iframe
-          src={pdfUrl + '#toolbar=0'}
-          className="w-full h-[calc(100vh-200px)] border border-gray-200 shadow-lg"
-          style={{ minHeight: '600px' }}
-        />
+        <div className="w-full h-full overflow-hidden">
+          <iframe
+            src={pdfUrl + '#zoom=FitW&toolbar=0&navpanes=0&scrollbar=0'}
+            className="w-full h-full"
+            style={{
+              border: 'none',
+              display: 'block',
+              backgroundColor: 'transparent',
+              margin: 0,
+              padding: 0,
+              overflow: 'hidden'
+            }}
+          />
+        </div>
       )}
     </div>
   )
