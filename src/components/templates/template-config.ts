@@ -28,7 +28,7 @@ export const templates: Template[] = [
     name: 'Professional',
     type: 'free',
     description: 'A polished template that exudes professionalism and competence.',
-    preview: '/templates/clean.jpg',
+    preview: '/templates/professional.jpg',
     features: [
       'Classic layout',
       'Professional typography',

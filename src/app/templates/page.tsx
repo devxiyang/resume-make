@@ -85,15 +85,15 @@ export default function TemplatesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {templates.map((template) => (
             <div key={template.id} className="group flex flex-col bg-card rounded-lg border transition-all hover:shadow-lg">
-              <div className="relative aspect-[1/1.2] overflow-hidden rounded-t-lg bg-muted">
+              <div className="relative aspect-[1/1.414] overflow-hidden rounded-t-lg bg-muted">
                 <Image
                   src={`/templates/${template.id}.jpg`}
                   alt={`${template.name} Template Preview - Best for ${template.bestFor}`}
                   fill
                   quality={100}
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 30vw"
                   priority={template.id === 'modern' || template.id === 'sharp'}
-                  className="object-cover object-top"
+                  className="object-contain"
                 />
               </div>
               <div className="p-3 space-y-2">
