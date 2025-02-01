@@ -19,6 +19,7 @@ import { ProjectsForm } from "@/components/forms/projects-form"
 import { SkillsForm } from "@/components/forms/skills-form"
 import { CustomSectionForm, CustomSectionItemForm } from "@/components/forms/custom-section-form"
 import { initialResumeData } from "@/lib/initial-data"
+import { MobileNotice } from "@/components/mobile-notice"
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 type ActiveTab = "edit" | "template"
@@ -71,20 +72,28 @@ function ResumeBuilder() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <SiteHeader />
+        <SiteHeader />
 
-      <header className="relative flex items-center h-14 px-4 border-b border-border">
+      <header className="relative hidden lg:flex items-center h-14 px-4 border-b border-border">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" className="text-foreground/60">
-            <ChevronLeft className="h-4 w-4 mr-1" />
-            Dashboard
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-foreground/60"
+            asChild
+          >
+            <Link href="/dashboard">
+              <ChevronLeft className="h-4 w-4 mr-1" />
+              Dashboard
+            </Link>
           </Button>
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">My Resume</span>
             <div className="h-2 w-2 rounded-full bg-green-500" />
           </div>
         </div>
-        <div className="ml-auto flex items-center gap-2">
+        {/* Desktop Only PDF Download Button */}
+        <div className="ml-auto lg:flex items-center gap-2">
           {pdfUrl && (
             <a 
               href={pdfUrl} 
@@ -98,109 +107,119 @@ function ResumeBuilder() {
         </div>
       </header>
 
-      <div className="flex-1 grid grid-cols-[72px_1fr]">
-        <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
-        {activeTab === "edit" ? (
-          <div className="grid grid-cols-[300px_1fr]">
-            <Sidebar
-              activeSection={activeSection}
-              onSectionChange={setActiveSection}
-              resumeData={resumeData}
-              selectedIds={selectedIds}
-              selectedExperienceId={selectedIds.experience}
-              selectedEducationId={selectedIds.education}
-              selectedProjectId={selectedIds.project}
-              selectedSkillId={selectedIds.skill}
-              selectedCustomSectionId={selectedIds.customSection}
-              expandedSections={expandedSections}
-              setExpandedSections={setExpandedSections}
-              editingSectionId={editingSectionId}
-              setEditingSectionId={setEditingSectionId}
-              onExperienceSelect={(id) => {
-                selectItem('experience', id)
-                setActiveSection('experience')
-              }}
-              onEducationSelect={(id) => {
-                selectItem('education', id)
-                setActiveSection('education')
-              }}
-              onProjectSelect={(id) => {
-                selectItem('project', id)
-                setActiveSection('projects')
-              }}
-              onSkillSelect={(id) => {
-                selectItem('skill', id)
-                setActiveSection('skills')
-              }}
-              onCustomSectionSelect={(id) => {
-                selectItem('customSection', id)
-                setActiveSection('custom')
-              }}
-              onCustomSectionTitleChange={(sectionId, title) => {
-                const section = resumeData.customSections.find(s => s.id === sectionId);
-                if (!section) return;
-                const updatedSection = { ...section, title };
-                updateItem('customSection', updatedSection);
-              }}
-              onCustomSectionItemSelect={(sectionId, itemId) => {
-                selectCustomSectionItem(sectionId, itemId)
-                setActiveSection('custom')
-              }}
-              onAddExperience={() => {
-                addItem('experience')
-                setActiveSection('experience')
-              }}
-              onAddEducation={() => {
-                addItem('education')
-                setActiveSection('education')
-              }}
-              onAddProject={() => {
-                addItem('project')
-                setActiveSection('projects')
-              }}
-              onAddSkill={() => {
-                addItem('skill')
-                setActiveSection('skills')
-              }}
-              onAddCustomSection={() => {
-                const newId = `customSection-${Date.now()}`;
-                addItem('customSection');
-                selectItem('customSection', newId);
-                setActiveSection('custom');
-                setExpandedSections(prev => ({
-                  ...prev,
-                  [newId]: true
-                }));
-                setEditingSectionId(newId);
-              }}
-              onExperienceDelete={(id) => deleteItem('experience', id)}
-              onEducationDelete={(id) => deleteItem('education', id)}
-              onProjectDelete={(id) => deleteItem('project', id)}
-              onSkillDelete={(id) => deleteItem('skill', id)}
-              onCustomSectionDelete={(id) => deleteItem('customSection', id)}
-              onAddCustomSectionItem={addCustomSectionItem}
-              onCustomSectionItemDelete={deleteCustomSectionItem}
-            />
-            <div className="flex flex-col divide-y divide-gray-200 h-[calc(100vh-56px)]">
-              <div className="flex divide-x divide-gray-200 flex-1">
-                <div className="w-[40%] p-8 overflow-y-auto">{renderForm()}</div>
-                <div className="w-[60%] bg-gray-100 overflow-hidden">
+      <main className="flex-1">
+        {/* Mobile Notice */}
+        <div className="lg:hidden">
+          <MobileNotice />
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:block">
+          <div className="flex-1 grid grid-cols-[72px_1fr]">
+            <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
+            {activeTab === "edit" ? (
+              <div className="grid grid-cols-[300px_1fr]">
+                <Sidebar
+                  activeSection={activeSection}
+                  onSectionChange={setActiveSection}
+                  resumeData={resumeData}
+                  selectedIds={selectedIds}
+                  selectedExperienceId={selectedIds.experience}
+                  selectedEducationId={selectedIds.education}
+                  selectedProjectId={selectedIds.project}
+                  selectedSkillId={selectedIds.skill}
+                  selectedCustomSectionId={selectedIds.customSection}
+                  expandedSections={expandedSections}
+                  setExpandedSections={setExpandedSections}
+                  editingSectionId={editingSectionId}
+                  setEditingSectionId={setEditingSectionId}
+                  onExperienceSelect={(id) => {
+                    selectItem('experience', id)
+                    setActiveSection('experience')
+                  }}
+                  onEducationSelect={(id) => {
+                    selectItem('education', id)
+                    setActiveSection('education')
+                  }}
+                  onProjectSelect={(id) => {
+                    selectItem('project', id)
+                    setActiveSection('projects')
+                  }}
+                  onSkillSelect={(id) => {
+                    selectItem('skill', id)
+                    setActiveSection('skills')
+                  }}
+                  onCustomSectionSelect={(id) => {
+                    selectItem('customSection', id)
+                    setActiveSection('custom')
+                  }}
+                  onCustomSectionTitleChange={(sectionId, title) => {
+                    const section = resumeData.customSections.find(s => s.id === sectionId);
+                    if (!section) return;
+                    const updatedSection = { ...section, title };
+                    updateItem('customSection', updatedSection);
+                  }}
+                  onCustomSectionItemSelect={(sectionId, itemId) => {
+                    selectCustomSectionItem(sectionId, itemId)
+                    setActiveSection('custom')
+                  }}
+                  onAddExperience={() => {
+                    addItem('experience')
+                    setActiveSection('experience')
+                  }}
+                  onAddEducation={() => {
+                    addItem('education')
+                    setActiveSection('education')
+                  }}
+                  onAddProject={() => {
+                    addItem('project')
+                    setActiveSection('projects')
+                  }}
+                  onAddSkill={() => {
+                    addItem('skill')
+                    setActiveSection('skills')
+                  }}
+                  onAddCustomSection={() => {
+                    const newId = `customSection-${Date.now()}`;
+                    addItem('customSection');
+                    selectItem('customSection', newId);
+                    setActiveSection('custom');
+                    setExpandedSections(prev => ({
+                      ...prev,
+                      [newId]: true
+                    }));
+                    setEditingSectionId(newId);
+                  }}
+                  onExperienceDelete={(id) => deleteItem('experience', id)}
+                  onEducationDelete={(id) => deleteItem('education', id)}
+                  onProjectDelete={(id) => deleteItem('project', id)}
+                  onSkillDelete={(id) => deleteItem('skill', id)}
+                  onCustomSectionDelete={(id) => deleteItem('customSection', id)}
+                  onAddCustomSectionItem={addCustomSectionItem}
+                  onCustomSectionItemDelete={deleteCustomSectionItem}
+                />
+                <div className="flex flex-col divide-y divide-gray-200 h-[calc(100vh-56px)]">
+                  <div className="flex divide-x divide-gray-200 flex-1">
+                    <div className="w-[40%] p-8 overflow-y-auto">{renderForm()}</div>
+                    <div className="w-[60%] bg-gray-100 overflow-hidden">
+                      <ResumePreview resumeData={resumeData} templateName={selectedTemplate} onPDFGenerated={setPdfUrl} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-[600px_1fr]">
+                <div className="border-r border-gray-200 overflow-hidden">
+                  <TemplatePicker selectedTemplate={selectedTemplate} onTemplateSelect={setSelectedTemplate} />
+                </div>
+                <div className="bg-gray-100">
                   <ResumePreview resumeData={resumeData} templateName={selectedTemplate} onPDFGenerated={setPdfUrl} />
                 </div>
               </div>
-            </div>
+            )}
           </div>
-        ) : (
-          <div className="grid grid-cols-[600px_1fr]">
-            <div className="border-r border-gray-200 overflow-hidden">
-              <TemplatePicker selectedTemplate={selectedTemplate} onTemplateSelect={setSelectedTemplate} />
-            </div>
-            <div className="bg-gray-100">
-              <ResumePreview resumeData={resumeData} templateName={selectedTemplate} onPDFGenerated={setPdfUrl} />
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      </main>
     </div>
   )
 }
