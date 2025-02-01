@@ -313,7 +313,13 @@ export class ModernTemplate extends PDFTemplate {
               margin: [0, 0, 0, this.spacing.text] as [number, number, number, number],
               color: this.theme.textDark
             }
-          )
+          ),
+          edu.description ? {
+            text: edu.description,
+            fontSize: this.fontSize.normal,
+            color: this.theme.text,
+            margin: [0, 0, 0, this.spacing.text] as [number, number, number, number]
+          } : []
         ],
         margin: [0, 0, 0, index < education.length - 1 ? this.spacing.item : this.spacing.section] as [number, number, number, number]
       } as ContentStack))
@@ -336,6 +342,12 @@ export class ModernTemplate extends PDFTemplate {
               color: this.theme.textDark
             }
           ),
+          project.technologies ? {
+            text: project.technologies.join(', '),
+            fontSize: this.fontSize.normal,
+            color: this.theme.secondary,
+            margin: [0, 0, 0, this.spacing.text] as [number, number, number, number]
+          } : [],
           ...(project.bulletPoints || []).map((point: string) => ({
             text: `• ${point}`,
             fontSize: this.fontSize.normal,
