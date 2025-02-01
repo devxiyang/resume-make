@@ -20,7 +20,7 @@ export function useForm<T extends Record<string, any>>({
   const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
   const [touched, setTouched] = useState<Partial<Record<keyof T, boolean>>>({});
 
-  // 创建一个防抖的 onChange 函数
+  // 创建防抖的 onChange
   const debouncedOnChange = useRef(
     debounce((values: T) => {
       if (onChange) {
@@ -29,7 +29,7 @@ export function useForm<T extends Record<string, any>>({
     }, 1000)
   ).current;
 
-  // 在组件卸载时取消未执行的防抖函数
+  // 清理防抖
   useEffect(() => {
     return () => {
       debouncedOnChange.cancel();
@@ -44,6 +44,11 @@ export function useForm<T extends Record<string, any>>({
   }, [initialValues]);
 
   const handleChange = useCallback((field: keyof T, value: any) => {
+    // 如果是字符串且全是空格，则不触发更新
+    if (typeof value === 'string' && !value.trim()) {
+      return;
+    }
+
     const newValues = { ...values, [field]: value };
     setValues(newValues);
     

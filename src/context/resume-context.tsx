@@ -55,24 +55,16 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
     customSectionItem: null,
   });
 
-  // 使用 debounce 处理预览数据的更新
-  const debouncedUpdatePreview = useCallback(
-    debounce((data: ResumeData) => {
-      setPreviewData(data);
-      setIsEditing(false);
-    }, 1000),
-    []
-  );
-
   // 统一处理数据更新的函数
   const handleDataUpdate = useCallback((updateFn: (prev: ResumeData) => ResumeData) => {
     setIsEditing(true);
     setResumeData(prev => {
       const newData = updateFn(prev);
-      debouncedUpdatePreview(newData);
+      setPreviewData(newData);
+      setIsEditing(false);
       return newData;
     });
-  }, [debouncedUpdatePreview]);
+  }, []);
 
   const updateResumeData = useCallback((data: Partial<ResumeData> | ((prev: ResumeData) => ResumeData)) => {
     if (typeof data === 'function') {
