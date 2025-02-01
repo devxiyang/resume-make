@@ -48,8 +48,8 @@ export function useForm<T extends Record<string, any>>({
   }, [initialValues]);
 
   const handleChange = useCallback((field: keyof T, value: any) => {
-    // 如果是字符串且全是空格，则不触发更新
-    if (typeof value === 'string' && !value.trim()) {
+    // 如果是字符串且全是空格，但不是空字符串，则不触发更新
+    if (typeof value === 'string' && value.length > 0 && !value.trim()) {
       return;
     }
 
