@@ -7,7 +7,6 @@ export const initialResumeData: ResumeData = {
     email: "devxiyang@mock.com",
     phone: "123456",
     personalWebsite: "devxiyang.com",
-    linkedin: "linkedin.com/xiyang",
     summary: "Experienced ML Engineering Expert with a strong background in building and scaling AI infrastructure. Proven track record in leading teams and delivering high-impact machine learning solutions.",
   },
   experiences: [
