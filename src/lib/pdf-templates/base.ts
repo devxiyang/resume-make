@@ -245,6 +245,7 @@ export abstract class PDFTemplate {
                 font: 'NotoSansSC',
                 lineHeight: 1.4
             },
+            pageMargins: [40, 40, 40, 40],
             fonts: {
                 NotoSansSC: {
                     normal: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
@@ -252,8 +253,7 @@ export abstract class PDFTemplate {
                     italics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
                     bolditalics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf'
                 }
-            },
-            pageMargins: [40, 40, 40, 40]
+            }
         }
     }
 } 

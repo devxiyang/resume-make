@@ -85,7 +85,7 @@ const ResumePreview = ({ resumeData, templateName = 'clean', scale = 1, onPDFGen
       {pdfUrl && (
         <div className="w-full h-full overflow-hidden">
           <iframe
-            src={pdfUrl + '#zoom=FitW&toolbar=0&navpanes=0&scrollbar=0'}
+            src={pdfUrl + '#view=FitH&toolbar=0&navpanes=0&scrollbar=0'}
             className="w-full h-full"
             style={{
               border: 'none',
@@ -93,7 +93,9 @@ const ResumePreview = ({ resumeData, templateName = 'clean', scale = 1, onPDFGen
               backgroundColor: 'transparent',
               margin: 0,
               padding: 0,
-              overflow: 'hidden'
+              overflow: 'hidden',
+              transform: `scale(${scale})`,
+              transformOrigin: 'top center'
             }}
           />
         </div>
