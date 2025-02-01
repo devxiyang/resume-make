@@ -238,6 +238,30 @@ export class PDFTemplate {
     ]
   }
 
+  protected generateCustomSections(): Content[] {
+    const { customSections } = this.data
+    if (!customSections?.length) return []
+
+    return customSections.flatMap(section => [
+      this.components.header(section.title),
+      ...section.items.flatMap(item => [
+        {
+          text: item.title,
+          fontSize: this.fontSize.normal,
+          bold: true,
+          color: this.theme.text,
+          margin: [0, 0, 0, this.spacing.text]
+        } as ContentText,
+        item.description && {
+          text: item.description,
+          fontSize: this.fontSize.normal,
+          color: this.theme.text,
+          margin: [0, 0, 0, this.spacing.item]
+        } as ContentText
+      ].filter(Boolean))
+    ])
+  }
+
   public generate(): TDocumentDefinitions {
     return {
       content: [
@@ -245,7 +269,8 @@ export class PDFTemplate {
         ...this.generateSummarySection(),
         ...this.generateExperienceSection(),
         ...this.generateEducationSection(),
-        ...this.generateSkillsSection()
+        ...this.generateSkillsSection(),
+        ...this.generateCustomSections()
       ],
       defaultStyle: {
         fontSize: this.fontSize.normal,
