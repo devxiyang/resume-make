@@ -6,6 +6,7 @@ export interface Theme {
   secondary: string
   accent: string
   text: string
+  textDark: string
   background: string
   divider: string
 }
@@ -30,10 +31,11 @@ export interface Components {
   skillBadge: (text: string) => ContentText
   timelineItem: (title: string, subtitle: string, date: string, description?: string) => Content[]
   twoColumnLayout: (leftContent: Content[], rightContent: Content[], options?: { columnGap?: number }) => ContentColumns
-  titleDateRow: (title: string, date?: string) => ContentColumns
+  titleDateRow: (title: string, date?: string, options?: { color?: string }) => ContentColumns
   titleDescriptionItem: (title: string, description?: string, options?: { 
-    date?: string, 
+    date?: string
     margin?: [number, number, number, number]
+    color?: string
   }) => Content[]
 }
 
@@ -43,6 +45,7 @@ export class PDFTemplate {
     secondary: '#475569',
     accent: '#3b82f6',
     text: '#1f2937',
+    textDark: '#1f2937',
     background: '#ffffff',
     divider: '#e2e8f0'
   }
@@ -156,14 +159,14 @@ export class PDFTemplate {
       columnGap: options.columnGap
     }),
 
-    titleDateRow: (title: string, date?: string): ContentColumns => ({
+    titleDateRow: (title: string, date?: string, options = {}): ContentColumns => ({
       columns: [
         {
           width: '*',
           text: title,
           fontSize: this.fontSize.normal,
           bold: true,
-          color: this.theme.primary
+          color: options.color || this.theme.primary
         } as ContentText,
         date ? {
           width: 'auto',
@@ -178,7 +181,7 @@ export class PDFTemplate {
 
     titleDescriptionItem: (title: string, description?: string, options = {}): Content[] => {
       const items: Content[] = [
-        this.components.titleDateRow(title, options.date)
+        this.components.titleDateRow(title, options.date, options)
       ]
 
       if (description) {

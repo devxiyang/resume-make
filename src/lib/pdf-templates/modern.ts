@@ -12,6 +12,7 @@ export class ModernTemplate extends PDFTemplate {
       secondary: '#64748b',  // 优雅的灰色
       accent: '#3b82f6',     // 活力蓝
       text: '#334155',       // 深灰文本
+      textDark: '#1e293b',   // 更深的灰色，用于重要文本
       background: '#ffffff',
       divider: '#e2e8f0'     // 浅色分隔线
     }
@@ -84,9 +85,29 @@ export class ModernTemplate extends PDFTemplate {
         columnGap: 20
       }),
 
+      titleDateRow: (title: string, date?: string, options: any = {}): ContentColumns => ({
+        columns: [
+          {
+            width: '*',
+            text: title,
+            fontSize: this.fontSize.normal,
+            bold: true,
+            color: options.color || this.theme.secondary  // 允许自定义颜色
+          } as ContentText,
+          date ? {
+            width: 'auto',
+            text: date,
+            fontSize: this.fontSize.small,
+            color: this.theme.secondary,
+            alignment: 'right'
+          } as ContentText : []
+        ],
+        columnGap: 10
+      }),
+
       titleDescriptionItem: (title: string, description?: string, options: any = {}): Content[] => {
         const items: Content[] = [
-          this.components.titleDateRow(title, options.date)
+          this.components.titleDateRow(title, options.date, options)
         ]
 
         if (description) {
@@ -191,7 +212,8 @@ export class ModernTemplate extends PDFTemplate {
             exp.position,
             {
               date: `${exp.startDate} - ${exp.endDate || 'Present'}`,
-              margin: [0, 0, 0, this.spacing.text] as [number, number, number, number]
+              margin: [0, 0, 0, this.spacing.text] as [number, number, number, number],
+              color: this.theme.textDark  // 公司名称使用更深的颜色
             }
           ),
           ...exp.bulletPoints.map((point: string) => ({
@@ -212,58 +234,25 @@ export class ModernTemplate extends PDFTemplate {
 
     return [
       this.components.header('Skills & Expertise'),
-      {
+      ...skills.map(skill => ({
         columns: [
           {
-            width: '*',
-            stack: skills.slice(0, Math.ceil(skills.length / 2)).map(skill => ({
-              columns: [
-                {
-                  width: 'auto',
-                  text: skill.name,
-                  fontSize: this.fontSize.normal,
-                  bold: true,
-                  color: this.theme.primary,
-                  margin: [0, 0, 8, this.spacing.text]  // 减小技能名称右边距
-                },
-                {
-                  width: '*',
-                  text: skill.description || '',
-                  fontSize: this.fontSize.normal,
-                  color: this.theme.text,
-                  margin: [0, 0, 0, this.spacing.text]
-                }
-              ],
-              columnGap: 6  // 减小列间距
-            }))
+            width: 'auto',
+            text: skill.name,
+            fontSize: this.fontSize.normal,
+            bold: true,
+            color: this.theme.secondary  // 技能名称使用次要色
           },
           {
             width: '*',
-            stack: skills.slice(Math.ceil(skills.length / 2)).map(skill => ({
-              columns: [
-                {
-                  width: 'auto',
-                  text: skill.name,
-                  fontSize: this.fontSize.normal,
-                  bold: true,
-                  color: this.theme.primary,
-                  margin: [0, 0, 8, this.spacing.text]  // 减小技能名称右边距
-                },
-                {
-                  width: '*',
-                  text: skill.description || '',
-                  fontSize: this.fontSize.normal,
-                  color: this.theme.text,
-                  margin: [0, 0, 0, this.spacing.text]
-                }
-              ],
-              columnGap: 6  // 减小列间距
-            }))
+            text: skill.description || '',
+            fontSize: this.fontSize.normal,
+            color: this.theme.text
           }
         ],
-        columnGap: 16,  // 减小两列之间的间距
-        margin: [0, 0, 0, this.spacing.section]
-      } as ContentColumns
+        columnGap: 8,
+        margin: [0, 0, 0, this.spacing.text]
+      } as ContentColumns))
     ]
   }
 
@@ -279,7 +268,8 @@ export class ModernTemplate extends PDFTemplate {
           item.description,
           {
             date: item.date,
-            margin: [0, 0, 0, index < section.items.length - 1 ? this.spacing.item : 0] as [number, number, number, number]
+            margin: [0, 0, 0, index < section.items.length - 1 ? this.spacing.item : 0] as [number, number, number, number],
+            color: this.theme.textDark  // 自定义部分标题使用更深的颜色
           }
         )
       )
