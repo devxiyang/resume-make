@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
+import { debounce } from 'lodash-es';
 
 export interface UseFormOptions<T> {
   initialValues: T;
@@ -19,6 +20,22 @@ export function useForm<T extends Record<string, any>>({
   const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
   const [touched, setTouched] = useState<Partial<Record<keyof T, boolean>>>({});
 
+  // 创建一个防抖的 onChange 函数
+  const debouncedOnChange = useRef(
+    debounce((values: T) => {
+      if (onChange) {
+        onChange(values);
+      }
+    }, 1000)
+  ).current;
+
+  // 在组件卸载时取消未执行的防抖函数
+  useEffect(() => {
+    return () => {
+      debouncedOnChange.cancel();
+    };
+  }, [debouncedOnChange]);
+
   // Update values when initialValues change
   useEffect(() => {
     setValues(initialValues);
@@ -35,11 +52,9 @@ export function useForm<T extends Record<string, any>>({
       setErrors(prev => ({ ...prev, [field]: validationErrors[field] }));
     }
 
-    // 直接调用 onChange 回调
-    if (onChange) {
-      onChange(newValues);
-    }
-  }, [values, validate, onChange]);
+    // 使用防抖的 onChange
+    debouncedOnChange(newValues);
+  }, [values, validate, debouncedOnChange]);
 
   const handleBlur = useCallback((field: keyof T) => {
     setTouched(prev => ({ ...prev, [field]: true }));
