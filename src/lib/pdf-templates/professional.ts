@@ -95,20 +95,12 @@ export class ProfessionalTemplate extends PDFTemplate {
     } as ContentStack
 
     const contactInfo = {
-      columns: [
+      stack: [
         {
-          width: '*',
           text: [
             { text: 'Email: ', bold: true },
-            personal.email
-          ],
-          fontSize: this.fontSize.normal,
-          color: this.theme.text,
-          alignment: 'center'
-        },
-        {
-          width: '*',
-          text: [
+            personal.email,
+            '    ',
             { text: 'Tel: ', bold: true },
             personal.phone
           ],
@@ -116,30 +108,26 @@ export class ProfessionalTemplate extends PDFTemplate {
           color: this.theme.text,
           alignment: 'center'
         },
-        personal.address ? {
-          width: '*',
+        personal.address || personal.personalWebsite ? {
           text: [
-            { text: 'Address: ', bold: true },
-            personal.address
+            personal.address ? [
+              { text: 'Address: ', bold: true },
+              personal.address
+            ] : [],
+            personal.address && personal.personalWebsite ? '    ' : [],
+            personal.personalWebsite ? [
+              { text: 'Website: ', bold: true },
+              personal.personalWebsite
+            ] : []
           ],
           fontSize: this.fontSize.normal,
           color: this.theme.text,
-          alignment: 'center'
-        } : [],
-        personal.personalWebsite ? {
-          width: '*',
-          text: [
-            { text: 'Website: ', bold: true },
-            personal.personalWebsite
-          ],
-          fontSize: this.fontSize.normal,
-          color: this.theme.text,
-          alignment: 'center'
-        } : []
-      ].filter(Boolean),
-      columnGap: 10,
+          alignment: 'center',
+          margin: [0, this.spacing.text, 0, 0]
+        } : {}
+      ],
       margin: [0, 0, 0, this.spacing.section]
-    } as ContentColumns
+    } as ContentStack
 
     const summarySection = personal.summary ? {
       stack: [
