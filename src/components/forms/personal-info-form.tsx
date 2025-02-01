@@ -98,15 +98,6 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="linkedin">LinkedIn</Label>
-            <Input
-              id="linkedin"
-              value={form.values.linkedin}
-              onChange={(e) => form.handleChange('linkedin', e.target.value)}
-            />
-          </div>
-
-          <div>
             <Label htmlFor="personalWebsite">Personal Website</Label>
             <Input
               id="personalWebsite"

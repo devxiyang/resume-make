@@ -1,4 +1,4 @@
-import { FileEdit, Layout } from "lucide-react"
+import { FileEdit, Layout, Pencil } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -9,32 +9,30 @@ interface NavTabsProps {
 
 export function NavTabs({ activeTab, onTabChange }: NavTabsProps) {
   return (
-    <div className="w-[72px] border-r border-gray-200 bg-gray-50/50">
-      <div className="flex flex-col items-center gap-1 p-2">
-        <Button
-          variant="ghost"
-          size="sm"
+    <div className="border-r bg-muted">
+      <div className="flex flex-col items-center gap-2 py-4">
+        <button
           className={cn(
-            "w-full h-full aspect-square flex flex-col items-center justify-center gap-1",
-            activeTab === "edit" && "bg-gray-100",
+            "p-2 rounded-lg transition-colors",
+            activeTab === "edit"
+              ? "bg-background text-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground hover:bg-background/40"
           )}
           onClick={() => onTabChange("edit")}
         >
-          <FileEdit className="h-5 w-5" />
-          <span className="text-[11px]">Edit</span>
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
+          <Pencil className="h-5 w-5" />
+        </button>
+        <button
           className={cn(
-            "w-full h-full aspect-square flex flex-col items-center justify-center gap-1",
-            activeTab === "template" && "bg-gray-100",
+            "p-2 rounded-lg transition-colors",
+            activeTab === "template"
+              ? "bg-background text-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground hover:bg-background/40"
           )}
           onClick={() => onTabChange("template")}
         >
           <Layout className="h-5 w-5" />
-          <span className="text-[11px]">Template</span>
-        </Button>
+        </button>
       </div>
     </div>
   )

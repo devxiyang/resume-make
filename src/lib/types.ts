@@ -4,7 +4,6 @@ export interface PersonalInfo {
   email: string;
   phone: string;
   address?: string;
-  linkedin?: string;
   personalWebsite?: string;
   summary?: string;
 }
