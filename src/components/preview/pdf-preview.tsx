@@ -3,15 +3,16 @@
 import { useEffect, useState } from 'react'
 import { ResumeData } from '@/lib/types'
 import { getPDFTemplate } from '@/lib/pdf-templates'
+import pdfMake from 'pdfmake/build/pdfmake'
 
-// 辅助函数：将ArrayBuffer转换为Base64字符串
-function arrayBufferToBase64(buffer: ArrayBuffer): string {
-  const binary = new Uint8Array(buffer).reduce(
-    (data, byte) => data + String.fromCharCode(byte),
-    ''
-  );
-  return btoa(binary);
-}
+// // 辅助函数：将ArrayBuffer转换为Base64字符串
+// function arrayBufferToBase64(buffer: ArrayBuffer): string {
+//   const binary = new Uint8Array(buffer).reduce(
+//     (data, byte) => data + String.fromCharCode(byte),
+//     ''
+//   );
+//   return btoa(binary);
+// }
 
 interface PDFPreviewProps {
   resumeData: ResumeData
@@ -34,23 +35,33 @@ const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPrevie
       URL.revokeObjectURL(pdfUrl)
     }
 
+    // 配置中文字体
+    pdfMake.fonts = {
+      SourceHanSans: {
+        normal: '/fonts/SourceHanSansCN-Regular.ttf',
+        bold: '/fonts/SourceHanSansCN-Bold.ttf',
+        italics: '/fonts/SourceHanSansCN-Regular.ttf',
+        bolditalics: '/fonts/SourceHanSansCN-Bold.ttf'
+      }
+    }
+
     const generatePDF = async () => {
       try {
-        // 动态导入pdfmake
-        const pdfMake = await import('pdfmake/build/pdfmake')
-        await import('pdfmake/build/vfs_fonts')
-
         // 获取模板并生成文档定义
         const template = getPDFTemplate(templateName)
         const docDefinition = template(resumeData)
 
+        // 设置默认字体
+        docDefinition.defaultStyle = {
+          ...docDefinition.defaultStyle,
+          font: 'SourceHanSans'
+        }
+
         // 生成PDF
-        const pdfDoc = pdfMake.default.createPdf(docDefinition)
+        const pdfDocGenerator = pdfMake.createPdf(docDefinition)
         
-        // 获取PDF blob
-        pdfDoc.getBlob((blob: Blob) => {
-          const blobUrl = URL.createObjectURL(blob)
-          setPdfUrl(blobUrl)
+        pdfDocGenerator.getDataUrl((dataUrl) => {
+          setPdfUrl(dataUrl)
         })
 
       } catch (error) {
