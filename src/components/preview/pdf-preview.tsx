@@ -103,7 +103,7 @@ const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPrevie
 
     // 配置字体
     pdfMake.fonts = {
-      SourceHanSans: {
+      NotoSansSC: {
         normal: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
         bold: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf',
         italics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',

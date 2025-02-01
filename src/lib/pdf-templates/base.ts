@@ -249,7 +249,7 @@ export class PDFTemplate {
       ],
       defaultStyle: {
         fontSize: this.fontSize.normal,
-        font: 'SourceHanSans',
+        font: 'NotoSansSC',
         lineHeight: 1.4
       },
       pageMargins: [40, 40, 40, 40]
