@@ -40,40 +40,12 @@ const templates = [
     bestFor: 'Tech, Design, and Marketing professionals',
   },
   {
-    id: 'sharp',
-    name: 'Sharp',
-    description: 'Bold and impactful layout that commands attention with strong typography.',
-    tags: ['Bold', 'Corporate', 'Executive'],
-    bestFor: 'Business executives and managers',
-  },
-  {
     id: 'clean',
     name: 'Clean',
     description: 'Minimalist design that puts your content front and center.',
     tags: ['Minimal', 'Simple', 'Versatile'],
     bestFor: 'All industries, especially traditional sectors',
-  },
-  {
-    id: 'fresh',
-    name: 'Fresh',
-    description: 'Modern and energetic design with a perfect balance of creativity and professionalism.',
-    tags: ['Creative', 'Dynamic', 'Modern'],
-    bestFor: 'Creative professionals and startups',
-  },
-  {
-    id: 'pure',
-    name: 'Pure',
-    description: 'Elegant and refined layout with perfect whitespace distribution.',
-    tags: ['Elegant', 'Refined', 'Classic'],
-    bestFor: 'Academic and research positions',
-  },
-  {
-    id: 'boston',
-    name: 'Boston',
-    description: 'Traditional yet modern design that exudes professionalism and competence.',
-    tags: ['Professional', 'Traditional', 'Structured'],
-    bestFor: 'Finance and consulting professionals',
-  },
+  }
 ]
 
 export default function TemplatesPage() {

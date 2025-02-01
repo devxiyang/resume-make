@@ -18,9 +18,9 @@ import { ResumeProvider } from "@/context/resume-context"
 import { useResume } from "@/context/resume-context"
 import { SiteHeader } from "@/components/layout/site-header"
 import Link from 'next/link'
-
+import ResumePreview from "@/components/preview/resume-preview"
 // 动态导入预览组件
-const ResumePreview = dynamic(() => import("@/components/preview/resume-preview"), { ssr: false });
+// const ResumePreview = dynamic(() => import("@/components/preview/resume-preview"), { ssr: false });
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 type ActiveTab = "edit" | "template"
