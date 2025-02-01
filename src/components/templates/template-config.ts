@@ -28,7 +28,7 @@ export const templates: Template[] = [
     name: 'Professional',
     type: 'premium',
     description: 'A polished template that exudes professionalism and competence.',
-    preview: '/templates/professional.jpg',
+    preview: '/templates/clean.jpg',
     features: [
       'Classic layout',
       'Professional typography',
