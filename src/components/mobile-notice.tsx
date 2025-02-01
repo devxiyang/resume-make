@@ -1,90 +1,50 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { ScreenShare, Sparkles, Layers, Paintbrush2 } from "lucide-react"
 
 export function MobileNotice() {
   return (
-    <div className="flex flex-col items-center justify-center p-8 text-center min-h-[calc(100vh-8.5rem)]">
-      <div className="max-w-md space-y-6">
-        <div className="flex justify-center">
-          <svg
-            className="w-24 h-24 text-blue-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            />
-          </svg>
+    <div className="flex flex-col items-center justify-center p-8 text-center min-h-[calc(100vh-8.5rem)] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white dark:from-blue-950/20 dark:via-background dark:to-background">
+      <div className="max-w-md space-y-12">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 blur-3xl -z-10" />
+          <div className="flex justify-center">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-3xl blur-xl" />
+              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/80 to-white/50 dark:from-gray-950/80 dark:to-gray-950/50 backdrop-blur-sm border border-white/20 dark:border-white/10">
+                <ScreenShare className="w-12 h-12 stroke-[1.2] text-blue-600 dark:text-blue-400" />
+              </div>
+            </div>
+          </div>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight">为获得最佳体验</h2>
-        <p className="text-muted-foreground">
-          我们建议您使用桌面设备编辑简历。在更大的屏幕上，您可以：
-        </p>
-        <ul className="space-y-3 text-left">
-          <li className="flex items-start gap-3">
-            <svg
-              className="w-5 h-5 mt-1 text-green-500 shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            <span>实时预览简历效果，所见即所得</span>
+
+        <div className="space-y-3">
+          <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-br from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Desktop Experience Recommended
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            For the best resume editing experience, please switch to a desktop device
+          </p>
+        </div>
+
+        <ul className="space-y-4 text-left">
+          <li className="group flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-950/50 dark:to-gray-950/30 border border-white/20 dark:border-white/10 backdrop-blur-sm transition-colors hover:border-blue-500/20">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-white to-white/80 dark:from-gray-900 dark:to-gray-900/80 shadow-sm border border-white/20 dark:border-white/10">
+              <Sparkles className="w-5 h-5 text-blue-500" />
+            </div>
+            <span className="font-medium text-gray-600 dark:text-gray-300">Real-time preview with live updates</span>
           </li>
-          <li className="flex items-start gap-3">
-            <svg
-              className="w-5 h-5 mt-1 text-green-500 shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            <span>使用更丰富的编辑功能，轻松调整内容布局</span>
+          <li className="group flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-950/50 dark:to-gray-950/30 border border-white/20 dark:border-white/10 backdrop-blur-sm transition-colors hover:border-blue-500/20">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-white to-white/80 dark:from-gray-900 dark:to-gray-900/80 shadow-sm border border-white/20 dark:border-white/10">
+              <Layers className="w-5 h-5 text-blue-500" />
+            </div>
+            <span className="font-medium text-gray-600 dark:text-gray-300">Advanced editing tools and layout options</span>
           </li>
-          <li className="flex items-start gap-3">
-            <svg
-              className="w-5 h-5 mt-1 text-green-500 shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            <span>获得完整的模板预览和自定义选项</span>
+          <li className="group flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-br from-white/50 to-white/30 dark:from-gray-950/50 dark:to-gray-950/30 border border-white/20 dark:border-white/10 backdrop-blur-sm transition-colors hover:border-blue-500/20">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-white to-white/80 dark:from-gray-900 dark:to-gray-900/80 shadow-sm border border-white/20 dark:border-white/10">
+              <Paintbrush2 className="w-5 h-5 text-blue-500" />
+            </div>
+            <span className="font-medium text-gray-600 dark:text-gray-300">Full template preview and customization</span>
           </li>
         </ul>
-        <div className="pt-4">
-          <Button
-            variant="outline"
-            className="w-full"
-            asChild
-          >
-            <Link href="/dashboard">
-              返回仪表盘
-            </Link>
-          </Button>
-        </div>
       </div>
     </div>
   )
