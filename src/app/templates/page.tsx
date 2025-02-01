@@ -40,6 +40,20 @@ const templates = [
     bestFor: 'Tech, Design, and Marketing professionals',
   },
   {
+    id: 'professional',
+    name: 'Professional',
+    description: 'A polished template that exudes professionalism and competence.',
+    tags: ['Classic', 'Business', 'Traditional'],
+    bestFor: 'Business professionals and executives',
+  },
+  {
+    id: 'fresh',
+    name: 'Fresh',
+    description: 'A vibrant and energetic template that stands out from the crowd.',
+    tags: ['Modern', 'Creative', 'Dynamic'],
+    bestFor: 'Creative professionals and startups',
+  },
+  {
     id: 'clean',
     name: 'Clean',
     description: 'Minimalist design that puts your content front and center.',
@@ -54,56 +68,56 @@ export default function TemplatesPage() {
       <SiteHeader />
 
       {/* Header */}
-      <section className="container max-w-6xl mx-auto px-4 pt-24 md:pt-32 pb-12">
-        <div className="flex flex-col items-center text-center space-y-8">
-          <h1 className="font-bold tracking-tight text-4xl sm:text-5xl">
+      <section className="container max-w-4xl mx-auto px-4 pt-12 md:pt-16 pb-6">
+        <div className="flex flex-col items-center text-center space-y-4">
+          <h1 className="font-bold tracking-tight text-3xl sm:text-4xl">
             Professional Resume Templates
           </h1>
-          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+          <p className="max-w-[32rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
             Choose from our collection of professionally designed templates. 
-            Each template is crafted to help you stand out and land your dream job.
+            Each template is crafted to help you stand out.
           </p>
         </div>
       </section>
 
       {/* Templates Grid */}
-      <section className="container max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="container max-w-4xl mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {templates.map((template) => (
             <div key={template.id} className="group flex flex-col bg-card rounded-lg border transition-all hover:shadow-lg">
-              <div className="relative aspect-[1/1.4] overflow-hidden rounded-t-lg bg-muted">
+              <div className="relative aspect-[1/1.414] overflow-hidden rounded-t-lg bg-muted">
                 <Image
                   src={`/templates/${template.id}.jpg`}
                   alt={`${template.name} Template Preview - Best for ${template.bestFor}`}
                   fill
                   quality={100}
-                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 30vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 30vw"
                   priority={template.id === 'modern' || template.id === 'sharp'}
                   className="object-contain"
                 />
               </div>
-              <div className="p-6 space-y-4">
-                <h2 className="text-2xl font-bold">{template.name} Resume Template</h2>
-                <p className="text-muted-foreground">{template.description}</p>
-                <div className="flex flex-wrap gap-2">
+              <div className="p-3 space-y-2">
+                <h2 className="text-lg font-bold">{template.name} Resume Template</h2>
+                <p className="text-sm text-muted-foreground">{template.description}</p>
+                <div className="flex flex-wrap gap-1.5">
                   {template.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20"
+                      className="inline-flex items-center rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <div className="pt-4">
-                  <p className="text-sm text-muted-foreground">
+                <div>
+                  <p className="text-xs text-muted-foreground">
                     <span className="font-medium">Best for:</span> {template.bestFor}
                   </p>
                 </div>
                 <Link href={`/builder?template=${template.id}`} aria-label={`Use ${template.name} template`}>
-                  <Button className="w-full mt-4">
+                  <Button className="w-full h-8 text-sm">
                     Use this template
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-3 w-3" />
                   </Button>
                 </Link>
               </div>
@@ -113,18 +127,18 @@ export default function TemplatesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="container max-w-6xl mx-auto px-4 py-20">
-        <div className="rounded-lg bg-primary p-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
+      <section className="container max-w-4xl mx-auto px-4 py-12">
+        <div className="rounded-lg bg-primary p-4 text-center">
+          <h2 className="text-lg md:text-xl font-bold text-primary-foreground mb-2">
             Ready to Create Your Professional Resume?
           </h2>
-          <p className="text-primary-foreground/90 mb-8 max-w-[42rem] mx-auto">
+          <p className="text-primary-foreground/90 mb-4 max-w-[32rem] mx-auto text-sm">
             Choose your favorite template and start building your resume now.
           </p>
           <Link href="/builder" aria-label="Start building your resume">
-            <Button size="lg" variant="secondary" className="h-12 px-8">
+            <Button size="default" variant="secondary" className="h-8 px-4">
               Start Building Now
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-3 w-3" />
             </Button>
           </Link>
         </div>
