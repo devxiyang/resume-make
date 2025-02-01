@@ -74,11 +74,11 @@ export class ModernTemplate extends PDFTemplate {
       twoColumnLayout: (leftContent: Content[], rightContent: Content[]): ContentColumns => ({
         columns: [
           {
-            width: '*',
+            width: '60%',  // 左侧内容占60%
             stack: leftContent
           },
           {
-            width: 'auto',
+            width: '40%',  // 右侧内容占40%
             stack: rightContent
           }
         ],
@@ -126,77 +126,74 @@ export class ModernTemplate extends PDFTemplate {
 
   protected generatePersonalSection(): Content[] {
     const { personal } = this.data
+
     const leftContent = [
       {
-        columns: [
-          {
-            text: personal.name,
-            fontSize: this.fontSize.name,
-            bold: true,
-            color: this.theme.primary,
-            width: 'auto'
-          },
-          {
-            text: personal.jobTitle,
-            fontSize: this.fontSize.title,
-            color: this.theme.accent,
-            width: '*',
-            margin: [0, this.fontSize.name - this.fontSize.title, 0, 0] as [number, number, number, number]
-          }
-        ]
-      } as ContentColumns,
+        text: personal.name,
+        fontSize: this.fontSize.name,
+        bold: true,
+        color: this.theme.primary,
+        margin: [0, 0, 0, this.spacing.text] as [number, number, number, number]
+      } as ContentText,
+      {
+        text: personal.jobTitle,
+        fontSize: this.fontSize.title,
+        color: this.theme.accent,
+        margin: [0, 0, 0, this.spacing.text] as [number, number, number, number]
+      } as ContentText,
       personal.summary ? {
         text: personal.summary,
         fontSize: this.fontSize.normal,
         color: this.theme.text,
         lineHeight: 1.2,
-        margin: [0, this.spacing.text, 0, 0] as [number, number, number, number]
+        margin: [0, this.spacing.section, 0, 0] as [number, number, number, number]
       } as ContentText : []
     ]
 
     const rightContent = [
       {
-        text: [
-          { text: '✉  ', color: this.theme.primary },
-          { text: personal.email, color: this.theme.text }
+        columns: [
+          { text: 'Email:', width: 40, color: this.theme.text, fontSize: this.fontSize.normal },
+          { text: personal.email, color: this.theme.text, fontSize: this.fontSize.normal }
         ],
-        fontSize: this.fontSize.normal,
-        lineHeight: 1.2,
-        margin: [0, 0, 0, 1] as [number, number, number, number]
-      } as ContentText,
+        margin: [0, 0, 0, this.spacing.text]
+      },
       {
-        text: [
-          { text: '📱 ', color: this.theme.primary },
-          { text: personal.phone, color: this.theme.text }
+        columns: [
+          { text: 'Tel:', width: 40, color: this.theme.text, fontSize: this.fontSize.normal },
+          { text: personal.phone, color: this.theme.text, fontSize: this.fontSize.normal }
         ],
-        fontSize: this.fontSize.normal,
-        lineHeight: 1.2,
-        margin: [0, 0, 0, 1] as [number, number, number, number]
-      } as ContentText,
-      personal.linkedin ? {
-        text: [
-          { text: '🔗 ', color: this.theme.primary },
-          { text: personal.linkedin, color: this.theme.text }
+        margin: [0, 0, 0, this.spacing.text]
+      },
+      personal.address ? {
+        columns: [
+          { text: 'Addr:', width: 40, color: this.theme.text, fontSize: this.fontSize.normal },
+          { text: personal.address, color: this.theme.text, fontSize: this.fontSize.normal }
         ],
-        fontSize: this.fontSize.normal,
-        lineHeight: 1.2,
-        margin: [0, 0, 0, 1] as [number, number, number, number]
-      } as ContentText : [],
+        margin: [0, 0, 0, this.spacing.text]
+      } : [],
       personal.personalWebsite ? {
-        text: [
-          { text: '🌐 ', color: this.theme.primary },
-          { text: personal.personalWebsite, color: this.theme.text }
+        columns: [
+          { text: 'Web:', width: 40, color: this.theme.text, fontSize: this.fontSize.normal },
+          { text: personal.personalWebsite, color: this.theme.text, fontSize: this.fontSize.normal }
         ],
-        fontSize: this.fontSize.normal,
-        lineHeight: 1.2,
-        margin: [0, 0, 0, 1] as [number, number, number, number]
-      } as ContentText : []
+        margin: [0, 0, 0, this.spacing.text]
+      } : []
     ]
 
     return [{
-      ...this.components.twoColumnLayout(leftContent, rightContent),
-      margin: [0, 0, 0, this.spacing.section] as [number, number, number, number]
-    }]
+      columns: [
+        {
+          width: '*',
+          stack: leftContent
+        },
+        {
+          width: 'auto',
+          stack: rightContent,
+          margin: [20, 0, 0, 0]  // 添加左边距代替 columnGap
+        }
+      ]
+    } as ContentColumns]
   }
 
   protected generateExperienceSection(): Content[] {
@@ -274,6 +271,81 @@ export class ModernTemplate extends PDFTemplate {
         )
       )
     ])
+  }
+
+  public generate() {
+    return {
+      content: [
+        ...this.generatePersonalSection(),
+        ...this.generateExperienceSection(),
+        ...this.generateEducationSection(),
+        ...this.generateProjectsSection(),
+        ...this.generateSkillsSection(),
+        ...this.generateCustomSections()
+      ],
+      defaultStyle: {
+        font: 'NotoSansSC'
+      },
+      fonts: {
+        NotoSansSC: {
+          normal: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
+          bold: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf',
+          italics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
+          bolditalics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf'
+        }
+      }
+    }
+  }
+
+  protected generateEducationSection(): Content[] {
+    const { education } = this.data
+    if (!education?.length) return []
+
+    return [
+      this.components.header('Education'),
+      ...education.map((edu, index) => ({
+        stack: [
+          ...this.components.titleDescriptionItem(
+            edu.school,
+            edu.degree,
+            {
+              date: `${edu.startDate} - ${edu.endDate}`,
+              margin: [0, 0, 0, this.spacing.text] as [number, number, number, number],
+              color: this.theme.textDark
+            }
+          )
+        ],
+        margin: [0, 0, 0, index < education.length - 1 ? this.spacing.item : this.spacing.section] as [number, number, number, number]
+      } as ContentStack))
+    ]
+  }
+
+  protected generateProjectsSection(): Content[] {
+    const { projects } = this.data
+    if (!projects?.length) return []
+
+    return [
+      this.components.header('Projects'),
+      ...projects.map((project, index) => ({
+        stack: [
+          ...this.components.titleDescriptionItem(
+            project.name,
+            project.description,
+            {
+              margin: [0, 0, 0, this.spacing.text] as [number, number, number, number],
+              color: this.theme.textDark
+            }
+          ),
+          ...(project.bulletPoints || []).map((point: string) => ({
+            text: `• ${point}`,
+            fontSize: this.fontSize.normal,
+            color: this.theme.text,
+            margin: [10, 1, 0, 0] as [number, number, number, number]
+          }))
+        ],
+        margin: [0, 0, 0, index < projects.length - 1 ? this.spacing.item : this.spacing.section] as [number, number, number, number]
+      } as ContentStack))
+    ]
   }
 }
 

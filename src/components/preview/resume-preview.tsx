@@ -45,7 +45,7 @@ const ResumePreview = ({ resumeData, templateName = 'clean', scale = 1, onPDFGen
 
         // 生成PDF
         const pdfDocGenerator = pdfMake.createPdf(docDefinition)
-        
+
         pdfDocGenerator.getDataUrl((dataUrl) => {
           setPdfUrl(dataUrl)
           onPDFGenerated?.(dataUrl)
