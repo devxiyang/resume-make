@@ -84,9 +84,10 @@ interface PDFPreviewProps {
   resumeData: ResumeData
   templateName?: string
   scale?: number
+  onPDFGenerated?: (url: string) => void
 }
 
-const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPreviewProps) => {
+const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1, onPDFGenerated }: PDFPreviewProps) => {
   const [error, setError] = useState<string | null>(null)
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
 
@@ -122,6 +123,7 @@ const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPrevie
         
         pdfDocGenerator.getDataUrl((dataUrl) => {
           setPdfUrl(dataUrl)
+          onPDFGenerated?.(dataUrl)
         })
 
       } catch (error) {
@@ -138,7 +140,7 @@ const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPrevie
         URL.revokeObjectURL(pdfUrl)
       }
     }
-  }, [resumeData, templateName, scale])
+  }, [resumeData, templateName, scale, onPDFGenerated])
 
   if (!resumeData) {
     return (
@@ -156,20 +158,11 @@ const PDFPreview = ({ resumeData, templateName = 'clean', scale = 1 }: PDFPrevie
         </div>
       )}
       {pdfUrl && (
-        <>
-          <iframe
-            src={pdfUrl}
-            className="w-full h-[calc(100vh-200px)] border border-gray-200 shadow-lg"
-            style={{ minHeight: '600px' }}
-          />
-          <a 
-            href={pdfUrl} 
-            download="resume.pdf"
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Download PDF
-          </a>
-        </>
+        <iframe
+          src={pdfUrl + '#toolbar=0'}
+          className="w-full h-[calc(100vh-200px)] border border-gray-200 shadow-lg"
+          style={{ minHeight: '600px' }}
+        />
       )}
     </div>
   )
