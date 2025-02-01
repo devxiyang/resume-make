@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { debounce } from 'lodash-es';
+import { useResume } from '@/context/resume-context';
 
 export interface UseFormOptions<T> {
   initialValues: T;
@@ -19,6 +20,7 @@ export function useForm<T extends Record<string, any>>({
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof T, string>>>({});
   const [touched, setTouched] = useState<Partial<Record<keyof T, boolean>>>({});
+  const { setIsEditing } = useResume();
 
   // 创建防抖的 onChange
   const debouncedOnChange = useRef(
@@ -26,6 +28,7 @@ export function useForm<T extends Record<string, any>>({
       if (onChange) {
         onChange(values);
       }
+      setIsEditing(false);
     }, 1000)
   ).current;
 
@@ -33,8 +36,9 @@ export function useForm<T extends Record<string, any>>({
   useEffect(() => {
     return () => {
       debouncedOnChange.cancel();
+      setIsEditing(false);
     };
-  }, [debouncedOnChange]);
+  }, [debouncedOnChange, setIsEditing]);
 
   // Update values when initialValues change
   useEffect(() => {
@@ -49,6 +53,7 @@ export function useForm<T extends Record<string, any>>({
       return;
     }
 
+    setIsEditing(true);
     const newValues = { ...values, [field]: value };
     setValues(newValues);
     
@@ -59,7 +64,7 @@ export function useForm<T extends Record<string, any>>({
 
     // 使用防抖的 onChange
     debouncedOnChange(newValues);
-  }, [values, validate, debouncedOnChange]);
+  }, [values, validate, debouncedOnChange, setIsEditing]);
 
   const handleBlur = useCallback((field: keyof T) => {
     setTouched(prev => ({ ...prev, [field]: true }));

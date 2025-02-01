@@ -16,6 +16,7 @@ interface ResumeContextType {
     customSectionItem: string | null;
   };
   isEditing: boolean;
+  setIsEditing: (editing: boolean) => void;
   updateResumeData: (data: Partial<ResumeData> | ((prev: ResumeData) => ResumeData)) => void;
   setSelectedTemplate: (template: string) => void;
   addItem: (type: 'experience' | 'education' | 'project' | 'skill' | 'customSection') => void;
@@ -57,11 +58,9 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
 
   // 统一处理数据更新的函数
   const handleDataUpdate = useCallback((updateFn: (prev: ResumeData) => ResumeData) => {
-    setIsEditing(true);
     setResumeData(prev => {
       const newData = updateFn(prev);
       setPreviewData(newData);
-      setIsEditing(false);
       return newData;
     });
   }, []);
@@ -249,6 +248,7 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
         selectedTemplate,
         selectedIds,
         isEditing,
+        setIsEditing,
         updateResumeData,
         setSelectedTemplate,
         addItem,
