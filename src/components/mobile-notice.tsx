@@ -1,4 +1,4 @@
-import { ScreenShare, Sparkles, Layers, Paintbrush2 } from "lucide-react"
+import { MonitorSmartphone, Sparkles, Layers, Paintbrush2 } from "lucide-react"
 
 export function MobileNotice() {
   return (
@@ -7,12 +7,7 @@ export function MobileNotice() {
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 blur-3xl -z-10" />
           <div className="flex justify-center">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-3xl blur-xl" />
-              <div className="relative p-8 rounded-3xl bg-gradient-to-br from-white/80 to-white/50 dark:from-gray-950/80 dark:to-gray-950/50 backdrop-blur-sm border border-white/20 dark:border-white/10">
-                <ScreenShare className="w-12 h-12 stroke-[1.2] text-blue-600 dark:text-blue-400" />
-              </div>
-            </div>
+            <MonitorSmartphone className="w-16 h-16 stroke-[1.2] text-blue-600/80 dark:text-blue-400/80" />
           </div>
         </div>
 
