@@ -24,6 +24,32 @@ export const templates: Template[] = [
     ],
   },
   {
+    id: 'professional',
+    name: 'Professional',
+    type: 'premium',
+    description: 'A polished template that exudes professionalism and competence.',
+    preview: '/templates/professional.jpg',
+    features: [
+      'Classic layout',
+      'Professional typography',
+      'Clean design',
+      'Perfect for business professionals',
+    ],
+  },
+  {
+    id: 'fresh',
+    name: 'Fresh',
+    type: 'premium',
+    description: 'A vibrant and energetic template that stands out.',
+    preview: '/templates/fresh.jpg',
+    features: [
+      'Fresh color scheme',
+      'Modern layout',
+      'Eye-catching design',
+      'Perfect for creative roles',
+    ],
+  },
+  {
     id: 'clean',
     name: 'Clean',
     type: 'premium',
