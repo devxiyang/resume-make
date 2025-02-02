@@ -17,6 +17,23 @@
     "title": "Resume Maker",
     "createResume": "Create Resume"
   },
+  "navigation": {
+    "tabs": {
+      "edit": "Edit Content",
+      "template": "Choose Template"
+    }
+  },
+  "skills": {
+    "title": "Edit Skill",
+    "noSkillSelected": "No skill selected",
+    "name": {
+      "label": "Skill Name",
+      "required": "Skill name is required"
+    },
+    "description": {
+      "label": "Description"
+    }
+  },
   "personalInfo": {
     "title": "Edit Personal Information",
     "name": {
@@ -51,6 +68,196 @@
       "preview": "Real-time preview with live updates",
       "editing": "Advanced editing tools and layout options",
       "templates": "Full template preview and customization"
+    }
+  },
+  "templates": {
+    "title": "Resume Templates",
+    "features": "Features",
+    "types": {
+      "free": "Free",
+      "premium": "Premium"
+    },
+    "list": {
+      "modern": {
+        "name": "Modern",
+        "description": "A contemporary template with a modern and fresh look.",
+        "features": [
+          "Modern design",
+          "Accent colors",
+          "Visual hierarchy",
+          "Perfect for creative industries"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "A polished template that exudes professionalism and competence.",
+        "features": [
+          "Classic layout",
+          "Professional typography",
+          "Clean design",
+          "Perfect for business professionals"
+        ]
+      },
+      "fresh": {
+        "name": "Fresh",
+        "description": "A vibrant and energetic template that stands out.",
+        "features": [
+          "Fresh color scheme",
+          "Modern layout",
+          "Eye-catching design",
+          "Perfect for creative roles"
+        ]
+      },
+      "clean": {
+        "name": "Clean",
+        "description": "A minimalist template that focuses on content.",
+        "features": [
+          "Minimalist design",
+          "Content focused",
+          "Clean typography",
+          "Perfect for academics"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "title": "Edit Experience",
+    "noExperienceSelected": "No experience selected",
+    "company": {
+      "label": "Company",
+      "required": "Company name is required"
+    },
+    "position": {
+      "label": "Position",
+      "required": "Position is required"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Start Date",
+        "required": "Start date is required"
+      },
+      "endDate": {
+        "label": "End Date",
+        "required": "End date is required"
+      },
+      "currentlyWork": "I currently work here",
+      "present": "Present"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "bulletPoints": {
+      "label": "Bullet Points",
+      "add": "Add Bullet Point",
+      "placeholder": "Bullet point {number}",
+      "remove": "Remove bullet point"
+    }
+  },
+  "projects": {
+    "title": "Edit Project",
+    "noProjectSelected": "No project selected",
+    "name": {
+      "label": "Project Name",
+      "required": "Project name is required"
+    },
+    "role": {
+      "label": "Your Role",
+      "required": "Role is required"
+    },
+    "url": {
+      "label": "Project URL"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Start Date",
+        "required": "Start date is required"
+      },
+      "endDate": {
+        "label": "End Date",
+        "required": "End date is required"
+      },
+      "ongoing": "This is an ongoing project",
+      "present": "Present"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "technologies": {
+      "label": "Technologies Used",
+      "add": "Add Technology",
+      "placeholder": "Technology {number}",
+      "remove": "Remove technology"
+    }
+  },
+  "customSection": {
+    "title": "Edit Custom Section",
+    "noSectionSelected": "No section selected",
+    "name": {
+      "label": "Section Name",
+      "required": "Section name is required"
+    },
+    "items": {
+      "label": "Items",
+      "add": "Add Item",
+      "remove": "Remove item",
+      "noItems": "No items in this section",
+      "selectToEdit": "Select an item to edit",
+      "noItemSelected": "No item selected",
+      "editItem": "Edit Item",
+      "title": {
+        "label": "Title",
+        "required": "Title is required",
+        "placeholder": "Enter item title"
+      },
+      "subtitle": {
+        "label": "Subtitle",
+        "placeholder": "Enter item subtitle"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Enter item description"
+      }
+    }
+  },
+  "education": {
+    "title": "Edit Education",
+    "noEducationSelected": "No education selected",
+    "school": {
+      "label": "School/University",
+      "required": "School name is required"
+    },
+    "degree": {
+      "label": "Degree",
+      "required": "Degree is required"
+    },
+    "field": {
+      "label": "Field of Study",
+      "required": "Field of study is required"
+    },
+    "gpa": {
+      "label": "GPA",
+      "placeholder": "e.g., 3.8/4.0"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Start Date",
+        "required": "Start date is required"
+      },
+      "endDate": {
+        "label": "End Date",
+        "required": "End date is required"
+      },
+      "ongoing": "I am currently studying here",
+      "present": "Present"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "achievements": {
+      "label": "Achievements",
+      "add": "Add Achievement",
+      "placeholder": "Achievement {number}",
+      "remove": "Remove achievement"
     }
   }
 }

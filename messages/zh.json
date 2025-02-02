@@ -17,6 +17,23 @@
     "title": "简历制作",
     "createResume": "创建简历"
   },
+  "navigation": {
+    "tabs": {
+      "edit": "编辑内容",
+      "template": "选择模板"
+    }
+  },
+  "skills": {
+    "title": "编辑技能",
+    "noSkillSelected": "未选择技能",
+    "name": {
+      "label": "技能名称",
+      "required": "技能名称为必填项"
+    },
+    "description": {
+      "label": "描述"
+    }
+  },
   "personalInfo": {
     "title": "编辑个人信息",
     "name": {
@@ -51,6 +68,196 @@
       "preview": "实时预览和即时更新",
       "editing": "高级编辑工具和布局选项",
       "templates": "完整的模板预览和自定义功能"
+    }
+  },
+  "templates": {
+    "title": "简历模板",
+    "features": "特点",
+    "types": {
+      "free": "免费",
+      "premium": "高级"
+    },
+    "list": {
+      "modern": {
+        "name": "现代简约",
+        "description": "一个具有现代感和清新外观的当代模板。",
+        "features": [
+          "现代设计",
+          "主题配色",
+          "视觉层次",
+          "适合创意行业"
+        ]
+      },
+      "professional": {
+        "name": "专业商务",
+        "description": "一个展现专业性和能力的精致模板。",
+        "features": [
+          "经典布局",
+          "专业排版",
+          "简洁设计",
+          "适合商务人士"
+        ]
+      },
+      "fresh": {
+        "name": "清新活力",
+        "description": "一个充满活力和能量的醒目模板。",
+        "features": [
+          "清新配色",
+          "现代布局",
+          "吸引眼球",
+          "适合创意岗位"
+        ]
+      },
+      "clean": {
+        "name": "简约纯净",
+        "description": "一个注重内容展示的极简主义模板。",
+        "features": [
+          "极简设计",
+          "内容为主",
+          "清晰排版",
+          "适合学术领域"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "title": "编辑工作经验",
+    "noExperienceSelected": "未选择工作经验",
+    "company": {
+      "label": "公司",
+      "required": "公司名称为必填项"
+    },
+    "position": {
+      "label": "职位",
+      "required": "职位为必填项"
+    },
+    "dates": {
+      "startDate": {
+        "label": "开始日期",
+        "required": "开始日期为必填项"
+      },
+      "endDate": {
+        "label": "结束日期",
+        "required": "结束日期为必填项"
+      },
+      "currentlyWork": "我目前在这里工作",
+      "present": "至今"
+    },
+    "description": {
+      "label": "描述"
+    },
+    "bulletPoints": {
+      "label": "要点",
+      "add": "添加要点",
+      "placeholder": "要点 {number}",
+      "remove": "删除要点"
+    }
+  },
+  "projects": {
+    "title": "编辑项目",
+    "noProjectSelected": "未选择项目",
+    "name": {
+      "label": "项目名称",
+      "required": "项目名称为必填项"
+    },
+    "role": {
+      "label": "你的角色",
+      "required": "角色为必填项"
+    },
+    "url": {
+      "label": "项目链接"
+    },
+    "dates": {
+      "startDate": {
+        "label": "开始日期",
+        "required": "开始日期为必填项"
+      },
+      "endDate": {
+        "label": "结束日期",
+        "required": "结束日期为必填项"
+      },
+      "ongoing": "这是一个进行中的项目",
+      "present": "至今"
+    },
+    "description": {
+      "label": "描述"
+    },
+    "technologies": {
+      "label": "使用的技术",
+      "add": "添加技术",
+      "placeholder": "技术 {number}",
+      "remove": "删除技术"
+    }
+  },
+  "customSection": {
+    "title": "编辑自定义部分",
+    "noSectionSelected": "未选择部分",
+    "name": {
+      "label": "部分名称",
+      "required": "部分名称为必填项"
+    },
+    "items": {
+      "label": "项目",
+      "add": "添加项目",
+      "remove": "删除项目",
+      "noItems": "此部分暂无项目",
+      "selectToEdit": "选择一个项目进行编辑",
+      "noItemSelected": "未选择项目",
+      "editItem": "编辑项目",
+      "title": {
+        "label": "标题",
+        "required": "标题为必填项",
+        "placeholder": "输入项目标题"
+      },
+      "subtitle": {
+        "label": "副标题",
+        "placeholder": "输入项目副标题"
+      },
+      "description": {
+        "label": "描述",
+        "placeholder": "输入项目描述"
+      }
+    }
+  },
+  "education": {
+    "title": "编辑教育经历",
+    "noEducationSelected": "未选择教育经历",
+    "school": {
+      "label": "学校/大学",
+      "required": "学校名称为必填项"
+    },
+    "degree": {
+      "label": "学位",
+      "required": "学位为必填项"
+    },
+    "field": {
+      "label": "专业",
+      "required": "专业为必填项"
+    },
+    "gpa": {
+      "label": "绩点",
+      "placeholder": "例如：3.8/4.0"
+    },
+    "dates": {
+      "startDate": {
+        "label": "开始日期",
+        "required": "开始日期为必填项"
+      },
+      "endDate": {
+        "label": "结束日期",
+        "required": "结束日期为必填项"
+      },
+      "ongoing": "我目前在这里学习",
+      "present": "至今"
+    },
+    "description": {
+      "label": "描述"
+    },
+    "achievements": {
+      "label": "成就",
+      "add": "添加成就",
+      "placeholder": "成就 {number}",
+      "remove": "删除成就"
     }
   }
 }
