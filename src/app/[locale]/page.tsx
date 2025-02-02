@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle2, Download, FileText, Sparkles } from 'lucide-react'
 import { SiteHeader } from '@/components/layout/site-header'
+import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://resumemaker.cc'),
@@ -75,6 +76,8 @@ const jsonLd = {
 }
 
 export default function LandingPage() {
+  const t = useTranslations('landing')
+  
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -176,14 +179,14 @@ export default function LandingPage() {
       <section className="container max-w-6xl mx-auto px-4 py-20">
         <div className="rounded-lg bg-primary p-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-            Ready to Create Your Professional Resume?
+            {t('cta.title')}
           </h2>
           <p className="text-primary-foreground/90 mb-8 max-w-[42rem] mx-auto">
-            Join thousands of job seekers who have successfully created their resumes using our platform.
+            {t('cta.description')}
           </p>
           <Link href="/builder">
             <Button size="lg" variant="secondary" className="h-12 px-8">
-              Start Building Now
+              {t('cta.button')}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
@@ -196,10 +199,10 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center space-x-2">
               <FileText className="h-6 w-6" />
-              <span className="font-bold">Resume Maker</span>
+              <span className="font-bold">{t('footer.title')}</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Resume Maker. All rights reserved.
+              © {new Date().getFullYear()} {t('footer.copyright')}
             </p>
           </div>
         </div>

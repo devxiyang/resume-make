@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, FileText } from 'lucide-react'
 import { SiteHeader } from '@/components/layout/site-header'
+import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 
 export const metadata: Metadata = {
   title: 'Professional Resume Templates | Resume Maker',
@@ -63,6 +64,8 @@ const templates = [
 ]
 
 export default function TemplatesPage() {
+  const t = useTranslations('templates')
+  
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -111,12 +114,12 @@ export default function TemplatesPage() {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-medium">Best for:</span> {template.bestFor}
+                    <span className="font-medium">{t('bestFor')}:</span> {template.bestFor}
                   </p>
                 </div>
-                <Link href={`/builder?template=${template.id}`} aria-label={`Use ${template.name} template`}>
+                <Link href={`/builder?template=${template.id}`} aria-label={`${t('useTemplate', { name: template.name })}`}>
                   <Button className="w-full h-8 text-sm">
-                    Use this template
+                    {t('useTemplate', { name: template.name })}
                     <ArrowRight className="ml-2 h-3 w-3" />
                   </Button>
                 </Link>

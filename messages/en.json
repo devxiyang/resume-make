@@ -118,7 +118,9 @@
           "Perfect for academics"
         ]
       }
-    }
+    },
+    "bestFor": "Best for",
+    "useTemplate": "Use {name} template"
   },
   "experience": {
     "title": "Edit Experience",
@@ -288,6 +290,17 @@
         "cancel": "Cancel",
         "delete": "Delete"
       }
+    }
+  },
+  "landing": {
+    "cta": {
+      "title": "Ready to Create Your Professional Resume?",
+      "description": "Join thousands of job seekers who have successfully created their resumes using our platform.",
+      "button": "Start Building Now"
+    },
+    "footer": {
+      "title": "Resume Maker",
+      "copyright": "Resume Maker. All rights reserved."
     }
   }
 }

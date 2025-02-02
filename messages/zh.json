@@ -73,6 +73,8 @@
   "templates": {
     "title": "简历模板",
     "features": "特点",
+    "bestFor": "适用于",
+    "useTemplate": "使用{name}模板",
     "types": {
       "free": "免费",
       "premium": "高级"
@@ -288,6 +290,17 @@
         "cancel": "取消",
         "delete": "删除"
       }
+    }
+  },
+  "landing": {
+    "cta": {
+      "title": "准备好创建你的专业简历了吗？",
+      "description": "加入成千上万已经使用我们的平台成功创建简历的求职者。",
+      "button": "立即开始制作"
+    },
+    "footer": {
+      "title": "简历制作",
+      "copyright": "简历制作。保留所有权利。"
     }
   }
 }
