@@ -71,10 +71,15 @@
     }
   },
   "templates": {
-    "title": "简历模板",
-    "features": "特点",
+    "title": "专业简历模板",
+    "subtitle": "精心设计的专业模板任你选择。每个模板都经过精心打造，助你脱颖而出。",
     "bestFor": "适用于",
     "useTemplate": "使用{name}模板",
+    "cta": {
+      "title": "准备好创建你的专业简历了吗？",
+      "description": "选择你喜欢的模板，立即开始制作简历。",
+      "button": "立即开始制作"
+    },
     "types": {
       "free": "免费",
       "premium": "高级"
@@ -301,6 +306,42 @@
     "footer": {
       "title": "简历制作",
       "copyright": "简历制作。保留所有权利。"
+    },
+    "hero": {
+      "quickStart": "几分钟内制作专业简历",
+      "title": "轻松创建完美简历",
+      "titleHighlight": "简单高效",
+      "description": "打造脱颖而出的专业简历。选择现代模板，轻松定制，秒速下载。开启你的职业新篇章。",
+      "buttons": {
+        "start": "开始制作",
+        "templates": "浏览模板"
+      }
+    },
+    "features": {
+      "title": {
+        "modern": "现代模板",
+        "customization": "轻松定制",
+        "download": "即时下载"
+      },
+      "description": {
+        "modern": "精心设计的专业模板，让你的简历脱颖而出。",
+        "customization": "通过直观的编辑器，轻松定制简历的每个细节。",
+        "download": "一键导出PDF格式简历，随时发送给雇主。"
+      }
+    },
+    "whyChoose": {
+      "title": "为什么选择简历制作",
+      "subtitle": "我们让简历制作变得简单高效，助你获得理想工作。",
+      "features": [
+        "专家设计的专业模板",
+        "实时预览编辑效果",
+        "简单易用的界面",
+        "一键导出PDF",
+        "移动端响应式设计",
+        "免费使用",
+        "多种布局选择",
+        "定期更新新功能"
+      ]
     }
   }
 }

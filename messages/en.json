@@ -71,7 +71,8 @@
     }
   },
   "templates": {
-    "title": "Resume Templates",
+    "title": "Professional Resume Templates",
+    "subtitle": "Choose from our collection of professionally designed templates. Each template is crafted to help you stand out.",
     "features": "Features",
     "types": {
       "free": "Free",
@@ -120,7 +121,12 @@
       }
     },
     "bestFor": "Best for",
-    "useTemplate": "Use {name} template"
+    "useTemplate": "Use {name} template",
+    "cta": {
+      "title": "Ready to Create Your Professional Resume?",
+      "description": "Choose your favorite template and start building your resume now.",
+      "button": "Start Building Now"
+    }
   },
   "experience": {
     "title": "Edit Experience",
@@ -301,6 +307,42 @@
     "footer": {
       "title": "Resume Maker",
       "copyright": "Resume Maker. All rights reserved."
+    },
+    "hero": {
+      "quickStart": "Your professional resume in minutes",
+      "title": "Create Your Perfect Resume",
+      "titleHighlight": "With Ease",
+      "description": "Build professional resumes that stand out. Choose from modern templates, customize with ease, and download in seconds. Your next career move starts here.",
+      "buttons": {
+        "start": "Start Building",
+        "templates": "View Templates"
+      }
+    },
+    "features": {
+      "title": {
+        "modern": "Modern Templates",
+        "customization": "Easy Customization",
+        "download": "Instant Download"
+      },
+      "description": {
+        "modern": "Choose from our collection of professionally designed templates that catch the eye.",
+        "customization": "Customize every aspect of your resume with our intuitive editor.",
+        "download": "Download your resume in PDF format, ready to send to employers."
+      }
+    },
+    "whyChoose": {
+      "title": "Why Choose Resume Maker",
+      "subtitle": "We make resume creation simple and effective, helping you land your dream job.",
+      "features": [
+        "Professional templates designed by experts",
+        "Real-time preview as you edit",
+        "Easy-to-use interface",
+        "Export to PDF in one click",
+        "Mobile responsive design",
+        "Free to use",
+        "Multiple layout options",
+        "Regular updates and new features"
+      ]
     }
   }
 }

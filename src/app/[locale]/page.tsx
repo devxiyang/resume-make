@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, Download, FileText, Sparkles } from 'lucide-r
 import { SiteHeader } from '@/components/layout/site-header'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://resumemaker.cc'),
@@ -77,6 +78,7 @@ const jsonLd = {
 
 export default function LandingPage() {
   const t = useTranslations('landing')
+  const whyChooseFeatures = t.raw('whyChoose.features') as string[]
   
   return (
     <div className="min-h-screen bg-background">
@@ -86,26 +88,25 @@ export default function LandingPage() {
       <section className="container max-w-6xl mx-auto px-4 pt-24 md:pt-32 pb-12">
         <div className="flex flex-col items-center text-center space-y-8">
           <div className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium">
-            🚀 Your professional resume in minutes
+            🚀 {t('hero.quickStart')}
           </div>
           <h1 className="font-bold tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-            Create Your Perfect Resume <br />
-            <span className="text-primary">With Ease</span>
+            {t('hero.title')} <br />
+            <span className="text-primary">{t('hero.titleHighlight')}</span>
           </h1>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            Build professional resumes that stand out. Choose from modern templates, customize with ease, 
-            and download in seconds. Your next career move starts here.
+            {t('hero.description')}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/builder">
               <Button size="lg" className="h-12 px-8">
-                Start Building
+                {t('hero.buttons.start')}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/templates">
               <Button size="lg" variant="outline" className="h-12 px-8">
-                View Templates
+                {t('hero.buttons.templates')}
                 <Sparkles className="ml-2 h-4 w-4" />
               </Button>
             </Link>
@@ -120,27 +121,27 @@ export default function LandingPage() {
             <div className="rounded-full bg-primary/10 p-4">
               <Sparkles className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-bold">Modern Templates</h3>
+            <h3 className="text-xl font-bold">{t('features.title.modern')}</h3>
             <p className="text-muted-foreground">
-              Choose from our collection of professionally designed templates that catch the eye.
+              {t('features.description.modern')}
             </p>
           </div>
           <div className="flex flex-col items-center text-center space-y-4">
             <div className="rounded-full bg-primary/10 p-4">
               <FileText className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-bold">Easy Customization</h3>
+            <h3 className="text-xl font-bold">{t('features.title.customization')}</h3>
             <p className="text-muted-foreground">
-              Customize every aspect of your resume with our intuitive editor.
+              {t('features.description.customization')}
             </p>
           </div>
           <div className="flex flex-col items-center text-center space-y-4">
             <div className="rounded-full bg-primary/10 p-4">
               <Download className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="text-xl font-bold">Instant Download</h3>
+            <h3 className="text-xl font-bold">{t('features.title.download')}</h3>
             <p className="text-muted-foreground">
-              Download your resume in PDF format, ready to send to employers.
+              {t('features.description.download')}
             </p>
           </div>
         </div>
@@ -150,22 +151,13 @@ export default function LandingPage() {
       <section className="w-full bg-muted/50 py-20">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="flex flex-col items-center text-center space-y-4 mb-12">
-            <h2 className="text-3xl font-bold">Why Choose Resume Maker</h2>
+            <h2 className="text-3xl font-bold">{t('whyChoose.title')}</h2>
             <p className="text-muted-foreground max-w-[42rem]">
-              We make resume creation simple and effective, helping you land your dream job.
+              {t('whyChoose.subtitle')}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[
-              "Professional templates designed by experts",
-              "Real-time preview as you edit",
-              "Easy-to-use interface",
-              "Export to PDF in one click",
-              "Mobile responsive design",
-              "Free to use",
-              "Multiple layout options",
-              "Regular updates and new features",
-            ].map((feature, index) => (
+            {whyChooseFeatures.map((feature: string, index: number) => (
               <div key={index} className="flex items-center space-x-4 bg-background p-4 rounded-lg">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 <span>{feature}</span>
