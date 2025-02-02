@@ -32,21 +32,20 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'metadata' })
   const baseUrl = 'https://resumemaker.cc'
 
-  const alternates: AlternateURLs = {
-    canonical: {
-      url: `${baseUrl}/${locale}`,
-      title: t('title')
-    },
+  const alternates = {
+    canonical: `${baseUrl}/${locale}`,
     languages: {
-      'en': [{ url: `${baseUrl}/en`, title: 'English' }],
-      'zh-CN': [{ url: `${baseUrl}/zh`, title: '中文' }],
-      'ja-JP': [{ url: `${baseUrl}/ja`, title: '日本語' }],
-      'fr-FR': [{ url: `${baseUrl}/fr`, title: 'Français' }],
-      'de-DE': [{ url: `${baseUrl}/de`, title: 'Deutsch' }],
-      'es-ES': [{ url: `${baseUrl}/es`, title: 'Español' }],
-      'x-default': [{ url: `${baseUrl}/en` }]
+      'en': `${baseUrl}/en`,
+      'zh-CN': `${baseUrl}/zh`,
+      'ja-JP': `${baseUrl}/ja`,
+      'fr-FR': `${baseUrl}/fr`,
+      'de-DE': `${baseUrl}/de`,
+      'es-ES': `${baseUrl}/es`,
+      'x-default': `${baseUrl}/en`
     }
   }
+
+  console.log(alternates)
 
   return {
     metadataBase: new URL(baseUrl),

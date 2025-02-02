@@ -1,55 +1,8 @@
-import type { Metadata } from 'next'
-import { Button } from '@/components/ui/button'
-import { ArrowRight, CheckCircle2, Download, FileText, Sparkles } from 'lucide-react'
 import { SiteHeader } from '@/components/layout/site-header'
+import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
+import { ArrowRight, CheckCircle2, Download, FileText, Sparkles } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
-
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('metadata')
-
-  return {
-    metadataBase: new URL('https://resumemaker.cc'),
-    title: {
-      default: t('title'),
-      template: `%s | ${t('titleTemplate')}`
-    },
-    description: t('description'),
-    keywords: t('keywords'),
-    authors: [{ name: t('author'), url: 'https://x.com/devxiyang' }],
-    creator: 'Xiyang Dev',
-    openGraph: {
-      type: 'website',
-      locale: 'en_US',
-      url: 'https://resumemaker.cc',
-      title: t('ogTitle'),
-      description: t('ogDescription'),
-      siteName: t('siteName'),
-      images: [
-        {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
-          alt: t('ogImageAlt'),
-        }
-      ]
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: t('twitterTitle'),
-      description: t('twitterDescription'),
-      creator: '@devxiyang',
-      images: ['/twitter-image.png'],
-    },
-    alternates: {
-      canonical: 'https://resumemaker.cc',
-    },
-    verification: {
-      google: 'your-google-site-verification',
-    }
-  }
-}
 
 // Add structured data for the landing page
 function generateJsonLd(t: any) {
