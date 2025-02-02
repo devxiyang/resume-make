@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { cn } from '@/lib/utils'
 import { routing } from '@/i18n/routing'
 import type { Metadata } from 'next'
+import type { AlternateURLs } from 'next/dist/lib/metadata/types/alternative-urls-types'
 import "./globals.css"
 import "./print-styles.css"
 
@@ -31,17 +32,24 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'metadata' })
   const baseUrl = 'https://resumemaker.cc'
 
-  // 生成所有语言版本的替代链接
-  const alternates = {
-    canonical: new URL(`${baseUrl}/${locale}`),
-    languages: routing.locales.reduce((acc, lang) => ({
-      ...acc,
-      [lang]: new URL(`${baseUrl}/${lang}`),
-    }), {}),
+  const alternates: AlternateURLs = {
+    canonical: {
+      url: `${baseUrl}/${locale}`,
+      title: t('title')
+    },
+    languages: {
+      'en': [{ url: `${baseUrl}/en`, title: 'English' }],
+      'zh-CN': [{ url: `${baseUrl}/zh`, title: '中文' }],
+      'ja-JP': [{ url: `${baseUrl}/ja`, title: '日本語' }],
+      'fr-FR': [{ url: `${baseUrl}/fr`, title: 'Français' }],
+      'de-DE': [{ url: `${baseUrl}/de`, title: 'Deutsch' }],
+      'es-ES': [{ url: `${baseUrl}/es`, title: 'Español' }],
+      'x-default': [{ url: `${baseUrl}/en` }]
+    }
   }
 
   return {
-    metadataBase: new URL('https://resumemaker.cc'),
+    metadataBase: new URL(baseUrl),
     title: {
       default: t('title'),
       template: `%s | ${t('titleTemplate')}`
@@ -51,7 +59,7 @@ export async function generateMetadata({
     authors: [{ name: t('author') }],
     creator: t('author'),
     publisher: t('publisher'),
-    alternates,
+    alternates: alternates,
     openGraph: {
       title: t('ogTitle'),
       description: t('ogDescription'),
