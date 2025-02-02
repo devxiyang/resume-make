@@ -1,1 +1,56 @@
-{}
+{
+  "metadata": {
+    "title": "Resume Builder - Create Professional Resumes Online",
+    "titleTemplate": "Resume Builder",
+    "description": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format.",
+    "keywords": "resume builder, cv maker, professional resume, job application, career tools, resume templates, AI resume builder",
+    "author": "Resume Builder Team",
+    "publisher": "Resume Builder",
+    "siteName": "Resume Builder",
+    "ogTitle": "Resume Builder - Create Professional Resumes Online",
+    "ogDescription": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format.",
+    "ogImageAlt": "Resume Builder Preview",
+    "twitterTitle": "Resume Builder - Create Professional Resumes Online",
+    "twitterDescription": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format."
+  },
+  "site": {
+    "title": "Resume Maker",
+    "createResume": "Create Resume"
+  },
+  "personalInfo": {
+    "title": "Edit Personal Information",
+    "name": {
+      "label": "Name",
+      "required": "Name is required"
+    },
+    "jobTitle": {
+      "label": "Job Title",
+      "required": "Job title is required"
+    },
+    "email": {
+      "label": "Email",
+      "required": "Email is required"
+    },
+    "phone": {
+      "label": "Phone"
+    },
+    "address": {
+      "label": "Address"
+    },
+    "personalWebsite": {
+      "label": "Personal Website"
+    },
+    "summary": {
+      "label": "Professional Summary"
+    }
+  },
+  "mobileNotice": {
+    "title": "Desktop Experience Recommended",
+    "description": "For the best resume editing experience, please switch to a desktop device",
+    "features": {
+      "preview": "Real-time preview with live updates",
+      "editing": "Advanced editing tools and layout options",
+      "templates": "Full template preview and customization"
+    }
+  }
+}
