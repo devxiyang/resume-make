@@ -4,6 +4,7 @@ import { templates } from "./template-config"
 import { sampleData } from "@/lib/sample-data"
 import { getPDFTemplate } from "@/lib/pdf-templates"
 import pdfMake from "pdfmake/build/pdfmake"
+import { useTranslations } from 'next-intl'
 
 // 配置字体
 pdfMake.fonts = {
@@ -18,6 +19,7 @@ pdfMake.fonts = {
 export function PreviewGenerator() {
     const [generatingTemplate, setGeneratingTemplate] = useState<string | null>(null);
     const [progress, setProgress] = useState(0);
+    const t = useTranslations('templates');
 
     const generatePreview = async (templateId: string) => {
         try {
@@ -81,8 +83,8 @@ export function PreviewGenerator() {
                         className="flex items-center justify-between p-4 border rounded-lg"
                     >
                         <div>
-                            <h3 className="font-medium">{template.name}</h3>
-                            <p className="text-sm text-muted-foreground">{template.id}</p>
+                            <h3 className="font-medium">{t(`list.${template.id}.name`)}</h3>
+                            <p className="text-sm text-muted-foreground">{t(`list.${template.id}.description`)}</p>
                         </div>
                         <Button
                             variant="outline"
