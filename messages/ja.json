@@ -1,0 +1,371 @@
+{
+  "metadata": {
+    "title": "履歴書ビルダー - オンラインで専門的な履歴書を作成",
+    "titleTemplate": "履歴書ビルダー",
+    "description": "使いやすいオンライン履歴書ビルダーで専門的な履歴書を作成。モダンなテンプレートから選択し、内容をカスタマイズして、PDFフォーマットでダウンロード。",
+    "keywords": "履歴書ビルダー, CV作成, 専門的な履歴書, 就職活動, キャリアツール, 履歴書テンプレート, AI履歴書ビルダー",
+    "author": "履歴書ビルダーチーム",
+    "publisher": "履歴書ビルダー",
+    "siteName": "履歴書ビルダー",
+    "ogTitle": "履歴書ビルダー - オンラインで専門的な履歴書を作成",
+    "ogDescription": "使いやすいオンライン履歴書ビルダーで専門的な履歴書を作成。モダンなテンプレートから選択し、内容をカスタマイズして、PDFフォーマットでダウンロード。",
+    "ogImageAlt": "履歴書ビルダープレビュー",
+    "twitterTitle": "履歴書ビルダー - オンラインで専門的な履歴書を作成",
+    "twitterDescription": "使いやすいオンライン履歴書ビルダーで専門的な履歴書を作成。モダンなテンプレートから選択し、内容をカスタマイズして、PDFフォーマットでダウンロード。"
+  },
+  "site": {
+    "title": "履歴書メーカー",
+    "createResume": "履歴書を作成"
+  },
+  "navigation": {
+    "tabs": {
+      "edit": "内容を編集",
+      "template": "テンプレートを選択"
+    }
+  },
+  "landing": {
+    "hero": {
+      "title": "プロフェッショナルな履歴書を簡単に作成",
+      "subtitle": "現代的なテンプレートと直感的なエディターで、あなたの経験を最大限にアピール",
+      "cta": "無料で履歴書を作成",
+      "buttons": {
+        "templates": "テンプレートを見る"
+      },
+      "quickStart": "クイックスタート",
+      "description": "プロフェッショナルな履歴書を数分で作成。直感的なエディターと現代的なテンプレートで、あなたのキャリアを最大限にアピールできます。"
+    },
+    "features": {
+      "subtitle": "履歴書作成をシンプルかつ効果的に",
+      "list": [
+        {
+          "title": "プロフェッショナルなテンプレート",
+          "description": "業界標準に合わせて設計された、美しく効果的なテンプレート"
+        },
+        {
+          "title": "カスタマイズ可能",
+          "description": "あなたのニーズに合わせて、すべての要素をカスタマイズ可能"
+        },
+        {
+          "title": "ATS対応",
+          "description": "採用管理システム（ATS）に最適化された履歴書フォーマット"
+        }
+      ],
+      "title": {
+        "modern": "モダンなデザイン",
+        "customization": "完全なカスタマイズ",
+        "download": "簡単なダウンロード"
+      },
+      "description": {
+        "modern": "現代的で洗練されたデザインで、あなたの履歴書を際立たせます",
+        "customization": "あなたのニーズに合わせて、すべての要素をカスタマイズできます",
+        "download": "完成した履歴書をPDFフォーマットで簡単にダウンロード"
+      }
+    },
+    "whyChoose": {
+      "title": "なぜ当サービスを選ぶのか",
+      "subtitle": "プロフェッショナルな履歴書作成に必要なすべての機能を提供します",
+      "features": [
+        "使いやすいインターフェース",
+        "プロフェッショナルなテンプレート",
+        "リアルタイムプレビュー",
+        "PDFエクスポート機能",
+        "ATS対応フォーマット",
+        "複数言語サポート"
+      ]
+    },
+    "templates": {
+      "title": "プロフェッショナルなテンプレート",
+      "subtitle": "業界をリードするデザインで、あなたの経験を際立たせます",
+      "cta": "すべてのテンプレートを見る"
+    },
+    "cta": {
+      "title": "今すぐ履歴書作成を始めましょう",
+      "subtitle": "無料で簡単に。数分で完成します。",
+      "button": "無料で始める",
+      "description": "プロフェッショナルな履歴書を数分で作成。今すぐ始めましょう。"
+    },
+    "footer": {
+      "title": "今すぐ始めましょう"
+    }
+  },
+  "skills": {
+    "title": "スキルを編集",
+    "noSkillSelected": "スキルが選択されていません",
+    "name": {
+      "label": "スキル名",
+      "required": "スキル名は必須です"
+    },
+    "description": {
+      "label": "説明"
+    }
+  },
+  "personalInfo": {
+    "title": "個人情報を編集",
+    "name": {
+      "label": "氏名",
+      "required": "氏名は必須です"
+    },
+    "jobTitle": {
+      "label": "職種",
+      "required": "職種は必須です"
+    },
+    "email": {
+      "label": "メールアドレス",
+      "required": "メールアドレスは必須です"
+    },
+    "phone": {
+      "label": "電話番号"
+    },
+    "address": {
+      "label": "住所"
+    },
+    "personalWebsite": {
+      "label": "個人ウェブサイト"
+    },
+    "summary": {
+      "label": "職務要約"
+    }
+  },
+  "mobileNotice": {
+    "title": "デスクトップでの利用を推奨",
+    "description": "最適な履歴書編集体験のため、デスクトップデバイスでの利用をお勧めします",
+    "features": {
+      "preview": "リアルタイムプレビューとライブ更新",
+      "editing": "高度な編集ツールとレイアウトオプション",
+      "templates": "テンプレートのフルプレビューとカスタマイズ"
+    }
+  },
+  "templates": {
+    "title": "プロフェッショナルな履歴書テンプレート",
+    "subtitle": "プロフェッショナルにデザインされたテンプレートコレクションから選択できます。各テンプレートは、あなたを際立たせるために作られています。",
+    "imageAlt": "{name}テンプレートプレビュー - {bestFor}に最適",
+    "bestFor": "最適な用途",
+    "useTemplate": "{name}テンプレートを使用",
+    "types": {
+      "free": "無料",
+      "premium": "プレミアム"
+    },
+    "cta": {
+      "title": "プロフェッショナルな履歴書を作成する準備はできましたか？",
+      "description": "お気に入りのテンプレートを選んで、今すぐ履歴書作成を始めましょう。",
+      "button": "今すぐ作成開始"
+    },
+    "list": {
+      "modern": {
+        "name": "モダン履歴書テンプレート",
+        "description": "読みやすさと視覚的階層を重視したクリーンで現代的なデザイン。",
+        "bestFor": "IT、デザイン、マーケティング専門家向け",
+        "features": [
+          "モダンなデザイン",
+          "アクセントカラー",
+          "視覚的階層",
+          "クリエイティブ業界に最適"
+        ]
+      },
+      "professional": {
+        "name": "プロフェッショナル履歴書テンプレート",
+        "description": "プロフェッショナリズムと能力を表現する洗練されたテンプレート。",
+        "bestFor": "ビジネスプロフェッショナルと経営幹部向け",
+        "features": [
+          "クラシックなレイアウト",
+          "プロフェッショナルな文字体裁",
+          "クリーンなデザイン",
+          "ビジネスプロフェッショナルに最適"
+        ]
+      },
+      "fresh": {
+        "name": "フレッシュ履歴書テンプレート",
+        "description": "群衆の中から際立つ、活気に満ちたエネルギッシュなテンプレート。",
+        "bestFor": "クリエイティブプロフェッショナルとスタートアップ向け",
+        "features": [
+          "フレッシュなカラースキーム",
+          "モダンなレイアウト",
+          "目を引くデザイン",
+          "クリエイティブな役職に最適"
+        ]
+      },
+      "clean": {
+        "name": "クリーン履歴書テンプレート",
+        "description": "コンテンツに焦点を当てたミニマリストテンプレート。",
+        "bestFor": "すべての業界、特に伝統的なセクター向け",
+        "features": [
+          "ミニマリストデザイン",
+          "コンテンツ重視",
+          "クリーンな文字体裁",
+          "学術関係者に最適"
+        ]
+      }
+    },
+    "filters": {
+      "title": "フィルター",
+      "clear": "クリア",
+      "apply": "適用"
+    },
+    "categories": {
+      "all": "すべて",
+      "recommended": "おすすめ",
+      "popular": "人気",
+      "basic": "ベーシック",
+      "creative": "クリエイティブ",
+      "professional": "プロフェッショナル"
+    },
+    "sort": {
+      "label": "並び替え",
+      "popular": "人気順",
+      "newest": "新着順",
+      "oldest": "古い順"
+    }
+  },
+  "experience": {
+    "title": "職歴を編集",
+    "noExperienceSelected": "職歴が選択されていません",
+    "company": {
+      "label": "会社名",
+      "required": "会社名は必須です"
+    },
+    "position": {
+      "label": "役職",
+      "required": "役職は必須です"
+    },
+    "dates": {
+      "startDate": {
+        "label": "開始日",
+        "required": "開始日は必須です"
+      },
+      "endDate": {
+        "label": "終了日",
+        "required": "終了日は必須です"
+      },
+      "currentlyWork": "現在もここで働いています",
+      "present": "現在"
+    },
+    "description": {
+      "label": "説明"
+    },
+    "bulletPoints": {
+      "label": "箇条書き",
+      "add": "箇条書きを追加",
+      "placeholder": "箇条書き {number}",
+      "remove": "箇条書きを削除"
+    }
+  },
+  "projects": {
+    "title": "プロジェクトを編集",
+    "noProjectSelected": "プロジェクトが選択されていません",
+    "name": {
+      "label": "プロジェクト名",
+      "required": "プロジェクト名は必須です"
+    },
+    "role": {
+      "label": "あなたの役割",
+      "required": "役割は必須です"
+    },
+    "url": {
+      "label": "プロジェクトURL"
+    },
+    "dates": {
+      "startDate": {
+        "label": "開始日",
+        "required": "開始日は必須です"
+      },
+      "endDate": {
+        "label": "終了日",
+        "required": "終了日は必須です"
+      },
+      "ongoing": "進行中のプロジェクトです",
+      "present": "現在"
+    },
+    "description": {
+      "label": "説明"
+    },
+    "technologies": {
+      "label": "使用技術",
+      "add": "技術を追加",
+      "placeholder": "技術 {number}",
+      "remove": "技術を削除"
+    },
+    "bulletPoints": {
+      "label": "箇条書き",
+      "add": "箇条書きを追加",
+      "placeholder": "箇条書き {number}",
+      "remove": "箇条書きを削除"
+    }
+  },
+  "customSection": {
+    "title": "カスタムセクションを編集",
+    "noSectionSelected": "セクションが選択されていません",
+    "name": {
+      "label": "セクション名",
+      "required": "セクション名は必須です"
+    },
+    "items": {
+      "label": "項目",
+      "add": "項目を追加",
+      "remove": "項目を削除",
+      "noItems": "このセクションに項目はありません",
+      "selectToEdit": "編集する項目を選択",
+      "noItemSelected": "項目が選択されていません",
+      "editItem": "項目を編集",
+      "title": {
+        "label": "タイトル",
+        "required": "タイトルは必須です",
+        "placeholder": "項目のタイトルを入力"
+      },
+      "subtitle": {
+        "label": "サブタイトル",
+        "placeholder": "項目のサブタイトルを入力"
+      },
+      "description": {
+        "label": "説明",
+        "placeholder": "項目の説明を入力"
+      }
+    }
+  },
+  "education": {
+    "title": "学歴を編集",
+    "noEducationSelected": "学歴が選択されていません",
+    "school": {
+      "label": "学校/大学名",
+      "required": "学校名は必須です"
+    },
+    "degree": {
+      "label": "学位",
+      "required": "学位は必須です"
+    },
+    "field": {
+      "label": "専攻分野",
+      "required": "専攻分野は必須です"
+    }
+  },
+  "sidebar": {
+    "title": "サイドバー",
+    "sections": "セクション",
+    "templates": "テンプレート",
+    "customize": "カスタマイズ",
+    "download": "ダウンロード",
+    "preview": "プレビュー",
+    "back": "戻る",
+    "content": "コンテンツ",
+    "expandAll": "すべて展開",
+    "collapseAll": "すべて折りたたむ",
+    "basics": "基本情報",
+    "experience": "職歴",
+    "education": "学歴",
+    "projects": "プロジェクト",
+    "skills": "スキル",
+    "customSection": {
+      "title": "カスタムセクション",
+      "add": "カスタムセクションを追加",
+      "addItem": "項目を追加",
+      "newSection": "新規セクション",
+      "newItem": "新規項目",
+      "sectionTitle": "セクション名",
+      "confirmDelete": {
+        "title": "削除の確認",
+        "message": "この項目を削除してもよろしいですか？",
+        "cancel": "キャンセル",
+        "delete": "削除"
+      }
+    }
+  }
+} 

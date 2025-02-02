@@ -1,0 +1,371 @@
+{
+  "metadata": {
+    "title": "Lebenslauf-Builder - Erstellen Sie professionelle Lebensläufe online",
+    "titleTemplate": "Lebenslauf-Builder",
+    "description": "Erstellen Sie professionelle Lebensläufe mit unserem benutzerfreundlichen Online-Lebenslauf-Builder. Wählen Sie aus modernen Vorlagen, passen Sie Ihre Inhalte an und laden Sie Ihren Lebenslauf im PDF-Format herunter.",
+    "keywords": "Lebenslauf-Builder, CV-Maker, professioneller Lebenslauf, Bewerbung, Karriere-Tools, Lebenslauf-Vorlagen, KI-Lebenslauf-Builder",
+    "author": "Lebenslauf-Builder Team",
+    "publisher": "Lebenslauf-Builder",
+    "siteName": "Lebenslauf-Builder",
+    "ogTitle": "Lebenslauf-Builder - Erstellen Sie professionelle Lebensläufe online",
+    "ogDescription": "Erstellen Sie professionelle Lebensläufe mit unserem benutzerfreundlichen Online-Lebenslauf-Builder. Wählen Sie aus modernen Vorlagen, passen Sie Ihre Inhalte an und laden Sie Ihren Lebenslauf im PDF-Format herunter.",
+    "ogImageAlt": "Lebenslauf-Builder Vorschau",
+    "twitterTitle": "Lebenslauf-Builder - Erstellen Sie professionelle Lebensläufe online",
+    "twitterDescription": "Erstellen Sie professionelle Lebensläufe mit unserem benutzerfreundlichen Online-Lebenslauf-Builder. Wählen Sie aus modernen Vorlagen, passen Sie Ihre Inhalte an und laden Sie Ihren Lebenslauf im PDF-Format herunter."
+  },
+  "site": {
+    "title": "Lebenslauf Maker",
+    "createResume": "Lebenslauf erstellen"
+  },
+  "navigation": {
+    "tabs": {
+      "edit": "Inhalt bearbeiten",
+      "template": "Vorlage auswählen"
+    }
+  },
+  "landing": {
+    "hero": {
+      "title": "Erstellen Sie Einfach Ihren Professionellen Lebenslauf",
+      "subtitle": "Präsentieren Sie Ihre Erfahrung mit unseren modernen Vorlagen und intuitivem Editor",
+      "cta": "Kostenlos Lebenslauf Erstellen",
+      "buttons": {
+        "templates": "Vorlagen ansehen"
+      },
+      "quickStart": "Schnellstart",
+      "description": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Unser intuitiver Editor und moderne Vorlagen helfen Ihnen, Ihre Karriere optimal zu präsentieren."
+    },
+    "features": {
+      "subtitle": "Einfache und effektive Lebenslauferstellung",
+      "list": [
+        {
+          "title": "Professionelle Vorlagen",
+          "description": "Elegante und effektive Vorlagen nach Industriestandards"
+        },
+        {
+          "title": "Anpassbar",
+          "description": "Passen Sie alle Elemente nach Ihren Bedürfnissen an"
+        },
+        {
+          "title": "ATS-Kompatibel",
+          "description": "Optimiertes Format für Bewerbermanagementsysteme (ATS)"
+        }
+      ],
+      "title": {
+        "modern": "Modernes Design",
+        "customization": "Vollständige Anpassung",
+        "download": "Einfacher Download"
+      },
+      "description": {
+        "modern": "Ein modernes und sophistiziertes Design, um Ihren Lebenslauf hervorzuheben",
+        "customization": "Passen Sie alle Elemente nach Ihren Bedürfnissen an",
+        "download": "Laden Sie Ihren fertigen Lebenslauf einfach im PDF-Format herunter"
+      }
+    },
+    "whyChoose": {
+      "title": "Warum uns wählen",
+      "subtitle": "Wir bieten alle notwendigen Funktionen für die Erstellung eines professionellen Lebenslaufs",
+      "features": [
+        "Benutzerfreundliche Oberfläche",
+        "Professionelle Vorlagen",
+        "Echtzeit-Vorschau",
+        "PDF-Export",
+        "ATS-kompatibles Format",
+        "Mehrsprachige Unterstützung"
+      ]
+    },
+    "templates": {
+      "title": "Professionelle Vorlagen",
+      "subtitle": "Heben Sie sich mit unseren branchenführenden Designs ab",
+      "cta": "Alle Vorlagen Ansehen"
+    },
+    "cta": {
+      "title": "Beginnen Sie Jetzt mit der Erstellung Ihres Lebenslaufs",
+      "subtitle": "Kostenlos und einfach. In wenigen Minuten fertig.",
+      "button": "Kostenlos Beginnen",
+      "description": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Starten Sie jetzt."
+    },
+    "footer": {
+      "title": "Jetzt Beginnen"
+    }
+  },
+  "skills": {
+    "title": "Fähigkeit bearbeiten",
+    "noSkillSelected": "Keine Fähigkeit ausgewählt",
+    "name": {
+      "label": "Fähigkeitsname",
+      "required": "Fähigkeitsname ist erforderlich"
+    },
+    "description": {
+      "label": "Beschreibung"
+    }
+  },
+  "personalInfo": {
+    "title": "Persönliche Informationen bearbeiten",
+    "name": {
+      "label": "Name",
+      "required": "Name ist erforderlich"
+    },
+    "jobTitle": {
+      "label": "Berufsbezeichnung",
+      "required": "Berufsbezeichnung ist erforderlich"
+    },
+    "email": {
+      "label": "E-Mail",
+      "required": "E-Mail ist erforderlich"
+    },
+    "phone": {
+      "label": "Telefon"
+    },
+    "address": {
+      "label": "Adresse"
+    },
+    "personalWebsite": {
+      "label": "Persönliche Website"
+    },
+    "summary": {
+      "label": "Beruflicher Werdegang"
+    }
+  },
+  "mobileNotice": {
+    "title": "Desktop-Erfahrung empfohlen",
+    "description": "Für die beste Lebenslauf-Bearbeitung nutzen Sie bitte ein Desktop-Gerät",
+    "features": {
+      "preview": "Echtzeit-Vorschau mit Live-Updates",
+      "editing": "Erweiterte Bearbeitungswerkzeuge und Layout-Optionen",
+      "templates": "Vollständige Vorlagenvorschau und Anpassung"
+    }
+  },
+  "templates": {
+    "title": "Professionelle Lebenslauf-Vorlagen",
+    "subtitle": "Wählen Sie aus unserer Sammlung professionell gestalteter Vorlagen. Jede Vorlage wurde entwickelt, um Sie hervorstechen zu lassen.",
+    "imageAlt": "{name} Vorlagenvorschau - Optimal für {bestFor}",
+    "bestFor": "Optimal für",
+    "useTemplate": "{name} Vorlage verwenden",
+    "types": {
+      "free": "Kostenlos",
+      "premium": "Premium"
+    },
+    "cta": {
+      "title": "Bereit, Ihren professionellen Lebenslauf zu erstellen?",
+      "description": "Wählen Sie Ihre bevorzugte Vorlage und beginnen Sie jetzt mit der Erstellung Ihres Lebenslaufs.",
+      "button": "Jetzt beginnen"
+    },
+    "list": {
+      "modern": {
+        "name": "Moderne Lebenslauf-Vorlage",
+        "description": "Klares und zeitgemäßes Design mit Fokus auf Lesbarkeit und visuelle Hierarchie.",
+        "bestFor": "Tech-, Design- und Marketing-Profis",
+        "features": [
+          "Modernes Design",
+          "Akzentfarben",
+          "Visuelle Hierarchie",
+          "Perfekt für kreative Branchen"
+        ]
+      },
+      "professional": {
+        "name": "Professionelle Lebenslauf-Vorlage",
+        "description": "Eine elegante Vorlage, die Professionalität und Kompetenz ausstrahlt.",
+        "bestFor": "Geschäftsleute und Führungskräfte",
+        "features": [
+          "Klassisches Layout",
+          "Professionelle Typografie",
+          "Klares Design",
+          "Perfekt für Business-Profis"
+        ]
+      },
+      "fresh": {
+        "name": "Frische Lebenslauf-Vorlage",
+        "description": "Eine lebendige und energiegeladene Vorlage, die aus der Masse heraussticht.",
+        "bestFor": "Kreative Profis und Startups",
+        "features": [
+          "Frisches Farbschema",
+          "Modernes Layout",
+          "Auffallendes Design",
+          "Perfekt für kreative Rollen"
+        ]
+      },
+      "clean": {
+        "name": "Schlichte Lebenslauf-Vorlage",
+        "description": "Eine minimalistische Vorlage mit Fokus auf den Inhalt.",
+        "bestFor": "Alle Branchen, besonders traditionelle Sektoren",
+        "features": [
+          "Minimalistisches Design",
+          "Inhaltsfokussiert",
+          "Klare Typografie",
+          "Perfekt für Akademiker"
+        ]
+      }
+    },
+    "filters": {
+      "title": "Filter",
+      "clear": "Zurücksetzen",
+      "apply": "Anwenden"
+    },
+    "categories": {
+      "all": "Alle",
+      "recommended": "Empfohlen",
+      "popular": "Beliebt",
+      "basic": "Einfach",
+      "creative": "Kreativ",
+      "professional": "Professionell"
+    },
+    "sort": {
+      "label": "Sortieren nach",
+      "popular": "Beliebtheit",
+      "newest": "Neueste",
+      "oldest": "Älteste"
+    }
+  },
+  "experience": {
+    "title": "Berufserfahrung bearbeiten",
+    "noExperienceSelected": "Keine Berufserfahrung ausgewählt",
+    "company": {
+      "label": "Unternehmen",
+      "required": "Unternehmensname ist erforderlich"
+    },
+    "position": {
+      "label": "Position",
+      "required": "Position ist erforderlich"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Startdatum",
+        "required": "Startdatum ist erforderlich"
+      },
+      "endDate": {
+        "label": "Enddatum",
+        "required": "Enddatum ist erforderlich"
+      },
+      "currentlyWork": "Ich arbeite derzeit hier",
+      "present": "Aktuell"
+    },
+    "description": {
+      "label": "Beschreibung"
+    },
+    "bulletPoints": {
+      "label": "Aufzählungspunkte",
+      "add": "Aufzählungspunkt hinzufügen",
+      "placeholder": "Aufzählungspunkt {number}",
+      "remove": "Aufzählungspunkt entfernen"
+    }
+  },
+  "projects": {
+    "title": "Projekt bearbeiten",
+    "noProjectSelected": "Kein Projekt ausgewählt",
+    "name": {
+      "label": "Projektname",
+      "required": "Projektname ist erforderlich"
+    },
+    "role": {
+      "label": "Ihre Rolle",
+      "required": "Rolle ist erforderlich"
+    },
+    "url": {
+      "label": "Projekt-URL"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Startdatum",
+        "required": "Startdatum ist erforderlich"
+      },
+      "endDate": {
+        "label": "Enddatum",
+        "required": "Enddatum ist erforderlich"
+      },
+      "ongoing": "Dies ist ein laufendes Projekt",
+      "present": "Aktuell"
+    },
+    "description": {
+      "label": "Beschreibung"
+    },
+    "technologies": {
+      "label": "Verwendete Technologien",
+      "add": "Technologie hinzufügen",
+      "placeholder": "Technologie {number}",
+      "remove": "Technologie entfernen"
+    },
+    "bulletPoints": {
+      "label": "Aufzählungspunkte",
+      "add": "Aufzählungspunkt hinzufügen",
+      "placeholder": "Aufzählungspunkt {number}",
+      "remove": "Aufzählungspunkt entfernen"
+    }
+  },
+  "customSection": {
+    "title": "Benutzerdefinierte Sektion bearbeiten",
+    "noSectionSelected": "Keine Sektion ausgewählt",
+    "name": {
+      "label": "Sektionsname",
+      "required": "Sektionsname ist erforderlich"
+    },
+    "items": {
+      "label": "Einträge",
+      "add": "Eintrag hinzufügen",
+      "remove": "Eintrag entfernen",
+      "noItems": "Keine Einträge in dieser Sektion",
+      "selectToEdit": "Wählen Sie einen Eintrag zum Bearbeiten",
+      "noItemSelected": "Kein Eintrag ausgewählt",
+      "editItem": "Eintrag bearbeiten",
+      "title": {
+        "label": "Titel",
+        "required": "Titel ist erforderlich",
+        "placeholder": "Eintragstitel eingeben"
+      },
+      "subtitle": {
+        "label": "Untertitel",
+        "placeholder": "Eintragsuntertitel eingeben"
+      },
+      "description": {
+        "label": "Beschreibung",
+        "placeholder": "Eintragsbeschreibung eingeben"
+      }
+    }
+  },
+  "education": {
+    "title": "Ausbildung bearbeiten",
+    "noEducationSelected": "Keine Ausbildung ausgewählt",
+    "school": {
+      "label": "Schule/Universität",
+      "required": "Schulname ist erforderlich"
+    },
+    "degree": {
+      "label": "Abschluss",
+      "required": "Abschluss ist erforderlich"
+    },
+    "field": {
+      "label": "Studienfach",
+      "required": "Studienfach ist erforderlich"
+    }
+  },
+  "sidebar": {
+    "title": "Seitenleiste",
+    "sections": "Abschnitte",
+    "templates": "Vorlagen",
+    "customize": "Anpassen",
+    "download": "Herunterladen",
+    "preview": "Vorschau",
+    "back": "Zurück",
+    "content": "Inhalt",
+    "expandAll": "Alle ausklappen",
+    "collapseAll": "Alle einklappen",
+    "basics": "Grundinformationen",
+    "experience": "Berufserfahrung",
+    "education": "Ausbildung",
+    "projects": "Projekte",
+    "skills": "Fähigkeiten",
+    "customSection": {
+      "title": "Benutzerdefinierte Sektion",
+      "add": "Benutzerdefinierte Sektion hinzufügen",
+      "addItem": "Element hinzufügen",
+      "newSection": "Neue Sektion",
+      "newItem": "Neues Element",
+      "sectionTitle": "Sektionsname",
+      "confirmDelete": {
+        "title": "Löschen bestätigen",
+        "message": "Möchten Sie dieses Element wirklich löschen?",
+        "cancel": "Abbrechen",
+        "delete": "Löschen"
+      }
+    }
+  }
+} 

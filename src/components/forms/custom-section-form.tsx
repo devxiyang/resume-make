@@ -8,10 +8,12 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useResumeForm, validateCustomSection } from "@/hooks/use-resume-form"
 import { CustomSection } from "@/lib/types"
 import { EditingSpinner } from "@/components/editing-spinner"
+import { useTranslations } from 'next-intl'
 
 export function CustomSectionForm() {
   const { resumeData, selectedIds, addItem, deleteItem, addCustomSectionItem } = useResume()
   const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
+  const t = useTranslations('customSection')
 
   const form = useResumeForm<CustomSection>({
     type: 'customSection',
@@ -42,7 +44,7 @@ export function CustomSectionForm() {
   if (!selectedSection) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500 mb-4">Select a custom section to edit</p>
+        <p className="text-gray-500 mb-4">{t('noSectionSelected')}</p>
       </div>
     )
   }
@@ -51,20 +53,20 @@ export function CustomSectionForm() {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>Edit Custom Section</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <EditingSpinner />
         </div>
       </CardHeader>
       <CardContent>
         {selectedSection.items.length === 0 ? (
           <>
-            <p className="text-gray-500 mb-4">No items in this section</p>
+            <p className="text-gray-500 mb-4">{t('items.noItems')}</p>
             <Button onClick={() => addCustomSectionItem(selectedSection.id)}>
-              Add Item
+              {t('items.add')}
             </Button>
           </>
         ) : (
-          <p className="text-gray-500">Select an item to edit</p>
+          <p className="text-gray-500">{t('items.selectToEdit')}</p>
         )}
       </CardContent>
     </Card>
@@ -75,6 +77,7 @@ export function CustomSectionItemForm() {
   const { resumeData, selectedIds, updateItem } = useResume()
   const selectedSection = resumeData.customSections.find(section => section.id === selectedIds.customSection)
   const selectedItem = selectedSection?.items.find(item => item.id === selectedIds.customSectionItem)
+  const t = useTranslations('customSection')
 
   const form = useResumeForm<CustomSection>({
     type: 'customSection',
@@ -89,7 +92,7 @@ export function CustomSectionItemForm() {
   if (!selectedSection || !selectedItem) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500 mb-4">No item selected</p>
+        <p className="text-gray-500 mb-4">{t('items.noItemSelected')}</p>
       </div>
     )
   }
@@ -113,26 +116,28 @@ export function CustomSectionItemForm() {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>Edit Item</CardTitle>
+          <CardTitle>{t('items.editItem')}</CardTitle>
           <EditingSpinner />
         </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title">{t('items.title.label')}</Label>
             <Input
               id="title"
               value={selectedItem.title}
               onChange={(e) => handleItemChange('title', e.target.value)}
+              placeholder={t('items.title.placeholder')}
             />
           </div>
           <div>
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">{t('items.description.label')}</Label>
             <Input
               id="description"
               value={selectedItem.description}
               onChange={(e) => handleItemChange('description', e.target.value)}
+              placeholder={t('items.description.placeholder')}
             />
           </div>
         </form>

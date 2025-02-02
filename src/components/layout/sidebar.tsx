@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import { ChevronDown, ChevronRight, Plus, Trash2, MoreHorizontal } from "lucide-react"
 import type React from "react"
 import { useState, Dispatch, SetStateAction } from "react"
+import { useTranslations } from 'next-intl'
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 
@@ -93,6 +94,7 @@ export function Sidebar({
   setEditingSectionId,
 }: SidebarProps) {
   const [openPopoverId, setOpenPopoverId] = useState<string | null>(null);
+  const t = useTranslations('sidebar')
 
   const toggleSection = (section: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -140,7 +142,7 @@ export function Sidebar({
     <div className={cn("w-full h-full border-r border-gray-200 overflow-y-auto", activeSection)}>
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium">Content</span>
+          <span className="text-sm font-medium">{t('content')}</span>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -152,7 +154,7 @@ export function Sidebar({
             )}
             onClick={isAllCollapsed() ? expandAll : collapseAll}
           >
-            {isAllCollapsed() ? "Expand all" : "Collapse all"}
+            {isAllCollapsed() ? t('expandAll') : t('collapseAll')}
           </Button>
         </div>
 
@@ -164,7 +166,7 @@ export function Sidebar({
             )}
             onClick={() => onSectionChange("personal")}
           >
-            <span>Basics</span>
+            <span>{t('basics')}</span>
           </div>
 
           <div>
@@ -175,7 +177,7 @@ export function Sidebar({
                 )}
                 onClick={(e) => toggleSection('experience', e)}
               >
-                <span>Experience</span>
+                <span>{t('experience')}</span>
                 {resumeData.experiences.length > 0 && (
                   expandedSections.experience ? (
                     <ChevronDown className="h-4 w-4" />
@@ -250,7 +252,7 @@ export function Sidebar({
                   onClick={onAddExperience}
                 >
                   <Plus className="h-3 w-3 mr-2" />
-                  <span className="text-xs">Add</span>
+                  <span className="text-xs">{t('customSection.addItem')}</span>
                 </Button>
               </CollapsibleContent>
             </Collapsible>
@@ -264,7 +266,7 @@ export function Sidebar({
                 )}
                 onClick={(e) => toggleSection('education', e)}
               >
-                <span>Education</span>
+                <span>{t('education')}</span>
                 {resumeData.education.length > 0 && (
                   expandedSections.education ? (
                     <ChevronDown className="h-4 w-4" />
@@ -339,7 +341,7 @@ export function Sidebar({
                   onClick={onAddEducation}
                 >
                   <Plus className="h-3 w-3 mr-2" />
-                  <span className="text-xs">Add</span>
+                  <span className="text-xs">{t('customSection.addItem')}</span>
                 </Button>
               </CollapsibleContent>
             </Collapsible>
@@ -353,7 +355,7 @@ export function Sidebar({
                 )}
                 onClick={(e) => toggleSection('projects', e)}
               >
-                <span>Projects</span>
+                <span>{t('projects')}</span>
                 {resumeData.projects.length > 0 && (
                   expandedSections.projects ? (
                     <ChevronDown className="h-4 w-4" />
@@ -428,7 +430,7 @@ export function Sidebar({
                   onClick={onAddProject}
                 >
                   <Plus className="h-3 w-3 mr-2" />
-                  <span className="text-xs">Add</span>
+                  <span className="text-xs">{t('customSection.addItem')}</span>
                 </Button>
               </CollapsibleContent>
             </Collapsible>
@@ -442,7 +444,7 @@ export function Sidebar({
                 )}
                 onClick={(e) => toggleSection('skills', e)}
               >
-                <span>Skills</span>
+                <span>{t('skills')}</span>
                 {resumeData.skills.length > 0 && (
                   expandedSections.skills ? (
                     <ChevronDown className="h-4 w-4" />
@@ -517,7 +519,7 @@ export function Sidebar({
                   onClick={onAddSkill}
                 >
                   <Plus className="h-3 w-3 mr-2" />
-                  <span className="text-xs">Add</span>
+                  <span className="text-xs">{t('customSection.addItem')}</span>
                 </Button>
               </CollapsibleContent>
             </Collapsible>
@@ -525,7 +527,7 @@ export function Sidebar({
 
           <div className="pt-2">
             <div className="flex items-center px-4 py-2 text-sm font-medium text-gray-600 uppercase">
-              Custom Section
+              {t('customSection.title')}
             </div>
             {resumeData.customSections?.map((section) => (
               <Collapsible 
@@ -541,7 +543,7 @@ export function Sidebar({
                       onBlur={() => setEditingSectionId(null)}
                       onClick={(e) => e.stopPropagation()}
                       autoFocus
-                      placeholder="Section Title"
+                      placeholder={t('customSection.sectionTitle')}
                     />
                   ) : (
                     <span 
@@ -562,7 +564,7 @@ export function Sidebar({
                         }
                       }}
                     >
-                      {section.title || "New Section"}
+                      {section.title || t('customSection.newSection')}
                     </span>
                   )}
                   <div className="flex items-center gap-2">
@@ -578,9 +580,9 @@ export function Sidebar({
                       </PopoverTrigger>
                       <PopoverContent className="w-[200px] p-4" side="right">
                         <div className="space-y-2">
-                          <h4 className="font-medium text-sm">Confirm Delete</h4>
+                          <h4 className="font-medium text-sm">{t('customSection.confirmDelete.title')}</h4>
                           <p className="text-xs text-muted-foreground">
-                            Are you sure you want to delete this item?
+                            {t('customSection.confirmDelete.message')}
                           </p>
                           <div className="flex justify-end gap-2">
                             <Button 
@@ -589,7 +591,7 @@ export function Sidebar({
                               className="h-7 text-xs"
                               onClick={() => setOpenPopoverId(null)}
                             >
-                              Cancel
+                              {t('customSection.confirmDelete.cancel')}
                             </Button>
                             <Button
                               size="sm"
@@ -600,7 +602,7 @@ export function Sidebar({
                                 setOpenPopoverId(null);
                               }}
                             >
-                              Delete
+                              {t('customSection.confirmDelete.delete')}
                             </Button>
                           </div>
                         </div>
@@ -637,7 +639,7 @@ export function Sidebar({
                           onCustomSectionItemSelect(section.id, item.id);
                         }}
                       >
-                        <span className="text-xs truncate">{item.title || "New Item"}</span>
+                        <span className="text-xs truncate">{item.title || t('customSection.newItem')}</span>
                       </Button>
                       <Popover open={openPopoverId === item.id} onOpenChange={(open) => setOpenPopoverId(open ? item.id : null)}>
                         <PopoverTrigger asChild>
@@ -691,7 +693,7 @@ export function Sidebar({
                     }}
                   >
                     <Plus className="h-3 w-3 mr-2" />
-                    <span className="text-xs">Add Item</span>
+                    <span className="text-xs">{t('customSection.addItem')}</span>
                   </Button>
                 </CollapsibleContent>
               </Collapsible>
@@ -705,7 +707,7 @@ export function Sidebar({
               }}
             >
               <Plus className="h-4 w-4 mr-2" />
-              Add Custom Section
+              {t('customSection.add')}
             </Button>
           </div>
         </div>

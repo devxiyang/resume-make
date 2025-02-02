@@ -4,8 +4,7 @@ import Image from "next/image"
 import { templates } from "./template-config"
 import { Badge } from "@/components/ui/badge"
 import { Check } from "lucide-react"
-import { existsSync } from 'fs'
-import path from 'path'
+import { useTranslations } from 'next-intl'
 
 interface TemplatePickerProps {
   selectedTemplate: string
@@ -13,9 +12,11 @@ interface TemplatePickerProps {
 }
 
 export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplatePickerProps) {
+  const t = useTranslations('templates')
+
   return (
     <div className="p-4">
-      <h2 className="text-lg font-semibold mb-4">Resume Templates</h2>
+      <h2 className="text-lg font-semibold mb-4">{t('title')}</h2>
       <ScrollArea className="h-[calc(100vh-140px)]">
         <div className="grid grid-cols-2 gap-4">
           {templates.map((template) => (
@@ -29,11 +30,11 @@ export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplateP
               <div className="p-3">
                 <div className="flex items-start justify-between mb-2">
                   <div>
-                    <h3 className="font-semibold">{template.name}</h3>
-                    <p className="text-xs text-muted-foreground mt-0.5">{template.description}</p>
+                    <h3 className="font-semibold">{t(`list.${template.id}.name`)}</h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">{t(`list.${template.id}.description`)}</p>
                   </div>
                   <Badge variant={template.type === 'premium' ? 'default' : 'secondary'} className="text-xs">
-                    {template.type}
+                    {t(`types.${template.type}`)}
                   </Badge>
                 </div>
 
@@ -41,7 +42,7 @@ export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplateP
                   <div className="mt-3 relative">
                     <Image
                       src={template.preview}
-                      alt={template.name}
+                      alt={t(`list.${template.id}.name`)}
                       width={210}
                       height={297}
                       className="w-full rounded-md"
@@ -61,9 +62,9 @@ export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplateP
                 )}
 
                 <div className="mt-3">
-                  <h4 className="text-xs font-medium mb-1.5">Features</h4>
+                  <h4 className="text-xs font-medium mb-1.5">{t('features')}</h4>
                   <ul className="space-y-1">
-                    {template.features.map((feature, index) => (
+                    {t.raw(`list.${template.id}.features`).map((feature: string, index: number) => (
                       <li key={index} className="text-xs text-muted-foreground flex items-center">
                         <span className="mr-1.5">•</span>
                         {feature}

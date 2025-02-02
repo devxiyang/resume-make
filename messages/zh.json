@@ -1,0 +1,352 @@
+{
+  "metadata": {
+    "title": "简历制作工具 - 在线制作专业简历",
+    "titleTemplate": "简历制作工具",
+    "description": "使用我们简单易用的在线简历制作工具创建专业简历。提供多种现代模板，可自定义内容，并支持 PDF 格式下载。",
+    "keywords": "简历制作工具, 简历生成器, 专业简历, 求职简历, 职业工具, 简历模板, AI简历制作",
+    "author": "简历制作团队",
+    "publisher": "简历制作工具",
+    "siteName": "简历制作工具",
+    "ogTitle": "简历制作工具 - 在线制作专业简历",
+    "ogDescription": "使用我们简单易用的在线简历制作工具创建专业简历。提供多种现代模板，可自定义内容，并支持 PDF 格式下载。",
+    "ogImageAlt": "简历制作工具预览",
+    "twitterTitle": "简历制作工具 - 在线制作专业简历",
+    "twitterDescription": "使用我们简单易用的在线简历制作工具创建专业简历。提供多种现代模板，可自定义内容，并支持 PDF 格式下载。"
+  },
+  "site": {
+    "title": "简历制作",
+    "createResume": "创建简历"
+  },
+  "navigation": {
+    "tabs": {
+      "edit": "编辑内容",
+      "template": "选择模板"
+    }
+  },
+  "skills": {
+    "title": "编辑技能",
+    "noSkillSelected": "未选择技能",
+    "name": {
+      "label": "技能名称",
+      "required": "技能名称为必填项"
+    },
+    "description": {
+      "label": "描述"
+    }
+  },
+  "personalInfo": {
+    "title": "编辑个人信息",
+    "name": {
+      "label": "姓名",
+      "required": "姓名为必填项"
+    },
+    "jobTitle": {
+      "label": "职位",
+      "required": "职位为必填项"
+    },
+    "email": {
+      "label": "邮箱",
+      "required": "邮箱为必填项"
+    },
+    "phone": {
+      "label": "电话"
+    },
+    "address": {
+      "label": "地址"
+    },
+    "personalWebsite": {
+      "label": "个人网站"
+    },
+    "summary": {
+      "label": "个人简介"
+    }
+  },
+  "mobileNotice": {
+    "title": "推荐使用桌面设备",
+    "description": "为了获得最佳的简历编辑体验，请使用桌面设备",
+    "features": {
+      "preview": "实时预览和即时更新",
+      "editing": "高级编辑工具和布局选项",
+      "templates": "完整的模板预览和自定义功能"
+    }
+  },
+  "templates": {
+    "title": "专业简历模板",
+    "subtitle": "从我们精心设计的专业模板中选择。每个模板都经过精心打造，帮助您脱颖而出。",
+    "imageAlt": "{name}模板预览 - 最适合{bestFor}",
+    "bestFor": "最适合",
+    "useTemplate": "使用{name}模板",
+    "cta": {
+      "title": "准备好制作您的专业简历了吗？",
+      "description": "选择您喜欢的模板，立即开始制作简历。",
+      "button": "立即开始制作"
+    },
+    "types": {
+      "free": "免费",
+      "premium": "高级"
+    },
+    "list": {
+      "modern": {
+        "name": "现代简历模板",
+        "description": "清新现代的设计，注重可读性和视觉层次感。",
+        "bestFor": "科技、设计和营销专业人士",
+        "features": [
+          "现代设计",
+          "主题配色",
+          "视觉层次",
+          "适合创意行业"
+        ]
+      },
+      "professional": {
+        "name": "专业简历模板",
+        "description": "一个展现专业性和能力的精致模板。",
+        "bestFor": "商务人士和高管",
+        "features": [
+          "经典布局",
+          "专业字体",
+          "简洁设计",
+          "适合商务人士"
+        ]
+      },
+      "fresh": {
+        "name": "清新简历模板",
+        "description": "充满活力和朝气的模板，让您在众多候选人中脱颖而出。",
+        "bestFor": "创意专业人士和创业公司",
+        "features": [
+          "清新配色",
+          "现代布局",
+          "吸引眼球的设计",
+          "适合创意岗位"
+        ]
+      },
+      "clean": {
+        "name": "简约简历模板",
+        "description": "极简主义模板，突出内容展示。",
+        "bestFor": "各行各业，尤其适合传统行业",
+        "features": [
+          "极简设计",
+          "内容为主",
+          "清晰字体",
+          "适合学术人士"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "title": "编辑工作经验",
+    "noExperienceSelected": "未选择工作经验",
+    "company": {
+      "label": "公司",
+      "required": "公司名称为必填项"
+    },
+    "position": {
+      "label": "职位",
+      "required": "职位为必填项"
+    },
+    "dates": {
+      "startDate": {
+        "label": "开始日期",
+        "required": "开始日期为必填项"
+      },
+      "endDate": {
+        "label": "结束日期",
+        "required": "结束日期为必填项"
+      },
+      "currentlyWork": "我目前在这里工作",
+      "present": "至今"
+    },
+    "description": {
+      "label": "描述"
+    },
+    "bulletPoints": {
+      "label": "要点",
+      "add": "添加要点",
+      "placeholder": "要点 {number}",
+      "remove": "删除要点"
+    }
+  },
+  "projects": {
+    "title": "编辑项目",
+    "noProjectSelected": "未选择项目",
+    "name": {
+      "label": "项目名称",
+      "required": "项目名称为必填项"
+    },
+    "role": {
+      "label": "你的角色",
+      "required": "角色为必填项"
+    },
+    "url": {
+      "label": "项目链接"
+    },
+    "dates": {
+      "startDate": {
+        "label": "开始日期",
+        "required": "开始日期为必填项"
+      },
+      "endDate": {
+        "label": "结束日期",
+        "required": "结束日期为必填项"
+      },
+      "ongoing": "这是一个进行中的项目",
+      "present": "至今"
+    },
+    "description": {
+      "label": "描述"
+    },
+    "technologies": {
+      "label": "使用的技术",
+      "add": "添加技术",
+      "placeholder": "技术 {number}",
+      "remove": "删除技术"
+    },
+    "bulletPoints": {
+      "label": "要点",
+      "add": "添加要点",
+      "placeholder": "要点 {number}",
+      "remove": "删除要点"
+    }
+  },
+  "customSection": {
+    "title": "编辑自定义部分",
+    "noSectionSelected": "未选择部分",
+    "name": {
+      "label": "部分名称",
+      "required": "部分名称为必填项"
+    },
+    "items": {
+      "label": "项目",
+      "add": "添加项目",
+      "remove": "删除项目",
+      "noItems": "此部分暂无项目",
+      "selectToEdit": "选择一个项目进行编辑",
+      "noItemSelected": "未选择项目",
+      "editItem": "编辑项目",
+      "title": {
+        "label": "标题",
+        "required": "标题为必填项",
+        "placeholder": "输入项目标题"
+      },
+      "subtitle": {
+        "label": "副标题",
+        "placeholder": "输入项目副标题"
+      },
+      "description": {
+        "label": "描述",
+        "placeholder": "输入项目描述"
+      }
+    }
+  },
+  "education": {
+    "title": "编辑教育经历",
+    "noEducationSelected": "未选择教育经历",
+    "school": {
+      "label": "学校/大学",
+      "required": "学校名称为必填项"
+    },
+    "degree": {
+      "label": "学位",
+      "required": "学位为必填项"
+    },
+    "field": {
+      "label": "专业",
+      "required": "专业为必填项"
+    },
+    "gpa": {
+      "label": "绩点",
+      "placeholder": "例如：3.8/4.0"
+    },
+    "dates": {
+      "startDate": {
+        "label": "开始日期",
+        "required": "开始日期为必填项"
+      },
+      "endDate": {
+        "label": "结束日期",
+        "required": "结束日期为必填项"
+      },
+      "ongoing": "我目前在这里学习",
+      "present": "至今"
+    },
+    "description": {
+      "label": "描述"
+    },
+    "achievements": {
+      "label": "成就",
+      "add": "添加成就",
+      "placeholder": "成就 {number}",
+      "remove": "删除成就"
+    }
+  },
+  "sidebar": {
+    "content": "内容",
+    "expandAll": "展开全部",
+    "collapseAll": "收起全部",
+    "basics": "基本信息",
+    "experience": "工作经验",
+    "education": "教育经历",
+    "projects": "项目经历",
+    "skills": "技能特长",
+    "customSection": {
+      "title": "自定义部分",
+      "add": "添加自定义部分",
+      "addItem": "添加项目",
+      "newSection": "新建部分",
+      "newItem": "新建项目",
+      "sectionTitle": "部分标题",
+      "confirmDelete": {
+        "title": "确认删除",
+        "message": "确定要删除这个项目吗？",
+        "cancel": "取消",
+        "delete": "删除"
+      }
+    }
+  },
+  "landing": {
+    "cta": {
+      "title": "准备好创建你的专业简历了吗？",
+      "description": "加入成千上万已经使用我们的平台成功创建简历的求职者。",
+      "button": "立即开始制作"
+    },
+    "footer": {
+      "title": "简历制作",
+      "copyright": "简历制作。保留所有权利。"
+    },
+    "hero": {
+      "quickStart": "几分钟内制作专业简历",
+      "title": "轻松创建完美简历",
+      "titleHighlight": "简单高效",
+      "description": "打造脱颖而出的专业简历。选择现代模板，轻松定制，秒速下载。开启你的职业新篇章。",
+      "buttons": {
+        "start": "开始制作",
+        "templates": "浏览模板"
+      }
+    },
+    "features": {
+      "title": {
+        "modern": "现代模板",
+        "customization": "轻松定制",
+        "download": "即时下载"
+      },
+      "description": {
+        "modern": "精心设计的专业模板，让你的简历脱颖而出。",
+        "customization": "通过直观的编辑器，轻松定制简历的每个细节。",
+        "download": "一键导出PDF格式简历，随时发送给雇主。"
+      }
+    },
+    "whyChoose": {
+      "title": "为什么选择简历制作",
+      "subtitle": "我们让简历制作变得简单高效，助你获得理想工作。",
+      "features": [
+        "专家设计的专业模板",
+        "实时预览编辑效果",
+        "简单易用的界面",
+        "一键导出PDF",
+        "移动端响应式设计",
+        "免费使用",
+        "多种布局选择",
+        "定期更新新功能"
+      ]
+    }
+  }
+}

@@ -1,0 +1,371 @@
+{
+  "metadata": {
+    "title": "Créateur de CV - Créez des CV Professionnels en Ligne",
+    "titleTemplate": "Créateur de CV",
+    "description": "Créez des CV professionnels avec notre créateur de CV en ligne facile à utiliser. Choisissez parmi des modèles modernes, personnalisez votre contenu et téléchargez votre CV au format PDF.",
+    "keywords": "créateur de CV, générateur de CV, CV professionnel, candidature, outils de carrière, modèles de CV, créateur de CV IA",
+    "author": "Équipe Créateur de CV",
+    "publisher": "Créateur de CV",
+    "siteName": "Créateur de CV",
+    "ogTitle": "Créateur de CV - Créez des CV Professionnels en Ligne",
+    "ogDescription": "Créez des CV professionnels avec notre créateur de CV en ligne facile à utiliser. Choisissez parmi des modèles modernes, personnalisez votre contenu et téléchargez votre CV au format PDF.",
+    "ogImageAlt": "Aperçu du Créateur de CV",
+    "twitterTitle": "Créateur de CV - Créez des CV Professionnels en Ligne",
+    "twitterDescription": "Créez des CV professionnels avec notre créateur de CV en ligne facile à utiliser. Choisissez parmi des modèles modernes, personnalisez votre contenu et téléchargez votre CV au format PDF."
+  },
+  "site": {
+    "title": "Créateur de CV",
+    "createResume": "Créer un CV"
+  },
+  "navigation": {
+    "tabs": {
+      "edit": "Modifier le Contenu",
+      "template": "Choisir un Modèle"
+    }
+  },
+  "landing": {
+    "hero": {
+      "title": "Créez Facilement Votre CV Professionnel",
+      "subtitle": "Mettez en valeur votre expérience avec nos modèles modernes et notre éditeur intuitif",
+      "cta": "Créer un CV Gratuitement",
+      "buttons": {
+        "templates": "Voir les Modèles"
+      },
+      "quickStart": "Démarrage Rapide",
+      "description": "Créez votre CV professionnel en quelques minutes. Notre éditeur intuitif et nos modèles modernes vous permettent de mettre en valeur votre carrière de manière optimale."
+    },
+    "features": {
+      "subtitle": "Création de CV simple et efficace",
+      "list": [
+        {
+          "title": "Modèles Professionnels",
+          "description": "Des modèles élégants et efficaces conçus selon les standards de l'industrie"
+        },
+        {
+          "title": "Personnalisable",
+          "description": "Personnalisez tous les éléments selon vos besoins"
+        },
+        {
+          "title": "Compatible ATS",
+          "description": "Format optimisé pour les systèmes de suivi des candidatures (ATS)"
+        }
+      ],
+      "title": {
+        "modern": "Design Moderne",
+        "customization": "Personnalisation Complète",
+        "download": "Téléchargement Facile"
+      },
+      "description": {
+        "modern": "Un design moderne et sophistiqué pour faire ressortir votre CV",
+        "customization": "Personnalisez tous les éléments selon vos besoins",
+        "download": "Téléchargez facilement votre CV terminé au format PDF"
+      }
+    },
+    "whyChoose": {
+      "title": "Pourquoi Nous Choisir",
+      "subtitle": "Nous offrons toutes les fonctionnalités nécessaires pour créer un CV professionnel",
+      "features": [
+        "Interface facile à utiliser",
+        "Modèles professionnels",
+        "Aperçu en temps réel",
+        "Export PDF",
+        "Format compatible ATS",
+        "Support multilingue"
+      ]
+    },
+    "templates": {
+      "title": "Modèles Professionnels",
+      "subtitle": "Démarquez-vous avec nos designs leaders de l'industrie",
+      "cta": "Voir Tous les Modèles"
+    },
+    "cta": {
+      "title": "Commencez à Créer Votre CV Maintenant",
+      "subtitle": "Gratuit et facile. Prêt en quelques minutes.",
+      "button": "Commencer Gratuitement",
+      "description": "Créez votre CV professionnel en quelques minutes. Commencez maintenant."
+    },
+    "footer": {
+      "title": "Commencez Maintenant"
+    }
+  },
+  "skills": {
+    "title": "Modifier les Compétences",
+    "noSkillSelected": "Aucune compétence sélectionnée",
+    "name": {
+      "label": "Nom de la Compétence",
+      "required": "Le nom de la compétence est requis"
+    },
+    "description": {
+      "label": "Description"
+    }
+  },
+  "personalInfo": {
+    "title": "Modifier les Informations Personnelles",
+    "name": {
+      "label": "Nom",
+      "required": "Le nom est requis"
+    },
+    "jobTitle": {
+      "label": "Titre du Poste",
+      "required": "Le titre du poste est requis"
+    },
+    "email": {
+      "label": "Email",
+      "required": "L'email est requis"
+    },
+    "phone": {
+      "label": "Téléphone"
+    },
+    "address": {
+      "label": "Adresse"
+    },
+    "personalWebsite": {
+      "label": "Site Web Personnel"
+    },
+    "summary": {
+      "label": "Résumé Professionnel"
+    }
+  },
+  "mobileNotice": {
+    "title": "Expérience Bureau Recommandée",
+    "description": "Pour une meilleure expérience d'édition de CV, veuillez utiliser un ordinateur de bureau",
+    "features": {
+      "preview": "Aperçu en temps réel avec mises à jour instantanées",
+      "editing": "Outils d'édition avancés et options de mise en page",
+      "templates": "Aperçu complet des modèles et personnalisation"
+    }
+  },
+  "templates": {
+    "title": "Modèles de CV Professionnels",
+    "subtitle": "Choisissez parmi notre collection de modèles conçus professionnellement. Chaque modèle est créé pour vous démarquer.",
+    "imageAlt": "Aperçu du modèle {name} - Idéal pour {bestFor}",
+    "bestFor": "Idéal pour",
+    "useTemplate": "Utiliser le modèle {name}",
+    "types": {
+      "free": "Gratuit",
+      "premium": "Premium"
+    },
+    "cta": {
+      "title": "Prêt à Créer Votre CV Professionnel ?",
+      "description": "Choisissez votre modèle préféré et commencez à créer votre CV maintenant.",
+      "button": "Commencer Maintenant"
+    },
+    "list": {
+      "modern": {
+        "name": "Modèle de CV Moderne",
+        "description": "Design épuré et contemporain mettant l'accent sur la lisibilité et la hiérarchie visuelle.",
+        "bestFor": "Professionnels de la tech, du design et du marketing",
+        "features": [
+          "Design moderne",
+          "Couleurs d'accent",
+          "Hiérarchie visuelle",
+          "Parfait pour les industries créatives"
+        ]
+      },
+      "professional": {
+        "name": "Modèle de CV Professionnel",
+        "description": "Un modèle raffiné qui dégage professionnalisme et compétence.",
+        "bestFor": "Professionnels d'affaires et cadres",
+        "features": [
+          "Mise en page classique",
+          "Typographie professionnelle",
+          "Design épuré",
+          "Parfait pour les professionnels d'affaires"
+        ]
+      },
+      "fresh": {
+        "name": "Modèle de CV Dynamique",
+        "description": "Un modèle vibrant et énergique qui se démarque de la foule.",
+        "bestFor": "Professionnels créatifs et startups",
+        "features": [
+          "Palette de couleurs fraîche",
+          "Mise en page moderne",
+          "Design accrocheur",
+          "Parfait pour les rôles créatifs"
+        ]
+      },
+      "clean": {
+        "name": "Modèle de CV Épuré",
+        "description": "Un modèle minimaliste qui met l'accent sur le contenu.",
+        "bestFor": "Tous les secteurs, particulièrement les secteurs traditionnels",
+        "features": [
+          "Design minimaliste",
+          "Axé sur le contenu",
+          "Typographie épurée",
+          "Parfait pour les universitaires"
+        ]
+      }
+    },
+    "filters": {
+      "title": "Filtres",
+      "clear": "Effacer",
+      "apply": "Appliquer"
+    },
+    "categories": {
+      "all": "Tous",
+      "recommended": "Recommandés",
+      "popular": "Populaires",
+      "basic": "Basiques",
+      "creative": "Créatifs",
+      "professional": "Professionnels"
+    },
+    "sort": {
+      "label": "Trier par",
+      "popular": "Popularité",
+      "newest": "Plus récents",
+      "oldest": "Plus anciens"
+    }
+  },
+  "experience": {
+    "title": "Modifier l'Expérience",
+    "noExperienceSelected": "Aucune expérience sélectionnée",
+    "company": {
+      "label": "Entreprise",
+      "required": "Le nom de l'entreprise est requis"
+    },
+    "position": {
+      "label": "Poste",
+      "required": "Le poste est requis"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Date de Début",
+        "required": "La date de début est requise"
+      },
+      "endDate": {
+        "label": "Date de Fin",
+        "required": "La date de fin est requise"
+      },
+      "currentlyWork": "Je travaille actuellement ici",
+      "present": "Présent"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "bulletPoints": {
+      "label": "Points Clés",
+      "add": "Ajouter un Point",
+      "placeholder": "Point {number}",
+      "remove": "Supprimer le point"
+    }
+  },
+  "projects": {
+    "title": "Modifier le Projet",
+    "noProjectSelected": "Aucun projet sélectionné",
+    "name": {
+      "label": "Nom du Projet",
+      "required": "Le nom du projet est requis"
+    },
+    "role": {
+      "label": "Votre Rôle",
+      "required": "Le rôle est requis"
+    },
+    "url": {
+      "label": "URL du Projet"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Date de Début",
+        "required": "La date de début est requise"
+      },
+      "endDate": {
+        "label": "Date de Fin",
+        "required": "La date de fin est requise"
+      },
+      "ongoing": "C'est un projet en cours",
+      "present": "Présent"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "technologies": {
+      "label": "Technologies Utilisées",
+      "add": "Ajouter une Technologie",
+      "placeholder": "Technologie {number}",
+      "remove": "Supprimer la technologie"
+    },
+    "bulletPoints": {
+      "label": "Points Clés",
+      "add": "Ajouter un Point",
+      "placeholder": "Point {number}",
+      "remove": "Supprimer le point"
+    }
+  },
+  "customSection": {
+    "title": "Modifier la Section Personnalisée",
+    "noSectionSelected": "Aucune section sélectionnée",
+    "name": {
+      "label": "Nom de la Section",
+      "required": "Le nom de la section est requis"
+    },
+    "items": {
+      "label": "Éléments",
+      "add": "Ajouter un Élément",
+      "remove": "Supprimer l'élément",
+      "noItems": "Aucun élément dans cette section",
+      "selectToEdit": "Sélectionnez un élément à modifier",
+      "noItemSelected": "Aucun élément sélectionné",
+      "editItem": "Modifier l'Élément",
+      "title": {
+        "label": "Titre",
+        "required": "Le titre est requis",
+        "placeholder": "Entrez le titre de l'élément"
+      },
+      "subtitle": {
+        "label": "Sous-titre",
+        "placeholder": "Entrez le sous-titre de l'élément"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Entrez la description de l'élément"
+      }
+    }
+  },
+  "education": {
+    "title": "Modifier la Formation",
+    "noEducationSelected": "Aucune formation sélectionnée",
+    "school": {
+      "label": "École/Université",
+      "required": "Le nom de l'école est requis"
+    },
+    "degree": {
+      "label": "Diplôme",
+      "required": "Le diplôme est requis"
+    },
+    "field": {
+      "label": "Domaine d'Études",
+      "required": "Le domaine d'études est requis"
+    }
+  },
+  "sidebar": {
+    "title": "Barre Latérale",
+    "sections": "Sections",
+    "templates": "Modèles",
+    "customize": "Personnaliser",
+    "download": "Télécharger",
+    "preview": "Aperçu",
+    "back": "Retour",
+    "content": "Contenu",
+    "expandAll": "Tout développer",
+    "collapseAll": "Tout réduire",
+    "basics": "Informations de Base",
+    "experience": "Expérience",
+    "education": "Formation",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "customSection": {
+      "title": "Section Personnalisée",
+      "add": "Ajouter une Section Personnalisée",
+      "addItem": "Ajouter un Élément",
+      "newSection": "Nouvelle Section",
+      "newItem": "Nouvel Élément",
+      "sectionTitle": "Titre de la Section",
+      "confirmDelete": {
+        "title": "Confirmer la Suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+        "cancel": "Annuler",
+        "delete": "Supprimer"
+      }
+    }
+  }
+} 

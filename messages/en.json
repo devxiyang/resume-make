@@ -1,0 +1,348 @@
+{
+  "metadata": {
+    "title": "Resume Builder - Create Professional Resumes Online",
+    "titleTemplate": "Resume Builder",
+    "description": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format.",
+    "keywords": "resume builder, cv maker, professional resume, job application, career tools, resume templates, AI resume builder",
+    "author": "Resume Builder Team",
+    "publisher": "Resume Builder",
+    "siteName": "Resume Builder",
+    "ogTitle": "Resume Builder - Create Professional Resumes Online",
+    "ogDescription": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format.",
+    "ogImageAlt": "Resume Builder Preview",
+    "twitterTitle": "Resume Builder - Create Professional Resumes Online",
+    "twitterDescription": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format."
+  },
+  "site": {
+    "title": "Resume Maker",
+    "createResume": "Create Resume"
+  },
+  "navigation": {
+    "tabs": {
+      "edit": "Edit Content",
+      "template": "Choose Template"
+    }
+  },
+  "skills": {
+    "title": "Edit Skill",
+    "noSkillSelected": "No skill selected",
+    "name": {
+      "label": "Skill Name",
+      "required": "Skill name is required"
+    },
+    "description": {
+      "label": "Description"
+    }
+  },
+  "personalInfo": {
+    "title": "Edit Personal Information",
+    "name": {
+      "label": "Name",
+      "required": "Name is required"
+    },
+    "jobTitle": {
+      "label": "Job Title",
+      "required": "Job title is required"
+    },
+    "email": {
+      "label": "Email",
+      "required": "Email is required"
+    },
+    "phone": {
+      "label": "Phone"
+    },
+    "address": {
+      "label": "Address"
+    },
+    "personalWebsite": {
+      "label": "Personal Website"
+    },
+    "summary": {
+      "label": "Professional Summary"
+    }
+  },
+  "mobileNotice": {
+    "title": "Desktop Experience Recommended",
+    "description": "For the best resume editing experience, please switch to a desktop device",
+    "features": {
+      "preview": "Real-time preview with live updates",
+      "editing": "Advanced editing tools and layout options",
+      "templates": "Full template preview and customization"
+    }
+  },
+  "templates": {
+    "title": "Professional Resume Templates",
+    "subtitle": "Choose from our collection of professionally designed templates. Each template is crafted to help you stand out.",
+    "imageAlt": "{name} Template Preview - Best for {bestFor}",
+    "bestFor": "Best for",
+    "useTemplate": "Use {name} template",
+    "cta": {
+      "title": "Ready to Create Your Professional Resume?",
+      "description": "Choose your favorite template and start building your resume now.",
+      "button": "Start Building Now"
+    },
+    "list": {
+      "modern": {
+        "name": "Modern Resume Template",
+        "description": "Clean and contemporary design with a focus on readability and visual hierarchy.",
+        "bestFor": "Tech, Design, and Marketing professionals",
+        "features": [
+          "Modern design",
+          "Accent colors",
+          "Visual hierarchy",
+          "Perfect for creative industries"
+        ]
+      },
+      "professional": {
+        "name": "Professional Resume Template",
+        "description": "A polished template that exudes professionalism and competence.",
+        "bestFor": "Business professionals and executives",
+        "features": [
+          "Classic layout",
+          "Professional typography",
+          "Clean design",
+          "Perfect for business professionals"
+        ]
+      },
+      "fresh": {
+        "name": "Fresh Resume Template",
+        "description": "A vibrant and energetic template that stands out from the crowd.",
+        "bestFor": "Creative professionals and startups",
+        "features": [
+          "Fresh color scheme",
+          "Modern layout",
+          "Eye-catching design",
+          "Perfect for creative roles"
+        ]
+      },
+      "clean": {
+        "name": "Clean Resume Template",
+        "description": "A minimalist template that focuses on content.",
+        "bestFor": "All industries, especially traditional sectors",
+        "features": [
+          "Minimalist design",
+          "Content focused",
+          "Clean typography",
+          "Perfect for academics"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "title": "Edit Experience",
+    "noExperienceSelected": "No experience selected",
+    "company": {
+      "label": "Company",
+      "required": "Company name is required"
+    },
+    "position": {
+      "label": "Position",
+      "required": "Position is required"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Start Date",
+        "required": "Start date is required"
+      },
+      "endDate": {
+        "label": "End Date",
+        "required": "End date is required"
+      },
+      "currentlyWork": "I currently work here",
+      "present": "Present"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "bulletPoints": {
+      "label": "Bullet Points",
+      "add": "Add Bullet Point",
+      "placeholder": "Bullet point {number}",
+      "remove": "Remove bullet point"
+    }
+  },
+  "projects": {
+    "title": "Edit Project",
+    "noProjectSelected": "No project selected",
+    "name": {
+      "label": "Project Name",
+      "required": "Project name is required"
+    },
+    "role": {
+      "label": "Your Role",
+      "required": "Role is required"
+    },
+    "url": {
+      "label": "Project URL"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Start Date",
+        "required": "Start date is required"
+      },
+      "endDate": {
+        "label": "End Date",
+        "required": "End date is required"
+      },
+      "ongoing": "This is an ongoing project",
+      "present": "Present"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "technologies": {
+      "label": "Technologies Used",
+      "add": "Add Technology",
+      "placeholder": "Technology {number}",
+      "remove": "Remove technology"
+    },
+    "bulletPoints": {
+      "label": "Bullet Points",
+      "add": "Add Bullet Point",
+      "placeholder": "Bullet point {number}",
+      "remove": "Remove bullet point"
+    }
+  },
+  "customSection": {
+    "title": "Edit Custom Section",
+    "noSectionSelected": "No section selected",
+    "name": {
+      "label": "Section Name",
+      "required": "Section name is required"
+    },
+    "items": {
+      "label": "Items",
+      "add": "Add Item",
+      "remove": "Remove item",
+      "noItems": "No items in this section",
+      "selectToEdit": "Select an item to edit",
+      "noItemSelected": "No item selected",
+      "editItem": "Edit Item",
+      "title": {
+        "label": "Title",
+        "required": "Title is required",
+        "placeholder": "Enter item title"
+      },
+      "subtitle": {
+        "label": "Subtitle",
+        "placeholder": "Enter item subtitle"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Enter item description"
+      }
+    }
+  },
+  "education": {
+    "title": "Edit Education",
+    "noEducationSelected": "No education selected",
+    "school": {
+      "label": "School/University",
+      "required": "School name is required"
+    },
+    "degree": {
+      "label": "Degree",
+      "required": "Degree is required"
+    },
+    "field": {
+      "label": "Field of Study",
+      "required": "Field of study is required"
+    },
+    "gpa": {
+      "label": "GPA",
+      "placeholder": "e.g., 3.8/4.0"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Start Date",
+        "required": "Start date is required"
+      },
+      "endDate": {
+        "label": "End Date",
+        "required": "End date is required"
+      },
+      "ongoing": "I am currently studying here",
+      "present": "Present"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "achievements": {
+      "label": "Achievements",
+      "add": "Add Achievement",
+      "placeholder": "Achievement {number}",
+      "remove": "Remove achievement"
+    }
+  },
+  "sidebar": {
+    "content": "Content",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "basics": "Basics",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "skills": "Skills",
+    "customSection": {
+      "title": "Custom Section",
+      "add": "Add Custom Section",
+      "addItem": "Add Item",
+      "newSection": "New Section",
+      "newItem": "New Item",
+      "sectionTitle": "Section Title",
+      "confirmDelete": {
+        "title": "Confirm Delete",
+        "message": "Are you sure you want to delete this item?",
+        "cancel": "Cancel",
+        "delete": "Delete"
+      }
+    }
+  },
+  "landing": {
+    "cta": {
+      "title": "Ready to Create Your Professional Resume?",
+      "description": "Join thousands of job seekers who have successfully created their resumes using our platform.",
+      "button": "Start Building Now"
+    },
+    "footer": {
+      "title": "Resume Maker",
+      "copyright": "Resume Maker. All rights reserved."
+    },
+    "hero": {
+      "quickStart": "Your professional resume in minutes",
+      "title": "Create Your Perfect Resume",
+      "titleHighlight": "With Ease",
+      "description": "Build professional resumes that stand out. Choose from modern templates, customize with ease, and download in seconds. Your next career move starts here.",
+      "buttons": {
+        "start": "Start Building",
+        "templates": "View Templates"
+      }
+    },
+    "features": {
+      "title": {
+        "modern": "Modern Templates",
+        "customization": "Easy Customization",
+        "download": "Instant Download"
+      },
+      "description": {
+        "modern": "Choose from our collection of professionally designed templates that catch the eye.",
+        "customization": "Customize every aspect of your resume with our intuitive editor.",
+        "download": "Download your resume in PDF format, ready to send to employers."
+      }
+    },
+    "whyChoose": {
+      "title": "Why Choose Resume Maker",
+      "subtitle": "We make resume creation simple and effective, helping you land your dream job.",
+      "features": [
+        "Professional templates designed by experts",
+        "Real-time preview as you edit",
+        "Easy-to-use interface",
+        "Export to PDF in one click",
+        "Mobile responsive design",
+        "Free to use",
+        "Multiple layout options",
+        "Regular updates and new features"
+      ]
+    }
+  }
+}

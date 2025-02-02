@@ -9,10 +9,12 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useResumeForm, validateProject } from "@/hooks/use-resume-form"
 import { Project } from "@/lib/types"
 import { EditingSpinner } from "@/components/editing-spinner"
+import { useTranslations } from 'next-intl'
 
 export function ProjectsForm() {
   const { resumeData, selectedIds } = useResume()
   const selectedProject = resumeData.projects.find(proj => proj.id === selectedIds.project)
+  const t = useTranslations('projects')
 
   const form = useResumeForm<Project>({
     type: 'project',
@@ -61,7 +63,7 @@ export function ProjectsForm() {
   if (!selectedProject) {
     return (
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="text-gray-500">No project selected</p>
+        <p className="text-gray-500">{t('noProjectSelected')}</p>
       </div>
     )
   }
@@ -70,14 +72,14 @@ export function ProjectsForm() {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>Edit Project</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <EditingSpinner />
         </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="name">Project Name</Label>
+            <Label htmlFor="name">{t('name.label')}</Label>
             <Input
               id="name"
               value={form.values.name}
@@ -85,12 +87,12 @@ export function ProjectsForm() {
               onBlur={() => form.handleBlur('name')}
             />
             {form.touched.name && form.errors.name && (
-              <p className="text-sm text-red-500">{form.errors.name}</p>
+              <p className="text-sm text-red-500">{t('name.required')}</p>
             )}
           </div>
 
           <div>
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">{t('description.label')}</Label>
             <Textarea
               id="description"
               value={form.values.description}
@@ -99,15 +101,15 @@ export function ProjectsForm() {
               className="h-24"
             />
             {form.touched.description && form.errors.description && (
-              <p className="text-sm text-red-500">{form.errors.description}</p>
+              <p className="text-sm text-red-500">{t('description.required')}</p>
             )}
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <Label>Technologies Used</Label>
+              <Label>{t('technologies.label')}</Label>
               <Button type="button" variant="outline" onClick={handleAddTechnology}>
-                Add Technology
+                {t('technologies.add')}
               </Button>
             </div>
             {(form.values.technologies || []).map((tech, index) => (
@@ -115,13 +117,14 @@ export function ProjectsForm() {
                 <Input
                   value={tech}
                   onChange={(e) => handleTechnologyChange(index, e.target.value)}
-                  placeholder={`Technology ${index + 1}`}
+                  placeholder={t('technologies.placeholder', { number: index + 1 })}
                 />
                 <Button
                   type="button"
                   variant="destructive"
                   size="icon"
                   onClick={() => handleRemoveTechnology(index)}
+                  title={t('technologies.remove')}
                 >
                   ×
                 </Button>
@@ -131,9 +134,9 @@ export function ProjectsForm() {
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <Label>Bullet Points</Label>
+              <Label>{t('bulletPoints.label')}</Label>
               <Button type="button" variant="outline" onClick={handleAddBulletPoint}>
-                Add Bullet Point
+                {t('bulletPoints.add')}
               </Button>
             </div>
             {(form.values.bulletPoints || []).map((point, index) => (
@@ -141,13 +144,14 @@ export function ProjectsForm() {
                 <Input
                   value={point}
                   onChange={(e) => handleBulletPointChange(index, e.target.value)}
-                  placeholder={`Bullet point ${index + 1}`}
+                  placeholder={t('bulletPoints.placeholder', { number: index + 1 })}
                 />
                 <Button
                   type="button"
                   variant="destructive"
                   size="icon"
                   onClick={() => handleRemoveBulletPoint(index)}
+                  title={t('bulletPoints.remove')}
                 >
                   ×
                 </Button>

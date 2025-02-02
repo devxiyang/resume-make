@@ -11,9 +11,11 @@ import { useForm } from "@/hooks/use-form"
 import { useResume } from "@/context/resume-context"
 import { Label } from "@/components/ui/label"
 import { EditingSpinner } from "@/components/editing-spinner"
+import { useTranslations } from 'next-intl'
 
 export function PersonalInfoForm() {
   const { resumeData, updateResumeData } = useResume()
+  const t = useTranslations('personalInfo')
 
   const form = useForm({
     initialValues: resumeData.personal,
@@ -25,9 +27,9 @@ export function PersonalInfoForm() {
     },
     validate: (values) => {
       const errors: Record<string, string> = {}
-      if (!values.name) errors.name = 'Name is required'
-      if (!values.email) errors.email = 'Email is required'
-      if (!values.jobTitle) errors.jobTitle = 'Job title is required'
+      if (!values.name) errors.name = t('name.required')
+      if (!values.email) errors.email = t('email.required')
+      if (!values.jobTitle) errors.jobTitle = t('jobTitle.required')
       return errors
     },
   })
@@ -36,14 +38,14 @@ export function PersonalInfoForm() {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>Edit Personal Information</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <EditingSpinner />
         </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">{t('name.label')}</Label>
             <Input
               id="name"
               value={form.values.name}
@@ -55,7 +57,7 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="jobTitle">Job Title</Label>
+            <Label htmlFor="jobTitle">{t('jobTitle.label')}</Label>
             <Input
               id="jobTitle"
               value={form.values.jobTitle}
@@ -67,7 +69,7 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t('email.label')}</Label>
             <Input
               id="email"
               type="email"
@@ -80,7 +82,7 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="phone">Phone</Label>
+            <Label htmlFor="phone">{t('phone.label')}</Label>
             <Input
               id="phone"
               value={form.values.phone}
@@ -89,7 +91,7 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="address">Address</Label>
+            <Label htmlFor="address">{t('address.label')}</Label>
             <Input
               id="address"
               value={form.values.address}
@@ -98,7 +100,7 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="personalWebsite">Personal Website</Label>
+            <Label htmlFor="personalWebsite">{t('personalWebsite.label')}</Label>
             <Input
               id="personalWebsite"
               value={form.values.personalWebsite}
@@ -107,7 +109,7 @@ export function PersonalInfoForm() {
           </div>
 
           <div>
-            <Label htmlFor="summary">Professional Summary</Label>
+            <Label htmlFor="summary">{t('summary.label')}</Label>
             <Textarea
               id="summary"
               value={form.values.summary}
