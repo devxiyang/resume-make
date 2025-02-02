@@ -1,0 +1,266 @@
+{
+  "metadata": {
+    "title": "Creador de Currículum - Crea Currículums Profesionales en Línea",
+    "titleTemplate": "Creador de Currículum",
+    "description": "Crea currículums profesionales con nuestro creador de currículum en línea fácil de usar. Elige entre plantillas modernas, personaliza tu contenido y descarga tu currículum en formato PDF.",
+    "keywords": "creador de currículum, generador de CV, currículum profesional, solicitud de empleo, herramientas de carrera, plantillas de currículum, creador de currículum con IA",
+    "author": "Equipo Creador de Currículum",
+    "publisher": "Creador de Currículum",
+    "siteName": "Creador de Currículum",
+    "ogTitle": "Creador de Currículum - Crea Currículums Profesionales en Línea",
+    "ogDescription": "Crea currículums profesionales con nuestro creador de currículum en línea fácil de usar. Elige entre plantillas modernas, personaliza tu contenido y descarga tu currículum en formato PDF.",
+    "ogImageAlt": "Vista previa del Creador de Currículum",
+    "twitterTitle": "Creador de Currículum - Crea Currículums Profesionales en Línea",
+    "twitterDescription": "Crea currículums profesionales con nuestro creador de currículum en línea fácil de usar. Elige entre plantillas modernas, personaliza tu contenido y descarga tu currículum en formato PDF."
+  },
+  "site": {
+    "title": "Creador de Currículum",
+    "createResume": "Crear Currículum"
+  },
+  "navigation": {
+    "tabs": {
+      "edit": "Editar Contenido",
+      "template": "Elegir Plantilla"
+    }
+  },
+  "landing": {
+    "whyChoose": {
+      "title": "Por Qué Elegirnos",
+      "subtitle": "Ofrecemos todas las funciones necesarias para crear un currículum profesional",
+      "features": [
+        "Interfaz fácil de usar",
+        "Plantillas profesionales",
+        "Vista previa en tiempo real",
+        "Exportación a PDF",
+        "Formato compatible con ATS",
+        "Soporte multilingüe"
+      ]
+    }
+  },
+  "skills": {
+    "title": "Editar Habilidad",
+    "noSkillSelected": "Ninguna habilidad seleccionada",
+    "name": {
+      "label": "Nombre de la Habilidad",
+      "required": "El nombre de la habilidad es requerido"
+    },
+    "description": {
+      "label": "Descripción"
+    }
+  },
+  "personalInfo": {
+    "title": "Editar Información Personal",
+    "name": {
+      "label": "Nombre",
+      "required": "El nombre es requerido"
+    },
+    "jobTitle": {
+      "label": "Puesto de Trabajo",
+      "required": "El puesto de trabajo es requerido"
+    },
+    "email": {
+      "label": "Correo Electrónico",
+      "required": "El correo electrónico es requerido"
+    },
+    "phone": {
+      "label": "Teléfono"
+    },
+    "address": {
+      "label": "Dirección"
+    },
+    "personalWebsite": {
+      "label": "Sitio Web Personal"
+    },
+    "summary": {
+      "label": "Resumen Profesional"
+    }
+  },
+  "mobileNotice": {
+    "title": "Experiencia de Escritorio Recomendada",
+    "description": "Para la mejor experiencia de edición de currículum, por favor utiliza un dispositivo de escritorio",
+    "features": {
+      "preview": "Vista previa en tiempo real con actualizaciones instantáneas",
+      "editing": "Herramientas de edición avanzadas y opciones de diseño",
+      "templates": "Vista previa completa de plantillas y personalización"
+    }
+  },
+  "templates": {
+    "title": "Plantillas de Currículum Profesionales",
+    "subtitle": "Elige entre nuestra colección de plantillas diseñadas profesionalmente. Cada plantilla está creada para ayudarte a destacar.",
+    "imageAlt": "Vista previa de plantilla {name} - Ideal para {bestFor}",
+    "bestFor": "Ideal para",
+    "useTemplate": "Usar plantilla {name}",
+    "cta": {
+      "title": "¿Listo para Crear tu Currículum Profesional?",
+      "description": "Elige tu plantilla favorita y comienza a crear tu currículum ahora.",
+      "button": "Comenzar Ahora"
+    },
+    "list": {
+      "modern": {
+        "name": "Plantilla de Currículum Moderna",
+        "description": "Diseño limpio y contemporáneo con énfasis en la legibilidad y jerarquía visual.",
+        "bestFor": "Profesionales de tecnología, diseño y marketing",
+        "features": [
+          "Diseño moderno",
+          "Colores de acento",
+          "Jerarquía visual",
+          "Perfecto para industrias creativas"
+        ]
+      },
+      "professional": {
+        "name": "Plantilla de Currículum Profesional",
+        "description": "Una plantilla refinada que transmite profesionalismo y competencia.",
+        "bestFor": "Profesionales de negocios y ejecutivos",
+        "features": [
+          "Diseño clásico",
+          "Tipografía profesional",
+          "Diseño limpio",
+          "Perfecto para profesionales de negocios"
+        ]
+      },
+      "fresh": {
+        "name": "Plantilla de Currículum Fresca",
+        "description": "Una plantilla vibrante y energética que destaca entre la multitud.",
+        "bestFor": "Profesionales creativos y startups",
+        "features": [
+          "Esquema de colores fresco",
+          "Diseño moderno",
+          "Diseño llamativo",
+          "Perfecto para roles creativos"
+        ]
+      },
+      "clean": {
+        "name": "Plantilla de Currículum Limpia",
+        "description": "Una plantilla minimalista que se centra en el contenido.",
+        "bestFor": "Todas las industrias, especialmente sectores tradicionales",
+        "features": [
+          "Diseño minimalista",
+          "Enfocado en contenido",
+          "Tipografía limpia",
+          "Perfecto para académicos"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "title": "Editar Experiencia",
+    "noExperienceSelected": "Ninguna experiencia seleccionada",
+    "company": {
+      "label": "Empresa",
+      "required": "El nombre de la empresa es requerido"
+    },
+    "position": {
+      "label": "Cargo",
+      "required": "El cargo es requerido"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Fecha de Inicio",
+        "required": "La fecha de inicio es requerida"
+      },
+      "endDate": {
+        "label": "Fecha de Fin",
+        "required": "La fecha de fin es requerida"
+      },
+      "currentlyWork": "Actualmente trabajo aquí",
+      "present": "Presente"
+    },
+    "description": {
+      "label": "Descripción"
+    },
+    "bulletPoints": {
+      "label": "Puntos Destacados",
+      "add": "Agregar Punto",
+      "placeholder": "Punto {number}",
+      "remove": "Eliminar punto"
+    }
+  },
+  "projects": {
+    "title": "Editar Proyecto",
+    "noProjectSelected": "Ningún proyecto seleccionado",
+    "name": {
+      "label": "Nombre del Proyecto",
+      "required": "El nombre del proyecto es requerido"
+    },
+    "role": {
+      "label": "Tu Rol",
+      "required": "El rol es requerido"
+    },
+    "url": {
+      "label": "URL del Proyecto"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Fecha de Inicio",
+        "required": "La fecha de inicio es requerida"
+      },
+      "endDate": {
+        "label": "Fecha de Fin",
+        "required": "La fecha de fin es requerida"
+      },
+      "ongoing": "Este es un proyecto en curso",
+      "present": "Presente"
+    },
+    "description": {
+      "label": "Descripción"
+    },
+    "technologies": {
+      "label": "Tecnologías Utilizadas",
+      "add": "Agregar Tecnología",
+      "placeholder": "Tecnología {number}",
+      "remove": "Eliminar tecnología"
+    },
+    "bulletPoints": {
+      "label": "Puntos Destacados",
+      "add": "Agregar Punto",
+      "placeholder": "Punto {number}",
+      "remove": "Eliminar punto"
+    }
+  },
+  "customSection": {
+    "title": "Editar Sección Personalizada",
+    "noSectionSelected": "Ninguna sección seleccionada",
+    "name": {
+      "label": "Nombre de la Sección",
+      "required": "El nombre de la sección es requerido"
+    },
+    "items": {
+      "label": "Elementos",
+      "add": "Agregar Elemento",
+      "remove": "Eliminar elemento",
+      "noItems": "No hay elementos en esta sección",
+      "selectToEdit": "Selecciona un elemento para editar",
+      "noItemSelected": "Ningún elemento seleccionado",
+      "editItem": "Editar Elemento",
+      "title": {
+        "label": "Título",
+        "required": "El título es requerido",
+        "placeholder": "Ingresa el título del elemento"
+      },
+      "subtitle": {
+        "label": "Subtítulo",
+        "placeholder": "Ingresa el subtítulo del elemento"
+      },
+      "description": {
+        "label": "Descripción",
+        "placeholder": "Ingresa la descripción del elemento"
+      }
+    }
+  },
+  "education": {
+    "title": "Editar Educación",
+    "noEducationSelected": "Ninguna educación seleccionada",
+    "school": {
+      "label": "Escuela/Universidad",
+      "required": "El nombre de la escuela es requerido"
+    },
+    "degree": {
+      "label": "Título",
+      "required": "El título es requerido"
+    },
+    "field": {
+      "label": "Campo de Estudio",
+      "required": "El campo de estudio es requerido"
+    }
+  }
+} 
