@@ -24,6 +24,41 @@
     }
   },
   "landing": {
+    "hero": {
+      "title": "Crea Tu Currículum Profesional Fácilmente",
+      "subtitle": "Destaca tu experiencia con nuestras plantillas modernas y editor intuitivo",
+      "cta": "Crear CV Gratis",
+      "buttons": {
+        "templates": "Ver Plantillas"
+      }
+    },
+    "features": {
+      "subtitle": "Creación de CV simple y efectiva",
+      "list": [
+        {
+          "title": "Plantillas Profesionales",
+          "description": "Plantillas elegantes y efectivas diseñadas según los estándares de la industria"
+        },
+        {
+          "title": "Personalizable",
+          "description": "Personaliza todos los elementos según tus necesidades"
+        },
+        {
+          "title": "Compatible con ATS",
+          "description": "Formato optimizado para sistemas de seguimiento de candidatos (ATS)"
+        }
+      ],
+      "title": {
+        "modern": "Diseño Moderno",
+        "customization": "Personalización Completa",
+        "download": "Descarga Fácil"
+      },
+      "description": {
+        "modern": "Un diseño moderno y sofisticado para hacer destacar tu currículum",
+        "customization": "Personaliza todos los elementos según tus necesidades",
+        "download": "Descarga fácilmente tu currículum terminado en formato PDF"
+      }
+    },
     "whyChoose": {
       "title": "Por Qué Elegirnos",
       "subtitle": "Ofrecemos todas las funciones necesarias para crear un currículum profesional",
@@ -35,6 +70,17 @@
         "Formato compatible con ATS",
         "Soporte multilingüe"
       ]
+    },
+    "templates": {
+      "title": "Plantillas Profesionales",
+      "subtitle": "Destácate con nuestros diseños líderes en la industria",
+      "cta": "Ver Todas las Plantillas"
+    },
+    "cta": {
+      "title": "Comienza a Crear Tu CV Ahora",
+      "subtitle": "Gratis y fácil. Listo en minutos.",
+      "button": "Comenzar Gratis",
+      "description": "Crea tu currículum profesional en minutos. Comienza ahora."
     }
   },
   "skills": {
@@ -140,6 +186,25 @@
           "Perfecto para académicos"
         ]
       }
+    },
+    "filters": {
+      "title": "Filtros",
+      "clear": "Limpiar",
+      "apply": "Aplicar"
+    },
+    "categories": {
+      "all": "Todos",
+      "recommended": "Recomendados",
+      "popular": "Populares",
+      "basic": "Básicos",
+      "creative": "Creativos",
+      "professional": "Profesionales"
+    },
+    "sort": {
+      "label": "Ordenar por",
+      "popular": "Popularidad",
+      "newest": "Más recientes",
+      "oldest": "Más antiguos"
     }
   },
   "experience": {
@@ -262,5 +327,14 @@
       "label": "Campo de Estudio",
       "required": "El campo de estudio es requerido"
     }
+  },
+  "sidebar": {
+    "title": "Barra Lateral",
+    "sections": "Secciones",
+    "templates": "Plantillas",
+    "customize": "Personalizar",
+    "download": "Descargar",
+    "preview": "Vista Previa",
+    "back": "Volver"
   }
 } 

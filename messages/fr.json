@@ -24,6 +24,41 @@
     }
   },
   "landing": {
+    "hero": {
+      "title": "Créez Facilement Votre CV Professionnel",
+      "subtitle": "Mettez en valeur votre expérience avec nos modèles modernes et notre éditeur intuitif",
+      "cta": "Créer un CV Gratuitement",
+      "buttons": {
+        "templates": "Voir les Modèles"
+      }
+    },
+    "features": {
+      "subtitle": "Création de CV simple et efficace",
+      "list": [
+        {
+          "title": "Modèles Professionnels",
+          "description": "Des modèles élégants et efficaces conçus selon les standards de l'industrie"
+        },
+        {
+          "title": "Personnalisable",
+          "description": "Personnalisez tous les éléments selon vos besoins"
+        },
+        {
+          "title": "Compatible ATS",
+          "description": "Format optimisé pour les systèmes de suivi des candidatures (ATS)"
+        }
+      ],
+      "title": {
+        "modern": "Design Moderne",
+        "customization": "Personnalisation Complète",
+        "download": "Téléchargement Facile"
+      },
+      "description": {
+        "modern": "Un design moderne et sophistiqué pour faire ressortir votre CV",
+        "customization": "Personnalisez tous les éléments selon vos besoins",
+        "download": "Téléchargez facilement votre CV terminé au format PDF"
+      }
+    },
     "whyChoose": {
       "title": "Pourquoi Nous Choisir",
       "subtitle": "Nous offrons toutes les fonctionnalités nécessaires pour créer un CV professionnel",
@@ -35,6 +70,17 @@
         "Format compatible ATS",
         "Support multilingue"
       ]
+    },
+    "templates": {
+      "title": "Modèles Professionnels",
+      "subtitle": "Démarquez-vous avec nos designs leaders de l'industrie",
+      "cta": "Voir Tous les Modèles"
+    },
+    "cta": {
+      "title": "Commencez à Créer Votre CV Maintenant",
+      "subtitle": "Gratuit et facile. Prêt en quelques minutes.",
+      "button": "Commencer Gratuitement",
+      "description": "Créez votre CV professionnel en quelques minutes. Commencez maintenant."
     }
   },
   "skills": {
@@ -90,6 +136,10 @@
     "imageAlt": "Aperçu du modèle {name} - Idéal pour {bestFor}",
     "bestFor": "Idéal pour",
     "useTemplate": "Utiliser le modèle {name}",
+    "types": {
+      "free": "Gratuit",
+      "premium": "Premium"
+    },
     "cta": {
       "title": "Prêt à Créer Votre CV Professionnel ?",
       "description": "Choisissez votre modèle préféré et commencez à créer votre CV maintenant.",
@@ -140,6 +190,25 @@
           "Parfait pour les universitaires"
         ]
       }
+    },
+    "filters": {
+      "title": "Filtres",
+      "clear": "Effacer",
+      "apply": "Appliquer"
+    },
+    "categories": {
+      "all": "Tous",
+      "recommended": "Recommandés",
+      "popular": "Populaires",
+      "basic": "Basiques",
+      "creative": "Créatifs",
+      "professional": "Professionnels"
+    },
+    "sort": {
+      "label": "Trier par",
+      "popular": "Popularité",
+      "newest": "Plus récents",
+      "oldest": "Plus anciens"
     }
   },
   "experience": {
@@ -262,5 +331,14 @@
       "label": "Domaine d'Études",
       "required": "Le domaine d'études est requis"
     }
+  },
+  "sidebar": {
+    "title": "Barre Latérale",
+    "sections": "Sections",
+    "templates": "Modèles",
+    "customize": "Personnaliser",
+    "download": "Télécharger",
+    "preview": "Aperçu",
+    "back": "Retour"
   }
 } 

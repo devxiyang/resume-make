@@ -24,6 +24,41 @@
     }
   },
   "landing": {
+    "hero": {
+      "title": "Erstellen Sie Einfach Ihren Professionellen Lebenslauf",
+      "subtitle": "Präsentieren Sie Ihre Erfahrung mit unseren modernen Vorlagen und intuitivem Editor",
+      "cta": "Kostenlos Lebenslauf Erstellen",
+      "buttons": {
+        "templates": "Vorlagen ansehen"
+      }
+    },
+    "features": {
+      "subtitle": "Einfache und effektive Lebenslauferstellung",
+      "list": [
+        {
+          "title": "Professionelle Vorlagen",
+          "description": "Elegante und effektive Vorlagen nach Industriestandards"
+        },
+        {
+          "title": "Anpassbar",
+          "description": "Passen Sie alle Elemente nach Ihren Bedürfnissen an"
+        },
+        {
+          "title": "ATS-Kompatibel",
+          "description": "Optimiertes Format für Bewerbermanagementsysteme (ATS)"
+        }
+      ],
+      "title": {
+        "modern": "Modernes Design",
+        "customization": "Vollständige Anpassung",
+        "download": "Einfacher Download"
+      },
+      "description": {
+        "modern": "Ein modernes und sophistiziertes Design, um Ihren Lebenslauf hervorzuheben",
+        "customization": "Passen Sie alle Elemente nach Ihren Bedürfnissen an",
+        "download": "Laden Sie Ihren fertigen Lebenslauf einfach im PDF-Format herunter"
+      }
+    },
     "whyChoose": {
       "title": "Warum uns wählen",
       "subtitle": "Wir bieten alle notwendigen Funktionen für die Erstellung eines professionellen Lebenslaufs",
@@ -35,6 +70,17 @@
         "ATS-kompatibles Format",
         "Mehrsprachige Unterstützung"
       ]
+    },
+    "templates": {
+      "title": "Professionelle Vorlagen",
+      "subtitle": "Heben Sie sich mit unseren branchenführenden Designs ab",
+      "cta": "Alle Vorlagen Ansehen"
+    },
+    "cta": {
+      "title": "Beginnen Sie Jetzt mit der Erstellung Ihres Lebenslaufs",
+      "subtitle": "Kostenlos und einfach. In wenigen Minuten fertig.",
+      "button": "Kostenlos Beginnen",
+      "description": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Starten Sie jetzt."
     }
   },
   "skills": {
@@ -90,6 +136,10 @@
     "imageAlt": "{name} Vorlagenvorschau - Optimal für {bestFor}",
     "bestFor": "Optimal für",
     "useTemplate": "{name} Vorlage verwenden",
+    "types": {
+      "free": "Kostenlos",
+      "premium": "Premium"
+    },
     "cta": {
       "title": "Bereit, Ihren professionellen Lebenslauf zu erstellen?",
       "description": "Wählen Sie Ihre bevorzugte Vorlage und beginnen Sie jetzt mit der Erstellung Ihres Lebenslaufs.",
@@ -140,6 +190,25 @@
           "Perfekt für Akademiker"
         ]
       }
+    },
+    "filters": {
+      "title": "Filter",
+      "clear": "Zurücksetzen",
+      "apply": "Anwenden"
+    },
+    "categories": {
+      "all": "Alle",
+      "recommended": "Empfohlen",
+      "popular": "Beliebt",
+      "basic": "Einfach",
+      "creative": "Kreativ",
+      "professional": "Professionell"
+    },
+    "sort": {
+      "label": "Sortieren nach",
+      "popular": "Beliebtheit",
+      "newest": "Neueste",
+      "oldest": "Älteste"
     }
   },
   "experience": {
@@ -262,5 +331,14 @@
       "label": "Studienfach",
       "required": "Studienfach ist erforderlich"
     }
+  },
+  "sidebar": {
+    "title": "Seitenleiste",
+    "sections": "Abschnitte",
+    "templates": "Vorlagen",
+    "customize": "Anpassen",
+    "download": "Herunterladen",
+    "preview": "Vorschau",
+    "back": "Zurück"
   }
 } 

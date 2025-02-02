@@ -24,6 +24,41 @@
     }
   },
   "landing": {
+    "hero": {
+      "title": "전문적인 이력서를 쉽게 작성하세요",
+      "subtitle": "현대적인 템플릿과 직관적인 에디터로 당신의 경력을 최대한 어필하세요",
+      "cta": "무료로 이력서 작성하기",
+      "buttons": {
+        "templates": "템플릿 보기"
+      }
+    },
+    "features": {
+      "subtitle": "이력서 작성을 심플하고 효과적으로",
+      "list": [
+        {
+          "title": "전문적인 템플릿",
+          "description": "업계 표준에 맞춰 설계된 아름답고 효과적인 템플릿"
+        },
+        {
+          "title": "맞춤 설정 가능",
+          "description": "당신의 필요에 맞춰 모든 요소를 커스터마이징 가능"
+        },
+        {
+          "title": "ATS 최적화",
+          "description": "채용관리시스템(ATS)에 최적화된 이력서 포맷"
+        }
+      ],
+      "title": {
+        "modern": "현대적인 디자인",
+        "customization": "완벽한 맞춤설정",
+        "download": "간편한 다운로드"
+      },
+      "description": {
+        "modern": "현대적이고 세련된 디자인으로 당신의 이력서를 돋보이게 합니다",
+        "customization": "당신의 필요에 맞춰 모든 요소를 커스터마이징할 수 있습니다",
+        "download": "완성된 이력서를 PDF 형식으로 쉽게 다운로드"
+      }
+    },
     "whyChoose": {
       "title": "왜 우리 서비스를 선택해야 하나요",
       "subtitle": "전문적인 이력서 작성에 필요한 모든 기능을 제공합니다",
@@ -35,6 +70,17 @@
         "ATS 호환 형식",
         "다국어 지원"
       ]
+    },
+    "templates": {
+      "title": "전문적인 템플릿",
+      "subtitle": "업계를 선도하는 디자인으로 당신의 경력을 돋보이게 합니다",
+      "cta": "모든 템플릿 보기"
+    },
+    "cta": {
+      "title": "지금 바로 이력서 작성을 시작하세요",
+      "subtitle": "무료로 간편하게. 몇 분이면 완성됩니다.",
+      "button": "무료로 시작하기",
+      "description": "전문적인 이력서를 몇 분 안에 작성. 지금 시작하세요."
     }
   },
   "skills": {
@@ -90,6 +136,10 @@
     "imageAlt": "{name} 템플릿 미리보기 - {bestFor}에 최적화",
     "bestFor": "최적 대상",
     "useTemplate": "{name} 템플릿 사용",
+    "types": {
+      "free": "무료",
+      "premium": "프리미엄"
+    },
     "cta": {
       "title": "전문적인 이력서를 만들 준비가 되셨나요?",
       "description": "마음에 드는 템플릿을 선택하고 지금 바로 이력서 작성을 시작하세요.",
@@ -140,6 +190,25 @@
           "학계 종사자에게 적합"
         ]
       }
+    },
+    "filters": {
+      "title": "필터",
+      "clear": "초기화",
+      "apply": "적용"
+    },
+    "categories": {
+      "all": "전체",
+      "recommended": "추천",
+      "popular": "인기",
+      "basic": "기본",
+      "creative": "크리에이티브",
+      "professional": "전문가"
+    },
+    "sort": {
+      "label": "정렬",
+      "popular": "인기순",
+      "newest": "최신순",
+      "oldest": "오래된순"
     }
   },
   "experience": {
@@ -262,5 +331,14 @@
       "label": "전공",
       "required": "전공은 필수입니다"
     }
+  },
+  "sidebar": {
+    "title": "사이드바",
+    "sections": "섹션",
+    "templates": "템플릿",
+    "customize": "맞춤설정",
+    "download": "다운로드",
+    "preview": "미리보기",
+    "back": "뒤로"
   }
 } 
