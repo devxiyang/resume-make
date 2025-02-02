@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/${locale}${route}`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
-      // 设置优先级：首页 > 模板页 > 构建器页面
       priority: route === '' ? 1 : route === '/templates' ? 0.8 : 0.6,
     }))
   )

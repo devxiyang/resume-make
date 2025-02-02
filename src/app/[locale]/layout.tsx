@@ -29,6 +29,16 @@ export async function generateMetadata({
   params: { locale }
 }: Omit<Props, 'children'>): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'metadata' })
+  const baseUrl = 'https://resumemaker.cc'
+
+  // 生成所有语言版本的替代链接
+  const alternates = {
+    canonical: new URL(`${baseUrl}/${locale}`),
+    languages: routing.locales.reduce((acc, lang) => ({
+      ...acc,
+      [lang]: new URL(`${baseUrl}/${lang}`),
+    }), {}),
+  }
 
   return {
     metadataBase: new URL('https://resumemaker.cc'),
@@ -41,11 +51,12 @@ export async function generateMetadata({
     authors: [{ name: t('author') }],
     creator: t('author'),
     publisher: t('publisher'),
+    alternates,
     openGraph: {
       title: t('ogTitle'),
       description: t('ogDescription'),
       type: 'website',
-      locale: locale === 'zh' ? 'zh_CN' : 'en_US',
+      locale: locale === 'zh' ? 'zh_CN' : locale === 'ja' ? 'ja_JP' : locale === 'fr' ? 'fr_FR' : locale === 'de' ? 'de_DE' : locale === 'es' ? 'es_ES' : 'en_US',
       url: 'https://resumemaker.cc',
       siteName: t('siteName'),
       images: [
@@ -73,13 +84,6 @@ export async function generateMetadata({
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
-      },
-    },
-    alternates: {
-      canonical: 'https://resumemaker.cc',
-      languages: {
-        'en-US': '/en',
-        'zh-CN': '/zh',
       },
     },
     manifest: '/site.webmanifest',
