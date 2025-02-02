@@ -265,5 +265,29 @@
       "placeholder": "Achievement {number}",
       "remove": "Remove achievement"
     }
+  },
+  "sidebar": {
+    "content": "Content",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "basics": "Basics",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "skills": "Skills",
+    "customSection": {
+      "title": "Custom Section",
+      "add": "Add Custom Section",
+      "addItem": "Add Item",
+      "newSection": "New Section",
+      "newItem": "New Item",
+      "sectionTitle": "Section Title",
+      "confirmDelete": {
+        "title": "Confirm Delete",
+        "message": "Are you sure you want to delete this item?",
+        "cancel": "Cancel",
+        "delete": "Delete"
+      }
+    }
   }
 }

@@ -265,5 +265,29 @@
       "placeholder": "成就 {number}",
       "remove": "删除成就"
     }
+  },
+  "sidebar": {
+    "content": "内容",
+    "expandAll": "展开全部",
+    "collapseAll": "收起全部",
+    "basics": "基本信息",
+    "experience": "工作经验",
+    "education": "教育经历",
+    "projects": "项目经历",
+    "skills": "技能特长",
+    "customSection": {
+      "title": "自定义部分",
+      "add": "添加自定义部分",
+      "addItem": "添加项目",
+      "newSection": "新建部分",
+      "newItem": "新建项目",
+      "sectionTitle": "部分标题",
+      "confirmDelete": {
+        "title": "确认删除",
+        "message": "确定要删除这个项目吗？",
+        "cancel": "取消",
+        "delete": "删除"
+      }
+    }
   }
 }
