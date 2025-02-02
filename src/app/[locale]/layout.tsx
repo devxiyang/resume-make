@@ -1,44 +1,11 @@
-// import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-// export const metadata: Metadata = {
-//   title: "Resume Maker",
-//   description: "Create professional resumes with ease",
-// };
-
-// export default function RootLayout({
-//   children,
-// }: Readonly<{
-//   children: React.ReactNode;
-// }>) {
-//   return (
-//     <html lang="en">
-//       <body
-//         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-//       >
-//         {children}
-//       </body>
-//     </html>
-//   );
-// }
-
+import {NextIntlClientProvider} from 'next-intl';
 import "./globals.css"
 import "./print-styles.css"
 import type React from "react"
 import type { Metadata } from 'next'
 import { Inter, Noto_Sans_SC } from 'next/font/google'
 import { cn } from '@/lib/utils'
+import {routing} from '@/i18n/routing';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -113,13 +80,19 @@ export const metadata: Metadata = {
   category: 'productivity',
 }
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({locale}));
+}
+
 export default function RootLayout({
   children,
+  params: {locale}
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  params: {locale: string};
 }) {
   return (
-    <html lang="en" className={`${notoSansSC.variable}`}>
+    <html lang={locale} className={`${notoSansSC.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -158,7 +131,9 @@ export default function RootLayout({
         />
       </head>
       <body className={cn("min-h-screen bg-background font-sans antialiased", notoSansSC.className)}>
-        {children}
+        <NextIntlClientProvider locale={locale}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   )
