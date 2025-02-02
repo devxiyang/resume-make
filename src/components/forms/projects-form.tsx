@@ -101,7 +101,7 @@ export function ProjectsForm() {
               className="h-24"
             />
             {form.touched.description && form.errors.description && (
-              <p className="text-sm text-red-500">{form.errors.description}</p>
+              <p className="text-sm text-red-500">{t('description.required')}</p>
             )}
           </div>
 

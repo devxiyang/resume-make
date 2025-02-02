@@ -187,6 +187,12 @@
       "add": "Add Technology",
       "placeholder": "Technology {number}",
       "remove": "Remove technology"
+    },
+    "bulletPoints": {
+      "label": "Bullet Points",
+      "add": "Add Bullet Point",
+      "placeholder": "Bullet point {number}",
+      "remove": "Remove bullet point"
     }
   },
   "customSection": {

@@ -187,6 +187,12 @@
       "add": "添加技术",
       "placeholder": "技术 {number}",
       "remove": "删除技术"
+    },
+    "bulletPoints": {
+      "label": "要点",
+      "add": "添加要点",
+      "placeholder": "要点 {number}",
+      "remove": "删除要点"
     }
   },
   "customSection": {
