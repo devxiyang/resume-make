@@ -73,15 +73,19 @@
   "templates": {
     "title": "Professional Resume Templates",
     "subtitle": "Choose from our collection of professionally designed templates. Each template is crafted to help you stand out.",
-    "features": "Features",
-    "types": {
-      "free": "Free",
-      "premium": "Premium"
+    "imageAlt": "{name} Template Preview - Best for {bestFor}",
+    "bestFor": "Best for",
+    "useTemplate": "Use {name} template",
+    "cta": {
+      "title": "Ready to Create Your Professional Resume?",
+      "description": "Choose your favorite template and start building your resume now.",
+      "button": "Start Building Now"
     },
     "list": {
       "modern": {
-        "name": "Modern",
-        "description": "A contemporary template with a modern and fresh look.",
+        "name": "Modern Resume Template",
+        "description": "Clean and contemporary design with a focus on readability and visual hierarchy.",
+        "bestFor": "Tech, Design, and Marketing professionals",
         "features": [
           "Modern design",
           "Accent colors",
@@ -90,8 +94,9 @@
         ]
       },
       "professional": {
-        "name": "Professional",
+        "name": "Professional Resume Template",
         "description": "A polished template that exudes professionalism and competence.",
+        "bestFor": "Business professionals and executives",
         "features": [
           "Classic layout",
           "Professional typography",
@@ -100,8 +105,9 @@
         ]
       },
       "fresh": {
-        "name": "Fresh",
-        "description": "A vibrant and energetic template that stands out.",
+        "name": "Fresh Resume Template",
+        "description": "A vibrant and energetic template that stands out from the crowd.",
+        "bestFor": "Creative professionals and startups",
         "features": [
           "Fresh color scheme",
           "Modern layout",
@@ -110,8 +116,9 @@
         ]
       },
       "clean": {
-        "name": "Clean",
+        "name": "Clean Resume Template",
         "description": "A minimalist template that focuses on content.",
+        "bestFor": "All industries, especially traditional sectors",
         "features": [
           "Minimalist design",
           "Content focused",
@@ -119,13 +126,6 @@
           "Perfect for academics"
         ]
       }
-    },
-    "bestFor": "Best for",
-    "useTemplate": "Use {name} template",
-    "cta": {
-      "title": "Ready to Create Your Professional Resume?",
-      "description": "Choose your favorite template and start building your resume now.",
-      "button": "Start Building Now"
     }
   },
   "experience": {

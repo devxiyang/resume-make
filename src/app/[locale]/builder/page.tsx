@@ -82,10 +82,10 @@ function ResumeBuilder() {
             className="text-foreground/60"
             asChild
           >
-            <Link href="/dashboard">
+            {/* <Link href="/dashboard">
               <ChevronLeft className="h-4 w-4 mr-1" />
               Dashboard
-            </Link>
+            </Link> */}
           </Button>
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">My Resume</span>
