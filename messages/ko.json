@@ -30,7 +30,9 @@
       "cta": "무료로 이력서 작성하기",
       "buttons": {
         "templates": "템플릿 보기"
-      }
+      },
+      "quickStart": "빠른 시작",
+      "description": "전문적인 이력서를 몇 분 안에 작성하세요. 직관적인 에디터와 현대적인 템플릿으로 당신의 경력을 최대한 어필할 수 있습니다."
     },
     "features": {
       "subtitle": "이력서 작성을 심플하고 효과적으로",
@@ -81,6 +83,9 @@
       "subtitle": "무료로 간편하게. 몇 분이면 완성됩니다.",
       "button": "무료로 시작하기",
       "description": "전문적인 이력서를 몇 분 안에 작성. 지금 시작하세요."
+    },
+    "footer": {
+      "title": "지금 시작하세요"
     }
   },
   "skills": {
@@ -339,6 +344,52 @@
     "customize": "맞춤설정",
     "download": "다운로드",
     "preview": "미리보기",
-    "back": "뒤로"
+    "back": "뒤로",
+    "basics": {
+      "title": "기본 정보",
+      "description": "기본적인 개인 정보를 입력하세요"
+    },
+    "content": {
+      "personal": "개인 정보",
+      "experience": "경력",
+      "education": "학력",
+      "skills": "기술",
+      "projects": "프로젝트",
+      "custom": "사용자 정의 섹션",
+      "preview": "미리보기",
+      "download": "다운로드",
+      "addSection": "섹션 추가",
+      "removeSection": "섹션 삭제",
+      "moveUp": "위로 이동",
+      "moveDown": "아래로 이동",
+      "basics": "기본 정보",
+      "languages": "언어",
+      "interests": "관심사",
+      "references": "추천서",
+      "certificates": "자격증",
+      "awards": "수상 경력",
+      "publications": "출판물",
+      "volunteer": "봉사 활동",
+      "settings": "설정",
+      "help": "도움말"
+    },
+    "content": "콘텐츠",
+    "expandAll": "모두 펼치기",
+    "collapseAll": "모두 접기",
+    "skills": "기술",
+    "customSection": {
+      "title": "사용자 정의 섹션",
+      "add": "사용자 정의 섹션 추가",
+      "addItem": "항목 추가",
+      "newSection": "새 섹션",
+      "newItem": "새 항목",
+      "sectionTitle": "섹션 제목",
+      "confirmDelete": {
+        "title": "삭제 확인",
+        "message": "이 항목을 삭제하시겠습니까?",
+        "cancel": "취소",
+        "delete": "삭제"
+      }
+    }
   }
 } 

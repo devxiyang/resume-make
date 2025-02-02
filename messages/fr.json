@@ -30,7 +30,9 @@
       "cta": "Créer un CV Gratuitement",
       "buttons": {
         "templates": "Voir les Modèles"
-      }
+      },
+      "quickStart": "Démarrage Rapide",
+      "description": "Créez votre CV professionnel en quelques minutes. Notre éditeur intuitif et nos modèles modernes vous permettent de mettre en valeur votre carrière de manière optimale."
     },
     "features": {
       "subtitle": "Création de CV simple et efficace",
@@ -81,6 +83,9 @@
       "subtitle": "Gratuit et facile. Prêt en quelques minutes.",
       "button": "Commencer Gratuitement",
       "description": "Créez votre CV professionnel en quelques minutes. Commencez maintenant."
+    },
+    "footer": {
+      "title": "Commencez Maintenant"
     }
   },
   "skills": {
@@ -339,6 +344,28 @@
     "customize": "Personnaliser",
     "download": "Télécharger",
     "preview": "Aperçu",
-    "back": "Retour"
+    "back": "Retour",
+    "content": "Contenu",
+    "expandAll": "Tout développer",
+    "collapseAll": "Tout réduire",
+    "basics": "Informations de Base",
+    "experience": "Expérience",
+    "education": "Formation",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "customSection": {
+      "title": "Section Personnalisée",
+      "add": "Ajouter une Section Personnalisée",
+      "addItem": "Ajouter un Élément",
+      "newSection": "Nouvelle Section",
+      "newItem": "Nouvel Élément",
+      "sectionTitle": "Titre de la Section",
+      "confirmDelete": {
+        "title": "Confirmer la Suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+        "cancel": "Annuler",
+        "delete": "Supprimer"
+      }
+    }
   }
 } 

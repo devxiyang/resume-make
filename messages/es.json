@@ -30,7 +30,9 @@
       "cta": "Crear CV Gratis",
       "buttons": {
         "templates": "Ver Plantillas"
-      }
+      },
+      "quickStart": "Inicio Rápido",
+      "description": "Crea tu currículum profesional en minutos. Nuestro editor intuitivo y plantillas modernas te ayudan a presentar tu carrera de la mejor manera posible."
     },
     "features": {
       "subtitle": "Creación de CV simple y efectiva",
@@ -81,6 +83,9 @@
       "subtitle": "Gratis y fácil. Listo en minutos.",
       "button": "Comenzar Gratis",
       "description": "Crea tu currículum profesional en minutos. Comienza ahora."
+    },
+    "footer": {
+      "title": "Comienza Ahora"
     }
   },
   "skills": {
@@ -335,6 +340,28 @@
     "customize": "Personalizar",
     "download": "Descargar",
     "preview": "Vista Previa",
-    "back": "Volver"
+    "back": "Volver",
+    "content": "Contenido",
+    "expandAll": "Expandir todo",
+    "collapseAll": "Contraer todo",
+    "basics": "Información Básica",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "customSection": {
+      "title": "Sección Personalizada",
+      "add": "Agregar Sección Personalizada",
+      "addItem": "Agregar Elemento",
+      "newSection": "Nueva Sección",
+      "newItem": "Nuevo Elemento",
+      "sectionTitle": "Título de la Sección",
+      "confirmDelete": {
+        "title": "Confirmar Eliminación",
+        "message": "¿Estás seguro de que deseas eliminar este elemento?",
+        "cancel": "Cancelar",
+        "delete": "Eliminar"
+      }
+    }
   }
 } 
