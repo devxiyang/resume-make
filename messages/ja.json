@@ -17,6 +17,9 @@
     "title": "履歴書メーカー",
     "createResume": "履歴書を作成"
   },
+  "builder": {
+    "myResume": "マイ履歴書"
+  },
   "navigation": {
     "tabs": {
       "edit": "内容を編集",
@@ -25,7 +28,8 @@
   },
   "landing": {
     "hero": {
-      "title": "プロフェッショナルな履歴書を簡単に作成",
+      "title": "完璧な履歴書を作成",
+      "titleHighlight": "簡単作成",
       "subtitle": "現代的なテンプレートと直感的なエディターで、あなたの経験を最大限にアピール",
       "cta": "無料で履歴書を作成",
       "buttons": {
@@ -142,6 +146,7 @@
     "imageAlt": "{name}テンプレートプレビュー - {bestFor}に最適",
     "bestFor": "最適な用途",
     "useTemplate": "{name}テンプレートを使用",
+    "features": "特徴",
     "types": {
       "free": "無料",
       "premium": "プレミアム"

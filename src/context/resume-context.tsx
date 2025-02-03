@@ -131,36 +131,51 @@ export function ResumeProvider({ children, initialData }: { children: ReactNode;
   }, [handleDataUpdate]);
 
   const deleteItem = useCallback((type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
+    setIsEditing(true);
     handleDataUpdate(prev => {
+      let updatedData = { ...prev };
+      
       if (type === 'experience') {
-        return { ...prev, experiences: prev.experiences.filter(item => item.id !== id) };
+        updatedData.experiences = updatedData.experiences.filter(item => item.id !== id);
       } else if (type === 'education') {
-        return { ...prev, education: prev.education.filter(item => item.id !== id) };
+        updatedData.education = updatedData.education.filter(item => item.id !== id);
       } else if (type === 'project') {
-        return { ...prev, projects: prev.projects.filter(item => item.id !== id) };
+        updatedData.projects = updatedData.projects.filter(item => item.id !== id);
       } else if (type === 'skill') {
-        return { ...prev, skills: prev.skills.filter(item => item.id !== id) };
+        updatedData.skills = updatedData.skills.filter(item => item.id !== id);
       } else {
-        return { ...prev, customSections: prev.customSections.filter(item => item.id !== id) };
+        updatedData.customSections = updatedData.customSections.filter(item => item.id !== id);
       }
-    });
 
-    if (selectedIds[type] === id) {
-      setSelectedIds(prev => {
-        const remainingItems = type === 'experience' ? resumeData.experiences
-          : type === 'education' ? resumeData.education
-          : type === 'project' ? resumeData.projects
-          : type === 'skill' ? resumeData.skills
-          : resumeData.customSections;
-        
-        const filteredItems = remainingItems.filter(item => item.id !== id);
-        return {
-          ...prev,
-          [type]: filteredItems.length > 0 ? filteredItems[0].id : null,
-        };
-      });
-    }
-  }, [handleDataUpdate, selectedIds, resumeData]);
+      // Update selection state within the same update
+      const remainingItems = (() => {
+        switch (type) {
+          case 'experience':
+            return updatedData.experiences;
+          case 'education':
+            return updatedData.education;
+          case 'project':
+            return updatedData.projects;
+          case 'skill':
+            return updatedData.skills;
+          case 'customSection':
+            return updatedData.customSections;
+          default:
+            return [];
+        }
+      })();
+
+      // Update selectedIds in the same batch
+      setSelectedIds(prev => ({
+        ...prev,
+        [type]: remainingItems.length > 0 ? remainingItems[0].id : null,
+        ...(type === 'customSection' ? { customSectionItem: null } : {})
+      }));
+
+      setIsEditing(false);
+      return updatedData;
+    });
+  }, [handleDataUpdate]);
 
   const selectItem = useCallback((type: 'experience' | 'education' | 'project' | 'skill' | 'customSection', id: string) => {
     setSelectedIds(prev => ({ ...prev, [type]: id }));

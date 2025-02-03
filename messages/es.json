@@ -17,6 +17,9 @@
     "title": "Creador de Currículum",
     "createResume": "Crear Currículum"
   },
+  "builder": {
+    "myResume": "Mi Currículum"
+  },
   "navigation": {
     "tabs": {
       "edit": "Editar Contenido",
@@ -25,7 +28,8 @@
   },
   "landing": {
     "hero": {
-      "title": "Crea Tu Currículum Profesional Fácilmente",
+      "title": "Crea Tu Currículum Perfecto",
+      "titleHighlight": "Con Facilidad",
       "subtitle": "Destaca tu experiencia con nuestras plantillas modernas y editor intuitivo",
       "cta": "Crear CV Gratis",
       "buttons": {
@@ -142,6 +146,11 @@
     "imageAlt": "Vista previa de plantilla {name} - Ideal para {bestFor}",
     "bestFor": "Ideal para",
     "useTemplate": "Usar plantilla {name}",
+    "features": "Características",
+    "types": {
+      "free": "Gratis",
+      "premium": "Premium"
+    },
     "cta": {
       "title": "¿Listo para Crear tu Currículum Profesional?",
       "description": "Elige tu plantilla favorita y comienza a crear tu currículum ahora.",

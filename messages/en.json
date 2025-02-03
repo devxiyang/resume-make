@@ -2,20 +2,23 @@
   "metadata": {
     "title": "Resume Builder - Create Professional Resumes Online",
     "titleTemplate": "Resume Builder",
-    "description": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format.",
-    "keywords": "resume builder, cv maker, professional resume, job application, career tools, resume templates, AI resume builder",
+    "description": "Free online resume builder with professional templates and multi-language support. Easy-to-use editor, smart formatting, one-click PDF export, and ATS-friendly format. Perfect for students, job seekers, and professionals.",
+    "keywords": "resume builder, online resume, free resume maker, resume templates, professional resume, CV maker, PDF resume download, student resume, entry level resume, ATS friendly resume, AI resume builder, resume generator, job application tools, multi language resume",
     "author": "Resume Builder Team",
     "publisher": "Resume Builder",
     "siteName": "Resume Builder",
-    "ogTitle": "Resume Builder - Create Professional Resumes Online",
-    "ogDescription": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format.",
+    "ogTitle": "Resume Builder - Create Professional Resumes Online Free",
+    "ogDescription": "Free online resume builder with professional templates and multi-language support. Easy-to-use editor, smart formatting, one-click PDF export, and ATS-friendly format. Perfect for students, job seekers, and professionals.",
     "ogImageAlt": "Resume Builder Preview",
-    "twitterTitle": "Resume Builder - Create Professional Resumes Online",
-    "twitterDescription": "Create professional resumes with our easy-to-use online resume builder. Choose from modern templates, customize your content, and download your resume in PDF format."
+    "twitterTitle": "Resume Builder - Create Professional Resumes Online Free",
+    "twitterDescription": "Free online resume builder with professional templates and multi-language support. Easy-to-use editor, smart formatting, one-click PDF export, and ATS-friendly format. Perfect for students, job seekers, and professionals."
   },
   "site": {
     "title": "Resume Maker",
     "createResume": "Create Resume"
+  },
+  "builder": {
+    "myResume": "My Resume"
   },
   "navigation": {
     "tabs": {
@@ -76,6 +79,11 @@
     "imageAlt": "{name} Template Preview - Best for {bestFor}",
     "bestFor": "Best for",
     "useTemplate": "Use {name} template",
+    "features": "Features",
+    "types": {
+      "free": "Free",
+      "premium": "Premium"
+    },
     "cta": {
       "title": "Ready to Create Your Professional Resume?",
       "description": "Choose your favorite template and start building your resume now.",

@@ -20,6 +20,7 @@ import { SkillsForm } from "@/components/forms/skills-form"
 import { CustomSectionForm, CustomSectionItemForm } from "@/components/forms/custom-section-form"
 import { initialResumeData } from "@/lib/initial-data"
 import { MobileNotice } from "@/components/mobile-notice"
+import { useTranslations } from 'next-intl'
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 type ActiveTab = "edit" | "template"
@@ -50,6 +51,7 @@ function ResumeBuilder() {
     deleteCustomSectionItem, 
     updateItem 
   } = useResume()
+  const t = useTranslations()
 
   const renderForm = () => {
     switch (activeSection) {
@@ -88,7 +90,7 @@ function ResumeBuilder() {
             </Link> */}
           </Button>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">My Resume</span>
+            <span className="text-sm font-medium">{t('builder.myResume')}</span>
             <div className="h-2 w-2 rounded-full bg-green-500" />
           </div>
         </div>
