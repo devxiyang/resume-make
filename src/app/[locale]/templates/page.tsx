@@ -116,13 +116,15 @@ export default function TemplatesPage() {
                     className="object-contain"
                   />
                 </div>
-                <div className="p-6 space-y-4">
-                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t(`templates.list.${id}.name`)}</h2>
-                  <p className="text-slate-600 dark:text-slate-300">{t(`templates.list.${id}.description`)}</p>
-                  <div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      <span className="font-medium">{t('templates.bestFor')}:</span> {t(`templates.list.${id}.bestFor`)}
-                    </p>
+                <div className="p-6 space-y-6">
+                  <div className="space-y-4">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t(`templates.list.${id}.name`)}</h2>
+                    <p className="text-slate-600 dark:text-slate-300">{t(`templates.list.${id}.description`)}</p>
+                    <div>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        <span className="font-medium">{t('templates.bestFor')}:</span> {t(`templates.list.${id}.bestFor`)}
+                      </p>
+                    </div>
                   </div>
                   <Link href={`/builder?template=${id}`} aria-label={t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}>
                     <Button className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white">
