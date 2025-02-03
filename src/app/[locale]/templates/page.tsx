@@ -126,12 +126,14 @@ export default function TemplatesPage() {
                       </p>
                     </div>
                   </div>
-                  <Link href={`/builder?template=${id}`} aria-label={t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}>
-                    <Button className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white">
-                      {t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+                  <div className="mt-8">
+                    <Link href={`/builder?template=${id}`} aria-label={t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}>
+                      <Button className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white">
+                        {t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
