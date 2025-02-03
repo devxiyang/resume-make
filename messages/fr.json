@@ -1,17 +1,17 @@
 {
   "metadata": {
-    "title": "Créateur de CV - Créez des CV professionnels en quelques minutes",
-    "titleTemplate": "Outil de CV",
-    "description": "Créez rapidement des CV professionnels avec notre outil simple. Choisissez des modèles modernes et téléchargez en PDF instantanément.",
-    "keywords": "créer cv,créateur de cv,cv rapide,cv professionnel,cv simple,cv gratuit",
+    "title": "Créateur de CV Facile - Outil de CV Professionnel",
+    "titleTemplate": "Créateur de CV",
+    "description": "Créez facilement des CV professionnels. Modèles optimisés pour le secteur tech, export PDF rapide. Parfait pour les développeurs, chefs de produit et professionnels de la tech.",
+    "keywords": "créateur cv facile,cv tech,cv développeur,cv chef de produit,créateur cv,cv rapide,cv professionnel",
     "author": "devxiyang",
     "publisher": "devxiyang",
-    "siteName": "Outil de CV",
-    "ogTitle": "Outil de CV - Créez des CV professionnels en quelques minutes",
-    "ogDescription": "Créez rapidement des CV professionnels avec notre outil simple. Choisissez des modèles modernes et téléchargez en PDF instantanément. Parfait pour les chercheurs d'emploi.",
-    "ogImageAlt": "Aperçu de l'Outil de CV",
-    "twitterTitle": "Outil de CV - Créez des CV professionnels en quelques minutes",
-    "twitterDescription": "Créez rapidement des CV professionnels avec notre outil simple. Choisissez des modèles modernes et téléchargez en PDF instantanément. Parfait pour les chercheurs d'emploi."
+    "siteName": "Créateur de CV",
+    "ogTitle": "Créateur de CV - Créez Facilement des CV Professionnels",
+    "ogDescription": "Créez votre CV professionnel en quelques minutes. Modèles intelligents et édition facile pour mettre en valeur vos compétences.",
+    "ogImageAlt": "Aperçu du Créateur de CV",
+    "twitterTitle": "Créateur de CV - Créez Facilement des CV Professionnels",
+    "twitterDescription": "Créez votre CV professionnel en quelques minutes. Modèles intelligents et édition facile pour mettre en valeur vos compétences."
   },
   "site": {
     "title": "Créateur de CV",
@@ -51,52 +51,52 @@
   },
   "landing": {
     "cta": {
-      "title": "Créez Votre CV Professionnel en Quelques Minutes",
-      "description": "Rejoignez des milliers de chercheurs d'emploi qui ont créé des CV gagnants avec notre créateur simple et efficace.",
-      "button": "Commencer Maintenant - C'est Facile"
+      "title": "Créez Votre CV Professionnel",
+      "description": "Rejoignez des milliers de professionnels qui utilisent notre outil simple et puissant. Mettez en valeur vos compétences et expériences facilement.",
+      "button": "Commencer - C'est Facile"
     },
     "footer": {
       "title": "Créateur de CV",
       "copyright": "Créateur de CV. Tous droits réservés."
     },
     "hero": {
-      "badge": "💫 Créateur de CV Puissant",
-      "quickStart": "Rapide et Facile",
-      "title": "Créez des CV Professionnels",
+      "badge": "💫 Créateur de CV Intelligent",
+      "quickStart": "Création Rapide de CV",
+      "title": "Créez Votre CV Professionnel",
       "titleHighlight": "En Quelques Minutes",
-      "description": "Construisez votre CV parfait avec notre créateur facile à utiliser. Édition simple, modèles professionnels, téléchargement instantané.",
+      "description": "Créateur de CV simple et intuitif avec des modèles intelligents. Mettez en valeur vos compétences facilement, idéal pour les professionnels de la tech.",
       "buttons": {
         "start": "Créer un CV",
         "templates": "Voir les Modèles"
       }
     },
     "showcase": {
-      "badge": "Rapide et Simple",
-      "title": "La Façon la Plus Simple de Créer des CV",
-      "description": "Créez des CV professionnels en quelques minutes avec notre créateur simple et nos modèles prêts à l'emploi.",
+      "badge": "Simple d'Utilisation",
+      "title": "Créateur de CV Simple et Puissant",
+      "description": "Créez des CV impressionnants sans effort. Parfait pour les professionnels de la tech et au-delà.",
       "builder": {
-        "badge": "Simple et Rapide",
-        "title": "Création Facile de CV",
-        "description": "Nos formulaires simples et l'aperçu en temps réel rendent la création rapide et sans effort.",
-        "imageAlt": "Interface facile à utiliser pour créer un CV"
+        "badge": "Rapide & Facile",
+        "title": "Création Intelligente",
+        "description": "Éditeur intuitif avec mise en page intelligente. Organisez facilement votre expérience pour vous démarquer.",
+        "imageAlt": "Interface du Créateur de CV"
       },
       "template": {
-        "badge": "Professionnel",
+        "badge": "Modèles Professionnels",
         "title": "Modèles Prêts à l'Emploi",
-        "description": "Choisissez parmi notre collection de modèles professionnels et personnalisez-les en quelques minutes.",
-        "imageAlt": "Modèles de CV Professionnels"
+        "description": "Modèles professionnels optimisés pour le secteur tech et au-delà.",
+        "imageAlt": "Modèles de CV"
       }
     },
     "features": {
       "title": {
-        "modern": "Design Simple",
+        "modern": "Design Facile à Utiliser",
         "customization": "Personnalisation Rapide",
         "download": "Export PDF Instantané"
       },
       "description": {
-        "modern": "Des modèles épurés et professionnels qui vous aident à créer un CV parfait.",
-        "customization": "L'éditeur facile à utiliser rend la personnalisation rapide et simple.",
-        "download": "Téléchargez votre CV soigné au format PDF en un clic."
+        "modern": "Modèles professionnels et épurés qui simplifient la création de CV.",
+        "customization": "Éditeur simple pour mettre à jour rapidement vos compétences.",
+        "download": "Export PDF en un clic, prêt quand vous l'êtes."
       },
       "items": [
         {
@@ -118,14 +118,14 @@
       ]
     },
     "whyChoose": {
-      "title": "Pourquoi les Utilisateurs Adorent Notre Créateur",
-      "subtitle": "Nous rendons la création de CV simple et rapide, vous aidant à créer des CV professionnels en quelques minutes.",
+      "title": "Pourquoi Nous Choisir",
+      "subtitle": "Création de CV professionnelle simple et rapide, avec des modèles optimisés pour le secteur tech.",
       "features": [
-        "Édition Rapide du Contenu",
-        "Export PDF en Un Clic",
-        "Modèles Professionnels",
-        "Utilisation Gratuite",
-        "Multiples Options de Mise en Page"
+        "Mise en Page Simple",
+        "Saisie Rapide d'Expérience",
+        "Affichage Intelligent des Projets",
+        "Export PDF Facile",
+        "Modèles Optimisés Tech"
       ]
     },
     "templates": {

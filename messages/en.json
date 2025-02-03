@@ -1,20 +1,20 @@
 {
   "metadata": {
-    "title": "Resume Maker - Create Professional Resumes in Minutes",
+    "title": "Easy Resume Builder - Professional Resume Tool",
     "titleTemplate": "Resume Builder",
-    "description": "Create professional resumes quickly with our simple builder. Choose from modern templates and download as PDF instantly.",
-    "keywords": "resume maker, resume builder, quick resume, professional resume, simple resume, easy resume, free resume maker",
+    "description": "Create professional resumes with ease. Smart templates optimized for tech industry, with quick PDF export. Perfect for developers, product managers, and tech professionals.",
+    "keywords": "easy resume builder,tech resume,developer resume,product manager resume,resume maker,quick resume,professional resume",
     "author": "devxiyang",
     "publisher": "devxiyang",
     "siteName": "Resume Builder",
-    "ogTitle": "Resume Builder - Create Professional Resumes in Minutes",
-    "ogDescription": "Create professional resumes quickly with our simple builder. Choose from modern templates and download as PDF instantly. Perfect for job seekers.",
+    "ogTitle": "Resume Builder - Create Professional Resumes Easily",
+    "ogDescription": "Create professional resumes in minutes. Smart templates and easy editing, perfect for showcasing your skills and experience.",
     "ogImageAlt": "Resume Builder Preview",
-    "twitterTitle": "Resume Builder - Create Professional Resumes in Minutes",
-    "twitterDescription": "Create professional resumes quickly with our simple builder. Choose from modern templates and download as PDF instantly. Perfect for job seekers."
+    "twitterTitle": "Resume Builder - Create Professional Resumes Easily",
+    "twitterDescription": "Create professional resumes in minutes. Smart templates and easy editing, perfect for showcasing your skills and experience."
   },
   "site": {
-    "title": "Resume Maker",
+    "title": "Resume Builder",
     "createResume": "Create Resume"
   },
   "builder": {
@@ -34,7 +34,7 @@
       },
       "download": {
         "title": "Download Resume PDF",
-        "description": "This will download the current resume as a PDF file, suitable for job applications.",
+        "description": "This will download the current version of your resume in PDF format, perfect for job applications.",
         "cancel": "Cancel",
         "confirm": "Download PDF"
       }
@@ -98,10 +98,10 @@
   },
   "templates": {
     "title": "Professional Resume Templates",
-    "subtitle": "Choose from our collection of professionally designed templates. Each template is crafted to help you stand out.",
+    "subtitle": "Carefully designed templates to showcase your professional skills and project experience.",
     "imageAlt": "{name} Template Preview - Best for {bestFor}",
     "bestFor": "Best for",
-    "useTemplate": "Use {name} template",
+    "useTemplate": "Use {name} Template",
     "features": "Features",
     "types": {
       "free": "Free",
@@ -115,46 +115,46 @@
     "list": {
       "modern": {
         "name": "Modern Resume Template",
-        "description": "Clean and contemporary design with a focus on readability and visual hierarchy.",
-        "bestFor": "Tech, Design, and Marketing professionals",
+        "description": "Modern design highlighting tech stack and project experience, perfect for showcasing your professional expertise.",
+        "bestFor": "Full Stack Engineers, Frontend Developers, Backend Developers",
         "features": [
-          "Modern design",
-          "Accent colors",
-          "Visual hierarchy",
-          "Perfect for creative industries"
+          "Tech Stack Display",
+          "Project Experience Layout",
+          "Code Repository Links",
+          "Tech Blog Showcase"
         ]
       },
       "professional": {
         "name": "Professional Resume Template",
-        "description": "A polished template that exudes professionalism and competence.",
-        "bestFor": "Business professionals and executives",
+        "description": "Professional template design balancing technical details and management experience.",
+        "bestFor": "Tech Managers, Architects, Technical Leaders",
         "features": [
-          "Classic layout",
-          "Professional typography",
-          "Clean design",
-          "Perfect for business professionals"
+          "Architecture Design Experience",
+          "Technical Team Management",
+          "Project Planning Skills",
+          "Technical Decision Making"
         ]
       },
       "fresh": {
-        "name": "Fresh Resume Template",
-        "description": "A vibrant and energetic template that stands out from the crowd.",
-        "bestFor": "Creative professionals and startups",
+        "name": "Innovative Resume Template",
+        "description": "Creative design that gives your technical resume personality.",
+        "bestFor": "Product Engineers, R&D Engineers, Data Engineers",
         "features": [
-          "Fresh color scheme",
-          "Modern layout",
-          "Eye-catching design",
-          "Perfect for creative roles"
+          "Technical Innovation Display",
+          "Data Analysis Skills",
+          "Product-Tech Integration",
+          "R&D Achievement Showcase"
         ]
       },
       "clean": {
-        "name": "Clean Resume Template",
-        "description": "A minimalist template that focuses on content.",
-        "bestFor": "All industries, especially traditional sectors",
+        "name": "Minimalist Resume Template",
+        "description": "Minimalist design making technical abilities clear and intuitive.",
+        "bestFor": "Algorithm Engineers, Data Scientists, Research Engineers",
         "features": [
-          "Minimalist design",
-          "Content focused",
-          "Clean typography",
-          "Perfect for academics"
+          "Algorithm Skills Display",
+          "Research Results Showcase",
+          "Technical Patents Display",
+          "Academic Background Highlight"
         ]
       }
     }
@@ -331,63 +331,63 @@
   },
   "landing": {
     "cta": {
-      "title": "Create Your Professional Resume in Minutes",
-      "description": "Join thousands of job seekers who created winning resumes with our simple and efficient builder.",
-      "button": "Start Building Now - It's Easy"
+      "title": "Create Your Professional Resume",
+      "description": "Join thousands of professionals using our simple yet powerful resume builder. Easily showcase your skills, experience, and achievements.",
+      "button": "Get Started - It's Easy"
     },
     "footer": {
       "title": "Resume Maker",
       "copyright": "Resume Maker. All rights reserved."
     },
     "hero": {
-      "badge": "💫 Powerful Resume Builder",
-      "quickStart": "Fast & Easy Resume Builder",
-      "title": "Create Professional Resumes",
+      "badge": "💫 Smart Resume Builder",
+      "quickStart": "Quick Resume Creation",
+      "title": "Build Your Professional Resume",
       "titleHighlight": "In Minutes",
-      "description": "Build your perfect resume with our easy-to-use builder. Simple editing, professional templates, instant download.",
+      "description": "Simple and intuitive resume builder with smart templates. Easily showcase your skills and experience, perfect for tech professionals.",
       "buttons": {
         "start": "Create Resume",
-        "templates": "View Templates"
+        "templates": "Browse Templates"
       }
     },
     "showcase": {
-      "badge": "Quick & Easy Builder",
-      "title": "The Easiest Way to Build Resumes",
-      "description": "Create professional resumes in minutes with our simple builder and ready-to-use templates.",
+      "badge": "User-Friendly",
+      "title": "Simple Yet Powerful Resume Builder",
+      "description": "Create impressive resumes without the hassle. Perfect for tech professionals and beyond.",
       "builder": {
-        "badge": "Simple & Fast",
-        "title": "Easy Resume Creation",
-        "description": "Our simple forms and real-time preview make resume building quick and effortless.",
-        "imageAlt": "Easy-to-use Resume Builder Interface"
+        "badge": "Quick & Easy",
+        "title": "Smart Resume Creation",
+        "description": "Intuitive editor with smart layouts. Easily organize your experience and skills to stand out.",
+        "imageAlt": "Resume Builder Interface"
       },
       "template": {
         "badge": "Professional Templates",
         "title": "Ready-to-use Templates",
-        "description": "Choose from our collection of professional templates and customize them in minutes.",
-        "imageAlt": "Professional Resume Template"
+        "description": "Professionally designed templates optimized for tech industry and beyond.",
+        "imageAlt": "Resume Templates"
       }
     },
     "features": {
       "title": {
-        "modern": "Simple Design",
+        "modern": "Easy-to-Use Design",
         "customization": "Quick Customization",
         "download": "Instant PDF Export"
       },
       "description": {
-        "modern": "Clean and professional templates that help you create a perfect resume.",
-        "customization": "Easy-to-use editor makes customization quick and simple.",
-        "download": "Download your polished resume in PDF format with one click."
+        "modern": "Clean, professional templates that make resume creation a breeze.",
+        "customization": "Simple editor for quick updates to your skills and experience.",
+        "download": "One-click PDF export, ready when you are."
       }
     },
     "whyChoose": {
-      "title": "Why Users Love Our Builder",
-      "subtitle": "We make resume creation simple and fast, helping you create professional resumes in minutes.",
+      "title": "Why Choose Us",
+      "subtitle": "Making professional resume creation simple and fast, with templates optimized for tech industry.",
       "features": [
-        "Quick Content Editing",
-        "One-Click PDF Export",
-        "Professional Templates",
-        "Free to Use",
-        "Multiple Layout Options"
+        "Simple Skill Layout",
+        "Quick Experience Entry",
+        "Smart Project Display",
+        "Easy PDF Export",
+        "Tech-Optimized Templates"
       ]
     }
   }

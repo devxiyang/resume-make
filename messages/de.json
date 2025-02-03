@@ -1,17 +1,17 @@
 {
   "metadata": {
-    "title": "Lebenslauf-Ersteller - Erstellen Sie professionelle Lebensläufe in Minuten",
-    "titleTemplate": "Lebenslauf-Builder",
-    "description": "Erstellen Sie schnell professionelle Lebensläufe mit unserem einfachen Builder. Wählen Sie aus modernen Vorlagen und laden Sie sofort als PDF herunter.",
-    "keywords": "Lebenslauf-Builder, CV-Maker, professioneller Lebenslauf, Bewerbung, Karriere-Tools, Lebenslauf-Vorlagen, KI-Lebenslauf-Builder",
+    "title": "Einfacher Lebenslauf-Generator - Professionelles CV-Tool",
+    "titleTemplate": "Lebenslauf-Generator",
+    "description": "Erstellen Sie mühelos professionelle Lebensläufe. Optimierte Vorlagen für die Tech-Branche, schneller PDF-Export. Perfekt für Entwickler, Produktmanager und Tech-Profis.",
+    "keywords": "lebenslauf erstellen,tech lebenslauf,entwickler cv,produktmanager lebenslauf,lebenslauf generator,schneller lebenslauf,professioneller lebenslauf",
     "author": "devxiyang",
     "publisher": "devxiyang",
-    "siteName": "Lebenslauf-Builder",
-    "ogTitle": "Lebenslauf-Builder - Erstellen Sie professionelle Lebensläufe online",
-    "ogDescription": "Erstellen Sie professionelle Lebensläufe mit unserem benutzerfreundlichen Online-Lebenslauf-Builder. Wählen Sie aus modernen Vorlagen, passen Sie Ihre Inhalte an und laden Sie Ihren Lebenslauf im PDF-Format herunter.",
-    "ogImageAlt": "Lebenslauf-Builder Vorschau",
-    "twitterTitle": "Lebenslauf-Builder - Erstellen Sie professionelle Lebensläufe online",
-    "twitterDescription": "Erstellen Sie professionelle Lebensläufe mit unserem benutzerfreundlichen Online-Lebenslauf-Builder. Wählen Sie aus modernen Vorlagen, passen Sie Ihre Inhalte an und laden Sie Ihren Lebenslauf im PDF-Format herunter."
+    "siteName": "Lebenslauf-Generator",
+    "ogTitle": "Lebenslauf-Generator - Erstellen Sie einfach professionelle Lebensläufe",
+    "ogDescription": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Intelligente Vorlagen und einfache Bearbeitung für die optimale Präsentation Ihrer Fähigkeiten.",
+    "ogImageAlt": "Lebenslauf-Generator Vorschau",
+    "twitterTitle": "Lebenslauf-Generator - Erstellen Sie einfach professionelle Lebensläufe",
+    "twitterDescription": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Intelligente Vorlagen und einfache Bearbeitung für die optimale Präsentation Ihrer Fähigkeiten."
   },
   "site": {
     "title": "Lebenslauf-Ersteller",
@@ -51,72 +51,54 @@
   },
   "landing": {
     "hero": {
-      "title": "Erstellen Sie Ihren Perfekten Lebenslauf",
-      "titleHighlight": "Ganz Einfach",
-      "subtitle": "Präsentieren Sie Ihre Erfahrung mit unseren modernen Vorlagen und intuitivem Editor",
-      "cta": "Kostenlos Lebenslauf Erstellen",
+      "badge": "💫 Intelligenter Lebenslauf-Generator",
+      "quickStart": "Schnelle Lebenslauf-Erstellung",
+      "title": "Erstellen Sie Ihren professionellen Lebenslauf",
+      "titleHighlight": "In wenigen Minuten",
+      "description": "Einfacher und intuitiver Lebenslauf-Generator mit intelligenten Vorlagen. Präsentieren Sie Ihre Fähigkeiten optimal, ideal für Tech-Profis.",
       "buttons": {
-        "start": "Jetzt Erstellen",
+        "start": "Lebenslauf erstellen",
         "templates": "Vorlagen ansehen"
-      },
-      "quickStart": "Schnell & Einfach",
-      "description": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Unser intuitiver Editor und moderne Vorlagen helfen Ihnen, Ihre Karriere optimal zu präsentieren.",
-      "badge": "💫 Leistungsstarker Lebenslauf-Generator"
+      }
     },
     "showcase": {
-      "badge": "Schnell & Einfach",
-      "title": "Der einfachste Weg zum Lebenslauf",
-      "description": "Professionelle Vorlagen wählen und Inhalte schnell bearbeiten",
+      "badge": "Benutzerfreundlich",
+      "title": "Einfacher und leistungsstarker Lebenslauf-Generator",
+      "description": "Erstellen Sie beeindruckende Lebensläufe ohne Aufwand. Perfekt für Tech-Profis und darüber hinaus.",
       "builder": {
-        "badge": "Einfach & Schnell",
-        "title": "Einfache Lebenslauf-Erstellung",
-        "description": "Einfache Formulare und Echtzeit-Vorschau machen die Erstellung zum Kinderspiel.",
-        "imageAlt": "Benutzerfreundliche Lebenslauf-Erstellung"
+        "badge": "Schnell & Einfach",
+        "title": "Intelligente Erstellung",
+        "description": "Intuitiver Editor mit intelligenten Layouts. Organisieren Sie Ihre Erfahrung optimal für den besten Eindruck.",
+        "imageAlt": "Lebenslauf-Generator Interface"
       },
       "template": {
-        "badge": "Professionell",
+        "badge": "Professionelle Vorlagen",
         "title": "Sofort einsetzbare Vorlagen",
-        "description": "Wählen Sie aus professionellen Vorlagen und passen Sie sie in Minuten an.",
-        "imageAlt": "Professionelle Lebenslauf-Vorlagen"
+        "description": "Professionell gestaltete Vorlagen, optimiert für die Tech-Branche und mehr.",
+        "imageAlt": "Lebenslauf-Vorlagen"
       }
     },
     "features": {
-      "subtitle": "Einfache und effektive Lebenslauferstellung",
-      "list": [
-        {
-          "title": "Professionelle Vorlagen",
-          "description": "Elegante und effektive Vorlagen nach Industriestandards"
-        },
-        {
-          "title": "Anpassbar",
-          "description": "Passen Sie alle Elemente nach Ihren Bedürfnissen an"
-        },
-        {
-          "title": "ATS-Kompatibel",
-          "description": "Optimiertes Format für Bewerbermanagementsysteme (ATS)"
-        }
-      ],
       "title": {
         "modern": "Einfaches Design",
         "customization": "Schnelle Anpassung",
         "download": "Sofortiger PDF-Export"
       },
       "description": {
-        "modern": "Klare und professionelle Vorlagen für Ihren perfekten Lebenslauf.",
-        "customization": "Benutzerfreundlicher Editor macht die Anpassung schnell und einfach.",
-        "download": "Laden Sie Ihren fertigen Lebenslauf im PDF-Format mit einem Klick herunter."
+        "modern": "Übersichtliche, professionelle Vorlagen für eine mühelose Lebenslauf-Erstellung.",
+        "customization": "Einfacher Editor für schnelle Aktualisierungen Ihrer Fähigkeiten.",
+        "download": "PDF-Export mit einem Klick, jederzeit bereit."
       }
     },
     "whyChoose": {
-      "title": "Warum uns wählen",
-      "subtitle": "Wir bieten alle notwendigen Funktionen für die Erstellung eines professionellen Lebenslaufs",
+      "title": "Warum Uns Wählen",
+      "subtitle": "Professionelle Lebenslauf-Erstellung einfach und schnell, mit optimierten Vorlagen für die Tech-Branche.",
       "features": [
-        "Benutzerfreundliche Oberfläche",
-        "Professionelle Vorlagen",
-        "Echtzeit-Vorschau",
-        "PDF-Export",
-        "ATS-kompatibles Format",
-        "Mehrsprachige Unterstützung"
+        "Einfaches Fähigkeiten-Layout",
+        "Schnelle Erfahrungseingabe",
+        "Intelligente Projektdarstellung",
+        "Einfacher PDF-Export",
+        "Tech-optimierte Vorlagen"
       ]
     },
     "templates": {
@@ -125,10 +107,9 @@
       "cta": "Alle Vorlagen Ansehen"
     },
     "cta": {
-      "title": "Beginnen Sie Jetzt mit der Erstellung Ihres Lebenslaufs",
-      "subtitle": "Kostenlos und einfach. In wenigen Minuten fertig.",
-      "button": "Kostenlos Beginnen",
-      "description": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Starten Sie jetzt."
+      "title": "Erstellen Sie Ihren professionellen Lebenslauf",
+      "description": "Schließen Sie sich Tausenden von Profis an, die unseren einfachen und leistungsstarken Generator nutzen. Präsentieren Sie Ihre Fähigkeiten und Erfahrungen optimal.",
+      "button": "Jetzt Starten - Ganz Einfach"
     },
     "footer": {
       "title": "Jetzt Beginnen"

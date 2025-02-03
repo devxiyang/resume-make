@@ -85,9 +85,6 @@ export default function TemplatesPage() {
         </div>
         <div className="container relative max-w-4xl mx-auto px-4 pt-24 md:pt-32 pb-16">
           <div className="flex flex-col items-center text-center space-y-4">
-            <div className="inline-flex items-center rounded-lg bg-blue-500 px-3 py-1 text-sm font-medium text-white mb-4">
-              ✨ {t('templates.title')}
-            </div>
             <h1 className="font-bold tracking-tight text-4xl sm:text-5xl text-white">
               {t('templates.title')}
             </h1>
@@ -119,30 +116,24 @@ export default function TemplatesPage() {
                     className="object-contain"
                   />
                 </div>
-                <div className="p-6 space-y-4">
-                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t(`templates.list.${id}.name`)}</h2>
-                  <p className="text-slate-600 dark:text-slate-300">{t(`templates.list.${id}.description`)}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {t.raw(`templates.list.${id}.features`).map((feature: string) => (
-                      <span
-                        key={feature}
-                        className="inline-flex items-center rounded-lg bg-blue-500/10 px-2.5 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 ring-1 ring-inset ring-blue-500/20"
-                      >
-                        {feature}
-                      </span>
-                    ))}
+                <div className="p-6 space-y-6">
+                  <div className="space-y-4">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t(`templates.list.${id}.name`)}</h2>
+                    <p className="text-slate-600 dark:text-slate-300">{t(`templates.list.${id}.description`)}</p>
+                    <div>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        <span className="font-medium">{t('templates.bestFor')}:</span> {t(`templates.list.${id}.bestFor`)}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      <span className="font-medium">{t('templates.bestFor')}:</span> {t(`templates.list.${id}.bestFor`)}
-                    </p>
+                  <div className="mt-8">
+                    <Link href={`/builder?template=${id}`} aria-label={t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}>
+                      <Button className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white">
+                        {t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
                   </div>
-                  <Link href={`/builder?template=${id}`} aria-label={t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}>
-                    <Button className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white">
-                      {t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
                 </div>
               </div>
             ))}
