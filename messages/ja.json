@@ -38,6 +38,9 @@
         "cancel": "キャンセル",
         "confirm": "PDFをダウンロード"
       }
+    },
+    "status": {
+      "editing": "編集中..."
     }
   },
   "navigation": {

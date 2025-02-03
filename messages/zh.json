@@ -38,6 +38,9 @@
         "cancel": "取消",
         "confirm": "下载 PDF"
       }
+    },
+    "status": {
+      "editing": "正在编辑..."
     }
   },
   "navigation": {

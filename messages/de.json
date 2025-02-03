@@ -38,6 +38,9 @@
         "cancel": "Abbrechen",
         "confirm": "PDF herunterladen"
       }
+    },
+    "status": {
+      "editing": "Wird bearbeitet..."
     }
   },
   "navigation": {
