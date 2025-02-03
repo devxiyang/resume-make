@@ -11,7 +11,7 @@ export const initialResumeData: ResumeData = {
   },
   experiences: [
     {
-      id: "1",
+      id: "experience-1",
       company: "Mihoyo",
       position: "ML Engineering Expert",
       startDate: "Dec 2022",
@@ -26,7 +26,7 @@ export const initialResumeData: ResumeData = {
       ],
     },
     {
-      id: "2",
+      id: "experience-2",
       company: "Haluo",
       position: "ML Engineering Expert",
       startDate: "Oct 2019",
@@ -43,7 +43,7 @@ export const initialResumeData: ResumeData = {
   ],
   education: [
     {
-      id: "1",
+      id: "education-1",
       school: "University of Shanghai for Science and Technology",
       degree: "Master of Computer Science",
       state: "Shanghai",
@@ -54,7 +54,7 @@ export const initialResumeData: ResumeData = {
   ],
   projects: [
     {
-      id: "1",
+      id: "project-1",
       name: "AI Platform",
       description: "Enterprise-scale machine learning platform built from the ground up",
       bulletPoints: [
@@ -66,7 +66,7 @@ export const initialResumeData: ResumeData = {
       technologies: ["Python", "Kubernetes", "TensorFlow", "PyTorch", "Docker"],
     },
     {
-      id: "2",
+      id: "project-2",
       name: "ML Pipeline Automation",
       description: "Automated ML workflow system for streamlining model development",
       bulletPoints: [
@@ -80,22 +80,22 @@ export const initialResumeData: ResumeData = {
   ],
   skills: [
     {
-      id: "1",
+      id: "skill-1",
       name: "Programming",
       description: "Python, Java, C++, Go, SQL",
     },
     {
-      id: "2",
+      id: "skill-2",
       name: "ML Technologies",
       description: "TensorFlow, PyTorch, Scikit-learn, Kubernetes, Docker",
     },
     {
-      id: "3",
+      id: "skill-3",
       name: "Cloud Platforms",
       description: "AWS, GCP, Azure, Kubernetes, Docker",
     },
     {
-      id: "4",
+      id: "skill-4",
       name: "Tools & Frameworks",
       description: "Git, CI/CD, MLflow, Kubeflow, Apache Airflow",
     },
