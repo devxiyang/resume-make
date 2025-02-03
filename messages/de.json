@@ -36,8 +36,26 @@
         "start": "Jetzt Erstellen",
         "templates": "Vorlagen ansehen"
       },
-      "quickStart": "Schnellstart",
-      "description": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Unser intuitiver Editor und moderne Vorlagen helfen Ihnen, Ihre Karriere optimal zu präsentieren."
+      "quickStart": "Schnell & Einfach",
+      "description": "Erstellen Sie Ihren professionellen Lebenslauf in wenigen Minuten. Unser intuitiver Editor und moderne Vorlagen helfen Ihnen, Ihre Karriere optimal zu präsentieren.",
+      "badge": "💫 Leistungsstarker Lebenslauf-Generator"
+    },
+    "showcase": {
+      "badge": "Schnell & Einfach",
+      "title": "Der einfachste Weg zum Lebenslauf",
+      "description": "Professionelle Vorlagen wählen und Inhalte schnell bearbeiten",
+      "builder": {
+        "badge": "Einfach & Schnell",
+        "title": "Einfache Lebenslauf-Erstellung",
+        "description": "Einfache Formulare und Echtzeit-Vorschau machen die Erstellung zum Kinderspiel.",
+        "imageAlt": "Benutzerfreundliche Lebenslauf-Erstellung"
+      },
+      "template": {
+        "badge": "Professionell",
+        "title": "Sofort einsetzbare Vorlagen",
+        "description": "Wählen Sie aus professionellen Vorlagen und passen Sie sie in Minuten an.",
+        "imageAlt": "Professionelle Lebenslauf-Vorlagen"
+      }
     },
     "features": {
       "subtitle": "Einfache und effektive Lebenslauferstellung",
@@ -56,14 +74,14 @@
         }
       ],
       "title": {
-        "modern": "Modernes Design",
-        "customization": "Vollständige Anpassung",
-        "download": "Einfacher Download"
+        "modern": "Einfaches Design",
+        "customization": "Schnelle Anpassung",
+        "download": "Sofortiger PDF-Export"
       },
       "description": {
-        "modern": "Ein modernes und sophistiziertes Design, um Ihren Lebenslauf hervorzuheben",
-        "customization": "Passen Sie alle Elemente nach Ihren Bedürfnissen an",
-        "download": "Laden Sie Ihren fertigen Lebenslauf einfach im PDF-Format herunter"
+        "modern": "Klare und professionelle Vorlagen für Ihren perfekten Lebenslauf.",
+        "customization": "Benutzerfreundlicher Editor macht die Anpassung schnell und einfach.",
+        "download": "Laden Sie Ihren fertigen Lebenslauf im PDF-Format mit einem Klick herunter."
       }
     },
     "whyChoose": {
@@ -242,8 +260,8 @@
         "label": "Enddatum",
         "required": "Enddatum ist erforderlich"
       },
-      "currentlyWork": "Ich arbeite derzeit hier",
-      "present": "Aktuell"
+      "currentlyWork": "Ich arbeite hier aktuell",
+      "present": "Heute"
     },
     "description": {
       "label": "Beschreibung"
@@ -279,7 +297,7 @@
         "required": "Enddatum ist erforderlich"
       },
       "ongoing": "Dies ist ein laufendes Projekt",
-      "present": "Aktuell"
+      "present": "Heute"
     },
     "description": {
       "label": "Beschreibung"
@@ -298,17 +316,17 @@
     }
   },
   "customSection": {
-    "title": "Benutzerdefinierte Sektion bearbeiten",
-    "noSectionSelected": "Keine Sektion ausgewählt",
+    "title": "Benutzerdefinierter Abschnitt bearbeiten",
+    "noSectionSelected": "Kein Abschnitt ausgewählt",
     "name": {
-      "label": "Sektionsname",
-      "required": "Sektionsname ist erforderlich"
+      "label": "Abschnittsname",
+      "required": "Abschnittsname ist erforderlich"
     },
     "items": {
       "label": "Einträge",
       "add": "Eintrag hinzufügen",
       "remove": "Eintrag entfernen",
-      "noItems": "Keine Einträge in dieser Sektion",
+      "noItems": "Keine Einträge in diesem Abschnitt",
       "selectToEdit": "Wählen Sie einen Eintrag zum Bearbeiten",
       "noItemSelected": "Kein Eintrag ausgewählt",
       "editItem": "Eintrag bearbeiten",
@@ -341,6 +359,31 @@
     "field": {
       "label": "Studienfach",
       "required": "Studienfach ist erforderlich"
+    },
+    "gpa": {
+      "label": "Notendurchschnitt",
+      "placeholder": "z.B. 1,7"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Startdatum",
+        "required": "Startdatum ist erforderlich"
+      },
+      "endDate": {
+        "label": "Enddatum",
+        "required": "Enddatum ist erforderlich"
+      },
+      "ongoing": "Ich studiere hier aktuell",
+      "present": "Heute"
+    },
+    "description": {
+      "label": "Beschreibung"
+    },
+    "achievements": {
+      "label": "Erfolge",
+      "add": "Erfolg hinzufügen",
+      "placeholder": "Erfolg {number}",
+      "remove": "Erfolg entfernen"
     }
   },
   "sidebar": {
@@ -354,21 +397,21 @@
     "content": "Inhalt",
     "expandAll": "Alle ausklappen",
     "collapseAll": "Alle einklappen",
-    "basics": "Grundinformationen",
+    "basics": "Grundlagen",
     "experience": "Berufserfahrung",
     "education": "Ausbildung",
     "projects": "Projekte",
     "skills": "Fähigkeiten",
     "customSection": {
-      "title": "Benutzerdefinierte Sektion",
-      "add": "Benutzerdefinierte Sektion hinzufügen",
-      "addItem": "Element hinzufügen",
-      "newSection": "Neue Sektion",
-      "newItem": "Neues Element",
-      "sectionTitle": "Sektionsname",
+      "title": "Benutzerdefinierter Abschnitt",
+      "add": "Benutzerdefinierten Abschnitt hinzufügen",
+      "addItem": "Eintrag hinzufügen",
+      "newSection": "Neuer Abschnitt",
+      "newItem": "Neuer Eintrag",
+      "sectionTitle": "Abschnittstitel",
       "confirmDelete": {
         "title": "Löschen bestätigen",
-        "message": "Möchten Sie dieses Element wirklich löschen?",
+        "message": "Möchten Sie diesen Eintrag wirklich löschen?",
         "cancel": "Abbrechen",
         "delete": "Löschen"
       }

@@ -1,17 +1,17 @@
 {
   "metadata": {
-    "title": "Créateur de CV - Créez des CV Professionnels en Ligne",
-    "titleTemplate": "Créateur de CV",
-    "description": "Créez des CV professionnels avec notre créateur de CV en ligne facile à utiliser. Choisissez parmi des modèles modernes, personnalisez votre contenu et téléchargez votre CV au format PDF.",
-    "keywords": "créateur de CV, générateur de CV, CV professionnel, candidature, outils de carrière, modèles de CV, créateur de CV IA",
+    "title": "Créateur de CV - Créez des CV professionnels en quelques minutes",
+    "titleTemplate": "Outil de CV",
+    "description": "Créez rapidement des CV professionnels avec notre outil simple. Choisissez des modèles modernes et téléchargez en PDF instantanément.",
+    "keywords": "créer cv,créateur de cv,cv rapide,cv professionnel,cv simple,cv gratuit",
     "author": "Équipe Créateur de CV",
-    "publisher": "Créateur de CV",
-    "siteName": "Créateur de CV",
-    "ogTitle": "Créateur de CV - Créez des CV Professionnels en Ligne",
-    "ogDescription": "Créez des CV professionnels avec notre créateur de CV en ligne facile à utiliser. Choisissez parmi des modèles modernes, personnalisez votre contenu et téléchargez votre CV au format PDF.",
-    "ogImageAlt": "Aperçu du Créateur de CV",
-    "twitterTitle": "Créateur de CV - Créez des CV Professionnels en Ligne",
-    "twitterDescription": "Créez des CV professionnels avec notre créateur de CV en ligne facile à utiliser. Choisissez parmi des modèles modernes, personnalisez votre contenu et téléchargez votre CV au format PDF."
+    "publisher": "Outil de CV",
+    "siteName": "Outil de CV",
+    "ogTitle": "Outil de CV - Créez des CV professionnels en quelques minutes",
+    "ogDescription": "Créez rapidement des CV professionnels avec notre outil simple. Choisissez des modèles modernes et téléchargez en PDF instantanément. Parfait pour les chercheurs d'emploi.",
+    "ogImageAlt": "Aperçu de l'Outil de CV",
+    "twitterTitle": "Outil de CV - Créez des CV professionnels en quelques minutes",
+    "twitterDescription": "Créez rapidement des CV professionnels avec notre outil simple. Choisissez des modèles modernes et téléchargez en PDF instantanément. Parfait pour les chercheurs d'emploi."
   },
   "site": {
     "title": "Créateur de CV",
@@ -27,70 +27,88 @@
     }
   },
   "landing": {
-    "hero": {
-      "title": "Créez Votre CV Parfait",
-      "titleHighlight": "En Toute Simplicité",
-      "subtitle": "Mettez en valeur votre expérience avec nos modèles modernes et notre éditeur intuitif",
-      "cta": "Créer un CV Gratuitement",
-      "buttons": {
-        "start": "Commencer",
-        "templates": "Voir les Modèles"
-      },
-      "quickStart": "Démarrage Rapide",
-      "description": "Créez votre CV professionnel en quelques minutes. Notre éditeur intuitif et nos modèles modernes vous permettent de mettre en valeur votre carrière de manière optimale."
+    "cta": {
+      "title": "Créez Votre CV Professionnel en Quelques Minutes",
+      "description": "Rejoignez des milliers de chercheurs d'emploi qui ont créé des CV gagnants avec notre créateur simple et efficace.",
+      "button": "Commencer Maintenant - C'est Facile"
     },
-    "features": {
-      "subtitle": "Création de CV simple et efficace",
-      "list": [
-        {
-          "title": "Modèles Professionnels",
-          "description": "Des modèles élégants et efficaces conçus selon les standards de l'industrie"
-        },
-        {
-          "title": "Personnalisable",
-          "description": "Personnalisez tous les éléments selon vos besoins"
-        },
-        {
-          "title": "Compatible ATS",
-          "description": "Format optimisé pour les systèmes de suivi des candidatures (ATS)"
-        }
-      ],
-      "title": {
-        "modern": "Design Moderne",
-        "customization": "Personnalisation Complète",
-        "download": "Téléchargement Facile"
-      },
-      "description": {
-        "modern": "Un design moderne et sophistiqué pour faire ressortir votre CV",
-        "customization": "Personnalisez tous les éléments selon vos besoins",
-        "download": "Téléchargez facilement votre CV terminé au format PDF"
+    "footer": {
+      "title": "Créateur de CV",
+      "copyright": "Créateur de CV. Tous droits réservés."
+    },
+    "hero": {
+      "badge": "💫 Créateur de CV Puissant",
+      "quickStart": "Rapide et Facile",
+      "title": "Créez des CV Professionnels",
+      "titleHighlight": "En Quelques Minutes",
+      "description": "Construisez votre CV parfait avec notre créateur facile à utiliser. Édition simple, modèles professionnels, téléchargement instantané.",
+      "buttons": {
+        "start": "Créer un CV",
+        "templates": "Voir les Modèles"
       }
     },
+    "showcase": {
+      "badge": "Rapide et Simple",
+      "title": "La Façon la Plus Simple de Créer des CV",
+      "description": "Créez des CV professionnels en quelques minutes avec notre créateur simple et nos modèles prêts à l'emploi.",
+      "builder": {
+        "badge": "Simple et Rapide",
+        "title": "Création Facile de CV",
+        "description": "Nos formulaires simples et l'aperçu en temps réel rendent la création rapide et sans effort.",
+        "imageAlt": "Interface facile à utiliser pour créer un CV"
+      },
+      "template": {
+        "badge": "Professionnel",
+        "title": "Modèles Prêts à l'Emploi",
+        "description": "Choisissez parmi notre collection de modèles professionnels et personnalisez-les en quelques minutes.",
+        "imageAlt": "Modèles de CV Professionnels"
+      }
+    },
+    "features": {
+      "title": {
+        "modern": "Design Simple",
+        "customization": "Personnalisation Rapide",
+        "download": "Export PDF Instantané"
+      },
+      "description": {
+        "modern": "Des modèles épurés et professionnels qui vous aident à créer un CV parfait.",
+        "customization": "L'éditeur facile à utiliser rend la personnalisation rapide et simple.",
+        "download": "Téléchargez votre CV soigné au format PDF en un clic."
+      },
+      "items": [
+        {
+          "title": "Édition rapide",
+          "description": "Interface intuitive pour une saisie rapide"
+        },
+        {
+          "title": "Modèles professionnels",
+          "description": "Designs soigneusement élaborés pour vous démarquer"
+        },
+        {
+          "title": "Utilisation gratuite",
+          "description": "Outil de CV entièrement gratuit"
+        },
+        {
+          "title": "Multiples mises en page",
+          "description": "Options flexibles pour votre CV unique"
+        }
+      ]
+    },
     "whyChoose": {
-      "title": "Pourquoi Nous Choisir",
-      "subtitle": "Nous offrons toutes les fonctionnalités nécessaires pour créer un CV professionnel",
+      "title": "Pourquoi les Utilisateurs Adorent Notre Créateur",
+      "subtitle": "Nous rendons la création de CV simple et rapide, vous aidant à créer des CV professionnels en quelques minutes.",
       "features": [
-        "Interface facile à utiliser",
-        "Modèles professionnels",
-        "Aperçu en temps réel",
-        "Export PDF",
-        "Format compatible ATS",
-        "Support multilingue"
+        "Édition Rapide du Contenu",
+        "Export PDF en Un Clic",
+        "Modèles Professionnels",
+        "Utilisation Gratuite",
+        "Multiples Options de Mise en Page"
       ]
     },
     "templates": {
       "title": "Modèles Professionnels",
       "subtitle": "Démarquez-vous avec nos designs leaders de l'industrie",
       "cta": "Voir Tous les Modèles"
-    },
-    "cta": {
-      "title": "Commencez à Créer Votre CV Maintenant",
-      "subtitle": "Gratuit et facile. Prêt en quelques minutes.",
-      "button": "Commencer Gratuitement",
-      "description": "Créez votre CV professionnel en quelques minutes. Commencez maintenant."
-    },
-    "footer": {
-      "title": "Commencez Maintenant"
     }
   },
   "skills": {
@@ -132,12 +150,12 @@
     }
   },
   "mobileNotice": {
-    "title": "Expérience Bureau Recommandée",
-    "description": "Pour une meilleure expérience d'édition de CV, veuillez utiliser un ordinateur de bureau",
+    "title": "Expérience bureau recommandée",
+    "description": "Pour une meilleure expérience d'édition, utilisez un ordinateur de bureau",
     "features": {
-      "preview": "Aperçu en temps réel avec mises à jour instantanées",
-      "editing": "Outils d'édition avancés et options de mise en page",
-      "templates": "Aperçu complet des modèles et personnalisation"
+      "preview": "Meilleure visualisation du contenu",
+      "editing": "Édition plus facile",
+      "templates": "Aperçu complet des modèles"
     }
   },
   "templates": {
@@ -235,11 +253,11 @@
     },
     "dates": {
       "startDate": {
-        "label": "Date de Début",
+        "label": "Date de début",
         "required": "La date de début est requise"
       },
       "endDate": {
-        "label": "Date de Fin",
+        "label": "Date de fin",
         "required": "La date de fin est requise"
       },
       "currentlyWork": "Je travaille actuellement ici",
@@ -249,8 +267,8 @@
       "label": "Description"
     },
     "bulletPoints": {
-      "label": "Points Clés",
-      "add": "Ajouter un Point",
+      "label": "Points clés",
+      "add": "Ajouter un point",
       "placeholder": "Point {number}",
       "remove": "Supprimer le point"
     }
@@ -271,11 +289,11 @@
     },
     "dates": {
       "startDate": {
-        "label": "Date de Début",
+        "label": "Date de début",
         "required": "La date de début est requise"
       },
       "endDate": {
-        "label": "Date de Fin",
+        "label": "Date de fin",
         "required": "La date de fin est requise"
       },
       "ongoing": "C'est un projet en cours",
@@ -286,13 +304,13 @@
     },
     "technologies": {
       "label": "Technologies Utilisées",
-      "add": "Ajouter une Technologie",
+      "add": "Ajouter une technologie",
       "placeholder": "Technologie {number}",
       "remove": "Supprimer la technologie"
     },
     "bulletPoints": {
-      "label": "Points Clés",
-      "add": "Ajouter un Point",
+      "label": "Points clés",
+      "add": "Ajouter un point",
       "placeholder": "Point {number}",
       "remove": "Supprimer le point"
     }
@@ -306,7 +324,7 @@
     },
     "items": {
       "label": "Éléments",
-      "add": "Ajouter un Élément",
+      "add": "Ajouter un élément",
       "remove": "Supprimer l'élément",
       "noItems": "Aucun élément dans cette section",
       "selectToEdit": "Sélectionnez un élément à modifier",
@@ -341,6 +359,31 @@
     "field": {
       "label": "Domaine d'Études",
       "required": "Le domaine d'études est requis"
+    },
+    "gpa": {
+      "label": "Moyenne",
+      "placeholder": "ex., 16/20"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Date de début",
+        "required": "La date de début est requise"
+      },
+      "endDate": {
+        "label": "Date de fin",
+        "required": "La date de fin est requise"
+      },
+      "ongoing": "J'étudie actuellement ici",
+      "present": "Présent"
+    },
+    "description": {
+      "label": "Description"
+    },
+    "achievements": {
+      "label": "Réalisations",
+      "add": "Ajouter une réalisation",
+      "placeholder": "Réalisation {number}",
+      "remove": "Supprimer la réalisation"
     }
   },
   "sidebar": {

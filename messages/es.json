@@ -1,17 +1,17 @@
 {
   "metadata": {
-    "title": "Creador de Currículum - Crea Currículums Profesionales en Línea",
-    "titleTemplate": "Creador de Currículum",
-    "description": "Crea currículums profesionales con nuestro creador de currículum en línea fácil de usar. Elige entre plantillas modernas, personaliza tu contenido y descarga tu currículum en formato PDF.",
-    "keywords": "creador de currículum, generador de CV, currículum profesional, solicitud de empleo, herramientas de carrera, plantillas de currículum, creador de currículum con IA",
-    "author": "Equipo Creador de Currículum",
-    "publisher": "Creador de Currículum",
-    "siteName": "Creador de Currículum",
-    "ogTitle": "Creador de Currículum - Crea Currículums Profesionales en Línea",
-    "ogDescription": "Crea currículums profesionales con nuestro creador de currículum en línea fácil de usar. Elige entre plantillas modernas, personaliza tu contenido y descarga tu currículum en formato PDF.",
-    "ogImageAlt": "Vista previa del Creador de Currículum",
-    "twitterTitle": "Creador de Currículum - Crea Currículums Profesionales en Línea",
-    "twitterDescription": "Crea currículums profesionales con nuestro creador de currículum en línea fácil de usar. Elige entre plantillas modernas, personaliza tu contenido y descarga tu currículum en formato PDF."
+    "title": "Creador de CV - Crea currículums profesionales en minutos",
+    "titleTemplate": "Herramienta de CV",
+    "description": "Crea currículums profesionales rápidamente con nuestra herramienta simple. Elige plantillas modernas y descarga en PDF al instante.",
+    "keywords": "crear cv,creador de curriculum,cv rapido,curriculum profesional,cv simple,curriculum gratis",
+    "author": "Equipo Creador de CV",
+    "publisher": "Herramienta de CV",
+    "siteName": "Herramienta de CV",
+    "ogTitle": "Herramienta de CV - Crea currículums profesionales en minutos",
+    "ogDescription": "Crea currículums profesionales rápidamente con nuestra herramienta simple. Elige plantillas modernas y descarga en PDF al instante. Perfecto para buscadores de empleo.",
+    "ogImageAlt": "Vista previa de la Herramienta de CV",
+    "twitterTitle": "Herramienta de CV - Crea currículums profesionales en minutos",
+    "twitterDescription": "Crea currículums profesionales rápidamente con nuestra herramienta simple. Elige plantillas modernas y descarga en PDF al instante. Perfecto para buscadores de empleo."
   },
   "site": {
     "title": "Creador de Currículum",
@@ -27,70 +27,70 @@
     }
   },
   "landing": {
+    "cta": {
+      "title": "Crea Tu Currículum Profesional en Minutos",
+      "description": "Únete a miles de personas que crearon currículums exitosos con nuestro creador simple y eficiente.",
+      "button": "Empezar Ahora - Es Fácil"
+    },
+    "footer": {
+      "title": "Creador de CV",
+      "copyright": "Creador de CV. Todos los derechos reservados."
+    },
     "hero": {
-      "title": "Crea Tu Currículum Perfecto",
-      "titleHighlight": "Con Facilidad",
-      "subtitle": "Destaca tu experiencia con nuestras plantillas modernas y editor intuitivo",
-      "cta": "Crear CV Gratis",
+      "badge": "💫 Potente Creador de Currículum",
+      "quickStart": "Rápido y Fácil",
+      "title": "Crea Currículums Profesionales",
+      "titleHighlight": "En Minutos",
+      "description": "Construye tu currículum perfecto con nuestro creador fácil de usar. Edición simple, plantillas profesionales, descarga instantánea.",
       "buttons": {
-        "start": "Empezar Ahora",
+        "start": "Crear Currículum",
         "templates": "Ver Plantillas"
+      }
+    },
+    "showcase": {
+      "badge": "Rápido y Fácil",
+      "title": "La Forma Más Fácil de Crear Currículums",
+      "description": "Crea currículums profesionales en minutos con nuestro creador simple y plantillas listas para usar.",
+      "builder": {
+        "badge": "Simple y Rápido",
+        "title": "Creación Fácil de Currículum",
+        "description": "Nuestros formularios simples y vista previa en tiempo real hacen que la creación sea rápida y sin esfuerzo.",
+        "imageAlt": "Interfaz fácil de usar para crear currículum"
       },
-      "quickStart": "Inicio Rápido",
-      "description": "Crea tu currículum profesional en minutos. Nuestro editor intuitivo y plantillas modernas te ayudan a presentar tu carrera de la mejor manera posible."
+      "template": {
+        "badge": "Profesional",
+        "title": "Plantillas Listas para Usar",
+        "description": "Elige entre nuestra colección de plantillas profesionales y personalízalas en minutos.",
+        "imageAlt": "Plantillas Profesionales de Currículum"
+      }
     },
     "features": {
-      "subtitle": "Creación de CV simple y efectiva",
-      "list": [
-        {
-          "title": "Plantillas Profesionales",
-          "description": "Plantillas elegantes y efectivas diseñadas según los estándares de la industria"
-        },
-        {
-          "title": "Personalizable",
-          "description": "Personaliza todos los elementos según tus necesidades"
-        },
-        {
-          "title": "Compatible con ATS",
-          "description": "Formato optimizado para sistemas de seguimiento de candidatos (ATS)"
-        }
-      ],
       "title": {
-        "modern": "Diseño Moderno",
-        "customization": "Personalización Completa",
-        "download": "Descarga Fácil"
+        "modern": "Diseño Simple",
+        "customization": "Personalización Rápida",
+        "download": "Exportación PDF Instantánea"
       },
       "description": {
-        "modern": "Un diseño moderno y sofisticado para hacer destacar tu currículum",
-        "customization": "Personaliza todos los elementos según tus necesidades",
-        "download": "Descarga fácilmente tu currículum terminado en formato PDF"
+        "modern": "Plantillas limpias y profesionales que te ayudan a crear un currículum perfecto.",
+        "customization": "Editor fácil de usar hace que la personalización sea rápida y simple.",
+        "download": "Descarga tu currículum pulido en formato PDF con un clic."
       }
     },
     "whyChoose": {
-      "title": "Por Qué Elegirnos",
-      "subtitle": "Ofrecemos todas las funciones necesarias para crear un currículum profesional",
+      "title": "Por Qué los Usuarios Aman Nuestro Creador",
+      "subtitle": "Hacemos la creación de currículums simple y rápida, ayudándote a crear currículums profesionales en minutos.",
       "features": [
-        "Interfaz fácil de usar",
-        "Plantillas profesionales",
-        "Vista previa en tiempo real",
-        "Exportación a PDF",
-        "Formato compatible con ATS",
-        "Soporte multilingüe"
+        "Edición Rápida de Contenido",
+        "Exportación PDF con Un Clic",
+        "Plantillas Profesionales",
+        "Uso Gratuito",
+        "Múltiples Opciones de Diseño"
       ]
     },
     "templates": {
       "title": "Plantillas Profesionales",
       "subtitle": "Destácate con nuestros diseños líderes en la industria",
       "cta": "Ver Todas las Plantillas"
-    },
-    "cta": {
-      "title": "Comienza a Crear Tu CV Ahora",
-      "subtitle": "Gratis y fácil. Listo en minutos.",
-      "button": "Comenzar Gratis",
-      "description": "Crea tu currículum profesional en minutos. Comienza ahora."
-    },
-    "footer": {
-      "title": "Comienza Ahora"
     }
   },
   "skills": {
@@ -132,12 +132,12 @@
     }
   },
   "mobileNotice": {
-    "title": "Experiencia de Escritorio Recomendada",
-    "description": "Para la mejor experiencia de edición de currículum, por favor utiliza un dispositivo de escritorio",
+    "title": "Experiencia de escritorio recomendada",
+    "description": "Para la mejor experiencia de edición, utiliza un dispositivo de escritorio",
     "features": {
-      "preview": "Vista previa en tiempo real con actualizaciones instantáneas",
-      "editing": "Herramientas de edición avanzadas y opciones de diseño",
-      "templates": "Vista previa completa de plantillas y personalización"
+      "preview": "Mejor visualización de contenido",
+      "editing": "Edición más fácil",
+      "templates": "Vista previa completa de plantillas"
     }
   },
   "templates": {
@@ -230,27 +230,27 @@
       "required": "El nombre de la empresa es requerido"
     },
     "position": {
-      "label": "Cargo",
-      "required": "El cargo es requerido"
+      "label": "Puesto",
+      "required": "El puesto es requerido"
     },
     "dates": {
       "startDate": {
-        "label": "Fecha de Inicio",
+        "label": "Fecha de inicio",
         "required": "La fecha de inicio es requerida"
       },
       "endDate": {
-        "label": "Fecha de Fin",
+        "label": "Fecha de fin",
         "required": "La fecha de fin es requerida"
       },
-      "currentlyWork": "Actualmente trabajo aquí",
+      "currentlyWork": "Trabajo aquí actualmente",
       "present": "Presente"
     },
     "description": {
       "label": "Descripción"
     },
     "bulletPoints": {
-      "label": "Puntos Destacados",
-      "add": "Agregar Punto",
+      "label": "Puntos destacados",
+      "add": "Agregar punto",
       "placeholder": "Punto {number}",
       "remove": "Eliminar punto"
     }
@@ -271,11 +271,11 @@
     },
     "dates": {
       "startDate": {
-        "label": "Fecha de Inicio",
+        "label": "Fecha de inicio",
         "required": "La fecha de inicio es requerida"
       },
       "endDate": {
-        "label": "Fecha de Fin",
+        "label": "Fecha de fin",
         "required": "La fecha de fin es requerida"
       },
       "ongoing": "Este es un proyecto en curso",
@@ -286,13 +286,13 @@
     },
     "technologies": {
       "label": "Tecnologías Utilizadas",
-      "add": "Agregar Tecnología",
+      "add": "Agregar tecnología",
       "placeholder": "Tecnología {number}",
       "remove": "Eliminar tecnología"
     },
     "bulletPoints": {
-      "label": "Puntos Destacados",
-      "add": "Agregar Punto",
+      "label": "Puntos destacados",
+      "add": "Agregar punto",
       "placeholder": "Punto {number}",
       "remove": "Eliminar punto"
     }
@@ -306,7 +306,7 @@
     },
     "items": {
       "label": "Elementos",
-      "add": "Agregar Elemento",
+      "add": "Agregar elemento",
       "remove": "Eliminar elemento",
       "noItems": "No hay elementos en esta sección",
       "selectToEdit": "Selecciona un elemento para editar",
@@ -341,6 +341,31 @@
     "field": {
       "label": "Campo de Estudio",
       "required": "El campo de estudio es requerido"
+    },
+    "gpa": {
+      "label": "Promedio",
+      "placeholder": "ej., 8.5/10"
+    },
+    "dates": {
+      "startDate": {
+        "label": "Fecha de inicio",
+        "required": "La fecha de inicio es requerida"
+      },
+      "endDate": {
+        "label": "Fecha de fin",
+        "required": "La fecha de fin es requerida"
+      },
+      "ongoing": "Actualmente estudio aquí",
+      "present": "Presente"
+    },
+    "description": {
+      "label": "Descripción"
+    },
+    "achievements": {
+      "label": "Logros",
+      "add": "Agregar logro",
+      "placeholder": "Logro {number}",
+      "remove": "Eliminar logro"
     }
   },
   "sidebar": {
