@@ -99,7 +99,7 @@ export default function LandingPage() {
           </div>
 
           {/* Image Showcase */}
-          <div className="relative mb-16">
+          <div className="relative mb-24">
             {/* Builder Interface */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800">
               <div className="aspect-[16/9] md:aspect-[21/9]">
@@ -146,7 +146,7 @@ export default function LandingPage() {
             </div>
 
             {/* Template Preview */}
-            <div className="relative mx-auto max-w-sm mb-6">
+            <div className="relative mx-auto max-w-sm mb-8">
               <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-violet-500/10 rounded-[22px] blur-xl opacity-50" />
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <div className="aspect-[3/4] bg-white">
@@ -159,14 +159,14 @@ export default function LandingPage() {
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap">
                 Professional Templates
               </div>
             </div>
 
             {/* Template Description */}
-            <div className="text-center mb-16 px-4">
-              <p className="text-slate-600 dark:text-slate-300 mt-8">
+            <div className="text-center px-4 mb-16">
+              <p className="text-slate-600 dark:text-slate-300">
                 {t('landing.showcase.template.description')}
               </p>
             </div>
