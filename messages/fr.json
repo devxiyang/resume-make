@@ -18,7 +18,30 @@
     "createResume": "Créer un CV"
   },
   "builder": {
-    "myResume": "Mon CV"
+    "myResume": "Mon CV",
+    "actions": {
+      "import": {
+        "title": "Importer les Données du CV",
+        "description": "Cela importera un fichier de données CV précédemment enregistré. Les données actuelles seront écrasées.",
+        "cancel": "Annuler",
+        "confirm": "Importer"
+      },
+      "save": {
+        "title": "Sauvegarder les Données du CV",
+        "description": "Cela sauvegardera vos données actuelles du CV au format JSON. Vous pouvez choisir où l'enregistrer.",
+        "cancel": "Annuler",
+        "confirm": "Sauvegarder"
+      },
+      "download": {
+        "title": "Télécharger le CV en PDF",
+        "description": "Cela téléchargera la version PDF de votre CV actuel, parfait pour les candidatures.",
+        "cancel": "Annuler",
+        "confirm": "Télécharger PDF"
+      }
+    },
+    "status": {
+      "editing": "Modification en cours..."
+    }
   },
   "navigation": {
     "tabs": {

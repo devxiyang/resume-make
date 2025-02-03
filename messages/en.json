@@ -18,7 +18,30 @@
     "createResume": "Create Resume"
   },
   "builder": {
-    "myResume": "My Resume"
+    "myResume": "My Resume",
+    "actions": {
+      "import": {
+        "title": "Import Resume Data",
+        "description": "This will import a previously saved resume data file. Current data will be overwritten.",
+        "cancel": "Cancel",
+        "confirm": "Import"
+      },
+      "save": {
+        "title": "Save Resume Data",
+        "description": "This will save your current resume data as a JSON file. You can choose where to save it.",
+        "cancel": "Cancel",
+        "confirm": "Save"
+      },
+      "download": {
+        "title": "Download Resume PDF",
+        "description": "This will download the current resume as a PDF file, suitable for job applications.",
+        "cancel": "Cancel",
+        "confirm": "Download PDF"
+      }
+    },
+    "status": {
+      "editing": "Editing..."
+    }
   },
   "navigation": {
     "tabs": {

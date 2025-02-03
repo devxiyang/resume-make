@@ -5,7 +5,7 @@ import { NavTabs } from "@/components/layout/nav-tabs"
 import { Sidebar } from "@/components/layout/sidebar"
 import { TemplatePicker } from "@/components/templates/template-picker"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, Download } from "lucide-react"
+import { ChevronLeft, Download, Save, Upload } from "lucide-react"
 import { ResumeData } from "@/lib/types"
 import { ResumeProvider } from "@/context/resume-context"
 import { useResume } from "@/context/resume-context"
@@ -21,6 +21,26 @@ import { CustomSectionForm, CustomSectionItemForm } from "@/components/forms/cus
 import { initialResumeData } from "@/lib/initial-data"
 import { MobileNotice } from "@/components/mobile-notice"
 import { useTranslations } from 'next-intl'
+import { useToast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+// Add File System Access API type declarations
+declare global {
+  interface Window {
+    showDirectoryPicker(): Promise<FileSystemDirectoryHandle>;
+  }
+}
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 type ActiveTab = "edit" | "template"
@@ -48,10 +68,12 @@ function ResumeBuilder() {
     selectItem, 
     addCustomSectionItem, 
     selectCustomSectionItem, 
-    deleteCustomSectionItem, 
-    updateItem 
+    deleteCustomSectionItem,
+    updateItem,
+    updateResumeData 
   } = useResume()
   const t = useTranslations()
+  const { toast } = useToast()
 
   const renderForm = () => {
     switch (activeSection) {
@@ -72,9 +94,100 @@ function ResumeBuilder() {
     }
   }
 
+  const saveResumeDataToFile = async () => {
+    try {
+      // 请求用户选择保存目录
+      const handle = await window.showDirectoryPicker();
+      
+      // 创建文件名，使用时间戳确保唯一性
+      const fileName = `resume-${new Date().toISOString().split('T')[0]}.json`;
+      
+      // 获取文件句柄
+      const fileHandle = await handle.getFileHandle(fileName, { create: true });
+      
+      // 创建可写流
+      const writable = await fileHandle.createWritable();
+      
+      // 将简历数据转换为JSON字符串并写入
+      await writable.write(JSON.stringify(resumeData, null, 2));
+      
+      // 关闭流
+      await writable.close();
+
+      // 显示成功提示
+      toast({
+        title: "保存成功",
+        description: `简历数据已保存至 ${fileName}`,
+        duration: 3000,
+      });
+      
+    } catch (error) {
+      console.error('保存文件时出错:', error);
+      // 显示错误提示
+      toast({
+        variant: "destructive",
+        title: "保存失败",
+        description: error instanceof Error ? error.message : "保存文件时出错，请重试",
+        duration: 3000,
+      });
+    }
+  };
+
+  const loadResumeDataFromFile = async () => {
+    try {
+      // 创建文件选择器
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      
+      // 监听文件选择
+      input.onchange = async (e) => {
+        const file = (e.target as HTMLInputElement).files?.[0];
+        if (!file) return;
+
+        try {
+          const text = await file.text();
+          const data = JSON.parse(text);
+          
+          // 验证数据结构
+          if (!data.personal || !Array.isArray(data.experiences) || !Array.isArray(data.education)) {
+            throw new Error('无效的简历数据格式');
+          }
+
+          // 更新简历数据
+          updateResumeData(data);
+          
+          toast({
+            title: "导入成功",
+            description: "简历数据已成功导入",
+            duration: 3000,
+          });
+        } catch (error) {
+          toast({
+            variant: "destructive",
+            title: "导入失败",
+            description: "文件格式错误或数据无效",
+            duration: 3000,
+          });
+        }
+      };
+
+      input.click();
+    } catch (error) {
+      console.error('导入文件时出错:', error);
+      toast({
+        variant: "destructive",
+        title: "导入失败",
+        description: error instanceof Error ? error.message : "导入文件时出错，请重试",
+        duration: 3000,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
         <SiteHeader />
+        <Toaster />
 
       <header className="relative hidden lg:flex items-center h-14 px-4 border-b border-border">
         <div className="flex items-center gap-4">
@@ -92,21 +205,89 @@ function ResumeBuilder() {
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">{t('builder.myResume')}</span>
             <div className="h-2 w-2 rounded-full bg-green-500" />
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-foreground/60 hover:text-foreground"
+                >
+                  <Upload className="h-4 w-4" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{t('builder.actions.import.title')}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {t('builder.actions.import.description')}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>{t('builder.actions.import.cancel')}</AlertDialogCancel>
+                  <AlertDialogAction onClick={loadResumeDataFromFile}>
+                    {t('builder.actions.import.confirm')}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-foreground/60 hover:text-foreground"
+                >
+                  <Save className="h-4 w-4" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{t('builder.actions.save.title')}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {t('builder.actions.save.description')}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>{t('builder.actions.save.cancel')}</AlertDialogCancel>
+                  <AlertDialogAction onClick={saveResumeDataToFile}>
+                    {t('builder.actions.save.confirm')}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+            {pdfUrl && (
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-foreground/60 hover:text-foreground"
+                  >
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>{t('builder.actions.download.title')}</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {t('builder.actions.download.description')}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>{t('builder.actions.download.cancel')}</AlertDialogCancel>
+                    <AlertDialogAction asChild>
+                      <a href={pdfUrl} download="resume.pdf">
+                        {t('builder.actions.download.confirm')}
+                      </a>
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            )}
           </div>
         </div>
-        {/* Desktop Only PDF Download Button */}
-        <div className="ml-auto lg:flex items-center gap-2">
-          {pdfUrl && (
-            <a 
-              href={pdfUrl} 
-              download="resume.pdf"
-              className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600 transition-colors"
-            >
-              <Download className="h-4 w-4" />
-              Download PDF
-            </a>
-          )}
-        </div>
+        {/* Empty div to maintain layout */}
+        <div className="ml-auto" />
       </header>
 
       <main className="flex-1">
