@@ -340,7 +340,6 @@
       "copyright": "简历生成器。保留所有权利。"
     },
     "hero": {
-      "badge": "💫 智能简历工具",
       "quickStart": "快速制作简历",
       "title": "制作专业简历",
       "titleHighlight": "简单快捷",
@@ -351,17 +350,14 @@
       }
     },
     "showcase": {
-      "badge": "简单易用",
       "title": "简单而强大的简历工具",
       "description": "轻松创建令人印象深刻的简历。完美适配科技行业及其他领域。",
       "builder": {
-        "badge": "快速简单",
         "title": "智能简历制作",
         "description": "直观的编辑器和智能布局。轻松整理你的经验，让简历脱颖而出。",
         "imageAlt": "简历制作界面"
       },
       "template": {
-        "badge": "专业模板",
         "title": "现成简历模板",
         "description": "专业设计的模板，为科技行业优化，同样适用于其他领域。",
         "imageAlt": "简历模板"
