@@ -28,15 +28,16 @@ export function TemplatePicker({ selectedTemplate, onTemplateSelect }: TemplateP
               onClick={() => onTemplateSelect(template.id)}
             >
               <div className="p-3">
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <h3 className="font-semibold">{t(`list.${template.id}.name`)}</h3>
-                    <p className="text-xs text-muted-foreground mt-0.5">{t(`list.${template.id}.description`)}</p>
-                  </div>
-                  <Badge variant={template.type === 'premium' ? 'default' : 'secondary'} className="text-xs">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">{t(`list.${template.id}.name`)}</h3>
+                  <Badge 
+                    variant={template.type === 'premium' ? 'default' : 'secondary'} 
+                    className="text-xs min-w-[48px] text-center"
+                  >
                     {t(`types.${template.type}`)}
                   </Badge>
                 </div>
+                <p className="text-xs text-muted-foreground">{t(`list.${template.id}.description`)}</p>
 
                 {template.preview && (
                   <div className="mt-3 relative">

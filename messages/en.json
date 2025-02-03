@@ -17,6 +17,9 @@
     "title": "Resume Maker",
     "createResume": "Create Resume"
   },
+  "builder": {
+    "myResume": "My Resume"
+  },
   "navigation": {
     "tabs": {
       "edit": "Edit Content",
@@ -76,6 +79,11 @@
     "imageAlt": "{name} Template Preview - Best for {bestFor}",
     "bestFor": "Best for",
     "useTemplate": "Use {name} template",
+    "features": "Features",
+    "types": {
+      "free": "Free",
+      "premium": "Premium"
+    },
     "cta": {
       "title": "Ready to Create Your Professional Resume?",
       "description": "Choose your favorite template and start building your resume now.",

@@ -17,6 +17,9 @@
     "title": "简历制作",
     "createResume": "创建简历"
   },
+  "builder": {
+    "myResume": "我的简历"
+  },
   "navigation": {
     "tabs": {
       "edit": "编辑内容",
@@ -72,10 +75,11 @@
   },
   "templates": {
     "title": "专业简历模板",
-    "subtitle": "从我们精心设计的专业模板中选择。每个模板都经过精心打造，帮助您脱颖而出。",
+    "subtitle": "从我们精心设计的专业模板中选择。每个模板都旨在帮助您脱颖而出。",
     "imageAlt": "{name}模板预览 - 最适合{bestFor}",
     "bestFor": "最适合",
     "useTemplate": "使用{name}模板",
+    "features": "特点",
     "cta": {
       "title": "准备好制作您的专业简历了吗？",
       "description": "选择您喜欢的模板，立即开始制作简历。",

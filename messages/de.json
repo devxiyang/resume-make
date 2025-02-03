@@ -14,8 +14,11 @@
     "twitterDescription": "Erstellen Sie professionelle Lebensläufe mit unserem benutzerfreundlichen Online-Lebenslauf-Builder. Wählen Sie aus modernen Vorlagen, passen Sie Ihre Inhalte an und laden Sie Ihren Lebenslauf im PDF-Format herunter."
   },
   "site": {
-    "title": "Lebenslauf Maker",
-    "createResume": "Lebenslauf erstellen"
+    "title": "Lebenslauf-Ersteller",
+    "createResume": "Lebenslauf Erstellen"
+  },
+  "builder": {
+    "myResume": "Mein Lebenslauf"
   },
   "navigation": {
     "tabs": {
@@ -139,9 +142,10 @@
   "templates": {
     "title": "Professionelle Lebenslauf-Vorlagen",
     "subtitle": "Wählen Sie aus unserer Sammlung professionell gestalteter Vorlagen. Jede Vorlage wurde entwickelt, um Sie hervorstechen zu lassen.",
-    "imageAlt": "{name} Vorlagenvorschau - Optimal für {bestFor}",
+    "imageAlt": "{name} Vorlagen-Vorschau - Optimal für {bestFor}",
     "bestFor": "Optimal für",
     "useTemplate": "{name} Vorlage verwenden",
+    "features": "Funktionen",
     "types": {
       "free": "Kostenlos",
       "premium": "Premium"

@@ -17,6 +17,9 @@
     "title": "履歴書メーカー",
     "createResume": "履歴書を作成"
   },
+  "builder": {
+    "myResume": "マイ履歴書"
+  },
   "navigation": {
     "tabs": {
       "edit": "内容を編集",
@@ -142,6 +145,7 @@
     "imageAlt": "{name}テンプレートプレビュー - {bestFor}に最適",
     "bestFor": "最適な用途",
     "useTemplate": "{name}テンプレートを使用",
+    "features": "特徴",
     "types": {
       "free": "無料",
       "premium": "プレミアム"
