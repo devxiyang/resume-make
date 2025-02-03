@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Lebenslauf-Builder - Erstellen Sie professionelle Lebensläufe online",
+    "title": "Lebenslauf-Ersteller - Erstellen Sie professionelle Lebensläufe in Minuten",
     "titleTemplate": "Lebenslauf-Builder",
-    "description": "Erstellen Sie professionelle Lebensläufe mit unserem benutzerfreundlichen Online-Lebenslauf-Builder. Wählen Sie aus modernen Vorlagen, passen Sie Ihre Inhalte an und laden Sie Ihren Lebenslauf im PDF-Format herunter.",
+    "description": "Erstellen Sie schnell professionelle Lebensläufe mit unserem einfachen Builder. Wählen Sie aus modernen Vorlagen und laden Sie sofort als PDF herunter.",
     "keywords": "Lebenslauf-Builder, CV-Maker, professioneller Lebenslauf, Bewerbung, Karriere-Tools, Lebenslauf-Vorlagen, KI-Lebenslauf-Builder",
     "author": "Lebenslauf-Builder Team",
     "publisher": "Lebenslauf-Builder",
@@ -15,10 +15,30 @@
   },
   "site": {
     "title": "Lebenslauf-Ersteller",
-    "createResume": "Lebenslauf Erstellen"
+    "createResume": "Lebenslauf erstellen"
   },
   "builder": {
-    "myResume": "Mein Lebenslauf"
+    "myResume": "Mein Lebenslauf",
+    "actions": {
+      "import": {
+        "title": "Lebenslauf-Daten importieren",
+        "description": "Dies importiert eine zuvor gespeicherte Lebenslauf-Datei. Aktuelle Daten werden überschrieben.",
+        "cancel": "Abbrechen",
+        "confirm": "Importieren"
+      },
+      "save": {
+        "title": "Lebenslauf-Daten speichern",
+        "description": "Dies speichert Ihre aktuellen Lebenslauf-Daten als JSON-Datei. Sie können den Speicherort wählen.",
+        "cancel": "Abbrechen",
+        "confirm": "Speichern"
+      },
+      "download": {
+        "title": "Lebenslauf als PDF herunterladen",
+        "description": "Dies lädt die aktuelle Version Ihres Lebenslaufs als PDF-Datei herunter, perfekt für Bewerbungen.",
+        "cancel": "Abbrechen",
+        "confirm": "PDF herunterladen"
+      }
+    }
   },
   "navigation": {
     "tabs": {

@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Creador de CV - Crea currículums profesionales en minutos",
-    "titleTemplate": "Herramienta de CV",
-    "description": "Crea currículums profesionales rápidamente con nuestra herramienta simple. Elige plantillas modernas y descarga en PDF al instante.",
+    "title": "Creador de CV - Crea CV profesionales en minutos",
+    "titleTemplate": "Constructor de CV",
+    "description": "Crea CV profesionales rápidamente con nuestro sencillo constructor. Elige entre plantillas modernas y descarga en PDF al instante.",
     "keywords": "crear cv,creador de curriculum,cv rapido,curriculum profesional,cv simple,curriculum gratis",
     "author": "Equipo Creador de CV",
     "publisher": "Herramienta de CV",
@@ -14,16 +14,36 @@
     "twitterDescription": "Crea currículums profesionales rápidamente con nuestra herramienta simple. Elige plantillas modernas y descarga en PDF al instante. Perfecto para buscadores de empleo."
   },
   "site": {
-    "title": "Creador de Currículum",
-    "createResume": "Crear Currículum"
+    "title": "Creador de CV",
+    "createResume": "Crear CV"
   },
   "builder": {
-    "myResume": "Mi Currículum"
+    "myResume": "Mi CV",
+    "actions": {
+      "import": {
+        "title": "Importar datos del CV",
+        "description": "Esto importará un archivo de datos de CV guardado previamente. Los datos actuales serán sobrescritos.",
+        "cancel": "Cancelar",
+        "confirm": "Importar"
+      },
+      "save": {
+        "title": "Guardar datos del CV",
+        "description": "Esto guardará sus datos actuales del CV como archivo JSON. Puede elegir dónde guardarlo.",
+        "cancel": "Cancelar",
+        "confirm": "Guardar"
+      },
+      "download": {
+        "title": "Descargar CV en PDF",
+        "description": "Esto descargará la versión actual de su CV en formato PDF, perfecto para solicitudes de empleo.",
+        "cancel": "Cancelar",
+        "confirm": "Descargar PDF"
+      }
+    }
   },
   "navigation": {
     "tabs": {
-      "edit": "Editar Contenido",
-      "template": "Elegir Plantilla"
+      "edit": "Editar contenido",
+      "template": "Elegir plantilla"
     }
   },
   "landing": {

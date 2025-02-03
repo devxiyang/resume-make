@@ -18,7 +18,27 @@
     "createResume": "履歴書を作成"
   },
   "builder": {
-    "myResume": "マイ履歴書"
+    "myResume": "履歴書",
+    "actions": {
+      "import": {
+        "title": "履歴書データのインポート",
+        "description": "以前保存した履歴書データファイルをインポートします。現在のデータは上書きされます。",
+        "cancel": "キャンセル",
+        "confirm": "インポート"
+      },
+      "save": {
+        "title": "履歴書データの保存",
+        "description": "現在の履歴書データをJSONファイルとして保存します。保存場所を選択できます。",
+        "cancel": "キャンセル",
+        "confirm": "保存"
+      },
+      "download": {
+        "title": "履歴書のPDFダウンロード",
+        "description": "現在の履歴書をPDF形式でダウンロードします。就職活動に最適です。",
+        "cancel": "キャンセル",
+        "confirm": "PDFをダウンロード"
+      }
+    }
   },
   "navigation": {
     "tabs": {
