@@ -1,17 +1,17 @@
 {
   "metadata": {
-    "title": "Resume Builder - Create Professional Resumes Online",
+    "title": "Resume Maker - Create Professional Resumes in Minutes",
     "titleTemplate": "Resume Builder",
-    "description": "Free online resume builder with professional templates and multi-language support. Easy-to-use editor, smart formatting, one-click PDF export, and ATS-friendly format. Perfect for students, job seekers, and professionals.",
-    "keywords": "resume builder, online resume, free resume maker, resume templates, professional resume, CV maker, PDF resume download, student resume, entry level resume, ATS friendly resume, AI resume builder, resume generator, job application tools, multi language resume",
+    "description": "Create professional resumes quickly with our simple builder. Choose from modern templates and download as PDF instantly.",
+    "keywords": "resume maker, resume builder, quick resume, professional resume, simple resume, easy resume, free resume maker",
     "author": "Resume Builder Team",
     "publisher": "Resume Builder",
     "siteName": "Resume Builder",
-    "ogTitle": "Resume Builder - Create Professional Resumes Online Free",
-    "ogDescription": "Free online resume builder with professional templates and multi-language support. Easy-to-use editor, smart formatting, one-click PDF export, and ATS-friendly format. Perfect for students, job seekers, and professionals.",
+    "ogTitle": "Resume Builder - Create Professional Resumes in Minutes",
+    "ogDescription": "Create professional resumes quickly with our simple builder. Choose from modern templates and download as PDF instantly. Perfect for job seekers.",
     "ogImageAlt": "Resume Builder Preview",
-    "twitterTitle": "Resume Builder - Create Professional Resumes Online Free",
-    "twitterDescription": "Free online resume builder with professional templates and multi-language support. Easy-to-use editor, smart formatting, one-click PDF export, and ATS-friendly format. Perfect for students, job seekers, and professionals."
+    "twitterTitle": "Resume Builder - Create Professional Resumes in Minutes",
+    "twitterDescription": "Create professional resumes quickly with our simple builder. Choose from modern templates and download as PDF instantly. Perfect for job seekers."
   },
   "site": {
     "title": "Resume Maker",
@@ -66,11 +66,11 @@
   },
   "mobileNotice": {
     "title": "Desktop Experience Recommended",
-    "description": "For the best resume editing experience, please switch to a desktop device",
+    "description": "For the best resume editing experience, please use a desktop device",
     "features": {
-      "preview": "Real-time preview with live updates",
-      "editing": "Advanced editing tools and layout options",
-      "templates": "Full template preview and customization"
+      "preview": "Better content viewing experience",
+      "editing": "Easier content editing",
+      "templates": "Full template preview"
     }
   },
   "templates": {
@@ -308,64 +308,62 @@
   },
   "landing": {
     "cta": {
-      "title": "Ready to Create Your Professional Resume?",
-      "description": "Join thousands of job seekers who have successfully created their resumes using our platform.",
-      "button": "Start Building Now"
+      "title": "Create Your Professional Resume in Minutes",
+      "description": "Join thousands of job seekers who created winning resumes with our simple and efficient builder.",
+      "button": "Start Building Now - It's Easy"
     },
     "footer": {
       "title": "Resume Maker",
       "copyright": "Resume Maker. All rights reserved."
     },
     "hero": {
-      "quickStart": "Your professional resume in minutes",
-      "title": "Create Your Perfect Resume",
-      "titleHighlight": "With Ease",
-      "description": "Build professional resumes that stand out. Choose from modern templates, customize with ease, and download in seconds. Your next career move starts here.",
+      "quickStart": "Fast & Easy Resume Builder",
+      "title": "Create Professional Resumes",
+      "titleHighlight": "In Minutes",
+      "description": "Build your perfect resume with our easy-to-use builder. Simple editing, professional templates, instant download.",
       "buttons": {
-        "start": "Start Building",
+        "start": "Create Resume",
         "templates": "View Templates"
       }
     },
     "showcase": {
-      "title": "Powerful Resume Builder",
-      "description": "Our intuitive interface and professional templates make it easy to create a standout resume in minutes.",
+      "badge": "Quick & Easy Builder",
+      "title": "The Easiest Way to Build Resumes",
+      "description": "Create professional resumes in minutes with our simple builder and ready-to-use templates.",
       "builder": {
-        "badge": "Easy-to-use Interface",
-        "title": "Easy-to-use Builder Interface",
-        "description": "Intuitive editor with real-time preview. Edit your content with our smart forms and see changes instantly.",
-        "imageAlt": "Resume Builder Interface Screenshot"
+        "badge": "Simple & Fast",
+        "title": "Easy Resume Creation",
+        "description": "Our simple forms and real-time preview make resume building quick and effortless.",
+        "imageAlt": "Easy-to-use Resume Builder Interface"
       },
       "template": {
         "badge": "Professional Templates",
-        "title": "Professional Templates",
-        "description": "Choose from our collection of ATS-friendly templates designed to help you stand out and get more interviews.",
-        "imageAlt": "Professional Resume Template Preview"
+        "title": "Ready-to-use Templates",
+        "description": "Choose from our collection of professional templates and customize them in minutes.",
+        "imageAlt": "Professional Resume Template"
       }
     },
     "features": {
       "title": {
-        "modern": "Modern Templates",
-        "customization": "Easy Customization",
-        "download": "Instant Download"
+        "modern": "Simple Design",
+        "customization": "Quick Customization",
+        "download": "Instant PDF Export"
       },
       "description": {
-        "modern": "Choose from our collection of professionally designed templates that catch the eye.",
-        "customization": "Customize every aspect of your resume with our intuitive editor.",
-        "download": "Download your resume in PDF format, ready to send to employers."
+        "modern": "Clean and professional templates that help you create a perfect resume.",
+        "customization": "Easy-to-use editor makes customization quick and simple.",
+        "download": "Download your polished resume in PDF format with one click."
       }
     },
     "whyChoose": {
-      "title": "Why Choose Resume Maker",
-      "subtitle": "We make resume creation simple and effective, helping you land your dream job.",
+      "title": "Why Users Love Our Builder",
+      "subtitle": "We make resume creation simple and fast, helping you create professional resumes in minutes.",
       "features": [
-        "Professional templates designed by experts",
-        "Real-time preview as you edit",
-        "Easy-to-use interface",
-        "Export to PDF in one click",
-        "Mobile responsive design",
-        "Free to use",
-        "Multiple layout options",
-        "Regular updates and new features"
+        "Quick Content Editing",
+        "One-Click PDF Export",
+        "Professional Templates",
+        "Free to Use",
+        "Multiple Layout Options"
       ]
     }
   }
