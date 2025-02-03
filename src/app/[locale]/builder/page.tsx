@@ -256,16 +256,33 @@ function ResumeBuilder() {
               </AlertDialogContent>
             </AlertDialog>
             {pdfUrl && (
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-foreground/60 hover:text-foreground"
-                asChild
-              >
-                <a href={pdfUrl} download="resume.pdf">
-                  <Download className="h-4 w-4" />
-                </a>
-              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-foreground/60 hover:text-foreground"
+                  >
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>下载简历 PDF</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      这将下载当前简历的 PDF 版本，适合用于投递简历。
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>取消</AlertDialogCancel>
+                    <AlertDialogAction asChild>
+                      <a href={pdfUrl} download="resume.pdf">
+                        下载 PDF
+                      </a>
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             )}
           </div>
         </div>
