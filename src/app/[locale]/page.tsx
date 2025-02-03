@@ -33,7 +33,7 @@ export default function LandingPage() {
   const t = useTranslations()
   const whyChooseFeatures = t.raw('landing.whyChoose.features') as string[]
   const jsonLd = generateJsonLd(t)
-  
+
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
       <SiteHeader />
@@ -48,7 +48,7 @@ export default function LandingPage() {
         <div className="container relative max-w-6xl mx-auto px-4 pt-24 md:pt-32 pb-12">
           <div className="flex flex-col items-center text-center space-y-8">
             <div className="inline-flex items-center rounded-lg bg-blue-500 px-3 py-1 text-sm font-medium text-white">
-              ✨ {t('landing.hero.quickStart')}
+              {t('landing.hero.badge')}
             </div>
             <h1 className="font-bold tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">
               {t('landing.hero.title')} <br />
@@ -65,9 +65,9 @@ export default function LandingPage() {
                 </Button>
               </Link>
               <Link href="/templates">
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="h-12 px-8 bg-white/5 backdrop-blur-sm border-white/20 text-white 
                     transition-all duration-300 ease-out
                     hover:bg-blue-500/20 hover:border-blue-300/30 hover:text-white
@@ -88,7 +88,7 @@ export default function LandingPage() {
         <div className="container relative max-w-6xl mx-auto px-4 py-20">
           <div className="flex flex-col items-center text-center space-y-4 mb-16">
             <div className="inline-flex items-center rounded-lg bg-blue-500 px-3 py-1 text-sm font-medium text-white">
-              💫 Powerful Resume Builder
+              {t('landing.hero.badge')}
             </div>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl text-slate-900 dark:text-white">
               {t('landing.showcase.title')}
@@ -113,7 +113,7 @@ export default function LandingPage() {
                 />
               </div>
             </div>
-            
+
             {/* Modern Template - Desktop */}
             <div className="hidden md:block absolute -right-4 top-8 w-[35%] transform rotate-3 z-10">
               <div className="relative rounded-xl overflow-hidden shadow-2xl">
