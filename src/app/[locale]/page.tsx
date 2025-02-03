@@ -71,29 +71,34 @@ export default function LandingPage() {
       {/* Product Showcase Section */}
       <section className="container max-w-6xl mx-auto px-4 py-20">
         <div className="flex flex-col items-center text-center space-y-4 mb-16">
-          <h2 className="text-3xl font-bold">{t('landing.showcase.title')}</h2>
-          <p className="text-muted-foreground max-w-[42rem]">
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+            {t('landing.showcase.title')}
+          </h2>
+          <p className="text-muted-foreground max-w-[42rem] text-lg">
             {t('landing.showcase.description')}
           </p>
         </div>
-        <div className="relative">
+
+        {/* Image Showcase */}
+        <div className="relative mb-16">
           {/* Builder Interface */}
-          <div className="relative rounded-lg overflow-hidden shadow-2xl">
-            <div className="aspect-[21/9]">
+          <div className="relative rounded-xl overflow-hidden shadow-2xl bg-white">
+            <div className="aspect-[16/9] md:aspect-[21/9]">
               <Image
                 src="/builder-capture.png"
                 alt="Resume Builder Interface"
                 fill
                 className="object-cover"
                 quality={95}
+                priority
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
           
           {/* Modern Template */}
-          <div className="absolute -right-4 top-8 w-[35%] transform rotate-3 z-10">
-            <div className="relative rounded-lg overflow-hidden shadow-2xl">
+          <div className="hidden md:block absolute -right-4 top-8 w-[30%] transform rotate-3 z-10">
+            <div className="relative rounded-xl overflow-hidden shadow-2xl">
               <div className="aspect-[3/4]">
                 <Image
                   src="/templates/modern.jpg"
@@ -108,13 +113,26 @@ export default function LandingPage() {
           </div>
         </div>
 
+        {/* Mobile Template Preview */}
+        <div className="md:hidden relative rounded-xl overflow-hidden shadow-xl mb-16">
+          <div className="aspect-[3/4]">
+            <Image
+              src="/templates/modern.jpg"
+              alt="Modern Resume Template"
+              fill
+              className="object-contain bg-white"
+              quality={95}
+            />
+          </div>
+        </div>
+
         {/* Text Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
-          <div className="space-y-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="space-y-3 text-center md:text-left">
             <h3 className="text-xl font-semibold">{t('landing.showcase.builder.title')}</h3>
             <p className="text-muted-foreground">{t('landing.showcase.builder.description')}</p>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3 text-center md:text-left">
             <h3 className="text-xl font-semibold">{t('landing.showcase.template.title')}</h3>
             <p className="text-muted-foreground">{t('landing.showcase.template.description')}</p>
           </div>
