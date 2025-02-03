@@ -310,52 +310,66 @@
     "cta": {
       "title": "几分钟内创建专业简历",
       "description": "加入成千上万使用我们简单高效的工具成功制作简历的求职者。",
-      "button": "开始制作 - 简单易用"
+      "button": "立即开始 - 简单易用"
     },
     "footer": {
-      "title": "简历制作",
-      "copyright": "简历制作。保留所有权利。"
+      "title": "简历制作工具",
+      "copyright": "简历制作工具。保留所有权利。"
     },
     "hero": {
-      "title": "快速创建专业简历",
-      "description": "使用我们简单的制作工具，几分钟内完成专业简历",
-      "cta": "开始制作简历"
+      "quickStart": "快速简单的简历工具",
+      "title": "创建专业简历",
+      "titleHighlight": "只需几分钟",
+      "description": "使用我们简单易用的工具制作完美简历。简单编辑，专业模板，即时下载。",
+      "buttons": {
+        "start": "制作简历",
+        "templates": "浏览模板"
+      }
     },
     "showcase": {
+      "badge": "快速简单",
       "title": "最简单的简历制作方式",
-      "description": "选择专业模板，快速编辑内容，即刻生成简历"
+      "description": "使用我们简单的制作工具和现成模板，几分钟内即可创建专业简历。",
+      "builder": {
+        "badge": "简单快速",
+        "title": "轻松创建简历",
+        "description": "简单的表单和实时预览，让简历制作快速又轻松。",
+        "imageAlt": "简单易用的简历制作界面"
+      },
+      "template": {
+        "badge": "专业模板",
+        "title": "现成简历模板",
+        "description": "从我们的专业模板中选择，几分钟内即可完成定制。",
+        "imageAlt": "专业简历模板"
+      }
     },
     "features": {
-      "title": "简单高效的制作流程",
-      "description": "我们提供简单直观的编辑界面，让您专注于内容创作",
-      "items": [
-        {
-          "title": "快速内容编辑",
-          "description": "简单直观的编辑界面，快速填写内容"
-        },
-        {
-          "title": "专业简历模板",
-          "description": "精心设计的专业模板，突出您的优势"
-        },
-        {
-          "title": "免费使用",
-          "description": "完全免费的简历制作工具"
-        },
-        {
-          "title": "多种布局选择",
-          "description": "灵活的布局选项，打造独特简历"
-        }
-      ]
+      "title": {
+        "modern": "简洁设计",
+        "customization": "快速定制",
+        "download": "即时PDF导出"
+      },
+      "description": {
+        "modern": "简洁专业的模板，帮助您创建完美简历。",
+        "customization": "简单易用的编辑器，让定制过程快速简单。",
+        "download": "一键导出PDF格式简历，随时发送。"
+      }
     },
     "whyChoose": {
-      "title": "用户为什么选择我们",
-      "description": "简单易用的工具，帮助您快速创建专业简历",
+      "title": "用户为什么喜欢我们",
+      "subtitle": "我们让简历制作变得简单快速，帮助您在几分钟内创建专业简历。",
       "features": [
         "快速内容编辑",
+        "一键PDF导出",
         "专业简历模板",
         "免费使用",
         "多种布局选择"
       ]
+    },
+    "templates": {
+      "title": "专业简历模板",
+      "subtitle": "使用我们领先的设计让您脱颖而出",
+      "cta": "查看所有模板"
     }
   }
 }
