@@ -326,6 +326,18 @@
         "templates": "浏览模板"
       }
     },
+    "showcase": {
+      "title": "强大的简历制作工具",
+      "description": "我们直观的界面和专业的模板让您能在几分钟内创建一份出色的简历。",
+      "builder": {
+        "title": "简单易用的制作界面",
+        "description": "直观的编辑器，实时预览。使用我们的智能表单编辑内容，即时查看更改效果。"
+      },
+      "template": {
+        "title": "专业简历模板",
+        "description": "从我们精心设计的ATS友好模板中选择，帮助您脱颖而出，获得更多面试机会。"
+      }
+    },
     "features": {
       "title": {
         "modern": "现代模板",

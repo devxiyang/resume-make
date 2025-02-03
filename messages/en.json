@@ -326,6 +326,18 @@
         "templates": "View Templates"
       }
     },
+    "showcase": {
+      "title": "Powerful Resume Builder",
+      "description": "Our intuitive interface and professional templates make it easy to create a standout resume in minutes.",
+      "builder": {
+        "title": "Easy-to-use Builder Interface",
+        "description": "Intuitive editor with real-time preview. Edit your content with our smart forms and see changes instantly."
+      },
+      "template": {
+        "title": "Professional Templates",
+        "description": "Choose from our collection of ATS-friendly templates designed to help you stand out and get more interviews."
+      }
+    },
     "features": {
       "title": {
         "modern": "Modern Templates",
