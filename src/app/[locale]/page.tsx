@@ -112,49 +112,83 @@ export default function LandingPage() {
                   priority
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
             </div>
             
-            {/* Modern Template */}
-            <div className="hidden md:block absolute -right-4 top-8 w-[30%] transform rotate-3 z-10">
-              <div className="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-slate-800">
-                <div className="aspect-[3/4]">
+            {/* Modern Template - Desktop */}
+            <div className="hidden md:block absolute -right-4 top-8 w-[35%] transform rotate-3 z-10">
+              <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                <div className="aspect-[3/4] bg-white">
                   <Image
                     src="/templates/modern.jpg"
                     alt="Modern Resume Template"
                     fill
-                    className="object-contain bg-white"
-                    quality={95}
+                    className="object-contain"
+                    quality={100}
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-black/20" />
               </div>
             </div>
           </div>
 
-          {/* Mobile Template Preview */}
-          <div className="md:hidden relative rounded-xl overflow-hidden shadow-xl mb-16">
-            <div className="aspect-[3/4]">
-              <Image
-                src="/templates/modern.jpg"
-                alt="Modern Resume Template"
-                fill
-                className="object-contain bg-white"
-                quality={95}
-              />
+          {/* Mobile Content */}
+          <div className="md:hidden">
+            {/* Builder Interface Description */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center rounded-lg bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-600 dark:text-blue-400 ring-1 ring-inset ring-blue-500/20 mb-4">
+                Easy-to-use Interface
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-white">
+                {t('landing.showcase.builder.title')}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300">
+                {t('landing.showcase.builder.description')}
+              </p>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/10" />
+
+            {/* Template Preview */}
+            <div className="relative mx-auto max-w-sm mb-6">
+              <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/10 to-violet-500/10 rounded-[22px] blur-xl opacity-50" />
+              <div className="relative rounded-xl overflow-hidden shadow-xl">
+                <div className="aspect-[3/4] bg-white">
+                  <Image
+                    src="/templates/modern.jpg"
+                    alt="Modern Resume Template"
+                    fill
+                    className="object-contain"
+                    quality={100}
+                  />
+                </div>
+              </div>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap">
+                Professional Templates
+              </div>
+            </div>
+
+            {/* Template Description */}
+            <div className="text-center mb-16 px-4">
+              <p className="text-slate-600 dark:text-slate-300 mt-8">
+                {t('landing.showcase.template.description')}
+              </p>
+            </div>
           </div>
 
-          {/* Text Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-3 text-center md:text-left">
-              <h3 className="text-xl font-semibold">{t('landing.showcase.builder.title')}</h3>
-              <p className="text-muted-foreground">{t('landing.showcase.builder.description')}</p>
+          {/* Desktop Text Content */}
+          <div className="hidden md:grid grid-cols-2 gap-12">
+            <div className="space-y-3 text-left">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                {t('landing.showcase.builder.title')}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300">
+                {t('landing.showcase.builder.description')}
+              </p>
             </div>
-            <div className="space-y-3 text-center md:text-left">
-              <h3 className="text-xl font-semibold">{t('landing.showcase.template.title')}</h3>
-              <p className="text-muted-foreground">{t('landing.showcase.template.description')}</p>
+            <div className="space-y-3 text-left">
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+                {t('landing.showcase.template.title')}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300">
+                {t('landing.showcase.template.description')}
+              </p>
             </div>
           </div>
         </div>
