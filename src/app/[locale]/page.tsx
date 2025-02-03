@@ -65,7 +65,14 @@ export default function LandingPage() {
                 </Button>
               </Link>
               <Link href="/templates">
-                <Button size="lg" variant="outline" className="h-12 px-8 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:border-white/30">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="h-12 px-8 bg-white/5 backdrop-blur-sm border-white/20 text-white 
+                    transition-all duration-300 ease-out
+                    hover:bg-blue-500/20 hover:border-blue-300/30 hover:text-white
+                    hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+                >
                   {t('landing.hero.buttons.templates')}
                   <Sparkles className="ml-2 h-4 w-4" />
                 </Button>
