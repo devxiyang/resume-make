@@ -47,9 +47,6 @@ export default function LandingPage() {
         </div>
         <div className="container relative max-w-6xl mx-auto px-4 pt-24 md:pt-32 pb-12">
           <div className="flex flex-col items-center text-center space-y-8">
-            <div className="inline-flex items-center rounded-lg bg-blue-500 px-3 py-1 text-sm font-medium text-white">
-              {t('landing.hero.badge')}
-            </div>
             <h1 className="font-bold tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">
               {t('landing.hero.title')} <br />
               <span className="text-blue-500">{t('landing.hero.titleHighlight')}</span>
@@ -87,9 +84,6 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/5 to-transparent dark:via-blue-900/5" />
         <div className="container relative max-w-6xl mx-auto px-4 py-20">
           <div className="flex flex-col items-center text-center space-y-4 mb-16">
-            <div className="inline-flex items-center rounded-lg bg-blue-500 px-3 py-1 text-sm font-medium text-white">
-              {t('landing.hero.badge')}
-            </div>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl text-slate-900 dark:text-white">
               {t('landing.showcase.title')}
             </h2>
@@ -134,9 +128,6 @@ export default function LandingPage() {
           <div className="md:hidden">
             {/* Builder Interface Description */}
             <div className="text-center mb-12">
-              <div className="inline-flex items-center rounded-lg bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-600 dark:text-blue-400 ring-1 ring-inset ring-blue-500/20 mb-4">
-                {t('landing.showcase.builder.badge')}
-              </div>
               <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-white">
                 {t('landing.showcase.builder.title')}
               </h3>
@@ -158,9 +149,6 @@ export default function LandingPage() {
                     quality={100}
                   />
                 </div>
-              </div>
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap">
-                {t('landing.showcase.template.badge')}
               </div>
             </div>
 
