@@ -73,97 +73,110 @@ export default function TemplatesPage() {
   const jsonLd = generateJsonLd(t)
   
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <SiteHeader />
 
       {/* Header */}
-      <section className="container max-w-4xl mx-auto px-4 pt-12 md:pt-16 pb-6">
-        <div className="flex flex-col items-center text-center space-y-4">
-          <h1 className="font-bold tracking-tight text-3xl sm:text-4xl">
-            {t('templates.title')}
-          </h1>
-          <p className="max-w-[32rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            {t('templates.subtitle')}
-          </p>
+      <section className="relative overflow-hidden bg-[#1a1e2c] dark:bg-slate-950">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-transparent" />
+        <div className="absolute inset-0">
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70" />
+          <div className="absolute bottom-0 -right-4 w-72 h-72 bg-indigo-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70" />
+        </div>
+        <div className="container relative max-w-4xl mx-auto px-4 pt-24 md:pt-32 pb-16">
+          <div className="flex flex-col items-center text-center space-y-4">
+            <div className="inline-flex items-center rounded-lg bg-blue-500 px-3 py-1 text-sm font-medium text-white mb-4">
+              ✨ {t('templates.title')}
+            </div>
+            <h1 className="font-bold tracking-tight text-4xl sm:text-5xl text-white">
+              {t('templates.title')}
+            </h1>
+            <p className="max-w-[32rem] leading-normal text-slate-300 sm:text-lg sm:leading-7">
+              {t('templates.subtitle')}
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Templates Grid */}
-      <section className="container max-w-4xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {templateIds.map((id) => (
-            <div key={id} className="group flex flex-col bg-card rounded-lg border transition-all hover:shadow-lg">
-              <div className="relative aspect-[1/1.414] overflow-hidden rounded-t-lg bg-muted">
-                <Image
-                  src={`/templates/${id}.jpg`}
-                  alt={t('templates.imageAlt', {
-                    name: t(`templates.list.${id}.name`),
-                    bestFor: t(`templates.list.${id}.bestFor`)
-                  })}
-                  fill
-                  quality={100}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 30vw"
-                  priority={id === 'modern' || id === 'professional'}
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-3 space-y-2">
-                <h2 className="text-lg font-bold">{t(`templates.list.${id}.name`)}</h2>
-                <p className="text-sm text-muted-foreground">{t(`templates.list.${id}.description`)}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {t.raw(`templates.list.${id}.features`).map((feature: string) => (
-                    <span
-                      key={feature}
-                      className="inline-flex items-center rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20"
-                    >
-                      {feature}
-                    </span>
-                  ))}
+      <section className="relative overflow-hidden bg-slate-50 dark:bg-slate-900">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/5 to-transparent dark:via-blue-900/5" />
+        <div className="container relative max-w-4xl mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {templateIds.map((id) => (
+              <div key={id} className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 transition-all hover:shadow-xl">
+                <div className="relative aspect-[1/1.414] overflow-hidden rounded-t-xl bg-slate-100 dark:bg-slate-900">
+                  <Image
+                    src={`/templates/${id}.jpg`}
+                    alt={t('templates.imageAlt', {
+                      name: t(`templates.list.${id}.name`),
+                      bestFor: t(`templates.list.${id}.bestFor`)
+                    })}
+                    fill
+                    quality={100}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 30vw"
+                    priority={id === 'modern' || id === 'professional'}
+                    className="object-contain"
+                  />
                 </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">
-                    <span className="font-medium">{t('templates.bestFor')}:</span> {t(`templates.list.${id}.bestFor`)}
-                  </p>
+                <div className="p-6 space-y-4">
+                  <h2 className="text-xl font-bold text-slate-900 dark:text-white">{t(`templates.list.${id}.name`)}</h2>
+                  <p className="text-slate-600 dark:text-slate-300">{t(`templates.list.${id}.description`)}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {t.raw(`templates.list.${id}.features`).map((feature: string) => (
+                      <span
+                        key={feature}
+                        className="inline-flex items-center rounded-lg bg-blue-500/10 px-2.5 py-1 text-xs font-medium text-blue-600 dark:text-blue-400 ring-1 ring-inset ring-blue-500/20"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      <span className="font-medium">{t('templates.bestFor')}:</span> {t(`templates.list.${id}.bestFor`)}
+                    </p>
+                  </div>
+                  <Link href={`/builder?template=${id}`} aria-label={t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}>
+                    <Button className="w-full h-10 bg-blue-500 hover:bg-blue-600 text-white">
+                      {t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
-                <Link href={`/builder?template=${id}`} aria-label={t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}>
-                  <Button className="w-full h-8 text-sm">
-                    {t('templates.useTemplate', { name: t(`templates.list.${id}.name`) })}
-                    <ArrowRight className="ml-2 h-3 w-3" />
-                  </Button>
-                </Link>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container max-w-4xl mx-auto px-4 py-12">
-        <div className="rounded-lg bg-primary p-4 text-center">
-          <h2 className="text-lg md:text-xl font-bold text-primary-foreground mb-2">
+      <section className="container max-w-4xl mx-auto px-4 py-20">
+        <div className="rounded-xl bg-[#1a1e2c] dark:bg-slate-800 p-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             {t('templates.cta.title')}
           </h2>
-          <p className="text-primary-foreground/90 mb-4 max-w-[32rem] mx-auto text-sm">
+          <p className="text-slate-300 mb-8 max-w-[32rem] mx-auto">
             {t('templates.cta.description')}
           </p>
           <Link href="/builder" aria-label={t('templates.cta.button')}>
-            <Button size="default" variant="secondary" className="h-8 px-4">
+            <Button size="lg" className="h-12 px-8 bg-blue-500 hover:bg-blue-600 text-white">
               {t('templates.cta.button')}
-              <ArrowRight className="ml-2 h-3 w-3" />
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t">
+      <footer className="border-t border-slate-200 dark:border-slate-800">
         <div className="container max-w-6xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center space-x-2">
               <FileText className="h-6 w-6" />
               <span className="font-bold">{t('site.title')}</span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               © {new Date().getFullYear()} {t('landing.footer.copyright')}
             </p>
           </div>
