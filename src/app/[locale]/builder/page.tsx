@@ -5,7 +5,7 @@ import { NavTabs } from "@/components/layout/nav-tabs"
 import { Sidebar } from "@/components/layout/sidebar"
 import { TemplatePicker } from "@/components/templates/template-picker"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, Download } from "lucide-react"
+import { ChevronLeft, Download, Save } from "lucide-react"
 import { ResumeData } from "@/lib/types"
 import { ResumeProvider } from "@/context/resume-context"
 import { useResume } from "@/context/resume-context"
@@ -21,6 +21,26 @@ import { CustomSectionForm, CustomSectionItemForm } from "@/components/forms/cus
 import { initialResumeData } from "@/lib/initial-data"
 import { MobileNotice } from "@/components/mobile-notice"
 import { useTranslations } from 'next-intl'
+import { useToast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+// Add File System Access API type declarations
+declare global {
+  interface Window {
+    showDirectoryPicker(): Promise<FileSystemDirectoryHandle>;
+  }
+}
 
 type ActiveSection = "personal" | "experience" | "education" | "projects" | "skills" | "custom"
 type ActiveTab = "edit" | "template"
@@ -52,6 +72,7 @@ function ResumeBuilder() {
     updateItem 
   } = useResume()
   const t = useTranslations()
+  const { toast } = useToast()
 
   const renderForm = () => {
     switch (activeSection) {
@@ -72,9 +93,49 @@ function ResumeBuilder() {
     }
   }
 
+  const saveResumeDataToFile = async () => {
+    try {
+      // 请求用户选择保存目录
+      const handle = await window.showDirectoryPicker();
+      
+      // 创建文件名，使用时间戳确保唯一性
+      const fileName = `resume-${new Date().toISOString().split('T')[0]}.json`;
+      
+      // 获取文件句柄
+      const fileHandle = await handle.getFileHandle(fileName, { create: true });
+      
+      // 创建可写流
+      const writable = await fileHandle.createWritable();
+      
+      // 将简历数据转换为JSON字符串并写入
+      await writable.write(JSON.stringify(resumeData, null, 2));
+      
+      // 关闭流
+      await writable.close();
+
+      // 显示成功提示
+      toast({
+        title: "保存成功",
+        description: `简历数据已保存至 ${fileName}`,
+        duration: 3000,
+      });
+      
+    } catch (error) {
+      console.error('保存文件时出错:', error);
+      // 显示错误提示
+      toast({
+        variant: "destructive",
+        title: "保存失败",
+        description: error instanceof Error ? error.message : "保存文件时出错，请重试",
+        duration: 3000,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
         <SiteHeader />
+        <Toaster />
 
       <header className="relative hidden lg:flex items-center h-14 px-4 border-b border-border">
         <div className="flex items-center gap-4">
@@ -92,6 +153,31 @@ function ResumeBuilder() {
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">{t('builder.myResume')}</span>
             <div className="h-2 w-2 rounded-full bg-green-500" />
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-foreground/60 hover:text-foreground"
+                >
+                  <Save className="h-4 w-4" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>保存简历数据</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    这将把当前的简历数据保存为 JSON 文件。你可以选择保存的位置。
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>取消</AlertDialogCancel>
+                  <AlertDialogAction onClick={saveResumeDataToFile}>
+                    保存
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </div>
         {/* Desktop Only PDF Download Button */}
