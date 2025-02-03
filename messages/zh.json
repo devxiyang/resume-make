@@ -18,7 +18,27 @@
     "createResume": "创建简历"
   },
   "builder": {
-    "myResume": "我的简历"
+    "myResume": "我的简历",
+    "actions": {
+      "import": {
+        "title": "导入简历数据",
+        "description": "这将导入之前保存的简历数据文件，当前的数据将被覆盖。",
+        "cancel": "取消",
+        "confirm": "导入"
+      },
+      "save": {
+        "title": "保存简历数据",
+        "description": "这将把当前的简历数据保存为 JSON 文件。你可以选择保存的位置。",
+        "cancel": "取消",
+        "confirm": "保存"
+      },
+      "download": {
+        "title": "下载简历 PDF",
+        "description": "这将下载当前简历的 PDF 版本，适合用于投递简历。",
+        "cancel": "取消",
+        "confirm": "下载 PDF"
+      }
+    }
   },
   "navigation": {
     "tabs": {

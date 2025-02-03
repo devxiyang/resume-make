@@ -217,15 +217,15 @@ function ResumeBuilder() {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>导入简历数据</AlertDialogTitle>
+                  <AlertDialogTitle>{t('builder.actions.import.title')}</AlertDialogTitle>
                   <AlertDialogDescription>
-                    这将导入之前保存的简历数据文件，当前的数据将被覆盖。
+                    {t('builder.actions.import.description')}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>取消</AlertDialogCancel>
+                  <AlertDialogCancel>{t('builder.actions.import.cancel')}</AlertDialogCancel>
                   <AlertDialogAction onClick={loadResumeDataFromFile}>
-                    导入
+                    {t('builder.actions.import.confirm')}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -242,15 +242,15 @@ function ResumeBuilder() {
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>保存简历数据</AlertDialogTitle>
+                  <AlertDialogTitle>{t('builder.actions.save.title')}</AlertDialogTitle>
                   <AlertDialogDescription>
-                    这将把当前的简历数据保存为 JSON 文件。你可以选择保存的位置。
+                    {t('builder.actions.save.description')}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>取消</AlertDialogCancel>
+                  <AlertDialogCancel>{t('builder.actions.save.cancel')}</AlertDialogCancel>
                   <AlertDialogAction onClick={saveResumeDataToFile}>
-                    保存
+                    {t('builder.actions.save.confirm')}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
@@ -268,16 +268,16 @@ function ResumeBuilder() {
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>下载简历 PDF</AlertDialogTitle>
+                    <AlertDialogTitle>{t('builder.actions.download.title')}</AlertDialogTitle>
                     <AlertDialogDescription>
-                      这将下载当前简历的 PDF 版本，适合用于投递简历。
+                      {t('builder.actions.download.description')}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>取消</AlertDialogCancel>
+                    <AlertDialogCancel>{t('builder.actions.download.cancel')}</AlertDialogCancel>
                     <AlertDialogAction asChild>
                       <a href={pdfUrl} download="resume.pdf">
-                        下载 PDF
+                        {t('builder.actions.download.confirm')}
                       </a>
                     </AlertDialogAction>
                   </AlertDialogFooter>
