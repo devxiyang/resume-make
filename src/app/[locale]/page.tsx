@@ -135,7 +135,7 @@ export default function LandingPage() {
             {/* Builder Interface Description */}
             <div className="text-center mb-12">
               <div className="inline-flex items-center rounded-lg bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-600 dark:text-blue-400 ring-1 ring-inset ring-blue-500/20 mb-4">
-                Easy-to-use Interface
+                {t('landing.showcase.builder.badge')}
               </div>
               <h3 className="text-xl font-semibold mb-3 text-slate-900 dark:text-white">
                 {t('landing.showcase.builder.title')}
@@ -152,7 +152,7 @@ export default function LandingPage() {
                 <div className="aspect-[3/4] bg-white">
                   <Image
                     src="/templates/modern.jpg"
-                    alt="Modern Resume Template"
+                    alt={t('landing.showcase.template.imageAlt')}
                     fill
                     className="object-contain"
                     quality={100}
@@ -160,7 +160,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg whitespace-nowrap">
-                Professional Templates
+                {t('landing.showcase.template.badge')}
               </div>
             </div>
 
