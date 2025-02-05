@@ -13,48 +13,6 @@ pdfMake.fonts = {
     bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
   }
 };
-// Try loading NotoSansSC font first
-const loadNotoSansSC = async () => {
-  // Initialize with Roboto font first
-  pdfMake.fonts = {
-    Roboto: {
-      normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
-      bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf',
-      italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
-      bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
-    }
-  };
-
-  try {
-    // Try loading NotoSansSC font
-    const normalFontUrl = 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf';
-    const boldFontUrl = 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf';
-
-    const responses = await Promise.all([
-      fetch(normalFontUrl),
-      fetch(boldFontUrl)
-    ]);
-
-    if (!responses.every(res => res.ok)) {
-      throw new Error('Font loading failed');
-    }
-
-    // Add NotoSansSC to existing fonts if loading successful
-    pdfMake.fonts = {
-      ...pdfMake.fonts,
-      NotoSansSC: {
-        normal: normalFontUrl,
-        bold: boldFontUrl,
-        italics: normalFontUrl,
-        bolditalics: boldFontUrl
-      }
-    };
-  } catch (err) {
-    console.warn('Failed to load NotoSansSC font:', err);
-  }
-};
-
-loadNotoSansSC();
 
 interface ResumePreviewProps {
   resumeData: ResumeData
@@ -80,6 +38,35 @@ const ResumePreview = ({ resumeData, templateName = 'clean', scale = 1, onPDFGen
 
     const generatePDF = async () => {
       try {
+        // Try loading NotoSansSC font first
+        // Initialize with Roboto font first
+        pdfMake.fonts = {
+          Roboto: {
+            normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
+            bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf',
+            italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
+            bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
+          }
+        };
+
+        // Try loading NotoSansSC font
+        const normalFontUrl = 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf';
+        const boldFontUrl = 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf';
+
+        try {
+          // Add NotoSansSC to existing fonts
+          pdfMake.fonts = {
+            ...pdfMake.fonts,
+            NotoSansSC: {
+              normal: normalFontUrl,
+              bold: boldFontUrl,
+              italics: normalFontUrl,
+              bolditalics: boldFontUrl
+            }
+          };
+        } catch (err) {
+          console.warn('Failed to load NotoSansSC font:', err);
+        }
         // 获取模板并生成文档定义
         const template = getPDFTemplate(templateName)
         const docDefinition = template(resumeData)
