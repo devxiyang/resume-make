@@ -136,14 +136,17 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${notoSansSC.variable}`}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Emoji:wght@300..700&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebApplication',
-              name: 'Resume Builder',
-              description: 'Create professional resumes with our easy-to-use online resume builder.',
+              name: 'Resume Maker',
+              description: 'Create professional resumes with our easy-to-use online resume maker.',
               applicationCategory: 'BusinessApplication',
               operatingSystem: 'Web Browser',
               url: 'https://resumemaker.cc',
@@ -162,7 +165,7 @@ export default async function LocaleLayout({
               ],
               author: {
                 '@type': 'Organization',
-                name: 'Resume Builder Team',
+                name: 'Resume Maker Team',
                 url: 'https://resumemaker.cc'
               },
               browserRequirements: 'Requires JavaScript. Requires HTML5.',
