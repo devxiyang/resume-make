@@ -145,8 +145,8 @@ export default async function LocaleLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebApplication',
-              name: 'Resume Builder',
-              description: 'Create professional resumes with our easy-to-use online resume builder.',
+              name: 'Resume Maker',
+              description: 'Create professional resumes with our easy-to-use online resume maker.',
               applicationCategory: 'BusinessApplication',
               operatingSystem: 'Web Browser',
               url: 'https://resumemaker.cc',
@@ -165,7 +165,7 @@ export default async function LocaleLayout({
               ],
               author: {
                 '@type': 'Organization',
-                name: 'Resume Builder Team',
+                name: 'Resume Maker Team',
                 url: 'https://resumemaker.cc'
               },
               browserRequirements: 'Requires JavaScript. Requires HTML5.',
