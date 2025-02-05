@@ -273,30 +273,6 @@ export class ModernTemplate extends PDFTemplate {
     ])
   }
 
-  public generate() {
-    return {
-      content: [
-        ...this.generatePersonalSection(),
-        ...this.generateExperienceSection(),
-        ...this.generateEducationSection(),
-        ...this.generateProjectsSection(),
-        ...this.generateSkillsSection(),
-        ...this.generateCustomSections()
-      ],
-      defaultStyle: {
-        font: 'NotoSansSC'
-      },
-      fonts: {
-        NotoSansSC: {
-          normal: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-          bold: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-          italics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-          bolditalics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf'
-        }
-      }
-    }
-  }
-
   protected generateEducationSection(): Content[] {
     const { education } = this.data
     if (!education?.length) return []

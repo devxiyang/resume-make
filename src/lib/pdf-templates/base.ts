@@ -242,18 +242,10 @@ export abstract class PDFTemplate {
             ],
             defaultStyle: {
                 fontSize: this.fontSize.normal,
-                font: 'NotoSansSC',
+                font: 'Roboto',
                 lineHeight: 1.4
             },
             pageMargins: [40, 40, 40, 40],
-            fonts: {
-                NotoSansSC: {
-                    normal: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-                    bold: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-                    italics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-                    bolditalics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf'
-                }
-            }
         }
     }
 } 

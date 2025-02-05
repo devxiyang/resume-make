@@ -7,14 +7,41 @@ import pdfMake from "pdfmake/build/pdfmake"
 import { useTranslations } from 'next-intl'
 
 // 配置字体
-pdfMake.fonts = {
-    NotoSansSC: {
-        normal: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-        bold: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-        italics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-        bolditalics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf'
-    }
-}
+// Try loading NotoSansSC font first
+const loadNotoSansSC = async () => {
+  try {
+    const fontUrl = process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf';
+    const response = await fetch(fontUrl);
+    if (!response.ok) throw new Error('Font loading failed');
+    
+    pdfMake.fonts = {
+      Roboto: {
+        normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
+        bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf', 
+        italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
+        bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
+      },
+      NotoSansSC: {
+        normal: fontUrl,
+        bold: fontUrl,
+        italics: fontUrl,
+        bolditalics: fontUrl
+      }
+    };
+  } catch (err) {
+    console.warn('Failed to load NotoSansSC font:', err);
+    pdfMake.fonts = {
+      Roboto: {
+        normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
+        bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf',
+        italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
+        bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
+      }
+    };
+  }
+};
+
+loadNotoSansSC();
 
 export function PreviewGenerator() {
     const [generatingTemplate, setGeneratingTemplate] = useState<string | null>(null);

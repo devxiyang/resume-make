@@ -4,6 +4,44 @@ import { useEffect, useState } from 'react'
 import { ResumeData } from '@/lib/types'
 import { getPDFTemplate } from '@/lib/pdf-templates'
 import pdfMake from 'pdfmake/build/pdfmake'
+import { Roboto } from 'next/font/google';
+
+// 配置字体
+// Try loading NotoSansSC font first
+const loadNotoSansSC = async () => {
+  try {
+    const fontUrl = process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf';
+    const response = await fetch(fontUrl);
+    if (!response.ok) throw new Error('Font loading failed');
+    
+    pdfMake.fonts = {
+      Roboto: {
+        normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
+        bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf', 
+        italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
+        bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
+      },
+      NotoSansSC: {
+        normal: fontUrl,
+        bold: fontUrl,
+        italics: fontUrl,
+        bolditalics: fontUrl
+      }
+    };
+  } catch (err) {
+    console.warn('Failed to load NotoSansSC font:', err);
+    pdfMake.fonts = {
+      Roboto: {
+        normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
+        bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf',
+        italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
+        bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
+      }
+    };
+  }
+};
+
+loadNotoSansSC();
 
 interface ResumePreviewProps {
   resumeData: ResumeData
@@ -25,22 +63,6 @@ const ResumePreview = ({ resumeData, templateName = 'clean', scale = 1, onPDFGen
     // 清理之前的URL
     if (pdfUrl) {
       URL.revokeObjectURL(pdfUrl)
-    }
-
-    // 配置字体
-    pdfMake.fonts = {
-      NotoSansSC: {
-        normal: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-        bold: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-        italics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
-        bolditalics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf'
-      }
-      // NotoSansSC: {
-      //   normal: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
-      //   bold: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf',
-      //   italics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
-      //   bolditalics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf'
-      // }
     }
 
     const generatePDF = async () => {
