@@ -7,9 +7,6 @@ import pdfMake from "pdfmake/build/pdfmake"
 import { useTranslations } from 'next-intl'
 
 // 配置字体
-console.log('base url', process.env.NEXT_PUBLIC_BASE_URL)
-
-// 配置字体
 // Try loading NotoSansSC font first
 const loadNotoSansSC = async () => {
   try {

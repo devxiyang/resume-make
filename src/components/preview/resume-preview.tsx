@@ -6,8 +6,6 @@ import { getPDFTemplate } from '@/lib/pdf-templates'
 import pdfMake from 'pdfmake/build/pdfmake'
 import { Roboto } from 'next/font/google';
 
-console.log('base url', process.env.NEXT_PUBLIC_BASE_URL)
-
 // 配置字体
 // Try loading NotoSansSC font first
 const loadNotoSansSC = async () => {
