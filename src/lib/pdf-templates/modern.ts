@@ -5,7 +5,7 @@ import { ResumeData, Experience } from '../types'
 export class ModernTemplate extends PDFTemplate {
   constructor(data: ResumeData) {
     super(data)
-    
+
     // 现代感的配色方案
     this.theme = {
       primary: '#2563eb',    // 明亮的蓝色
@@ -259,7 +259,7 @@ export class ModernTemplate extends PDFTemplate {
 
     return customSections.flatMap(section => [
       this.components.header(section.title),
-      ...section.items.flatMap((item, index) => 
+      ...section.items.flatMap((item, index) =>
         this.components.titleDescriptionItem(
           item.title,
           item.description,
@@ -288,10 +288,10 @@ export class ModernTemplate extends PDFTemplate {
       },
       fonts: {
         NotoSansSC: {
-          normal: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
-          bold: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf',
-          italics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
-          bolditalics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf'
+          normal: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
+          bold: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
+          italics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
+          bolditalics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf'
         }
       }
     }
