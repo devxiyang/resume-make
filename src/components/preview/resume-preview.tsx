@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { ResumeData } from '@/lib/types'
 import { getPDFTemplate } from '@/lib/pdf-templates'
 import pdfMake from 'pdfmake/build/pdfmake'
-import { Roboto } from 'next/font/google';
 
 // 配置字体
 // Try loading NotoSansSC font first
