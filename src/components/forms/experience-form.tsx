@@ -32,8 +32,6 @@ export function ExperienceForm() {
     validate: validateExperience,
   })
 
-  console.log('Form values:', form.values)
-
   const handleAddBulletPoint = () => {
     const newBulletPoints = [...form.values.bulletPoints, '']
     form.handleChange('bulletPoints', newBulletPoints)

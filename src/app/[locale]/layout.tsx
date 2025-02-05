@@ -45,8 +45,6 @@ export async function generateMetadata({
     }
   }
 
-  console.log(alternates)
-
   return {
     metadataBase: new URL(baseUrl),
     title: {
