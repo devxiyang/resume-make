@@ -5,38 +5,52 @@ import { ResumeData } from '@/lib/types'
 import { getPDFTemplate } from '@/lib/pdf-templates'
 import pdfMake from 'pdfmake/build/pdfmake'
 
-// 配置字体
+pdfMake.fonts = {
+  Roboto: {
+    normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
+    bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf',
+    italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
+    bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
+  }
+};
 // Try loading NotoSansSC font first
 const loadNotoSansSC = async () => {
+  // Initialize with Roboto font first
+  pdfMake.fonts = {
+    Roboto: {
+      normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
+      bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf',
+      italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
+      bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
+    }
+  };
+
   try {
-    const fontUrl = process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf';
-    const response = await fetch(fontUrl);
-    if (!response.ok) throw new Error('Font loading failed');
-    
+    // Try loading NotoSansSC font
+    const normalFontUrl = 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf';
+    const boldFontUrl = 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf';
+
+    const responses = await Promise.all([
+      fetch(normalFontUrl),
+      fetch(boldFontUrl)
+    ]);
+
+    if (!responses.every(res => res.ok)) {
+      throw new Error('Font loading failed');
+    }
+
+    // Add NotoSansSC to existing fonts if loading successful
     pdfMake.fonts = {
-      Roboto: {
-        normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
-        bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf', 
-        italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
-        bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
-      },
+      ...pdfMake.fonts,
       NotoSansSC: {
-        normal: fontUrl,
-        bold: fontUrl,
-        italics: fontUrl,
-        bolditalics: fontUrl
+        normal: normalFontUrl,
+        bold: boldFontUrl,
+        italics: normalFontUrl,
+        bolditalics: boldFontUrl
       }
     };
   } catch (err) {
     console.warn('Failed to load NotoSansSC font:', err);
-    pdfMake.fonts = {
-      Roboto: {
-        normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf',
-        bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf',
-        italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf',
-        bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf'
-      }
-    };
   }
 };
 
