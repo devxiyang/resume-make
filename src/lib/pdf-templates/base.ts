@@ -2,14 +2,14 @@ import { Content, TDocumentDefinitions, ContentText, ContentColumns, ContentStac
 import { ResumeData } from '../types'
 
 interface CustomDocumentDefinitions extends TDocumentDefinitions {
-  fonts?: {
-    [key: string]: {
-      normal?: string;
-      bold?: string;
-      italics?: string;
-      bolditalics?: string;
+    fonts?: {
+        [key: string]: {
+            normal?: string;
+            bold?: string;
+            italics?: string;
+            bolditalics?: string;
+        };
     };
-  };
 }
 
 export interface Theme {
@@ -221,7 +221,7 @@ export abstract class PDFTemplate {
         }
     }
 
-    constructor(protected data: ResumeData) {}
+    constructor(protected data: ResumeData) { }
 
     protected abstract generatePersonalSection(): Content[]
     protected abstract generateExperienceSection(): Content[]
@@ -248,10 +248,10 @@ export abstract class PDFTemplate {
             pageMargins: [40, 40, 40, 40],
             fonts: {
                 NotoSansSC: {
-                    normal: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
-                    bold: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf',
-                    italics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYw.ttf',
-                    bolditalics: 'https://fonts.gstatic.com/s/notosanssc/v37/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaGzjCnYw.ttf'
+                    normal: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
+                    bold: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
+                    italics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf',
+                    bolditalics: process.env.NEXT_PUBLIC_BASE_URL + '/fonts/NotoSansSC-normal.ttf'
                 }
             }
         }
