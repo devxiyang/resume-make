@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { cn } from '@/lib/utils'
 import { routing } from '@/i18n/routing'
 import type { Metadata } from 'next'
-import type { AlternateURLs } from 'next/dist/lib/metadata/types/alternative-urls-types'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import "./globals.css"
 import "./print-styles.css"
 
@@ -175,6 +175,8 @@ export default async function LocaleLayout({
           {children}
         </NextIntlClientProvider>
       </body>
+      <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`} />
+      
     </html>
   )
 }
